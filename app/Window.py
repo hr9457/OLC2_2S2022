@@ -2,6 +2,8 @@ import sys
 import tkinter as tk
 from tkinter import *
 
+# Importacion del Analizador
+from Compiler import Sintactico
 
 # posiciones N(arriba), E(derecha), S(abajo), W(izquierda)
 class Aplicacion:
@@ -32,6 +34,20 @@ class Aplicacion:
 
         # corra la applicacion
         self.ventana.mainloop()
+
+
+    # --------------------------------------------
+    # FUNCIONES PARA LAS ACCIONES DE LA VENTANA
+
+    # funcionalidad para compilar
+    def compilar(self):
+        print('compilando Entrada')
+        entrada = self.textAreaEntrada.get(1.0, END)
+        # print(entrada)
+        result = Sintactico.analizar(entrada)
+        # print(result)
+        self.textAreaSalida.insert(1.0, result)
+        
 
 
     # funcionalidad para salir
@@ -85,7 +101,7 @@ class Aplicacion:
         frameBotones = Frame(relief=RAISED, bd=2)
         frameBotones['bg'] = '#49A'
         botonAbrir = Button(frameBotones, text='Abrir')
-        botonCompilar = Button(frameBotones, text='Compilar')
+        botonCompilar = Button(frameBotones, text='Compilar', command=self.compilar)
         # expasion de los botones de forma horizontal (stiky)
         botonAbrir.grid(row=0, column=0, sticky='WE', padx=5, pady= 5)
         botonCompilar.grid(row=1, column=0, sticky='WE', padx=5, pady=5)
@@ -96,7 +112,7 @@ class Aplicacion:
         frameEntrada.rowconfigure(0, minsize=self.alto, weight=1)
         frameEntrada.columnconfigure(0, weight=1)
 
-        self.textAreaEntrada = Text(frameEntrada, wrap=WORD)
+        self.textAreaEntrada = Text(frameEntrada, wrap=WORD , font=('Times New Roman',17))
         self.textAreaEntrada.grid(row=0, column=0, sticky='nswe')
 
         scrollbar = Scrollbar(frameEntrada, orient='vertical', command=self.textAreaEntrada.yview)
@@ -108,6 +124,6 @@ class Aplicacion:
         separador = Frame(relief=RAISED, bd=1)
         separador.grid(row=0, column=2, sticky='ns')
 
-        self.textAreaSalida = Text(wrap=WORD)
+        self.textAreaSalida = Text(wrap=WORD, font=('Times New Roman',18))
         self.textAreaSalida.grid(row=0, column=3, sticky='nswe')
 

@@ -1,0 +1,205 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABS
+    ADMIRACION
+    AMPERSAND
+    AND
+    AS
+    BARRA
+    BOOL
+    BREAK
+    CADENA
+    CAPACITY
+    CARACTER
+    CHAR
+    CLONE
+    COMA
+    COMENTARIO
+    CONCATENARSTR
+    CONTAINS
+    CORCHETEDERECHO
+    CORCHETEIZQUIERDO
+    DECIMAL
+    DIFERENTE
+    DIV
+    DOSPUNTOS
+    ELSE
+    F64
+    FALSE
+    FN
+    I64
+    I64POW
+    ID
+    IF
+    IGUAL
+    IGUALIGUAL
+    INSERT
+    LEN
+    LET
+    LLAVEDERECHO
+    LLAVEIZQUIERDO
+    LOOP
+    MAIN
+    MAYOR
+    MAYORIGUAL
+    MENOR
+    MENORIGUAL
+    MENOS
+    MULTIPLICAR
+    MUT
+    NEW
+    OR
+    PARENTESISDERECHO
+    PARENTESISIZQUIERDO
+    PORCENTAJE
+    PUNTO
+    PUNTOCOMA
+    PUSH
+    REMOVE
+    RETURN
+    SQRT
+    STRING
+    STRUCT
+    TIPORETURN
+    TO_STRING
+    TRUE
+    USIZE
+    WHAT
+    WHILE
+    WITH_CAPACITY
+
+Grammar
+
+Rule 0     S' -> expresion
+Rule 1     expresion -> valor MAS valor
+Rule 2     valor -> ENTERO
+
+Terminals, with rules where they appear
+
+ABS                  : 
+ADMIRACION           : 
+AMPERSAND            : 
+AND                  : 
+AS                   : 
+BARRA                : 
+BOOL                 : 
+BREAK                : 
+CADENA               : 
+CAPACITY             : 
+CARACTER             : 
+CHAR                 : 
+CLONE                : 
+COMA                 : 
+COMENTARIO           : 
+CONCATENARSTR        : 
+CONTAINS             : 
+CORCHETEDERECHO      : 
+CORCHETEIZQUIERDO    : 
+DECIMAL              : 
+DIFERENTE            : 
+DIV                  : 
+DOSPUNTOS            : 
+ELSE                 : 
+ENTERO               : 2
+F64                  : 
+FALSE                : 
+FN                   : 
+I64                  : 
+I64POW               : 
+ID                   : 
+IF                   : 
+IGUAL                : 
+IGUALIGUAL           : 
+INSERT               : 
+LEN                  : 
+LET                  : 
+LLAVEDERECHO         : 
+LLAVEIZQUIERDO       : 
+LOOP                 : 
+MAIN                 : 
+MAS                  : 1
+MAYOR                : 
+MAYORIGUAL           : 
+MENOR                : 
+MENORIGUAL           : 
+MENOS                : 
+MULTIPLICAR          : 
+MUT                  : 
+NEW                  : 
+OR                   : 
+PARENTESISDERECHO    : 
+PARENTESISIZQUIERDO  : 
+PORCENTAJE           : 
+PUNTO                : 
+PUNTOCOMA            : 
+PUSH                 : 
+REMOVE               : 
+RETURN               : 
+SQRT                 : 
+STRING               : 
+STRUCT               : 
+TIPORETURN           : 
+TO_STRING            : 
+TRUE                 : 
+USIZE                : 
+WHAT                 : 
+WHILE                : 
+WITH_CAPACITY        : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expresion            : 0
+valor                : 1 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expresion
+    (1) expresion -> . valor MAS valor
+    (2) valor -> . ENTERO
+
+    ENTERO          shift and go to state 3
+
+    expresion                      shift and go to state 1
+    valor                          shift and go to state 2
+
+state 1
+
+    (0) S' -> expresion .
+
+
+
+state 2
+
+    (1) expresion -> valor . MAS valor
+
+    MAS             shift and go to state 4
+
+
+state 3
+
+    (2) valor -> ENTERO .
+
+    MAS             reduce using rule 2 (valor -> ENTERO .)
+    $end            reduce using rule 2 (valor -> ENTERO .)
+
+
+state 4
+
+    (1) expresion -> valor MAS . valor
+    (2) valor -> . ENTERO
+
+    ENTERO          shift and go to state 3
+
+    valor                          shift and go to state 5
+
+state 5
+
+    (1) expresion -> valor MAS valor .
+
+    $end            reduce using rule 1 (expresion -> valor MAS valor .)
+
