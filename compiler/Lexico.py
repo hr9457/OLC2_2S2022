@@ -16,16 +16,16 @@ tokens = [
     'MAYOR',
     'PUNTO',
     'IGUAL',
+    'IGUALDAD',
     'PORCENTAJE',
     'BARRA',
     'AMPERSAND',
-    'ADMIRACION',
     'MAYORIGUAL',
     'MENORIGUAL',
-    'IGUALIGUAL',
     'DIFERENTE',
     'OR',
     'AND',
+    'NOT',
     'WHAT',
     'TIPORETURN',
     'MAS',
@@ -43,38 +43,39 @@ tokens = [
  ]  
 
 reservadas = {
-    'i64': 'I64',
-    'f64': 'F64',
-    'bool': 'BOOL',
-    'char': 'CHAR',
-    'String': 'STRING',
-    'main': 'MAIN',
-    'usize': 'USIZE',
-    'let': 'LET',
-    'mut': 'MUT',
-    'struct': 'STRUCT',
-    'as': 'AS',
-    'true': 'TRUE',
-    'false': 'FALSE',
-    'fn': 'FN',
-    'return': 'RETURN',
-    'abs': 'ABS',
-    'sqrt': 'SQRT',
-    'to_string': 'TO_STRING',
-    'clone': 'CLONE',
-    'new': 'NEW',
-    'len': 'LEN',
-    'push': 'PUSH',
-    'remove': 'REMOVE',
-    'contains': 'CONTAINS',
-    'insert': 'INSERT',
-    'capacity': 'CAPACITY',
-    'with_capacity': 'WITH_CAPACITY',
-    'if': 'IF',
-    'else': 'ELSE',
-    'while': 'WHILE',
-    'loop': 'LOOP',
-    'break': 'BREAK'
+    'println'       : 'PRINTLN',
+    'i64'           : 'I64',
+    'f64'           : 'F64',
+    'bool'          : 'BOOL',
+    'char'          : 'CHAR',
+    'String'        : 'STRING',
+    'main'          : 'MAIN',
+    'usize'         : 'USIZE',
+    'let'           : 'LET',
+    'mut'           : 'MUT',
+    'struct'        : 'STRUCT',
+    'as'            : 'AS',
+    'true'          : 'TRUE',
+    'false'         : 'FALSE',
+    'fn'            : 'FN',
+    'return'        : 'RETURN',
+    'abs'           : 'ABS',
+    'sqrt'          : 'SQRT',
+    'to_string'     : 'TO_STRING',
+    'clone'         : 'CLONE',
+    'new'           : 'NEW',
+    'len'           : 'LEN',
+    'push'          : 'PUSH',
+    'remove'        : 'REMOVE',
+    'contains'      : 'CONTAINS',
+    'insert'        : 'INSERT',
+    'capacity'      : 'CAPACITY',
+    'with_capacity' : 'WITH_CAPACITY',
+    'if'            : 'IF',
+    'else'          : 'ELSE',
+    'while'         : 'WHILE',
+    'loop'          : 'LOOP',
+    'break'         : 'BREAK'
 }
 
 tokens = tokens + list(reservadas.values())
@@ -85,8 +86,8 @@ tokens = tokens + list(reservadas.values())
 # ----------------------------------------------------------------
 t_I64POW                = r'i64:pow'
 t_CONCATENARSTR         = r'&str'
-t_PARENTESISDERECHO     = r'\('
-t_PARENTESISIZQUIERDO   = r'\)'
+t_PARENTESISDERECHO     = r'\)'
+t_PARENTESISIZQUIERDO   = r'\('
 t_CORCHETEDERECHO       = r'\['
 t_CORCHETEIZQUIERDO     = r'\]'
 t_LLAVEIZQUIERDO        = r'\{'
@@ -94,17 +95,17 @@ t_LLAVEDERECHO          = r'\}'
 t_PUNTOCOMA             = r'\;'
 t_DOSPUNTOS             = r'\:'
 t_COMA                  = r'\,'
-t_MENOR                 = r'<'
-t_MAYOR                 = r'>'
 t_PUNTO                 = r'\.'
+t_IGUALDAD              = r'=='
 t_IGUAL                 = r'='
 t_PORCENTAJE            = r'\%'
 t_BARRA                 = r'\|'
 t_AMPERSAND             = r'\&'
-t_ADMIRACION            = r'\!'
+t_NOT                   = r'\!'
 t_MAYORIGUAL            = r'\>='
 t_MENORIGUAL            = r'\<='
-t_IGUALIGUAL            = r'\=='
+t_MENOR                 = r'<'
+t_MAYOR                 = r'>'
 t_DIFERENTE             = r'\!='
 t_OR                    = r'\|\|'
 t_AND                   = r'\&&'
@@ -120,6 +121,19 @@ t_DIV                   = r'/'
 #                      Expresiones Regulares
 # ----------------------------------------------------------------
 
+
+# MANEJO DE NUMEROS DECIMAL
+def t_DECIMAL(t):
+    r'\d+\.\d+'
+    try:
+        t.value = float(t.value)
+    except ValueError:
+        print(f'Error al convertir a un valor tipo float {t.value}')
+        t.value = 0
+    return t
+
+
+
 # MANEJO DE NUMERO ENTEROS
 def t_ENTERO(t):
     r'\d+'
@@ -131,15 +145,7 @@ def t_ENTERO(t):
     return t
 
 
-# MANEJO DE NUMEROS DECIMAL
-def t_DECIMAL(t):
-    r'\d+\.\d+'
-    try:
-        t.value = int(t.value)
-    except ValueError:
-        print(f'Error al convertir a un valor tipo float {t.value}')
-        t.value = 0
-    return t
+
 
 
 # MANEJO DE IDENTIFICADORES
@@ -184,6 +190,11 @@ def t_newline(t):
     r'\n'
     t.lexer.lineno += t.value.count('\n')
 
+
+# manejo de filas
+def columnToken(inp, tk):
+    line = inp.rfind('\n', 0, tk.lexpos) + 1
+    return (tk.lexpos - line) + 1
 
 # MANEJO DE ERRORES
 def t_error(t):

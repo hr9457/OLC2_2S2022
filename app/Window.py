@@ -46,6 +46,7 @@ class Aplicacion:
         # print(entrada)
         result = Sintactico.analizar(entrada)
         # print(result)
+        self.textAreaSalida.delete(1.0, END)
         self.textAreaSalida.insert(1.0, result)
         
 
