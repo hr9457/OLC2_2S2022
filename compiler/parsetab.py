@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftORleftANDrightUNOTleftIGUALDADleftMENORMAYORMAYORIGUALMENORIGUALleftMASMENOSleftMULTIPLICARDIVrightUMENOSABS AMPERSAND AND AS BARRA BOOL BREAK CADENA CAPACITY CARACTER CHAR CLONE COMA COMENTARIO CONCATENARSTR CONTAINS CORCHETEDERECHO CORCHETEIZQUIERDO DECIMAL DIFERENTE DIV DOSPUNTOS ELSE ENTERO F64 FALSE FN I64 I64POW ID IF IGUAL IGUALDAD INSERT LEN LET LLAVEDERECHO LLAVEIZQUIERDO LOOP MAIN MAS MAYOR MAYORIGUAL MENOR MENORIGUAL MENOS MULTIPLICAR MUT NEW NOT OR PARENTESISDERECHO PARENTESISIZQUIERDO PORCENTAJE PRINTLN PUNTO PUNTOCOMA PUSH REMOVE RETURN SQRT STRING STRUCT TIPORETURN TO_STRING TRUE USIZE WHAT WHILE WITH_CAPACITY inicio : instrucciones  instrucciones : instrucciones instruccion  instrucciones : instruccion  instruccion : imprimir  imprimir : PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO  exp : exp MAS exp \n            | exp MENOS exp \n            | exp MULTIPLICAR exp \n            | exp DIV exp\n            | exp MAYOR exp \n            | exp MENOR exp \n            | exp MAYORIGUAL exp \n            | exp MENORIGUAL exp \n            | exp IGUALDAD exp\n            | exp OR exp\n            | exp AND exp  exp : NOT exp %prec UNOT  exp : MENOS exp %prec UMENOS  exp : PARENTESISIZQUIERDO exp PARENTESISDERECHO  exp : primitivo  primitivo   : ENTERO \n                    | DECIMAL\n                    | TRUE\n                    | FALSE '
+_lr_signature = 'leftORleftANDrightUNOTleftIGUALDADleftMENORMAYORMAYORIGUALMENORIGUALleftMASMENOSleftMULTIPLICARDIVrightUMENOSABS AMPERSAND AND AS BARRA BOOL BREAK CADENA CAPACITY CARACTER CHAR CLONE COMA COMENTARIO CONCATENARSTR CONTAINS CORCHETEDERECHO CORCHETEIZQUIERDO DECIMAL DIFERENTE DIV DOSPUNTOS ELSE ENTERO F64 FALSE FN I64 ID IF IGUAL IGUALDAD INSERT LEN LET LLAVEDERECHO LLAVEIZQUIERDO LOOP MAIN MAS MAYOR MAYORIGUAL MENOR MENORIGUAL MENOS MULTIPLICAR MUT NEW NOT OR PARENTESISDERECHO PARENTESISIZQUIERDO PORCENTAJE POW PRINTLN PUNTO PUNTOCOMA PUSH REMOVE RETURN SQRT STRING STRUCT TIPORETURN TO_STRING TRUE USIZE WHAT WHILE WITH_CAPACITY inicio : instrucciones  instrucciones : instrucciones instruccion  instrucciones : instruccion  instruccion : imprimir  imprimir : PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO  exp : exp MAS exp \n            | exp MENOS exp \n            | exp MULTIPLICAR exp \n            | exp DIV exp\n            | exp MAYOR exp \n            | exp MENOR exp \n            | exp MAYORIGUAL exp \n            | exp MENORIGUAL exp \n            | exp IGUALDAD exp\n            | exp OR exp\n            | exp AND exp  exp : NOT exp %prec UNOT  exp : MENOS exp %prec UMENOS  exp : PARENTESISIZQUIERDO exp PARENTESISDERECHO  exp : I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO \n            | F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO  exp : primitivo  primitivo   : ENTERO \n                    | DECIMAL\n                    | TRUE\n                    | FALSE\n                    | CADENA '
     
-_lr_action_items = {'PRINTLN':([0,2,3,4,6,18,],[5,5,-3,-4,-2,-5,]),'$end':([1,2,3,4,6,18,],[0,-1,-3,-4,-2,-5,]),'PARENTESISIZQUIERDO':([5,7,8,10,11,19,20,21,22,23,24,25,26,27,28,29,],[7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,]),'NOT':([7,8,10,11,19,20,21,22,23,24,25,26,27,28,29,],[11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,]),'MENOS':([7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[10,10,20,10,10,-20,-21,-22,-23,-24,20,10,10,10,10,10,10,10,10,10,10,10,-18,20,-19,-6,-7,-8,-9,20,20,20,20,20,20,20,]),'ENTERO':([7,8,10,11,19,20,21,22,23,24,25,26,27,28,29,],[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'DECIMAL':([7,8,10,11,19,20,21,22,23,24,25,26,27,28,29,],[14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,]),'TRUE':([7,8,10,11,19,20,21,22,23,24,25,26,27,28,29,],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,]),'FALSE':([7,8,10,11,19,20,21,22,23,24,25,26,27,28,29,],[16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,]),'PARENTESISDERECHO':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[18,-20,-21,-22,-23,-24,32,-18,-17,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,]),'MAS':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[19,-20,-21,-22,-23,-24,19,-18,19,-19,-6,-7,-8,-9,19,19,19,19,19,19,19,]),'MULTIPLICAR':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[21,-20,-21,-22,-23,-24,21,-18,21,-19,21,21,-8,-9,21,21,21,21,21,21,21,]),'DIV':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[22,-20,-21,-22,-23,-24,22,-18,22,-19,22,22,-8,-9,22,22,22,22,22,22,22,]),'MAYOR':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[23,-20,-21,-22,-23,-24,23,-18,23,-19,-6,-7,-8,-9,-10,-11,-12,-13,23,23,23,]),'MENOR':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[24,-20,-21,-22,-23,-24,24,-18,24,-19,-6,-7,-8,-9,-10,-11,-12,-13,24,24,24,]),'MAYORIGUAL':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[25,-20,-21,-22,-23,-24,25,-18,25,-19,-6,-7,-8,-9,-10,-11,-12,-13,25,25,25,]),'MENORIGUAL':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[26,-20,-21,-22,-23,-24,26,-18,26,-19,-6,-7,-8,-9,-10,-11,-12,-13,26,26,26,]),'IGUALDAD':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[27,-20,-21,-22,-23,-24,27,-18,27,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,27,27,]),'OR':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[28,-20,-21,-22,-23,-24,28,-18,-17,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,]),'AND':([9,12,13,14,15,16,17,30,31,32,33,34,35,36,37,38,39,40,41,42,43,],[29,-20,-21,-22,-23,-24,29,-18,-17,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,29,-16,]),}
+_lr_action_items = {'PRINTLN':([0,2,3,4,6,21,],[5,5,-3,-4,-2,-5,]),'$end':([1,2,3,4,6,21,],[0,-1,-3,-4,-2,-5,]),'PARENTESISIZQUIERDO':([5,7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,51,52,53,54,57,58,],[7,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,53,54,8,8,8,8,]),'NOT':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,]),'MENOS':([7,8,9,10,11,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30,31,32,33,34,37,38,39,40,41,42,43,44,45,46,47,48,53,54,55,56,57,58,59,60,61,62,],[10,10,23,10,10,-22,-23,-24,-25,-26,-27,23,10,10,10,10,10,10,10,10,10,10,10,-18,23,-19,-6,-7,-8,-9,23,23,23,23,23,23,23,10,10,23,23,10,10,23,23,-20,-21,]),'I64':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,]),'F64':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'ENTERO':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,]),'DECIMAL':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,]),'TRUE':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,]),'FALSE':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,]),'CADENA':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,]),'PARENTESISDERECHO':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,59,60,61,62,],[21,-22,-23,-24,-25,-26,-27,37,-18,-17,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,61,62,-20,-21,]),'MAS':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[22,-22,-23,-24,-25,-26,-27,22,-18,22,-19,-6,-7,-8,-9,22,22,22,22,22,22,22,22,22,22,22,-20,-21,]),'MULTIPLICAR':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[24,-22,-23,-24,-25,-26,-27,24,-18,24,-19,24,24,-8,-9,24,24,24,24,24,24,24,24,24,24,24,-20,-21,]),'DIV':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[25,-22,-23,-24,-25,-26,-27,25,-18,25,-19,25,25,-8,-9,25,25,25,25,25,25,25,25,25,25,25,-20,-21,]),'MAYOR':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[26,-22,-23,-24,-25,-26,-27,26,-18,26,-19,-6,-7,-8,-9,-10,-11,-12,-13,26,26,26,26,26,26,26,-20,-21,]),'MENOR':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[27,-22,-23,-24,-25,-26,-27,27,-18,27,-19,-6,-7,-8,-9,-10,-11,-12,-13,27,27,27,27,27,27,27,-20,-21,]),'MAYORIGUAL':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[28,-22,-23,-24,-25,-26,-27,28,-18,28,-19,-6,-7,-8,-9,-10,-11,-12,-13,28,28,28,28,28,28,28,-20,-21,]),'MENORIGUAL':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[29,-22,-23,-24,-25,-26,-27,29,-18,29,-19,-6,-7,-8,-9,-10,-11,-12,-13,29,29,29,29,29,29,29,-20,-21,]),'IGUALDAD':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[30,-22,-23,-24,-25,-26,-27,30,-18,30,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,30,30,30,30,30,30,-20,-21,]),'OR':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[31,-22,-23,-24,-25,-26,-27,31,-18,-17,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,31,31,31,31,-20,-21,]),'AND':([9,14,15,16,17,18,19,20,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,61,62,],[32,-22,-23,-24,-25,-26,-27,32,-18,-17,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,32,-16,32,32,32,32,-20,-21,]),'DOSPUNTOS':([12,13,35,36,],[35,36,49,50,]),'COMA':([14,15,16,17,18,19,33,34,37,38,39,40,41,42,43,44,45,46,47,48,55,56,61,62,],[-22,-23,-24,-25,-26,-27,-18,-17,-19,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,57,58,-20,-21,]),'POW':([49,50,],[51,52,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'inicio':([0,],[1,]),'instrucciones':([0,],[2,]),'instruccion':([0,2,],[3,6,]),'imprimir':([0,2,],[4,4,]),'exp':([7,8,10,11,19,20,21,22,23,24,25,26,27,28,29,],[9,17,30,31,33,34,35,36,37,38,39,40,41,42,43,]),'primitivo':([7,8,10,11,19,20,21,22,23,24,25,26,27,28,29,],[12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'instrucciones':([0,],[2,]),'instruccion':([0,2,],[3,6,]),'imprimir':([0,2,],[4,4,]),'exp':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[9,20,33,34,38,39,40,41,42,43,44,45,46,47,48,55,56,59,60,]),'primitivo':([7,8,10,11,22,23,24,25,26,27,28,29,30,31,32,53,54,57,58,],[14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,28 +27,31 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> inicio","S'",1,None,None,None),
-  ('inicio -> instrucciones','inicio',1,'p_inicio','Sintactico.py',60),
-  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_lista_instrucciones','Sintactico.py',70),
-  ('instrucciones -> instruccion','instrucciones',1,'p_intrucciones','Sintactico.py',76),
-  ('instruccion -> imprimir','instruccion',1,'p_instruccion','Sintactico.py',87),
-  ('imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO','imprimir',4,'p_imprimir','Sintactico.py',101),
-  ('exp -> exp MAS exp','exp',3,'p_aritmetica','Sintactico.py',115),
-  ('exp -> exp MENOS exp','exp',3,'p_aritmetica','Sintactico.py',116),
-  ('exp -> exp MULTIPLICAR exp','exp',3,'p_aritmetica','Sintactico.py',117),
-  ('exp -> exp DIV exp','exp',3,'p_aritmetica','Sintactico.py',118),
-  ('exp -> exp MAYOR exp','exp',3,'p_aritmetica','Sintactico.py',119),
-  ('exp -> exp MENOR exp','exp',3,'p_aritmetica','Sintactico.py',120),
-  ('exp -> exp MAYORIGUAL exp','exp',3,'p_aritmetica','Sintactico.py',121),
-  ('exp -> exp MENORIGUAL exp','exp',3,'p_aritmetica','Sintactico.py',122),
-  ('exp -> exp IGUALDAD exp','exp',3,'p_aritmetica','Sintactico.py',123),
-  ('exp -> exp OR exp','exp',3,'p_aritmetica','Sintactico.py',124),
-  ('exp -> exp AND exp','exp',3,'p_aritmetica','Sintactico.py',125),
-  ('exp -> NOT exp','exp',2,'p_logica_unitaria','Sintactico.py',182),
-  ('exp -> MENOS exp','exp',2,'p_aritmetica_unaria','Sintactico.py',186),
-  ('exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO','exp',3,'p_aritmetica_agrupacion','Sintactico.py',192),
-  ('exp -> primitivo','exp',1,'p_expresion','Sintactico.py',199),
-  ('primitivo -> ENTERO','primitivo',1,'p_valor','Sintactico.py',211),
-  ('primitivo -> DECIMAL','primitivo',1,'p_valor','Sintactico.py',212),
-  ('primitivo -> TRUE','primitivo',1,'p_valor','Sintactico.py',213),
-  ('primitivo -> FALSE','primitivo',1,'p_valor','Sintactico.py',214),
+  ('inicio -> instrucciones','inicio',1,'p_inicio','Sintactico.py',61),
+  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_lista_instrucciones','Sintactico.py',71),
+  ('instrucciones -> instruccion','instrucciones',1,'p_intrucciones','Sintactico.py',77),
+  ('instruccion -> imprimir','instruccion',1,'p_instruccion','Sintactico.py',88),
+  ('imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO','imprimir',4,'p_imprimir','Sintactico.py',102),
+  ('exp -> exp MAS exp','exp',3,'p_aritmetica','Sintactico.py',116),
+  ('exp -> exp MENOS exp','exp',3,'p_aritmetica','Sintactico.py',117),
+  ('exp -> exp MULTIPLICAR exp','exp',3,'p_aritmetica','Sintactico.py',118),
+  ('exp -> exp DIV exp','exp',3,'p_aritmetica','Sintactico.py',119),
+  ('exp -> exp MAYOR exp','exp',3,'p_aritmetica','Sintactico.py',120),
+  ('exp -> exp MENOR exp','exp',3,'p_aritmetica','Sintactico.py',121),
+  ('exp -> exp MAYORIGUAL exp','exp',3,'p_aritmetica','Sintactico.py',122),
+  ('exp -> exp MENORIGUAL exp','exp',3,'p_aritmetica','Sintactico.py',123),
+  ('exp -> exp IGUALDAD exp','exp',3,'p_aritmetica','Sintactico.py',124),
+  ('exp -> exp OR exp','exp',3,'p_aritmetica','Sintactico.py',125),
+  ('exp -> exp AND exp','exp',3,'p_aritmetica','Sintactico.py',126),
+  ('exp -> NOT exp','exp',2,'p_logica_unitaria','Sintactico.py',186),
+  ('exp -> MENOS exp','exp',2,'p_aritmetica_unaria','Sintactico.py',191),
+  ('exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO','exp',3,'p_aritmetica_agrupacion','Sintactico.py',197),
+  ('exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO','exp',9,'p_aritmetica_potencia','Sintactico.py',203),
+  ('exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO','exp',9,'p_aritmetica_potencia','Sintactico.py',204),
+  ('exp -> primitivo','exp',1,'p_expresion','Sintactico.py',213),
+  ('primitivo -> ENTERO','primitivo',1,'p_valor','Sintactico.py',225),
+  ('primitivo -> DECIMAL','primitivo',1,'p_valor','Sintactico.py',226),
+  ('primitivo -> TRUE','primitivo',1,'p_valor','Sintactico.py',227),
+  ('primitivo -> FALSE','primitivo',1,'p_valor','Sintactico.py',228),
+  ('primitivo -> CADENA','primitivo',1,'p_valor','Sintactico.py',229),
 ]

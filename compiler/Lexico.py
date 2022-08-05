@@ -38,7 +38,6 @@ tokens = [
     'CARACTER',
     'ID',
     'COMENTARIO',
-    'I64POW',
     'CONCATENARSTR'
  ]  
 
@@ -75,7 +74,8 @@ reservadas = {
     'else'          : 'ELSE',
     'while'         : 'WHILE',
     'loop'          : 'LOOP',
-    'break'         : 'BREAK'
+    'break'         : 'BREAK',
+    'pow'           : 'POW'
 }
 
 tokens = tokens + list(reservadas.values())
@@ -84,7 +84,6 @@ tokens = tokens + list(reservadas.values())
 # ----------------------------------------------------------------
 #                              Tokens
 # ----------------------------------------------------------------
-t_I64POW                = r'i64:pow'
 t_CONCATENARSTR         = r'&str'
 t_PARENTESISDERECHO     = r'\)'
 t_PARENTESISIZQUIERDO   = r'\('

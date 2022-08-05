@@ -17,6 +17,7 @@ from src.Expresiones.Aritmetica import Aritmetica
 from src.Expresiones.Negativo import Negativo
 from src.Expresiones.Relacional import Relacional
 from src.Expresiones.Logico import Logico
+from src.Expresiones.Pow import Pow
 
 
 # importacion de instrucciones
@@ -176,6 +177,9 @@ def p_aritmetica(p):
         p[0] = Logico(0, 0, p[1], TipoLogico.AND, p[3])
 
 
+    
+
+
 
 
 def p_logica_unitaria(p):
@@ -195,6 +199,15 @@ def p_aritmetica_agrupacion(p):
     p[0] = p[2] 
 
 
+def p_aritmetica_potencia(p):
+    ''' exp : I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO 
+            | F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO '''
+    if p[1] == 'i64':
+        p[0] = Pow(0, 0, TipoExpresion.INTEGER, p[6], p[8])	
+
+    elif p[1] == 'f64':
+        p[0] = Pow(0, 0, TipoExpresion.FLOAT, p[6], p[8])	
+
 
 def p_expresion(p):
     ' exp : primitivo '
@@ -212,7 +225,8 @@ def p_valor(p):
     ''' primitivo   : ENTERO 
                     | DECIMAL
                     | TRUE
-                    | FALSE '''
+                    | FALSE
+                    | CADENA '''
 
     if p.slice[1].type == 'ENTERO': 
         p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.INTEGER, p[1])
@@ -225,6 +239,9 @@ def p_valor(p):
 
     elif p.slice[1].type == 'FALSE':
         p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.BOOL, p[1])
+
+    elif p.slice[1].type == 'CADENA':
+        p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.STRING, p[1])
 
 
 

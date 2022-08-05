@@ -41,26 +41,26 @@ class Aritmetica(Expresion):
                 if self.operador == TipoOperador.MAS:
                     result = nodoIzquierda.valor + nodoDerecha.valor
                     self.tipo = TipoExpresion.INTEGER
-                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, result)
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, int(result))
 
                 # resta
                 elif self.operador == TipoOperador.MENOS:
                     result = nodoIzquierda.valor - nodoDerecha.valor
                     self.tipo = TipoExpresion.INTEGER
-                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, result)
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, int(result))
 
                 
                 # multiplacion
                 elif self.operador == TipoOperador.POR:
                     result = nodoIzquierda.valor * nodoDerecha.valor
                     self.tipo = TipoExpresion.INTEGER
-                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, result)
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, int(result))
 
                 # division
                 elif self.operador == TipoOperador.DIV:
                     result = nodoIzquierda.valor / nodoDerecha.valor
                     self.tipo = TipoExpresion.INTEGER
-                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, result)
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, int(result))
 
 
             # evaluacion de tipo de valor --> FLOAT

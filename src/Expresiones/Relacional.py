@@ -110,7 +110,7 @@ class Relacional(Expresion):
                         return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
                 # evaluacion del menor igual que
-                if self.operador == TipoRelacional.MENORORIGUALQUE:
+                if self.operador == TipoRelacional.MENORIGUALQUE:
 
                     if nodoIzquierda.valor <= nodoDerecha.valor:
                         return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
@@ -125,6 +125,58 @@ class Relacional(Expresion):
                         return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
                         return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
+
+
+
+
+
+            # evalucaion de tipo valor --> FLOAT
+            if self.leftExp.tipo == TipoExpresion.STRING:
+                 # evaluacion del mayor que 
+                if self.operador == TipoRelacional.MAYORQUE:
+                    
+                    if nodoIzquierda.valor > nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                    else:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
+                
+                # evaluacion del menor que
+                if self.operador == TipoRelacional.MENORQUE:
+
+                    if nodoIzquierda.valor < nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                    else:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
+
+                # evalucacion del mayor igual que
+                if self.operador == TipoRelacional.MAYORIGUALQUE:
+
+                    if nodoIzquierda.valor >= nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                    else:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
+                # evaluacion del menor igual que
+                if self.operador == TipoRelacional.MENORIGUALQUE:
+
+                    if nodoIzquierda.valor <= nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                    else:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
+                
+                # evalucacion de la igual 
+                if self.operador == TipoRelacional.IGUALDAD:
+
+                    if nodoIzquierda.valor == nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                    else:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
+                
 
 
         else:
