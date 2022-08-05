@@ -4,22 +4,25 @@ from src.Expresiones.Primitivo import Primitivo
 
 class Negativo(Expresion):
     
-    def __init__(self, nodo):
+    def __init__(self, fila, columna, nodo):
+        self.fila = fila
+        self.columna = columna
         self.nodo = nodo
         self.tipo = None
 
     def ejecutar(self):
         
-        valor = self.nodo.ejecutar()
+        # primitivo
+        nodoUnico = self.nodo.ejecutar()
 
         if self.nodo.tipo == TipoExpresion.INTEGER:
             self.tipo = TipoExpresion.INTEGER
-            return -1 * valor
+            return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, (-1 * int(nodoUnico.valor)))
             
     
         elif self.nodo.tipo == TipoExpresion.FLOAT:
             self.tipo = TipoExpresion.FLOAT
-            return -1 * valor        
+            return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, (-1.0 * float(nodoUnico.valor)))    
 
         else:
             return None

@@ -1,5 +1,5 @@
 
-from fileinput import filename
+from src.Expresiones.Primitivo import Primitivo
 from src.Interfaces.Expresion import Expresion
 from src.Interfaces.TipoOperador import TipoOperador
 from src.Interfaces.TipoExpresion import TipoExpresion
@@ -11,7 +11,9 @@ from src.Interfaces.TipoExpresion import TipoExpresion
 class Aritmetica(Expresion):
 
     # constructor usando el constructor de la clase Nodo
-    def __init__(self, lefExp, operador ,rigthExp):
+    def __init__(self, fila, columna, lefExp, operador ,rigthExp):
+        self.fila = fila 
+        self.columna = columna
         self.leftExp = lefExp
         self.operador = operador
         self.rigthExp = rigthExp
@@ -20,8 +22,11 @@ class Aritmetica(Expresion):
     def ejecutar(self):
 
         # ejecucion de nodo derecho y izquierdo
-        izquierda = self.leftExp.ejecutar()
-        derecha = self.rigthExp.ejecutar()
+        nodoIzquierda = self.leftExp.ejecutar()
+        nodoDerecha = self.rigthExp.ejecutar()
+
+        # print(nodoIzquierda)
+        # print(nodoDerecha)
 
         
 
@@ -34,30 +39,28 @@ class Aritmetica(Expresion):
 
                 # suma
                 if self.operador == TipoOperador.MAS:
-                    result = izquierda + derecha
+                    result = nodoIzquierda.valor + nodoDerecha.valor
                     self.tipo = TipoExpresion.INTEGER
-                    return result
-                    # primitivo = Primitivo(0, 0, TipoExpresion.INTEGER, result)
-                    # return primitivo 
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, result)
 
                 # resta
                 elif self.operador == TipoOperador.MENOS:
-                    result = izquierda - derecha
+                    result = nodoIzquierda.valor - nodoDerecha.valor
                     self.tipo = TipoExpresion.INTEGER
-                    return result
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, result)
 
                 
                 # multiplacion
                 elif self.operador == TipoOperador.POR:
-                    result = izquierda * derecha
+                    result = nodoIzquierda.valor * nodoDerecha.valor
                     self.tipo = TipoExpresion.INTEGER
-                    return result
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, result)
 
                 # division
                 elif self.operador == TipoOperador.DIV:
-                    result = izquierda / derecha
+                    result = nodoIzquierda.valor / nodoDerecha.valor
                     self.tipo = TipoExpresion.INTEGER
-                    return result
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, result)
 
 
             # evaluacion de tipo de valor --> FLOAT
@@ -65,32 +68,29 @@ class Aritmetica(Expresion):
 
                 # suma
                 if self.operador == TipoOperador.MAS:
-                    result = izquierda + derecha
+                    result = nodoIzquierda.valor + nodoDerecha.valor
                     self.tipo = TipoExpresion.FLOAT
-                    return result
-                    # primitivo = Primitivo(0, 0, TipoExpresion.FLOAT, result)
-                    # return primitivo 
+                    return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
 
                 # resta
                 elif self.operador == TipoOperador.MENOS:
-                    result = izquierda - derecha
+                    result = nodoIzquierda.valor - nodoDerecha.valor
                     self.tipo = TipoExpresion.FLOAT
-                    return result
+                    return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
 
                 
                 # multiplacion
                 elif self.operador == TipoOperador.POR:
-                    result = izquierda * derecha
+                    result = nodoIzquierda.valor * nodoDerecha.valor
                     self.tipo = TipoExpresion.FLOAT
-                    return result
+                    return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
 
                 # division
                 elif self.operador == TipoOperador.DIV:
-                    result = izquierda / derecha
+                    result = nodoIzquierda.valor / nodoDerecha.valor
                     self.tipo = TipoExpresion.FLOAT
-                    return result
+                    return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
 
         # caso para tipos diferentes   
         else:
             return None
-            

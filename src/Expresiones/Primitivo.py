@@ -13,7 +13,12 @@ class Primitivo(Expresion):
 
     # metodo abstracto
     def ejecutar(self):
-        return self.valor
+        return Primitivo(
+            self.fila,
+            self.columna,
+            self.tipo,
+            self.valor
+            )
 
     
 

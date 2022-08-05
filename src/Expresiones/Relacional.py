@@ -2,11 +2,16 @@ from src.Interfaces.Expresion import Expresion
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Interfaces.TipoRelacional import TipoRelacional
 
+from src.Expresiones.Primitivo import Primitivo
+from src.Interfaces.TipoExpresion import TipoExpresion
+
 
 class Relacional(Expresion):
 
 
-    def __init__(self, leftExp, operador, rightExp):
+    def __init__(self, fila, columna, leftExp, operador, rightExp):
+        self.fila = fila
+        self.columna = columna
         self.leftExp = leftExp
         self.operador = operador
         self.rightExp = rightExp
@@ -16,8 +21,8 @@ class Relacional(Expresion):
     def ejecutar(self):
 
         # ejecutamos nodos derecha y izquierda
-        izquierda = self.leftExp.ejecutar()
-        derecha = self.rightExp.ejecutar()
+        nodoIzquierda = self.leftExp.ejecutar()
+        nodoDerecha = self.rightExp.ejecutar()
 
         # evalucacion de tipos de los primitivos
         if self.leftExp.tipo == self.rightExp.tipo:
@@ -30,45 +35,47 @@ class Relacional(Expresion):
                 # evaluacion del mayor que 
                 if self.operador == TipoRelacional.MAYORQUE:
                     
-                    if izquierda > derecha:
-                        return True
+                    if nodoIzquierda.valor > nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                        # return True
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+                        # return False
 
                 
                 # evaluacion del menor que
                 if self.operador == TipoRelacional.MENORQUE:
 
-                    if izquierda < derecha:
-                        return True
+                    if nodoIzquierda.valor < nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
 
                 # evalucacion del mayor igual que
                 if self.operador == TipoRelacional.MAYORIGUALQUE:
 
-                    if izquierda >= derecha:
-                        return True
+                    if nodoIzquierda.valor >= nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
                 # evaluacion del menor igual que
                 if self.operador == TipoRelacional.MENORIGUALQUE:
 
-                    if izquierda <= derecha:
-                        return True
+                    if nodoIzquierda.valor <= nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
                 
                 # evalucacion de la igual 
                 if self.operador == TipoRelacional.IGUALDAD:
 
-                    if izquierda == derecha:
-                        return True
+                    if nodoIzquierda.valor == nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
 
             
@@ -79,45 +86,45 @@ class Relacional(Expresion):
                 # evaluacion del mayor que 
                 if self.operador == TipoRelacional.MAYORQUE:
                     
-                    if izquierda > derecha:
-                        return True
+                    if nodoIzquierda.valor > nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
                 
                 # evaluacion del menor que
                 if self.operador == TipoRelacional.MENORQUE:
 
-                    if izquierda < derecha:
-                        return True
+                    if nodoIzquierda.valor < nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
 
                 # evalucacion del mayor igual que
                 if self.operador == TipoRelacional.MAYORIGUALQUE:
 
-                    if izquierda >= derecha:
-                        return True
+                    if nodoIzquierda.valor >= nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
                 # evaluacion del menor igual que
                 if self.operador == TipoRelacional.MENORORIGUALQUE:
 
-                    if izquierda <= derecha:
-                        return True
+                    if nodoIzquierda.valor <= nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
                 
                 # evalucacion de la igual 
                 if self.operador == TipoRelacional.IGUALDAD:
 
-                    if izquierda == derecha:
-                        return True
+                    if nodoIzquierda.valor == nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
                     else:
-                        return False
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
 
         else:

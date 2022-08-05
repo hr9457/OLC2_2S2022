@@ -9,6 +9,14 @@ class Imprimir(Instruccion):
 
     # metodo para ejecutar el imprimir
     def ejecutar(self):
+
         # result = self.contenido.ejecutar().ejecutar()
+        # primitivo
+        
+
+
         result = self.contenido.ejecutar()
-        return result
+
+        print(f'tipo entrada en instruccion imprimir --> --> {result}')
+
+        return result.valor
