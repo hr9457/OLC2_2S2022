@@ -37,22 +37,23 @@ tokens = [
     'CADENA',
     'CARACTER',
     'ID',
-    'COMENTARIO',
-    'CONCATENARSTR'
+    'COMENTARIO'
+    # 'CONCATENARSTR'
  ]  
 
 reservadas = {
+    'String'        : 'STRING',
     'println'       : 'PRINTLN',
     'i64'           : 'I64',
     'f64'           : 'F64',
     'bool'          : 'BOOL',
     'char'          : 'CHAR',
-    'String'        : 'STRING',
+    
     'main'          : 'MAIN',
     'usize'         : 'USIZE',
     'let'           : 'LET',
     'mut'           : 'MUT',
-    'struct'        : 'STRUCT',
+    # 'struct'        : 'STRUCT',
     'as'            : 'AS',
     'true'          : 'TRUE',
     'false'         : 'FALSE',
@@ -60,7 +61,7 @@ reservadas = {
     'return'        : 'RETURN',
     'abs'           : 'ABS',
     'sqrt'          : 'SQRT',
-    'to_string'     : 'TO_STRING',
+    # 'to_string'     : 'TO_STRING',
     'clone'         : 'CLONE',
     'new'           : 'NEW',
     'len'           : 'LEN',
@@ -84,7 +85,7 @@ tokens = tokens + list(reservadas.values())
 # ----------------------------------------------------------------
 #                              Tokens
 # ----------------------------------------------------------------
-t_CONCATENARSTR         = r'&str'
+# t_CONCATENARSTR         = r'&str'
 t_PARENTESISDERECHO     = r'\)'
 t_PARENTESISIZQUIERDO   = r'\('
 t_CORCHETEDERECHO       = r'\['
@@ -149,29 +150,34 @@ def t_ENTERO(t):
 
 # MANEJO DE IDENTIFICADORES
 def t_ID(t):
-    r'[a-zA-Z_][a-zA-Z0-9_]*'
-    if t.value in reservadas:
-        print(f'Palabra reservada {t.value}')
-        t.type = reservadas.get(t.value.lower(),'ID')
-    return t
-
-
-
-#  MANEJO DE CADENAS PARA EL LENGUAJe
-def t_CADENA(t):
-    r'\".*?"'
-    # sin comillas
-    t.value = t.value[1:-1]
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = reservadas.get(t.value,'ID')    # Check for reserved words
+    # print(f'Palabra reservada {t.value}')    
     return t
 
 
 
 # menjo de caracteres
 def t_CARACTER(t):  
-    r'\'.?'
+    r'\'.?\''
     # sin comillas simples
+    t.value = t.value
+    return t
+
+
+
+
+
+#  MANEJO DE CADENAS PARA EL LENGUAJe
+def t_CADENA(t):
+    r'\".*?\"'
+    # sin comillas
     t.value = t.value[1:-1]
     return t
+
+
+
+
 
 
 # menjo de comptario uniliena 
@@ -190,10 +196,13 @@ def t_newline(t):
     t.lexer.lineno += t.value.count('\n')
 
 
+
 # manejo de filas
 def columnToken(inp, tk):
     line = inp.rfind('\n', 0, tk.lexpos) + 1
     return (tk.lexpos - line) + 1
+
+
 
 # MANEJO DE ERRORES
 def t_error(t):

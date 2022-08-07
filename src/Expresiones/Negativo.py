@@ -10,10 +10,10 @@ class Negativo(Expresion):
         self.nodo = nodo
         self.tipo = None
 
-    def ejecutar(self):
+    def ejecutar(self, entorno):
         
         # primitivo
-        nodoUnico = self.nodo.ejecutar()
+        nodoUnico = self.nodo.ejecutar(entorno)
 
         if self.nodo.tipo == TipoExpresion.INTEGER:
             self.tipo = TipoExpresion.INTEGER

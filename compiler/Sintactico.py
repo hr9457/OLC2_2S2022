@@ -9,6 +9,7 @@ from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Interfaces.TipoOperador import TipoOperador
 from src.Interfaces.TipoRelacional import TipoRelacional
 from src.Interfaces.TipoLogico import TipoLogico
+from src.Interfaces.TipoMutable import TipoMutable
 
 
 # importaciones para manejo de Expresiones
@@ -22,6 +23,18 @@ from src.Expresiones.Pow import Pow
 
 # importacion de instrucciones
 from src.Instrucciones.Imprimir import Imprimir
+from src.Instrucciones.Variables.Declaracion import Declaracion
+
+
+
+
+
+# menjo de entorno
+from src.environment.Environment import Environment
+
+
+
+
 
 
 
@@ -85,9 +98,10 @@ def p_intrucciones(p):
 # ***************************
 
 def p_instruccion(p):
-    ' instruccion : imprimir '
+    ''' instruccion : imprimir  
+                    | variable '''
     p[0] = p[1]
-    # print(type(p[0]))
+
 
 
 
@@ -102,6 +116,71 @@ def p_imprimir(p):
     #  imprimir = println ( exp ) 
     ' imprimir : PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO '
     p[0] = Imprimir(p[3])
+
+
+
+
+
+
+
+
+# ***************************
+#  DECLARACION DE VARIABLES
+# ***************************
+
+#  no mutable constates
+def p_variables_mut(p):
+    #     0              1   2   3   4        5    6      7    8
+    '''  variable   :   LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
+
+    # print(p[7])
+    p[0] = Declaracion(0, 0, p[3], p[5], p[7], TipoMutable.MUTABLE)
+
+
+
+
+# mutables
+def p_variables(p):
+    #     0              1   2   3        4     5    6    7 
+    '''  variable   :   LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
+
+    p[0] = Declaracion(0, 0, p[3], p[5], p[6], TipoMutable.NOMUTABLE)
+
+
+
+
+
+
+
+
+
+
+
+# ***************************
+#   TACEPTACION DE TIPOS
+# ***************************
+def p_tipos(p):
+    '''  tipo   :   I64
+                |   F64 
+                |   BOOL 
+                |   STRING '''
+
+    print(p.slice[1].type)
+
+    if p.slice[1].type == 'I64':
+        p[0] = TipoExpresion.INTEGER
+
+
+    elif p.slice[1].type == 'F64':
+        p[0] = TipoExpresion.INTEGER
+
+
+    elif p.slice[1].type == 'BOOL':
+        p[0] = TipoExpresion.BOOL
+
+
+    elif p.slice[1].type == 'STRING':
+        p[0] = TipoExpresion.STRING
 
 
 
@@ -226,7 +305,8 @@ def p_valor(p):
                     | DECIMAL
                     | TRUE
                     | FALSE
-                    | CADENA '''
+                    | CADENA 
+                    | ID '''
 
     if p.slice[1].type == 'ENTERO': 
         p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.INTEGER, p[1])
@@ -242,6 +322,10 @@ def p_valor(p):
 
     elif p.slice[1].type == 'CADENA':
         p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.STRING, p[1])
+
+
+    elif p.slice[1].type == 'ID':
+        p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.ID, p[1])
 
 
 
@@ -271,11 +355,17 @@ def analizar(entrada):
     input = entrada
     lista = parser.parse(entrada)
     # print(lista)
+
+    # entorno principal declarado
+    env = Environment('main', None)
+
+
     salida = ""
     for l in lista:
         # print(f'lista {l}')
-        result = l.ejecutar()        
-        salida += str(result) + "\n"
+        result = l.ejecutar(env)
+        if result != None:
+            salida += str(result) + "\n"
 
     return salida
 

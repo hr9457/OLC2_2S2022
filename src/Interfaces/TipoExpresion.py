@@ -5,3 +5,4 @@ class TipoExpresion(Enum):
     STRING  = 3
     CHAR    = 4
     BOOL    = 5
+    ID      = 6

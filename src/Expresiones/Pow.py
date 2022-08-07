@@ -15,11 +15,11 @@ class Pow(Expresion):
 
 
 
-    def ejecutar(self):
+    def ejecutar(self, entorno):
         
         # ejecucion de los nodos
-        base = self.nodoBase.ejecutar()
-        exponente = self.nodoExponente.ejecutar()
+        base = self.nodoBase.ejecutar(entorno)
+        exponente = self.nodoExponente.ejecutar(entorno)
 
 
         if self.tipo == TipoExpresion.INTEGER:

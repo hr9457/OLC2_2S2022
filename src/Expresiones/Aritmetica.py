@@ -19,11 +19,11 @@ class Aritmetica(Expresion):
         self.rigthExp = rigthExp
         self.tipo = None
 
-    def ejecutar(self):
+    def ejecutar(self, entorno):
 
         # ejecucion de nodo derecho y izquierdo
-        nodoIzquierda = self.leftExp.ejecutar()
-        nodoDerecha = self.rigthExp.ejecutar()
+        nodoIzquierda = self.leftExp.ejecutar(entorno)
+        nodoDerecha = self.rigthExp.ejecutar(entorno)
 
         # print(nodoIzquierda)
         # print(nodoDerecha)

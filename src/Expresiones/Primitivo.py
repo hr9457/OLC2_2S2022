@@ -12,7 +12,7 @@ class Primitivo(Expresion):
 
 
     # metodo abstracto
-    def ejecutar(self):
+    def ejecutar(self, entorno):
         return Primitivo(
             self.fila,
             self.columna,

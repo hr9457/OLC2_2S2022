@@ -18,11 +18,11 @@ class Relacional(Expresion):
         self.tipo = None
 
 
-    def ejecutar(self):
+    def ejecutar(self, entorno):
 
         # ejecutamos nodos derecha y izquierda
-        nodoIzquierda = self.leftExp.ejecutar()
-        nodoDerecha = self.rightExp.ejecutar()
+        nodoIzquierda = self.leftExp.ejecutar(entorno)
+        nodoDerecha = self.rightExp.ejecutar(entorno)
 
         # evalucacion de tipos de los primitivos
         if self.leftExp.tipo == self.rightExp.tipo:

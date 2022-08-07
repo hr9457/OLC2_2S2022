@@ -16,14 +16,14 @@ class Logico(Expresion):
         self.tipo = None
 
 
-    def ejecutar(self):
+    def ejecutar(self, entorno):
         
 
         # evualicion de la compuert NOT
         if self.rightExp is None:
 
             # ejecutamos solo el nodo izquierdo
-            nodoIzquierda = self.leftExp.ejecutar()
+            nodoIzquierda = self.leftExp.ejecutar(entorno)
 
             #  evaluacion del tipo de operacion not
             if self.operador == TipoLogico.NOT:
@@ -40,8 +40,8 @@ class Logico(Expresion):
         elif self.leftExp != None and self.rightExp != None: 
 
             # ejecutamos los nodos de derecha y izquierda
-            nodoIzquierda = self.leftExp.ejecutar()
-            nodoDerecha = self.rightExp.ejecutar()
+            nodoIzquierda = self.leftExp.ejecutar(entorno)
+            nodoDerecha = self.rightExp.ejecutar(entorno)
 
             # print(type(nodoIzquierda))
             # print(self.operador)

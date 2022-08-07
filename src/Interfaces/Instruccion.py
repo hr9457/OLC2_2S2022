@@ -9,5 +9,5 @@ class Instruccion(ABC):
 
 
     @abstractmethod
-    def ejecutar(self):
+    def ejecutar(self, entorno):
         pass
