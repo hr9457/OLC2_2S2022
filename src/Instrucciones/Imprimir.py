@@ -16,8 +16,8 @@ class Imprimir(Instruccion):
         # primitivo
         
         result = self.contenido.ejecutar(entorno)
-        # print(f' IMPRIMIR <type> ->> {type(result)}')
-        # print(result.tipo)
+        print(f' IMPRIMIR <type> ->> {type(result)}')
+        print(result.tipo)
 
         if result.tipo == TipoExpresion.ID:
             result_env = entorno.getVariable(result.valor)

@@ -1,8 +1,10 @@
 
+from turtle import right
 from src.Expresiones.Primitivo import Primitivo
 from src.Interfaces.Expresion import Expresion
 from src.Interfaces.TipoOperador import TipoOperador
 from src.Interfaces.TipoExpresion import TipoExpresion
+from src.environment.Simbolo import Simbolo
 
 
 
@@ -21,21 +23,39 @@ class Aritmetica(Expresion):
 
     def ejecutar(self, entorno):
 
-        # ejecucion de nodo derecho y izquierdo
+
+        # ejecucion del nodod izquierda y derecha
         nodoIzquierda = self.leftExp.ejecutar(entorno)
         nodoDerecha = self.rigthExp.ejecutar(entorno)
 
-        # print(nodoIzquierda)
-        # print(nodoDerecha)
+        # print(nodoDerecha.tipo)
+
+        # verificacion si algun nodod que sube es una variable para buscar su valoe en el entorno
+        if nodoIzquierda.tipo == TipoExpresion.ID and nodoDerecha.tipo == TipoExpresion.ID:
+
+            nodoIzquierda = entorno.getVariable(nodoIzquierda.valor)
+            nodoDerecha = entorno.getVariable(nodoDerecha.valor)
+
+        elif nodoIzquierda.tipo == TipoExpresion.ID and nodoDerecha.tipo != TipoExpresion.ID:
+
+            nodoIzquierda = entorno.getVariable(nodoIzquierda.valor)
+
+        elif nodoIzquierda.tipo != TipoExpresion.ID and nodoDerecha.tipo == TipoExpresion.ID:
+
+            nodoDerecha = entorno.getVariable(nodoDerecha.valor)
+
 
         
+        # ****************************************************************
+        #  OPERACIONES ARITMECAS SOBRE LOS VALORES DE LOS NODOS     
+        #  ****************************************************************
 
         # evalucacion de tipos de los primitivos
-        if self.leftExp.tipo == self.rigthExp.tipo:
+        if nodoIzquierda.tipo == nodoDerecha.tipo:
 
 
             # evaluacion de tipo valor --> INTEGER
-            if self.leftExp.tipo == TipoExpresion.INTEGER:
+            if nodoIzquierda.tipo == TipoExpresion.INTEGER:
 
                 # suma
                 if self.operador == TipoOperador.MAS:
@@ -64,7 +84,7 @@ class Aritmetica(Expresion):
 
 
             # evaluacion de tipo de valor --> FLOAT
-            if self.leftExp.tipo == TipoExpresion.FLOAT:
+            if nodoIzquierda.tipo == TipoExpresion.FLOAT:
 
                 # suma
                 if self.operador == TipoOperador.MAS:
@@ -91,6 +111,9 @@ class Aritmetica(Expresion):
                     self.tipo = TipoExpresion.FLOAT
                     return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
 
+
+
+
         # caso para tipos diferentes   
         else:
-            return None
+            return 'Error en la Operaciones Aritmeticas'

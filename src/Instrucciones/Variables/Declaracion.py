@@ -21,6 +21,9 @@ class Declaracion(Instruccion):
         # con tipo y el tipo del primitivo        
         primitivo = self.valor.ejecutar(entorno)
 
+        # print(self.tipo)
+        # print(primitivo.tipo)
+
         if self.tipo == primitivo.tipo:
             entorno.addVariable(self.identificador, Simbolo(primitivo.fila, primitivo.columna, self.identificador, primitivo.tipo, primitivo.valor, self.mutabilidad) )
             # return ''

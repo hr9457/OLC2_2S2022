@@ -87,15 +87,37 @@ println(f64::pow(3.3,2.2))
 
 
 
-let mut x : i64 = 8200;
-let mut a : i64 = 8200;
+let mut x : i64 = 10;
+let mut a : i64 = 10;
 let mut b : f64 = 10.2;
-let mut c : bool = 8200;
+let mut c : bool = true;
 let mut d : String = "hello world";
 
 
-let x : i64 = 33;
-let a : i64 = 55;
+println(x)
+println(a)
+println(b)
+println(c)
+println(d)
+
+println(x + a)
+
+
+
+
+let mut x : i64 = 10;
+let mut a : i64 = 15;
+
+println(x + 3)
+
+
+let z : i64 = 33;
+let y : i64 = 55;
+
+
+println(z)
+println(y)
+
 
 println(a)
 println("Hello world"<"hola")

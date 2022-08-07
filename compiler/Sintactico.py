@@ -172,7 +172,7 @@ def p_tipos(p):
 
 
     elif p.slice[1].type == 'F64':
-        p[0] = TipoExpresion.INTEGER
+        p[0] = TipoExpresion.FLOAT
 
 
     elif p.slice[1].type == 'BOOL':
