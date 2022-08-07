@@ -28,7 +28,7 @@ class Aritmetica(Expresion):
         nodoIzquierda = self.leftExp.ejecutar(entorno)
         nodoDerecha = self.rigthExp.ejecutar(entorno)
 
-        # print(nodoDerecha.tipo)
+        
 
         # verificacion si algun nodod que sube es una variable para buscar su valoe en el entorno
         if nodoIzquierda.tipo == TipoExpresion.ID and nodoDerecha.tipo == TipoExpresion.ID:
@@ -45,6 +45,9 @@ class Aritmetica(Expresion):
             nodoDerecha = entorno.getVariable(nodoDerecha.valor)
 
 
+
+        # print(f'Aritmetica {type(nodoIzquierda)}')
+        # print(f'Aritmetica {type(nodoDerecha)}')
         
         # ****************************************************************
         #  OPERACIONES ARITMECAS SOBRE LOS VALORES DE LOS NODOS     
@@ -116,4 +119,5 @@ class Aritmetica(Expresion):
 
         # caso para tipos diferentes   
         else:
-            return 'Error en la Operaciones Aritmeticas'
+            print('--> Aritmetica, Error operacion Aritmetica <-s')
+            return None

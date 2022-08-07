@@ -21,20 +21,6 @@ class Environment:
 
         self.variables.update({id: nuevaVariable})
         print('variable agregada')
-        # si la lista no contiene elementos
-        # if len(self.variables) == 0:
-        #     self.variables.update({id: nuevaVariable})
-        #     print('variable agregada')
-
-        # else:
-        #     for key in self.variables.keys():
-        #         if key == id:
-        #             print(f'variable --> {id} <--  existente')
-        #             break
-        #         else:
-        #             print(' variable nuevas agregadas')
-        #             self.variables.update({id: nuevaVariable})
-        #             break
 
 
 

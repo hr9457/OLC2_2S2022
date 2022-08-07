@@ -24,12 +24,33 @@ class Relacional(Expresion):
         nodoIzquierda = self.leftExp.ejecutar(entorno)
         nodoDerecha = self.rightExp.ejecutar(entorno)
 
+
+        # verificacion si algun nodod que sube es una variable para buscar su valoe en el entorno
+        if nodoIzquierda.tipo == TipoExpresion.ID and nodoDerecha.tipo == TipoExpresion.ID:
+
+            nodoIzquierda = entorno.getVariable(nodoIzquierda.valor)
+            nodoDerecha = entorno.getVariable(nodoDerecha.valor)
+
+        elif nodoIzquierda.tipo == TipoExpresion.ID and nodoDerecha.tipo != TipoExpresion.ID:
+
+            nodoIzquierda = entorno.getVariable(nodoIzquierda.valor)
+
+        elif nodoIzquierda.tipo != TipoExpresion.ID and nodoDerecha.tipo == TipoExpresion.ID:
+
+            nodoDerecha = entorno.getVariable(nodoDerecha.valor)
+
+
+
+        # print(f'RELACIONAL {type(nodoIzquierda)}')
+        # print(f'RELACIONAL {type(nodoDerecha)}')
+        
+
         # evalucacion de tipos de los primitivos
-        if self.leftExp.tipo == self.rightExp.tipo:
+        if nodoIzquierda.tipo == nodoDerecha.tipo:
 
             
             # evalucaion de tipo valor --> INTEGER
-            if self.leftExp.tipo == TipoExpresion.INTEGER:
+            if nodoIzquierda.tipo == TipoExpresion.INTEGER:
 
 
                 # evaluacion del mayor que 
@@ -80,7 +101,7 @@ class Relacional(Expresion):
 
             
             # evalucaion de tipo valor --> FLOAT
-            if self.leftExp.tipo == TipoExpresion.FLOAT:
+            if nodoIzquierda.tipo == TipoExpresion.FLOAT:
 
 
                 # evaluacion del mayor que 
@@ -132,7 +153,7 @@ class Relacional(Expresion):
 
 
             # evalucaion de tipo valor --> FLOAT
-            if self.leftExp.tipo == TipoExpresion.STRING:
+            if nodoIzquierda.tipo == TipoExpresion.STRING:
                  # evaluacion del mayor que 
                 if self.operador == TipoRelacional.MAYORQUE:
                     
