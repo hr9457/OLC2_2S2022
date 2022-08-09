@@ -24,6 +24,7 @@ from src.Expresiones.Pow import Pow
 # importacion de instrucciones
 from src.Instrucciones.Imprimir import Imprimir
 from src.Instrucciones.Variables.Declaracion import Declaracion
+from src.Instrucciones.Casteo.Casteo import Casteo
 
 
 
@@ -58,6 +59,8 @@ precedence = (
 
 
 
+
+
 # ----------------------------------------------------------------
 #                      Definicion de la Gramatica
 # ----------------------------------------------------------------
@@ -73,6 +76,8 @@ precedence = (
 def p_inicio(p):
     ''' inicio : instrucciones '''
     p[0] = p[1]
+
+
 
 
 
@@ -93,6 +98,9 @@ def p_intrucciones(p):
 
 
 
+
+
+
 # ***************************
 #  INSTRUCCIONES DENTRO DEL LENGUAJE
 # ***************************
@@ -109,13 +117,17 @@ def p_instruccion(p):
 
 
 
+
+
 # ***************************
 #   IMPRESION PERMITIDAS
 # ***************************
 def p_imprimir(p):
     #  imprimir = println ( exp ) 
-    ' imprimir : PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO '
+    ' imprimir : PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA '
     p[0] = Imprimir(p[3])
+
+
 
 
 
@@ -129,7 +141,7 @@ def p_imprimir(p):
 # ***************************
 
 #  no mutable constates
-def p_variables_mut(p):
+def p_variables_mut_tipo(p):
     #     0              1   2   3   4        5    6      7    8
     '''  variable   :   LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
 
@@ -139,15 +151,31 @@ def p_variables_mut(p):
 
 
 
+def p_variables_mut(p):
+    #     0              1   2   3   4    5      6    
+    '''  variable   :   LET MUT ID IGUAL exp PUNTOCOMA  '''
+    p[0] = Declaracion(0, 0, p[3], None, p[5], TipoMutable.MUTABLE)
+
+
+
+
+
+# ---------------------- ** -------------------------
 # mutables
-def p_variables(p):
+def p_variables_tipo(p):
     #     0              1   2   3        4     5    6    7 
     '''  variable   :   LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
-
-    p[0] = Declaracion(0, 0, p[3], p[5], p[6], TipoMutable.NOMUTABLE)
-
+    p[0] = Declaracion(0, 0, p[2], p[4], p[6], TipoMutable.NOMUTABLE)
 
 
+
+
+
+
+def p_variables(p):
+    #     0              1  2  3      4     5       
+    '''  variable   :   LET ID IGUAL exp PUNTOCOMA  '''
+    p[0] = Declaracion(0, 0, p[2], None, p[4], TipoMutable.NOMUTABLE)
 
 
 
@@ -157,15 +185,16 @@ def p_variables(p):
 
 
 # ***************************
-#   TACEPTACION DE TIPOS
+#   ACEPTACION DE TIPOS
 # ***************************
 def p_tipos(p):
     '''  tipo   :   I64
                 |   F64 
                 |   BOOL 
-                |   STRING '''
+                |   STRING
+                |   CARACTER  '''
 
-    print(p.slice[1].type)
+    # print(p.slice[1].type)
 
     if p.slice[1].type == 'I64':
         p[0] = TipoExpresion.INTEGER
@@ -183,13 +212,18 @@ def p_tipos(p):
         p[0] = TipoExpresion.STRING
 
 
+    elif p.slice[1].type == 'CARACTER':
+        p[0] = TipoExpresion.CHAR
 
 
 
 
-# ***************************
-#   OPERACIONES ACPETADAS
-# ***************************
+
+
+
+# **************************************
+#   OPERACIONES ACPETADAS - EXPRESIONES
+# **************************************
 
 def p_aritmetica(p):
     # aritmetica + prim
@@ -258,9 +292,23 @@ def p_aritmetica(p):
 
     
 
+# manejo de casteos para expresiones
+def p_casteos(p):
+    ''' exp :   exp AS I64 
+        exp :   exp AS F64   '''
+
+    if p.slice[3].type == 'I64':
+        p[0] = Casteo(0,0, p[1], TipoExpresion.INTEGER)
+
+    
+    if p.slice[3].type == 'F64':
+        p[0] = Casteo(0,0, p[1], TipoExpresion.FLOAT)
 
 
 
+
+
+# operaciones unitarias con precedencia
 def p_logica_unitaria(p):
     ' exp : NOT exp %prec UNOT '
     p[0] = Logico(0, 0, p[2], TipoLogico.NOT, None) 
@@ -272,12 +320,16 @@ def p_aritmetica_unaria(p):
 
 
 
+
+# exp en una agrupacion
 def p_aritmetica_agrupacion(p):
     ' exp : PARENTESISIZQUIERDO exp PARENTESISDERECHO '
     # ( exp )
     p[0] = p[2] 
 
 
+
+# exp retornoa una potencia
 def p_aritmetica_potencia(p):
     ''' exp : I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO 
             | F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO '''
@@ -288,9 +340,19 @@ def p_aritmetica_potencia(p):
         p[0] = Pow(0, 0, TipoExpresion.FLOAT, p[6], p[8])	
 
 
+
+# exp retorno un primitivo
 def p_expresion(p):
     ' exp : primitivo '
     p[0] = p[1]
+
+
+
+
+
+
+
+
 
 
 
@@ -305,7 +367,8 @@ def p_valor(p):
                     | DECIMAL
                     | TRUE
                     | FALSE
-                    | CADENA 
+                    | CADENA
+                    | CARACTER 
                     | ID '''
 
     if p.slice[1].type == 'ENTERO': 
@@ -324,8 +387,20 @@ def p_valor(p):
         p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.STRING, p[1])
 
 
+    elif p.slice[1].type == 'CARACTER':
+        p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.CHAR, p[1])
+
+
     elif p.slice[1].type == 'ID':
         p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.ID, p[1])
+
+
+
+
+
+
+
+
 
 
 
@@ -337,6 +412,14 @@ def p_valor(p):
 
 def p_error(p):
     print(f'Error sintactico en -> {p.value}')
+
+
+
+
+
+
+
+
 
 
 

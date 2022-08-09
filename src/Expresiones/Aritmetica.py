@@ -5,6 +5,7 @@ from src.Interfaces.Expresion import Expresion
 from src.Interfaces.TipoOperador import TipoOperador
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.environment.Simbolo import Simbolo
+from src.Error.Error import Error
 
 
 
@@ -119,5 +120,6 @@ class Aritmetica(Expresion):
 
         # caso para tipos diferentes   
         else:
-            print('--> Aritmetica, Error operacion Aritmetica <-s')
-            return None
+            return Error('--> Aritmetica, Error operacion Aritmetica <-')
+            # print('--> Aritmetica, Error operacion Aritmetica <-')
+            # return None

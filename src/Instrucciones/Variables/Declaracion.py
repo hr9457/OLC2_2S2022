@@ -1,5 +1,6 @@
 from src.Interfaces.Instruccion import Instruccion
 from src.environment.Simbolo import Simbolo
+from src.Error.Error import Error
 
 
 class Declaracion(Instruccion):
@@ -17,19 +18,32 @@ class Declaracion(Instruccion):
     # metodo ejecutar
     def ejecutar(self, entorno):
 
+
         # verificacion de tipos
         # con tipo y el tipo del primitivo        
         primitivo = self.valor.ejecutar(entorno)
 
-        # print(self.tipo)
         # print(primitivo.tipo)
+        # TIPO == None  es una variable sin tipo
+        if self.tipo == None:
+            # print(f'DECLARACION: {primitivo.tipo}')
+            # print(primitivo.valor)
+            entorno.addVariable(self.identificador, Simbolo(primitivo.fila, primitivo.columna, self.identificador, 
+            primitivo.tipo, primitivo.valor, self.mutabilidad) )
+            print('variable agregada sin tipo')
 
-        if self.tipo == primitivo.tipo:
-            entorno.addVariable(self.identificador, Simbolo(primitivo.fila, primitivo.columna, self.identificador, primitivo.tipo, primitivo.valor, self.mutabilidad) )
-            # return ''
+        
+        elif self.tipo != None:
+            # print(self.tipo)
+            # print(primitivo.tipo)
+            if self.tipo == primitivo.tipo:
+                entorno.addVariable(self.identificador, Simbolo(primitivo.fila, primitivo.columna, self.identificador, 
+                primitivo.tipo, primitivo.valor, self.mutabilidad) )
+                print('variable agregada con tipo')
+
 
         else:
-            return 'Error de tipos para declaracion de variables'
+            return Error('DECLARACION: tipos para declaracion de variables')
 
 
 

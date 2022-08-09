@@ -18,9 +18,8 @@ class Environment:
     #  metodo para agregar variables
     def addVariable(self, id ,nuevaVariable):
 
-
         self.variables.update({id: nuevaVariable})
-        print('variable agregada')
+        print('ENTORNO: variable agregada')
 
 
 
@@ -29,11 +28,15 @@ class Environment:
     # metodo para obtener valor de una variable
     def getVariable(self, id):
 
+        # print(f'ENTORNO: {id}')
         # ciclo de busquede dentro del entorno
+        # print(self.variables)
         for key in self.variables.keys():
+            print(key)
             if key == id:
                 # print(f'retornando variable  {self.variables[key].identificador}')
                 # print(f'retornando variable  {self.variables[key].valor}')
+                print(f'ENTORNO: {self.variables[key]}')
                 return Simbolo(
                     self.variables[key].fila,
                     self.variables[key].columna,
@@ -41,6 +44,10 @@ class Environment:
                     self.variables[key].tipo,
                     self.variables[key].valor,
                     self.variables[key].mutabilidad)
+
+            else:
+                print('Variable no econtrada')
+                return None
                 
 
 

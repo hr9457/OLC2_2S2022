@@ -48,7 +48,6 @@ reservadas = {
     'f64'           : 'F64',
     'bool'          : 'BOOL',
     'char'          : 'CHAR',
-    
     'main'          : 'MAIN',
     'usize'         : 'USIZE',
     'let'           : 'LET',
@@ -159,8 +158,9 @@ def t_ID(t):
 
 # menjo de caracteres
 def t_CARACTER(t):  
-    r'\'.?\''
+    r'\'.*?\''
     # sin comillas simples
+    t.value = t.value[1:-1]
     t.value = t.value
     return t
 

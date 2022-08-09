@@ -4,11 +4,9 @@ Unused terminals:
 
     ABS
     AMPERSAND
-    AS
     BARRA
     BREAK
     CAPACITY
-    CARACTER
     CHAR
     CLONE
     COMENTARIO
@@ -46,102 +44,108 @@ Rule 2     instrucciones -> instrucciones instruccion
 Rule 3     instrucciones -> instruccion
 Rule 4     instruccion -> imprimir
 Rule 5     instruccion -> variable
-Rule 6     imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO
+Rule 6     imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA
 Rule 7     variable -> LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
-Rule 8     variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
-Rule 9     tipo -> I64
-Rule 10    tipo -> F64
-Rule 11    tipo -> BOOL
-Rule 12    tipo -> STRING
-Rule 13    exp -> exp MAS exp
-Rule 14    exp -> exp MENOS exp
-Rule 15    exp -> exp MULTIPLICAR exp
-Rule 16    exp -> exp DIV exp
-Rule 17    exp -> exp MAYOR exp
-Rule 18    exp -> exp MENOR exp
-Rule 19    exp -> exp MAYORIGUAL exp
-Rule 20    exp -> exp MENORIGUAL exp
-Rule 21    exp -> exp IGUALDAD exp
-Rule 22    exp -> exp OR exp
-Rule 23    exp -> exp AND exp
-Rule 24    exp -> NOT exp
-Rule 25    exp -> MENOS exp
-Rule 26    exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO
-Rule 27    exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-Rule 28    exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-Rule 29    exp -> primitivo
-Rule 30    primitivo -> ENTERO
-Rule 31    primitivo -> DECIMAL
-Rule 32    primitivo -> TRUE
-Rule 33    primitivo -> FALSE
-Rule 34    primitivo -> CADENA
-Rule 35    primitivo -> ID
+Rule 8     variable -> LET MUT ID IGUAL exp PUNTOCOMA
+Rule 9     variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+Rule 10    variable -> LET ID IGUAL exp PUNTOCOMA
+Rule 11    tipo -> I64
+Rule 12    tipo -> F64
+Rule 13    tipo -> BOOL
+Rule 14    tipo -> STRING
+Rule 15    tipo -> CARACTER
+Rule 16    exp -> exp MAS exp
+Rule 17    exp -> exp MENOS exp
+Rule 18    exp -> exp MULTIPLICAR exp
+Rule 19    exp -> exp DIV exp
+Rule 20    exp -> exp MAYOR exp
+Rule 21    exp -> exp MENOR exp
+Rule 22    exp -> exp MAYORIGUAL exp
+Rule 23    exp -> exp MENORIGUAL exp
+Rule 24    exp -> exp IGUALDAD exp
+Rule 25    exp -> exp OR exp
+Rule 26    exp -> exp AND exp
+Rule 27    exp -> exp AS I64
+Rule 28    exp -> exp AS F64
+Rule 29    exp -> NOT exp
+Rule 30    exp -> MENOS exp
+Rule 31    exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO
+Rule 32    exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+Rule 33    exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+Rule 34    exp -> primitivo
+Rule 35    primitivo -> ENTERO
+Rule 36    primitivo -> DECIMAL
+Rule 37    primitivo -> TRUE
+Rule 38    primitivo -> FALSE
+Rule 39    primitivo -> CADENA
+Rule 40    primitivo -> CARACTER
+Rule 41    primitivo -> ID
 
 Terminals, with rules where they appear
 
 ABS                  : 
 AMPERSAND            : 
-AND                  : 23
-AS                   : 
+AND                  : 26
+AS                   : 27 28
 BARRA                : 
-BOOL                 : 11
+BOOL                 : 13
 BREAK                : 
-CADENA               : 34
+CADENA               : 39
 CAPACITY             : 
-CARACTER             : 
+CARACTER             : 15 40
 CHAR                 : 
 CLONE                : 
-COMA                 : 27 28
+COMA                 : 32 33
 COMENTARIO           : 
 CONTAINS             : 
 CORCHETEDERECHO      : 
 CORCHETEIZQUIERDO    : 
-DECIMAL              : 31
+DECIMAL              : 36
 DIFERENTE            : 
-DIV                  : 16
-DOSPUNTOS            : 7 8 27 27 28 28
+DIV                  : 19
+DOSPUNTOS            : 7 9 32 32 33 33
 ELSE                 : 
-ENTERO               : 30
-F64                  : 10 28
-FALSE                : 33
+ENTERO               : 35
+F64                  : 12 28 33
+FALSE                : 38
 FN                   : 
-I64                  : 9 27
-ID                   : 7 8 35
+I64                  : 11 27 32
+ID                   : 7 8 9 10 41
 IF                   : 
-IGUAL                : 7 8
-IGUALDAD             : 21
+IGUAL                : 7 8 9 10
+IGUALDAD             : 24
 INSERT               : 
 LEN                  : 
-LET                  : 7 8
+LET                  : 7 8 9 10
 LLAVEDERECHO         : 
 LLAVEIZQUIERDO       : 
 LOOP                 : 
 MAIN                 : 
-MAS                  : 13
-MAYOR                : 17
-MAYORIGUAL           : 19
-MENOR                : 18
-MENORIGUAL           : 20
-MENOS                : 14 25
-MULTIPLICAR          : 15
-MUT                  : 7
+MAS                  : 16
+MAYOR                : 20
+MAYORIGUAL           : 22
+MENOR                : 21
+MENORIGUAL           : 23
+MENOS                : 17 30
+MULTIPLICAR          : 18
+MUT                  : 7 8
 NEW                  : 
-NOT                  : 24
-OR                   : 22
-PARENTESISDERECHO    : 6 26 27 28
-PARENTESISIZQUIERDO  : 6 26 27 28
+NOT                  : 29
+OR                   : 25
+PARENTESISDERECHO    : 6 31 32 33
+PARENTESISIZQUIERDO  : 6 31 32 33
 PORCENTAJE           : 
-POW                  : 27 28
+POW                  : 32 33
 PRINTLN              : 6
 PUNTO                : 
-PUNTOCOMA            : 7 8
+PUNTOCOMA            : 6 7 8 9 10
 PUSH                 : 
 REMOVE               : 
 RETURN               : 
 SQRT                 : 
-STRING               : 12
+STRING               : 14
 TIPORETURN           : 
-TRUE                 : 32
+TRUE                 : 37
 USIZE                : 
 WHAT                 : 
 WHILE                : 
@@ -150,13 +154,13 @@ error                :
 
 Nonterminals, with rules where they appear
 
-exp                  : 6 7 8 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 25 26 27 27 28 28
+exp                  : 6 7 8 9 10 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 28 29 30 31 32 32 33 33
 imprimir             : 4
 inicio               : 0
 instruccion          : 2 3
 instrucciones        : 1 2
-primitivo            : 29
-tipo                 : 7 8
+primitivo            : 34
+tipo                 : 7 9
 variable             : 5
 
 Parsing method: LALR
@@ -169,9 +173,11 @@ state 0
     (3) instrucciones -> . instruccion
     (4) instruccion -> . imprimir
     (5) instruccion -> . variable
-    (6) imprimir -> . PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (6) imprimir -> . PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA
     (7) variable -> . LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
-    (8) variable -> . LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (8) variable -> . LET MUT ID IGUAL exp PUNTOCOMA
+    (9) variable -> . LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (10) variable -> . LET ID IGUAL exp PUNTOCOMA
 
     PRINTLN         shift and go to state 6
     LET             shift and go to state 7
@@ -194,9 +200,11 @@ state 2
     (2) instrucciones -> instrucciones . instruccion
     (4) instruccion -> . imprimir
     (5) instruccion -> . variable
-    (6) imprimir -> . PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (6) imprimir -> . PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA
     (7) variable -> . LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
-    (8) variable -> . LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (8) variable -> . LET MUT ID IGUAL exp PUNTOCOMA
+    (9) variable -> . LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (10) variable -> . LET ID IGUAL exp PUNTOCOMA
 
     $end            reduce using rule 1 (inicio -> instrucciones .)
     PRINTLN         shift and go to state 6
@@ -235,7 +243,7 @@ state 5
 
 state 6
 
-    (6) imprimir -> PRINTLN . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (6) imprimir -> PRINTLN . PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA
 
     PARENTESISIZQUIERDO shift and go to state 9
 
@@ -243,7 +251,9 @@ state 6
 state 7
 
     (7) variable -> LET . MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
-    (8) variable -> LET . ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (8) variable -> LET . MUT ID IGUAL exp PUNTOCOMA
+    (9) variable -> LET . ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (10) variable -> LET . ID IGUAL exp PUNTOCOMA
 
     MUT             shift and go to state 10
     ID              shift and go to state 11
@@ -260,42 +270,46 @@ state 8
 
 state 9
 
-    (6) imprimir -> PRINTLN PARENTESISIZQUIERDO . exp PARENTESISDERECHO
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (6) imprimir -> PRINTLN PARENTESISIZQUIERDO . exp PARENTESISDERECHO PUNTOCOMA
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
     exp                            shift and go to state 13
     primitivo                      shift and go to state 18
@@ -303,1820 +317,2239 @@ state 9
 state 10
 
     (7) variable -> LET MUT . ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (8) variable -> LET MUT . ID IGUAL exp PUNTOCOMA
 
-    ID              shift and go to state 25
+    ID              shift and go to state 26
 
 
 state 11
 
-    (8) variable -> LET ID . DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (9) variable -> LET ID . DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (10) variable -> LET ID . IGUAL exp PUNTOCOMA
 
-    DOSPUNTOS       shift and go to state 26
+    DOSPUNTOS       shift and go to state 27
+    IGUAL           shift and go to state 28
 
 
 state 12
 
-    (26) exp -> PARENTESISIZQUIERDO . exp PARENTESISDERECHO
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (31) exp -> PARENTESISIZQUIERDO . exp PARENTESISDERECHO
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
-    exp                            shift and go to state 27
+    exp                            shift and go to state 29
     primitivo                      shift and go to state 18
 
 state 13
 
-    (6) imprimir -> PRINTLN PARENTESISIZQUIERDO exp . PARENTESISDERECHO
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
+    (6) imprimir -> PRINTLN PARENTESISIZQUIERDO exp . PARENTESISDERECHO PUNTOCOMA
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
 
-    PARENTESISDERECHO shift and go to state 28
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    OR              shift and go to state 38
-    AND             shift and go to state 39
+    PARENTESISDERECHO shift and go to state 30
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
 
 
 state 14
 
-    (25) exp -> MENOS . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (30) exp -> MENOS . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
-    exp                            shift and go to state 40
+    exp                            shift and go to state 43
     primitivo                      shift and go to state 18
 
 state 15
 
-    (24) exp -> NOT . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 41
-    primitivo                      shift and go to state 18
-
-state 16
-
-    (27) exp -> I64 . DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-
-    DOSPUNTOS       shift and go to state 42
-
-
-state 17
-
-    (28) exp -> F64 . DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-
-    DOSPUNTOS       shift and go to state 43
-
-
-state 18
-
-    (29) exp -> primitivo .
-
-    PARENTESISDERECHO reduce using rule 29 (exp -> primitivo .)
-    MAS             reduce using rule 29 (exp -> primitivo .)
-    MENOS           reduce using rule 29 (exp -> primitivo .)
-    MULTIPLICAR     reduce using rule 29 (exp -> primitivo .)
-    DIV             reduce using rule 29 (exp -> primitivo .)
-    MAYOR           reduce using rule 29 (exp -> primitivo .)
-    MENOR           reduce using rule 29 (exp -> primitivo .)
-    MAYORIGUAL      reduce using rule 29 (exp -> primitivo .)
-    MENORIGUAL      reduce using rule 29 (exp -> primitivo .)
-    IGUALDAD        reduce using rule 29 (exp -> primitivo .)
-    OR              reduce using rule 29 (exp -> primitivo .)
-    AND             reduce using rule 29 (exp -> primitivo .)
-    PUNTOCOMA       reduce using rule 29 (exp -> primitivo .)
-    COMA            reduce using rule 29 (exp -> primitivo .)
-
-
-state 19
-
-    (30) primitivo -> ENTERO .
-
-    PARENTESISDERECHO reduce using rule 30 (primitivo -> ENTERO .)
-    MAS             reduce using rule 30 (primitivo -> ENTERO .)
-    MENOS           reduce using rule 30 (primitivo -> ENTERO .)
-    MULTIPLICAR     reduce using rule 30 (primitivo -> ENTERO .)
-    DIV             reduce using rule 30 (primitivo -> ENTERO .)
-    MAYOR           reduce using rule 30 (primitivo -> ENTERO .)
-    MENOR           reduce using rule 30 (primitivo -> ENTERO .)
-    MAYORIGUAL      reduce using rule 30 (primitivo -> ENTERO .)
-    MENORIGUAL      reduce using rule 30 (primitivo -> ENTERO .)
-    IGUALDAD        reduce using rule 30 (primitivo -> ENTERO .)
-    OR              reduce using rule 30 (primitivo -> ENTERO .)
-    AND             reduce using rule 30 (primitivo -> ENTERO .)
-    PUNTOCOMA       reduce using rule 30 (primitivo -> ENTERO .)
-    COMA            reduce using rule 30 (primitivo -> ENTERO .)
-
-
-state 20
-
-    (31) primitivo -> DECIMAL .
-
-    PARENTESISDERECHO reduce using rule 31 (primitivo -> DECIMAL .)
-    MAS             reduce using rule 31 (primitivo -> DECIMAL .)
-    MENOS           reduce using rule 31 (primitivo -> DECIMAL .)
-    MULTIPLICAR     reduce using rule 31 (primitivo -> DECIMAL .)
-    DIV             reduce using rule 31 (primitivo -> DECIMAL .)
-    MAYOR           reduce using rule 31 (primitivo -> DECIMAL .)
-    MENOR           reduce using rule 31 (primitivo -> DECIMAL .)
-    MAYORIGUAL      reduce using rule 31 (primitivo -> DECIMAL .)
-    MENORIGUAL      reduce using rule 31 (primitivo -> DECIMAL .)
-    IGUALDAD        reduce using rule 31 (primitivo -> DECIMAL .)
-    OR              reduce using rule 31 (primitivo -> DECIMAL .)
-    AND             reduce using rule 31 (primitivo -> DECIMAL .)
-    PUNTOCOMA       reduce using rule 31 (primitivo -> DECIMAL .)
-    COMA            reduce using rule 31 (primitivo -> DECIMAL .)
-
-
-state 21
-
-    (32) primitivo -> TRUE .
-
-    PARENTESISDERECHO reduce using rule 32 (primitivo -> TRUE .)
-    MAS             reduce using rule 32 (primitivo -> TRUE .)
-    MENOS           reduce using rule 32 (primitivo -> TRUE .)
-    MULTIPLICAR     reduce using rule 32 (primitivo -> TRUE .)
-    DIV             reduce using rule 32 (primitivo -> TRUE .)
-    MAYOR           reduce using rule 32 (primitivo -> TRUE .)
-    MENOR           reduce using rule 32 (primitivo -> TRUE .)
-    MAYORIGUAL      reduce using rule 32 (primitivo -> TRUE .)
-    MENORIGUAL      reduce using rule 32 (primitivo -> TRUE .)
-    IGUALDAD        reduce using rule 32 (primitivo -> TRUE .)
-    OR              reduce using rule 32 (primitivo -> TRUE .)
-    AND             reduce using rule 32 (primitivo -> TRUE .)
-    PUNTOCOMA       reduce using rule 32 (primitivo -> TRUE .)
-    COMA            reduce using rule 32 (primitivo -> TRUE .)
-
-
-state 22
-
-    (33) primitivo -> FALSE .
-
-    PARENTESISDERECHO reduce using rule 33 (primitivo -> FALSE .)
-    MAS             reduce using rule 33 (primitivo -> FALSE .)
-    MENOS           reduce using rule 33 (primitivo -> FALSE .)
-    MULTIPLICAR     reduce using rule 33 (primitivo -> FALSE .)
-    DIV             reduce using rule 33 (primitivo -> FALSE .)
-    MAYOR           reduce using rule 33 (primitivo -> FALSE .)
-    MENOR           reduce using rule 33 (primitivo -> FALSE .)
-    MAYORIGUAL      reduce using rule 33 (primitivo -> FALSE .)
-    MENORIGUAL      reduce using rule 33 (primitivo -> FALSE .)
-    IGUALDAD        reduce using rule 33 (primitivo -> FALSE .)
-    OR              reduce using rule 33 (primitivo -> FALSE .)
-    AND             reduce using rule 33 (primitivo -> FALSE .)
-    PUNTOCOMA       reduce using rule 33 (primitivo -> FALSE .)
-    COMA            reduce using rule 33 (primitivo -> FALSE .)
-
-
-state 23
-
-    (34) primitivo -> CADENA .
-
-    PARENTESISDERECHO reduce using rule 34 (primitivo -> CADENA .)
-    MAS             reduce using rule 34 (primitivo -> CADENA .)
-    MENOS           reduce using rule 34 (primitivo -> CADENA .)
-    MULTIPLICAR     reduce using rule 34 (primitivo -> CADENA .)
-    DIV             reduce using rule 34 (primitivo -> CADENA .)
-    MAYOR           reduce using rule 34 (primitivo -> CADENA .)
-    MENOR           reduce using rule 34 (primitivo -> CADENA .)
-    MAYORIGUAL      reduce using rule 34 (primitivo -> CADENA .)
-    MENORIGUAL      reduce using rule 34 (primitivo -> CADENA .)
-    IGUALDAD        reduce using rule 34 (primitivo -> CADENA .)
-    OR              reduce using rule 34 (primitivo -> CADENA .)
-    AND             reduce using rule 34 (primitivo -> CADENA .)
-    PUNTOCOMA       reduce using rule 34 (primitivo -> CADENA .)
-    COMA            reduce using rule 34 (primitivo -> CADENA .)
-
-
-state 24
-
-    (35) primitivo -> ID .
-
-    PARENTESISDERECHO reduce using rule 35 (primitivo -> ID .)
-    MAS             reduce using rule 35 (primitivo -> ID .)
-    MENOS           reduce using rule 35 (primitivo -> ID .)
-    MULTIPLICAR     reduce using rule 35 (primitivo -> ID .)
-    DIV             reduce using rule 35 (primitivo -> ID .)
-    MAYOR           reduce using rule 35 (primitivo -> ID .)
-    MENOR           reduce using rule 35 (primitivo -> ID .)
-    MAYORIGUAL      reduce using rule 35 (primitivo -> ID .)
-    MENORIGUAL      reduce using rule 35 (primitivo -> ID .)
-    IGUALDAD        reduce using rule 35 (primitivo -> ID .)
-    OR              reduce using rule 35 (primitivo -> ID .)
-    AND             reduce using rule 35 (primitivo -> ID .)
-    PUNTOCOMA       reduce using rule 35 (primitivo -> ID .)
-    COMA            reduce using rule 35 (primitivo -> ID .)
-
-
-state 25
-
-    (7) variable -> LET MUT ID . DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (32) exp -> I64 . DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
 
     DOSPUNTOS       shift and go to state 44
 
 
+state 16
+
+    (33) exp -> F64 . DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+
+    DOSPUNTOS       shift and go to state 45
+
+
+state 17
+
+    (29) exp -> NOT . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 46
+    primitivo                      shift and go to state 18
+
+state 18
+
+    (34) exp -> primitivo .
+
+    PARENTESISDERECHO reduce using rule 34 (exp -> primitivo .)
+    MAS             reduce using rule 34 (exp -> primitivo .)
+    MENOS           reduce using rule 34 (exp -> primitivo .)
+    MULTIPLICAR     reduce using rule 34 (exp -> primitivo .)
+    DIV             reduce using rule 34 (exp -> primitivo .)
+    MAYOR           reduce using rule 34 (exp -> primitivo .)
+    MENOR           reduce using rule 34 (exp -> primitivo .)
+    MAYORIGUAL      reduce using rule 34 (exp -> primitivo .)
+    MENORIGUAL      reduce using rule 34 (exp -> primitivo .)
+    IGUALDAD        reduce using rule 34 (exp -> primitivo .)
+    OR              reduce using rule 34 (exp -> primitivo .)
+    AND             reduce using rule 34 (exp -> primitivo .)
+    AS              reduce using rule 34 (exp -> primitivo .)
+    PUNTOCOMA       reduce using rule 34 (exp -> primitivo .)
+    COMA            reduce using rule 34 (exp -> primitivo .)
+
+
+state 19
+
+    (35) primitivo -> ENTERO .
+
+    PARENTESISDERECHO reduce using rule 35 (primitivo -> ENTERO .)
+    MAS             reduce using rule 35 (primitivo -> ENTERO .)
+    MENOS           reduce using rule 35 (primitivo -> ENTERO .)
+    MULTIPLICAR     reduce using rule 35 (primitivo -> ENTERO .)
+    DIV             reduce using rule 35 (primitivo -> ENTERO .)
+    MAYOR           reduce using rule 35 (primitivo -> ENTERO .)
+    MENOR           reduce using rule 35 (primitivo -> ENTERO .)
+    MAYORIGUAL      reduce using rule 35 (primitivo -> ENTERO .)
+    MENORIGUAL      reduce using rule 35 (primitivo -> ENTERO .)
+    IGUALDAD        reduce using rule 35 (primitivo -> ENTERO .)
+    OR              reduce using rule 35 (primitivo -> ENTERO .)
+    AND             reduce using rule 35 (primitivo -> ENTERO .)
+    AS              reduce using rule 35 (primitivo -> ENTERO .)
+    PUNTOCOMA       reduce using rule 35 (primitivo -> ENTERO .)
+    COMA            reduce using rule 35 (primitivo -> ENTERO .)
+
+
+state 20
+
+    (36) primitivo -> DECIMAL .
+
+    PARENTESISDERECHO reduce using rule 36 (primitivo -> DECIMAL .)
+    MAS             reduce using rule 36 (primitivo -> DECIMAL .)
+    MENOS           reduce using rule 36 (primitivo -> DECIMAL .)
+    MULTIPLICAR     reduce using rule 36 (primitivo -> DECIMAL .)
+    DIV             reduce using rule 36 (primitivo -> DECIMAL .)
+    MAYOR           reduce using rule 36 (primitivo -> DECIMAL .)
+    MENOR           reduce using rule 36 (primitivo -> DECIMAL .)
+    MAYORIGUAL      reduce using rule 36 (primitivo -> DECIMAL .)
+    MENORIGUAL      reduce using rule 36 (primitivo -> DECIMAL .)
+    IGUALDAD        reduce using rule 36 (primitivo -> DECIMAL .)
+    OR              reduce using rule 36 (primitivo -> DECIMAL .)
+    AND             reduce using rule 36 (primitivo -> DECIMAL .)
+    AS              reduce using rule 36 (primitivo -> DECIMAL .)
+    PUNTOCOMA       reduce using rule 36 (primitivo -> DECIMAL .)
+    COMA            reduce using rule 36 (primitivo -> DECIMAL .)
+
+
+state 21
+
+    (37) primitivo -> TRUE .
+
+    PARENTESISDERECHO reduce using rule 37 (primitivo -> TRUE .)
+    MAS             reduce using rule 37 (primitivo -> TRUE .)
+    MENOS           reduce using rule 37 (primitivo -> TRUE .)
+    MULTIPLICAR     reduce using rule 37 (primitivo -> TRUE .)
+    DIV             reduce using rule 37 (primitivo -> TRUE .)
+    MAYOR           reduce using rule 37 (primitivo -> TRUE .)
+    MENOR           reduce using rule 37 (primitivo -> TRUE .)
+    MAYORIGUAL      reduce using rule 37 (primitivo -> TRUE .)
+    MENORIGUAL      reduce using rule 37 (primitivo -> TRUE .)
+    IGUALDAD        reduce using rule 37 (primitivo -> TRUE .)
+    OR              reduce using rule 37 (primitivo -> TRUE .)
+    AND             reduce using rule 37 (primitivo -> TRUE .)
+    AS              reduce using rule 37 (primitivo -> TRUE .)
+    PUNTOCOMA       reduce using rule 37 (primitivo -> TRUE .)
+    COMA            reduce using rule 37 (primitivo -> TRUE .)
+
+
+state 22
+
+    (38) primitivo -> FALSE .
+
+    PARENTESISDERECHO reduce using rule 38 (primitivo -> FALSE .)
+    MAS             reduce using rule 38 (primitivo -> FALSE .)
+    MENOS           reduce using rule 38 (primitivo -> FALSE .)
+    MULTIPLICAR     reduce using rule 38 (primitivo -> FALSE .)
+    DIV             reduce using rule 38 (primitivo -> FALSE .)
+    MAYOR           reduce using rule 38 (primitivo -> FALSE .)
+    MENOR           reduce using rule 38 (primitivo -> FALSE .)
+    MAYORIGUAL      reduce using rule 38 (primitivo -> FALSE .)
+    MENORIGUAL      reduce using rule 38 (primitivo -> FALSE .)
+    IGUALDAD        reduce using rule 38 (primitivo -> FALSE .)
+    OR              reduce using rule 38 (primitivo -> FALSE .)
+    AND             reduce using rule 38 (primitivo -> FALSE .)
+    AS              reduce using rule 38 (primitivo -> FALSE .)
+    PUNTOCOMA       reduce using rule 38 (primitivo -> FALSE .)
+    COMA            reduce using rule 38 (primitivo -> FALSE .)
+
+
+state 23
+
+    (39) primitivo -> CADENA .
+
+    PARENTESISDERECHO reduce using rule 39 (primitivo -> CADENA .)
+    MAS             reduce using rule 39 (primitivo -> CADENA .)
+    MENOS           reduce using rule 39 (primitivo -> CADENA .)
+    MULTIPLICAR     reduce using rule 39 (primitivo -> CADENA .)
+    DIV             reduce using rule 39 (primitivo -> CADENA .)
+    MAYOR           reduce using rule 39 (primitivo -> CADENA .)
+    MENOR           reduce using rule 39 (primitivo -> CADENA .)
+    MAYORIGUAL      reduce using rule 39 (primitivo -> CADENA .)
+    MENORIGUAL      reduce using rule 39 (primitivo -> CADENA .)
+    IGUALDAD        reduce using rule 39 (primitivo -> CADENA .)
+    OR              reduce using rule 39 (primitivo -> CADENA .)
+    AND             reduce using rule 39 (primitivo -> CADENA .)
+    AS              reduce using rule 39 (primitivo -> CADENA .)
+    PUNTOCOMA       reduce using rule 39 (primitivo -> CADENA .)
+    COMA            reduce using rule 39 (primitivo -> CADENA .)
+
+
+state 24
+
+    (40) primitivo -> CARACTER .
+
+    PARENTESISDERECHO reduce using rule 40 (primitivo -> CARACTER .)
+    MAS             reduce using rule 40 (primitivo -> CARACTER .)
+    MENOS           reduce using rule 40 (primitivo -> CARACTER .)
+    MULTIPLICAR     reduce using rule 40 (primitivo -> CARACTER .)
+    DIV             reduce using rule 40 (primitivo -> CARACTER .)
+    MAYOR           reduce using rule 40 (primitivo -> CARACTER .)
+    MENOR           reduce using rule 40 (primitivo -> CARACTER .)
+    MAYORIGUAL      reduce using rule 40 (primitivo -> CARACTER .)
+    MENORIGUAL      reduce using rule 40 (primitivo -> CARACTER .)
+    IGUALDAD        reduce using rule 40 (primitivo -> CARACTER .)
+    OR              reduce using rule 40 (primitivo -> CARACTER .)
+    AND             reduce using rule 40 (primitivo -> CARACTER .)
+    AS              reduce using rule 40 (primitivo -> CARACTER .)
+    PUNTOCOMA       reduce using rule 40 (primitivo -> CARACTER .)
+    COMA            reduce using rule 40 (primitivo -> CARACTER .)
+
+
+state 25
+
+    (41) primitivo -> ID .
+
+    PARENTESISDERECHO reduce using rule 41 (primitivo -> ID .)
+    MAS             reduce using rule 41 (primitivo -> ID .)
+    MENOS           reduce using rule 41 (primitivo -> ID .)
+    MULTIPLICAR     reduce using rule 41 (primitivo -> ID .)
+    DIV             reduce using rule 41 (primitivo -> ID .)
+    MAYOR           reduce using rule 41 (primitivo -> ID .)
+    MENOR           reduce using rule 41 (primitivo -> ID .)
+    MAYORIGUAL      reduce using rule 41 (primitivo -> ID .)
+    MENORIGUAL      reduce using rule 41 (primitivo -> ID .)
+    IGUALDAD        reduce using rule 41 (primitivo -> ID .)
+    OR              reduce using rule 41 (primitivo -> ID .)
+    AND             reduce using rule 41 (primitivo -> ID .)
+    AS              reduce using rule 41 (primitivo -> ID .)
+    PUNTOCOMA       reduce using rule 41 (primitivo -> ID .)
+    COMA            reduce using rule 41 (primitivo -> ID .)
+
+
 state 26
 
-    (8) variable -> LET ID DOSPUNTOS . tipo IGUAL exp PUNTOCOMA
-    (9) tipo -> . I64
-    (10) tipo -> . F64
-    (11) tipo -> . BOOL
-    (12) tipo -> . STRING
+    (7) variable -> LET MUT ID . DOSPUNTOS tipo IGUAL exp PUNTOCOMA
+    (8) variable -> LET MUT ID . IGUAL exp PUNTOCOMA
 
-    I64             shift and go to state 46
-    F64             shift and go to state 47
-    BOOL            shift and go to state 48
-    STRING          shift and go to state 49
+    DOSPUNTOS       shift and go to state 47
+    IGUAL           shift and go to state 48
 
-    tipo                           shift and go to state 45
 
 state 27
 
-    (26) exp -> PARENTESISIZQUIERDO exp . PARENTESISDERECHO
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
+    (9) variable -> LET ID DOSPUNTOS . tipo IGUAL exp PUNTOCOMA
+    (11) tipo -> . I64
+    (12) tipo -> . F64
+    (13) tipo -> . BOOL
+    (14) tipo -> . STRING
+    (15) tipo -> . CARACTER
 
-    PARENTESISDERECHO shift and go to state 50
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    OR              shift and go to state 38
-    AND             shift and go to state 39
+    I64             shift and go to state 50
+    F64             shift and go to state 51
+    BOOL            shift and go to state 52
+    STRING          shift and go to state 53
+    CARACTER        shift and go to state 54
 
+    tipo                           shift and go to state 49
 
 state 28
 
-    (6) imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO .
+    (10) variable -> LET ID IGUAL . exp PUNTOCOMA
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    PRINTLN         reduce using rule 6 (imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    LET             reduce using rule 6 (imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    $end            reduce using rule 6 (imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-
-
-state 29
-
-    (13) exp -> exp MAS . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 51
-    primitivo                      shift and go to state 18
-
-state 30
-
-    (14) exp -> exp MENOS . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 52
-    primitivo                      shift and go to state 18
-
-state 31
-
-    (15) exp -> exp MULTIPLICAR . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 53
-    primitivo                      shift and go to state 18
-
-state 32
-
-    (16) exp -> exp DIV . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 54
-    primitivo                      shift and go to state 18
-
-state 33
-
-    (17) exp -> exp MAYOR . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
     exp                            shift and go to state 55
     primitivo                      shift and go to state 18
 
-state 34
+state 29
 
-    (18) exp -> exp MENOR . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (31) exp -> PARENTESISIZQUIERDO exp . PARENTESISDERECHO
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
 
-    NOT             shift and go to state 15
+    PARENTESISDERECHO shift and go to state 56
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
+
+
+state 30
+
+    (6) imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 57
+
+
+state 31
+
+    (16) exp -> exp MAS . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 56
-    primitivo                      shift and go to state 18
-
-state 35
-
-    (19) exp -> exp MAYORIGUAL . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 57
-    primitivo                      shift and go to state 18
-
-state 36
-
-    (20) exp -> exp MENORIGUAL . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
     exp                            shift and go to state 58
     primitivo                      shift and go to state 18
 
-state 37
+state 32
 
-    (21) exp -> exp IGUALDAD . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (17) exp -> exp MENOS . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
     exp                            shift and go to state 59
     primitivo                      shift and go to state 18
 
-state 38
+state 33
 
-    (22) exp -> exp OR . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (18) exp -> exp MULTIPLICAR . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
     exp                            shift and go to state 60
     primitivo                      shift and go to state 18
 
-state 39
+state 34
 
-    (23) exp -> exp AND . exp
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (19) exp -> exp DIV . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
     exp                            shift and go to state 61
     primitivo                      shift and go to state 18
 
+state 35
+
+    (20) exp -> exp MAYOR . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 62
+    primitivo                      shift and go to state 18
+
+state 36
+
+    (21) exp -> exp MENOR . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 63
+    primitivo                      shift and go to state 18
+
+state 37
+
+    (22) exp -> exp MAYORIGUAL . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 64
+    primitivo                      shift and go to state 18
+
+state 38
+
+    (23) exp -> exp MENORIGUAL . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 65
+    primitivo                      shift and go to state 18
+
+state 39
+
+    (24) exp -> exp IGUALDAD . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 66
+    primitivo                      shift and go to state 18
+
 state 40
 
-    (25) exp -> MENOS exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
+    (25) exp -> exp OR . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    PARENTESISDERECHO reduce using rule 25 (exp -> MENOS exp .)
-    MAS             reduce using rule 25 (exp -> MENOS exp .)
-    MENOS           reduce using rule 25 (exp -> MENOS exp .)
-    MULTIPLICAR     reduce using rule 25 (exp -> MENOS exp .)
-    DIV             reduce using rule 25 (exp -> MENOS exp .)
-    MAYOR           reduce using rule 25 (exp -> MENOS exp .)
-    MENOR           reduce using rule 25 (exp -> MENOS exp .)
-    MAYORIGUAL      reduce using rule 25 (exp -> MENOS exp .)
-    MENORIGUAL      reduce using rule 25 (exp -> MENOS exp .)
-    IGUALDAD        reduce using rule 25 (exp -> MENOS exp .)
-    OR              reduce using rule 25 (exp -> MENOS exp .)
-    AND             reduce using rule 25 (exp -> MENOS exp .)
-    PUNTOCOMA       reduce using rule 25 (exp -> MENOS exp .)
-    COMA            reduce using rule 25 (exp -> MENOS exp .)
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
-  ! MAS             [ shift and go to state 29 ]
-  ! MENOS           [ shift and go to state 30 ]
-  ! MULTIPLICAR     [ shift and go to state 31 ]
-  ! DIV             [ shift and go to state 32 ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
+    exp                            shift and go to state 67
+    primitivo                      shift and go to state 18
 
 state 41
 
-    (24) exp -> NOT exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
+    (26) exp -> exp AND . exp
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    PARENTESISDERECHO reduce using rule 24 (exp -> NOT exp .)
-    OR              reduce using rule 24 (exp -> NOT exp .)
-    AND             reduce using rule 24 (exp -> NOT exp .)
-    PUNTOCOMA       reduce using rule 24 (exp -> NOT exp .)
-    COMA            reduce using rule 24 (exp -> NOT exp .)
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
-  ! MAS             [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! MENOS           [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! MULTIPLICAR     [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! DIV             [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! MAYOR           [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! MENOR           [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! MAYORIGUAL      [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! MENORIGUAL      [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! IGUALDAD        [ reduce using rule 24 (exp -> NOT exp .) ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
+    exp                            shift and go to state 68
+    primitivo                      shift and go to state 18
 
 state 42
 
-    (27) exp -> I64 DOSPUNTOS . DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (27) exp -> exp AS . I64
+    (28) exp -> exp AS . F64
 
-    DOSPUNTOS       shift and go to state 62
+    I64             shift and go to state 69
+    F64             shift and go to state 70
 
 
 state 43
 
-    (28) exp -> F64 DOSPUNTOS . DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (30) exp -> MENOS exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
 
-    DOSPUNTOS       shift and go to state 63
+    PARENTESISDERECHO reduce using rule 30 (exp -> MENOS exp .)
+    MAS             reduce using rule 30 (exp -> MENOS exp .)
+    MENOS           reduce using rule 30 (exp -> MENOS exp .)
+    MULTIPLICAR     reduce using rule 30 (exp -> MENOS exp .)
+    DIV             reduce using rule 30 (exp -> MENOS exp .)
+    MAYOR           reduce using rule 30 (exp -> MENOS exp .)
+    MENOR           reduce using rule 30 (exp -> MENOS exp .)
+    MAYORIGUAL      reduce using rule 30 (exp -> MENOS exp .)
+    MENORIGUAL      reduce using rule 30 (exp -> MENOS exp .)
+    IGUALDAD        reduce using rule 30 (exp -> MENOS exp .)
+    OR              reduce using rule 30 (exp -> MENOS exp .)
+    AND             reduce using rule 30 (exp -> MENOS exp .)
+    AS              reduce using rule 30 (exp -> MENOS exp .)
+    PUNTOCOMA       reduce using rule 30 (exp -> MENOS exp .)
+    COMA            reduce using rule 30 (exp -> MENOS exp .)
+
+  ! MAS             [ shift and go to state 31 ]
+  ! MENOS           [ shift and go to state 32 ]
+  ! MULTIPLICAR     [ shift and go to state 33 ]
+  ! DIV             [ shift and go to state 34 ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
 
 
 state 44
 
-    (7) variable -> LET MUT ID DOSPUNTOS . tipo IGUAL exp PUNTOCOMA
-    (9) tipo -> . I64
-    (10) tipo -> . F64
-    (11) tipo -> . BOOL
-    (12) tipo -> . STRING
+    (32) exp -> I64 DOSPUNTOS . DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
 
-    I64             shift and go to state 46
-    F64             shift and go to state 47
-    BOOL            shift and go to state 48
-    STRING          shift and go to state 49
+    DOSPUNTOS       shift and go to state 71
 
-    tipo                           shift and go to state 64
 
 state 45
 
-    (8) variable -> LET ID DOSPUNTOS tipo . IGUAL exp PUNTOCOMA
+    (33) exp -> F64 DOSPUNTOS . DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
 
-    IGUAL           shift and go to state 65
+    DOSPUNTOS       shift and go to state 72
 
 
 state 46
 
-    (9) tipo -> I64 .
+    (29) exp -> NOT exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
 
-    IGUAL           reduce using rule 9 (tipo -> I64 .)
+    PARENTESISDERECHO reduce using rule 29 (exp -> NOT exp .)
+    OR              reduce using rule 29 (exp -> NOT exp .)
+    AND             reduce using rule 29 (exp -> NOT exp .)
+    AS              reduce using rule 29 (exp -> NOT exp .)
+    PUNTOCOMA       reduce using rule 29 (exp -> NOT exp .)
+    COMA            reduce using rule 29 (exp -> NOT exp .)
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+
+  ! MAS             [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! MENOS           [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! MULTIPLICAR     [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! DIV             [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! MAYOR           [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! MENOR           [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! MAYORIGUAL      [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! MENORIGUAL      [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! IGUALDAD        [ reduce using rule 29 (exp -> NOT exp .) ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
 
 
 state 47
 
-    (10) tipo -> F64 .
+    (7) variable -> LET MUT ID DOSPUNTOS . tipo IGUAL exp PUNTOCOMA
+    (11) tipo -> . I64
+    (12) tipo -> . F64
+    (13) tipo -> . BOOL
+    (14) tipo -> . STRING
+    (15) tipo -> . CARACTER
 
-    IGUAL           reduce using rule 10 (tipo -> F64 .)
+    I64             shift and go to state 50
+    F64             shift and go to state 51
+    BOOL            shift and go to state 52
+    STRING          shift and go to state 53
+    CARACTER        shift and go to state 54
 
+    tipo                           shift and go to state 73
 
 state 48
 
-    (11) tipo -> BOOL .
-
-    IGUAL           reduce using rule 11 (tipo -> BOOL .)
-
-
-state 49
-
-    (12) tipo -> STRING .
-
-    IGUAL           reduce using rule 12 (tipo -> STRING .)
-
-
-state 50
-
-    (26) exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .
-
-    PARENTESISDERECHO reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    MAS             reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    MENOS           reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    MULTIPLICAR     reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    DIV             reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    MAYOR           reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    MENOR           reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    MAYORIGUAL      reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    MENORIGUAL      reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    IGUALDAD        reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    OR              reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    AND             reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    PUNTOCOMA       reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-    COMA            reduce using rule 26 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
-
-
-state 51
-
-    (13) exp -> exp MAS exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 13 (exp -> exp MAS exp .)
-    MAS             reduce using rule 13 (exp -> exp MAS exp .)
-    MENOS           reduce using rule 13 (exp -> exp MAS exp .)
-    MAYOR           reduce using rule 13 (exp -> exp MAS exp .)
-    MENOR           reduce using rule 13 (exp -> exp MAS exp .)
-    MAYORIGUAL      reduce using rule 13 (exp -> exp MAS exp .)
-    MENORIGUAL      reduce using rule 13 (exp -> exp MAS exp .)
-    IGUALDAD        reduce using rule 13 (exp -> exp MAS exp .)
-    OR              reduce using rule 13 (exp -> exp MAS exp .)
-    AND             reduce using rule 13 (exp -> exp MAS exp .)
-    PUNTOCOMA       reduce using rule 13 (exp -> exp MAS exp .)
-    COMA            reduce using rule 13 (exp -> exp MAS exp .)
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-
-  ! MULTIPLICAR     [ reduce using rule 13 (exp -> exp MAS exp .) ]
-  ! DIV             [ reduce using rule 13 (exp -> exp MAS exp .) ]
-  ! MAS             [ shift and go to state 29 ]
-  ! MENOS           [ shift and go to state 30 ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 52
-
-    (14) exp -> exp MENOS exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 14 (exp -> exp MENOS exp .)
-    MAS             reduce using rule 14 (exp -> exp MENOS exp .)
-    MENOS           reduce using rule 14 (exp -> exp MENOS exp .)
-    MAYOR           reduce using rule 14 (exp -> exp MENOS exp .)
-    MENOR           reduce using rule 14 (exp -> exp MENOS exp .)
-    MAYORIGUAL      reduce using rule 14 (exp -> exp MENOS exp .)
-    MENORIGUAL      reduce using rule 14 (exp -> exp MENOS exp .)
-    IGUALDAD        reduce using rule 14 (exp -> exp MENOS exp .)
-    OR              reduce using rule 14 (exp -> exp MENOS exp .)
-    AND             reduce using rule 14 (exp -> exp MENOS exp .)
-    PUNTOCOMA       reduce using rule 14 (exp -> exp MENOS exp .)
-    COMA            reduce using rule 14 (exp -> exp MENOS exp .)
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-
-  ! MULTIPLICAR     [ reduce using rule 14 (exp -> exp MENOS exp .) ]
-  ! DIV             [ reduce using rule 14 (exp -> exp MENOS exp .) ]
-  ! MAS             [ shift and go to state 29 ]
-  ! MENOS           [ shift and go to state 30 ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 53
-
-    (15) exp -> exp MULTIPLICAR exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    MAS             reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    MENOS           reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    MULTIPLICAR     reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    DIV             reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    MAYOR           reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    MENOR           reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    MAYORIGUAL      reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    MENORIGUAL      reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    IGUALDAD        reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    OR              reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    AND             reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    PUNTOCOMA       reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-    COMA            reduce using rule 15 (exp -> exp MULTIPLICAR exp .)
-
-  ! MAS             [ shift and go to state 29 ]
-  ! MENOS           [ shift and go to state 30 ]
-  ! MULTIPLICAR     [ shift and go to state 31 ]
-  ! DIV             [ shift and go to state 32 ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 54
-
-    (16) exp -> exp DIV exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 16 (exp -> exp DIV exp .)
-    MAS             reduce using rule 16 (exp -> exp DIV exp .)
-    MENOS           reduce using rule 16 (exp -> exp DIV exp .)
-    MULTIPLICAR     reduce using rule 16 (exp -> exp DIV exp .)
-    DIV             reduce using rule 16 (exp -> exp DIV exp .)
-    MAYOR           reduce using rule 16 (exp -> exp DIV exp .)
-    MENOR           reduce using rule 16 (exp -> exp DIV exp .)
-    MAYORIGUAL      reduce using rule 16 (exp -> exp DIV exp .)
-    MENORIGUAL      reduce using rule 16 (exp -> exp DIV exp .)
-    IGUALDAD        reduce using rule 16 (exp -> exp DIV exp .)
-    OR              reduce using rule 16 (exp -> exp DIV exp .)
-    AND             reduce using rule 16 (exp -> exp DIV exp .)
-    PUNTOCOMA       reduce using rule 16 (exp -> exp DIV exp .)
-    COMA            reduce using rule 16 (exp -> exp DIV exp .)
-
-  ! MAS             [ shift and go to state 29 ]
-  ! MENOS           [ shift and go to state 30 ]
-  ! MULTIPLICAR     [ shift and go to state 31 ]
-  ! DIV             [ shift and go to state 32 ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 55
-
-    (17) exp -> exp MAYOR exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 17 (exp -> exp MAYOR exp .)
-    MAYOR           reduce using rule 17 (exp -> exp MAYOR exp .)
-    MENOR           reduce using rule 17 (exp -> exp MAYOR exp .)
-    MAYORIGUAL      reduce using rule 17 (exp -> exp MAYOR exp .)
-    MENORIGUAL      reduce using rule 17 (exp -> exp MAYOR exp .)
-    IGUALDAD        reduce using rule 17 (exp -> exp MAYOR exp .)
-    OR              reduce using rule 17 (exp -> exp MAYOR exp .)
-    AND             reduce using rule 17 (exp -> exp MAYOR exp .)
-    PUNTOCOMA       reduce using rule 17 (exp -> exp MAYOR exp .)
-    COMA            reduce using rule 17 (exp -> exp MAYOR exp .)
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-
-  ! MAS             [ reduce using rule 17 (exp -> exp MAYOR exp .) ]
-  ! MENOS           [ reduce using rule 17 (exp -> exp MAYOR exp .) ]
-  ! MULTIPLICAR     [ reduce using rule 17 (exp -> exp MAYOR exp .) ]
-  ! DIV             [ reduce using rule 17 (exp -> exp MAYOR exp .) ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 56
-
-    (18) exp -> exp MENOR exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 18 (exp -> exp MENOR exp .)
-    MAYOR           reduce using rule 18 (exp -> exp MENOR exp .)
-    MENOR           reduce using rule 18 (exp -> exp MENOR exp .)
-    MAYORIGUAL      reduce using rule 18 (exp -> exp MENOR exp .)
-    MENORIGUAL      reduce using rule 18 (exp -> exp MENOR exp .)
-    IGUALDAD        reduce using rule 18 (exp -> exp MENOR exp .)
-    OR              reduce using rule 18 (exp -> exp MENOR exp .)
-    AND             reduce using rule 18 (exp -> exp MENOR exp .)
-    PUNTOCOMA       reduce using rule 18 (exp -> exp MENOR exp .)
-    COMA            reduce using rule 18 (exp -> exp MENOR exp .)
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-
-  ! MAS             [ reduce using rule 18 (exp -> exp MENOR exp .) ]
-  ! MENOS           [ reduce using rule 18 (exp -> exp MENOR exp .) ]
-  ! MULTIPLICAR     [ reduce using rule 18 (exp -> exp MENOR exp .) ]
-  ! DIV             [ reduce using rule 18 (exp -> exp MENOR exp .) ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 57
-
-    (19) exp -> exp MAYORIGUAL exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    MAYOR           reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    MENOR           reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    MAYORIGUAL      reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    MENORIGUAL      reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    IGUALDAD        reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    OR              reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    AND             reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    PUNTOCOMA       reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    COMA            reduce using rule 19 (exp -> exp MAYORIGUAL exp .)
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-
-  ! MAS             [ reduce using rule 19 (exp -> exp MAYORIGUAL exp .) ]
-  ! MENOS           [ reduce using rule 19 (exp -> exp MAYORIGUAL exp .) ]
-  ! MULTIPLICAR     [ reduce using rule 19 (exp -> exp MAYORIGUAL exp .) ]
-  ! DIV             [ reduce using rule 19 (exp -> exp MAYORIGUAL exp .) ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 58
-
-    (20) exp -> exp MENORIGUAL exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    MAYOR           reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    MENOR           reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    MAYORIGUAL      reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    MENORIGUAL      reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    IGUALDAD        reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    OR              reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    AND             reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    PUNTOCOMA       reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    COMA            reduce using rule 20 (exp -> exp MENORIGUAL exp .)
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-
-  ! MAS             [ reduce using rule 20 (exp -> exp MENORIGUAL exp .) ]
-  ! MENOS           [ reduce using rule 20 (exp -> exp MENORIGUAL exp .) ]
-  ! MULTIPLICAR     [ reduce using rule 20 (exp -> exp MENORIGUAL exp .) ]
-  ! DIV             [ reduce using rule 20 (exp -> exp MENORIGUAL exp .) ]
-  ! MAYOR           [ shift and go to state 33 ]
-  ! MENOR           [ shift and go to state 34 ]
-  ! MAYORIGUAL      [ shift and go to state 35 ]
-  ! MENORIGUAL      [ shift and go to state 36 ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 59
-
-    (21) exp -> exp IGUALDAD exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 21 (exp -> exp IGUALDAD exp .)
-    IGUALDAD        reduce using rule 21 (exp -> exp IGUALDAD exp .)
-    OR              reduce using rule 21 (exp -> exp IGUALDAD exp .)
-    AND             reduce using rule 21 (exp -> exp IGUALDAD exp .)
-    PUNTOCOMA       reduce using rule 21 (exp -> exp IGUALDAD exp .)
-    COMA            reduce using rule 21 (exp -> exp IGUALDAD exp .)
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-
-  ! MAS             [ reduce using rule 21 (exp -> exp IGUALDAD exp .) ]
-  ! MENOS           [ reduce using rule 21 (exp -> exp IGUALDAD exp .) ]
-  ! MULTIPLICAR     [ reduce using rule 21 (exp -> exp IGUALDAD exp .) ]
-  ! DIV             [ reduce using rule 21 (exp -> exp IGUALDAD exp .) ]
-  ! MAYOR           [ reduce using rule 21 (exp -> exp IGUALDAD exp .) ]
-  ! MENOR           [ reduce using rule 21 (exp -> exp IGUALDAD exp .) ]
-  ! MAYORIGUAL      [ reduce using rule 21 (exp -> exp IGUALDAD exp .) ]
-  ! MENORIGUAL      [ reduce using rule 21 (exp -> exp IGUALDAD exp .) ]
-  ! IGUALDAD        [ shift and go to state 37 ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 60
-
-    (22) exp -> exp OR exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 22 (exp -> exp OR exp .)
-    OR              reduce using rule 22 (exp -> exp OR exp .)
-    PUNTOCOMA       reduce using rule 22 (exp -> exp OR exp .)
-    COMA            reduce using rule 22 (exp -> exp OR exp .)
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    AND             shift and go to state 39
-
-  ! MAS             [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! MENOS           [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! MULTIPLICAR     [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! DIV             [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! MAYOR           [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! MENOR           [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! MAYORIGUAL      [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! MENORIGUAL      [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! IGUALDAD        [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! AND             [ reduce using rule 22 (exp -> exp OR exp .) ]
-  ! OR              [ shift and go to state 38 ]
-
-
-state 61
-
-    (23) exp -> exp AND exp .
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO reduce using rule 23 (exp -> exp AND exp .)
-    OR              reduce using rule 23 (exp -> exp AND exp .)
-    AND             reduce using rule 23 (exp -> exp AND exp .)
-    PUNTOCOMA       reduce using rule 23 (exp -> exp AND exp .)
-    COMA            reduce using rule 23 (exp -> exp AND exp .)
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-
-  ! MAS             [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! MENOS           [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! MULTIPLICAR     [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! DIV             [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! MAYOR           [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! MENOR           [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! MAYORIGUAL      [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! MENORIGUAL      [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! IGUALDAD        [ reduce using rule 23 (exp -> exp AND exp .) ]
-  ! OR              [ shift and go to state 38 ]
-  ! AND             [ shift and go to state 39 ]
-
-
-state 62
-
-    (27) exp -> I64 DOSPUNTOS DOSPUNTOS . POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-
-    POW             shift and go to state 66
-
-
-state 63
-
-    (28) exp -> F64 DOSPUNTOS DOSPUNTOS . POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-
-    POW             shift and go to state 67
-
-
-state 64
-
-    (7) variable -> LET MUT ID DOSPUNTOS tipo . IGUAL exp PUNTOCOMA
-
-    IGUAL           shift and go to state 68
-
-
-state 65
-
-    (8) variable -> LET ID DOSPUNTOS tipo IGUAL . exp PUNTOCOMA
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
+    (8) variable -> LET MUT ID IGUAL . exp PUNTOCOMA
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 69
-    primitivo                      shift and go to state 18
-
-state 66
-
-    (27) exp -> I64 DOSPUNTOS DOSPUNTOS POW . PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-
-    PARENTESISIZQUIERDO shift and go to state 70
-
-
-state 67
-
-    (28) exp -> F64 DOSPUNTOS DOSPUNTOS POW . PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-
-    PARENTESISIZQUIERDO shift and go to state 71
-
-
-state 68
-
-    (7) variable -> LET MUT ID DOSPUNTOS tipo IGUAL . exp PUNTOCOMA
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
-
-    exp                            shift and go to state 72
-    primitivo                      shift and go to state 18
-
-state 69
-
-    (8) variable -> LET ID DOSPUNTOS tipo IGUAL exp . PUNTOCOMA
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PUNTOCOMA       shift and go to state 73
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    OR              shift and go to state 38
-    AND             shift and go to state 39
-
-
-state 70
-
-    (27) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO . exp COMA exp PARENTESISDERECHO
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
-
-    NOT             shift and go to state 15
-    MENOS           shift and go to state 14
-    PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
-    ENTERO          shift and go to state 19
-    DECIMAL         shift and go to state 20
-    TRUE            shift and go to state 21
-    FALSE           shift and go to state 22
-    CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
     exp                            shift and go to state 74
     primitivo                      shift and go to state 18
 
+state 49
+
+    (9) variable -> LET ID DOSPUNTOS tipo . IGUAL exp PUNTOCOMA
+
+    IGUAL           shift and go to state 75
+
+
+state 50
+
+    (11) tipo -> I64 .
+
+    IGUAL           reduce using rule 11 (tipo -> I64 .)
+
+
+state 51
+
+    (12) tipo -> F64 .
+
+    IGUAL           reduce using rule 12 (tipo -> F64 .)
+
+
+state 52
+
+    (13) tipo -> BOOL .
+
+    IGUAL           reduce using rule 13 (tipo -> BOOL .)
+
+
+state 53
+
+    (14) tipo -> STRING .
+
+    IGUAL           reduce using rule 14 (tipo -> STRING .)
+
+
+state 54
+
+    (15) tipo -> CARACTER .
+
+    IGUAL           reduce using rule 15 (tipo -> CARACTER .)
+
+
+state 55
+
+    (10) variable -> LET ID IGUAL exp . PUNTOCOMA
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PUNTOCOMA       shift and go to state 76
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
+
+
+state 56
+
+    (31) exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .
+
+    PARENTESISDERECHO reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    MAS             reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    MENOS           reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    MULTIPLICAR     reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    DIV             reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    MAYOR           reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    MENOR           reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    MAYORIGUAL      reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    MENORIGUAL      reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    IGUALDAD        reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    OR              reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    AND             reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    AS              reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    PUNTOCOMA       reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+    COMA            reduce using rule 31 (exp -> PARENTESISIZQUIERDO exp PARENTESISDERECHO .)
+
+
+state 57
+
+    (6) imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA .
+
+    PRINTLN         reduce using rule 6 (imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA .)
+    LET             reduce using rule 6 (imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA .)
+    $end            reduce using rule 6 (imprimir -> PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA .)
+
+
+state 58
+
+    (16) exp -> exp MAS exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 16 (exp -> exp MAS exp .)
+    MAS             reduce using rule 16 (exp -> exp MAS exp .)
+    MENOS           reduce using rule 16 (exp -> exp MAS exp .)
+    MAYOR           reduce using rule 16 (exp -> exp MAS exp .)
+    MENOR           reduce using rule 16 (exp -> exp MAS exp .)
+    MAYORIGUAL      reduce using rule 16 (exp -> exp MAS exp .)
+    MENORIGUAL      reduce using rule 16 (exp -> exp MAS exp .)
+    IGUALDAD        reduce using rule 16 (exp -> exp MAS exp .)
+    OR              reduce using rule 16 (exp -> exp MAS exp .)
+    AND             reduce using rule 16 (exp -> exp MAS exp .)
+    AS              reduce using rule 16 (exp -> exp MAS exp .)
+    PUNTOCOMA       reduce using rule 16 (exp -> exp MAS exp .)
+    COMA            reduce using rule 16 (exp -> exp MAS exp .)
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+
+  ! MULTIPLICAR     [ reduce using rule 16 (exp -> exp MAS exp .) ]
+  ! DIV             [ reduce using rule 16 (exp -> exp MAS exp .) ]
+  ! MAS             [ shift and go to state 31 ]
+  ! MENOS           [ shift and go to state 32 ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 59
+
+    (17) exp -> exp MENOS exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 17 (exp -> exp MENOS exp .)
+    MAS             reduce using rule 17 (exp -> exp MENOS exp .)
+    MENOS           reduce using rule 17 (exp -> exp MENOS exp .)
+    MAYOR           reduce using rule 17 (exp -> exp MENOS exp .)
+    MENOR           reduce using rule 17 (exp -> exp MENOS exp .)
+    MAYORIGUAL      reduce using rule 17 (exp -> exp MENOS exp .)
+    MENORIGUAL      reduce using rule 17 (exp -> exp MENOS exp .)
+    IGUALDAD        reduce using rule 17 (exp -> exp MENOS exp .)
+    OR              reduce using rule 17 (exp -> exp MENOS exp .)
+    AND             reduce using rule 17 (exp -> exp MENOS exp .)
+    AS              reduce using rule 17 (exp -> exp MENOS exp .)
+    PUNTOCOMA       reduce using rule 17 (exp -> exp MENOS exp .)
+    COMA            reduce using rule 17 (exp -> exp MENOS exp .)
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+
+  ! MULTIPLICAR     [ reduce using rule 17 (exp -> exp MENOS exp .) ]
+  ! DIV             [ reduce using rule 17 (exp -> exp MENOS exp .) ]
+  ! MAS             [ shift and go to state 31 ]
+  ! MENOS           [ shift and go to state 32 ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 60
+
+    (18) exp -> exp MULTIPLICAR exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    MAS             reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    MENOS           reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    MULTIPLICAR     reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    DIV             reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    MAYOR           reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    MENOR           reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    MAYORIGUAL      reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    MENORIGUAL      reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    IGUALDAD        reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    OR              reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    AND             reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    AS              reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    PUNTOCOMA       reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+    COMA            reduce using rule 18 (exp -> exp MULTIPLICAR exp .)
+
+  ! MAS             [ shift and go to state 31 ]
+  ! MENOS           [ shift and go to state 32 ]
+  ! MULTIPLICAR     [ shift and go to state 33 ]
+  ! DIV             [ shift and go to state 34 ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 61
+
+    (19) exp -> exp DIV exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 19 (exp -> exp DIV exp .)
+    MAS             reduce using rule 19 (exp -> exp DIV exp .)
+    MENOS           reduce using rule 19 (exp -> exp DIV exp .)
+    MULTIPLICAR     reduce using rule 19 (exp -> exp DIV exp .)
+    DIV             reduce using rule 19 (exp -> exp DIV exp .)
+    MAYOR           reduce using rule 19 (exp -> exp DIV exp .)
+    MENOR           reduce using rule 19 (exp -> exp DIV exp .)
+    MAYORIGUAL      reduce using rule 19 (exp -> exp DIV exp .)
+    MENORIGUAL      reduce using rule 19 (exp -> exp DIV exp .)
+    IGUALDAD        reduce using rule 19 (exp -> exp DIV exp .)
+    OR              reduce using rule 19 (exp -> exp DIV exp .)
+    AND             reduce using rule 19 (exp -> exp DIV exp .)
+    AS              reduce using rule 19 (exp -> exp DIV exp .)
+    PUNTOCOMA       reduce using rule 19 (exp -> exp DIV exp .)
+    COMA            reduce using rule 19 (exp -> exp DIV exp .)
+
+  ! MAS             [ shift and go to state 31 ]
+  ! MENOS           [ shift and go to state 32 ]
+  ! MULTIPLICAR     [ shift and go to state 33 ]
+  ! DIV             [ shift and go to state 34 ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 62
+
+    (20) exp -> exp MAYOR exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 20 (exp -> exp MAYOR exp .)
+    MAYOR           reduce using rule 20 (exp -> exp MAYOR exp .)
+    MENOR           reduce using rule 20 (exp -> exp MAYOR exp .)
+    MAYORIGUAL      reduce using rule 20 (exp -> exp MAYOR exp .)
+    MENORIGUAL      reduce using rule 20 (exp -> exp MAYOR exp .)
+    IGUALDAD        reduce using rule 20 (exp -> exp MAYOR exp .)
+    OR              reduce using rule 20 (exp -> exp MAYOR exp .)
+    AND             reduce using rule 20 (exp -> exp MAYOR exp .)
+    AS              reduce using rule 20 (exp -> exp MAYOR exp .)
+    PUNTOCOMA       reduce using rule 20 (exp -> exp MAYOR exp .)
+    COMA            reduce using rule 20 (exp -> exp MAYOR exp .)
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+
+  ! MAS             [ reduce using rule 20 (exp -> exp MAYOR exp .) ]
+  ! MENOS           [ reduce using rule 20 (exp -> exp MAYOR exp .) ]
+  ! MULTIPLICAR     [ reduce using rule 20 (exp -> exp MAYOR exp .) ]
+  ! DIV             [ reduce using rule 20 (exp -> exp MAYOR exp .) ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 63
+
+    (21) exp -> exp MENOR exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 21 (exp -> exp MENOR exp .)
+    MAYOR           reduce using rule 21 (exp -> exp MENOR exp .)
+    MENOR           reduce using rule 21 (exp -> exp MENOR exp .)
+    MAYORIGUAL      reduce using rule 21 (exp -> exp MENOR exp .)
+    MENORIGUAL      reduce using rule 21 (exp -> exp MENOR exp .)
+    IGUALDAD        reduce using rule 21 (exp -> exp MENOR exp .)
+    OR              reduce using rule 21 (exp -> exp MENOR exp .)
+    AND             reduce using rule 21 (exp -> exp MENOR exp .)
+    AS              reduce using rule 21 (exp -> exp MENOR exp .)
+    PUNTOCOMA       reduce using rule 21 (exp -> exp MENOR exp .)
+    COMA            reduce using rule 21 (exp -> exp MENOR exp .)
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+
+  ! MAS             [ reduce using rule 21 (exp -> exp MENOR exp .) ]
+  ! MENOS           [ reduce using rule 21 (exp -> exp MENOR exp .) ]
+  ! MULTIPLICAR     [ reduce using rule 21 (exp -> exp MENOR exp .) ]
+  ! DIV             [ reduce using rule 21 (exp -> exp MENOR exp .) ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 64
+
+    (22) exp -> exp MAYORIGUAL exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    MAYOR           reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    MENOR           reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    MAYORIGUAL      reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    MENORIGUAL      reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    IGUALDAD        reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    OR              reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    AND             reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    AS              reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    PUNTOCOMA       reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    COMA            reduce using rule 22 (exp -> exp MAYORIGUAL exp .)
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+
+  ! MAS             [ reduce using rule 22 (exp -> exp MAYORIGUAL exp .) ]
+  ! MENOS           [ reduce using rule 22 (exp -> exp MAYORIGUAL exp .) ]
+  ! MULTIPLICAR     [ reduce using rule 22 (exp -> exp MAYORIGUAL exp .) ]
+  ! DIV             [ reduce using rule 22 (exp -> exp MAYORIGUAL exp .) ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 65
+
+    (23) exp -> exp MENORIGUAL exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    MAYOR           reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    MENOR           reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    MAYORIGUAL      reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    MENORIGUAL      reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    IGUALDAD        reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    OR              reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    AND             reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    AS              reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    PUNTOCOMA       reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    COMA            reduce using rule 23 (exp -> exp MENORIGUAL exp .)
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+
+  ! MAS             [ reduce using rule 23 (exp -> exp MENORIGUAL exp .) ]
+  ! MENOS           [ reduce using rule 23 (exp -> exp MENORIGUAL exp .) ]
+  ! MULTIPLICAR     [ reduce using rule 23 (exp -> exp MENORIGUAL exp .) ]
+  ! DIV             [ reduce using rule 23 (exp -> exp MENORIGUAL exp .) ]
+  ! MAYOR           [ shift and go to state 35 ]
+  ! MENOR           [ shift and go to state 36 ]
+  ! MAYORIGUAL      [ shift and go to state 37 ]
+  ! MENORIGUAL      [ shift and go to state 38 ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 66
+
+    (24) exp -> exp IGUALDAD exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 24 (exp -> exp IGUALDAD exp .)
+    IGUALDAD        reduce using rule 24 (exp -> exp IGUALDAD exp .)
+    OR              reduce using rule 24 (exp -> exp IGUALDAD exp .)
+    AND             reduce using rule 24 (exp -> exp IGUALDAD exp .)
+    AS              reduce using rule 24 (exp -> exp IGUALDAD exp .)
+    PUNTOCOMA       reduce using rule 24 (exp -> exp IGUALDAD exp .)
+    COMA            reduce using rule 24 (exp -> exp IGUALDAD exp .)
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+
+  ! MAS             [ reduce using rule 24 (exp -> exp IGUALDAD exp .) ]
+  ! MENOS           [ reduce using rule 24 (exp -> exp IGUALDAD exp .) ]
+  ! MULTIPLICAR     [ reduce using rule 24 (exp -> exp IGUALDAD exp .) ]
+  ! DIV             [ reduce using rule 24 (exp -> exp IGUALDAD exp .) ]
+  ! MAYOR           [ reduce using rule 24 (exp -> exp IGUALDAD exp .) ]
+  ! MENOR           [ reduce using rule 24 (exp -> exp IGUALDAD exp .) ]
+  ! MAYORIGUAL      [ reduce using rule 24 (exp -> exp IGUALDAD exp .) ]
+  ! MENORIGUAL      [ reduce using rule 24 (exp -> exp IGUALDAD exp .) ]
+  ! IGUALDAD        [ shift and go to state 39 ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 67
+
+    (25) exp -> exp OR exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 25 (exp -> exp OR exp .)
+    OR              reduce using rule 25 (exp -> exp OR exp .)
+    AS              reduce using rule 25 (exp -> exp OR exp .)
+    PUNTOCOMA       reduce using rule 25 (exp -> exp OR exp .)
+    COMA            reduce using rule 25 (exp -> exp OR exp .)
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    AND             shift and go to state 41
+
+  ! MAS             [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! MENOS           [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! MULTIPLICAR     [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! DIV             [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! MAYOR           [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! MENOR           [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! MAYORIGUAL      [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! MENORIGUAL      [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! IGUALDAD        [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! AND             [ reduce using rule 25 (exp -> exp OR exp .) ]
+  ! OR              [ shift and go to state 40 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 68
+
+    (26) exp -> exp AND exp .
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PARENTESISDERECHO reduce using rule 26 (exp -> exp AND exp .)
+    OR              reduce using rule 26 (exp -> exp AND exp .)
+    AND             reduce using rule 26 (exp -> exp AND exp .)
+    AS              reduce using rule 26 (exp -> exp AND exp .)
+    PUNTOCOMA       reduce using rule 26 (exp -> exp AND exp .)
+    COMA            reduce using rule 26 (exp -> exp AND exp .)
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+
+  ! MAS             [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! MENOS           [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! MULTIPLICAR     [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! DIV             [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! MAYOR           [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! MENOR           [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! MAYORIGUAL      [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! MENORIGUAL      [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! IGUALDAD        [ reduce using rule 26 (exp -> exp AND exp .) ]
+  ! OR              [ shift and go to state 40 ]
+  ! AND             [ shift and go to state 41 ]
+  ! AS              [ shift and go to state 42 ]
+
+
+state 69
+
+    (27) exp -> exp AS I64 .
+
+    PARENTESISDERECHO reduce using rule 27 (exp -> exp AS I64 .)
+    MAS             reduce using rule 27 (exp -> exp AS I64 .)
+    MENOS           reduce using rule 27 (exp -> exp AS I64 .)
+    MULTIPLICAR     reduce using rule 27 (exp -> exp AS I64 .)
+    DIV             reduce using rule 27 (exp -> exp AS I64 .)
+    MAYOR           reduce using rule 27 (exp -> exp AS I64 .)
+    MENOR           reduce using rule 27 (exp -> exp AS I64 .)
+    MAYORIGUAL      reduce using rule 27 (exp -> exp AS I64 .)
+    MENORIGUAL      reduce using rule 27 (exp -> exp AS I64 .)
+    IGUALDAD        reduce using rule 27 (exp -> exp AS I64 .)
+    OR              reduce using rule 27 (exp -> exp AS I64 .)
+    AND             reduce using rule 27 (exp -> exp AS I64 .)
+    AS              reduce using rule 27 (exp -> exp AS I64 .)
+    PUNTOCOMA       reduce using rule 27 (exp -> exp AS I64 .)
+    COMA            reduce using rule 27 (exp -> exp AS I64 .)
+
+
+state 70
+
+    (28) exp -> exp AS F64 .
+
+    PARENTESISDERECHO reduce using rule 28 (exp -> exp AS F64 .)
+    MAS             reduce using rule 28 (exp -> exp AS F64 .)
+    MENOS           reduce using rule 28 (exp -> exp AS F64 .)
+    MULTIPLICAR     reduce using rule 28 (exp -> exp AS F64 .)
+    DIV             reduce using rule 28 (exp -> exp AS F64 .)
+    MAYOR           reduce using rule 28 (exp -> exp AS F64 .)
+    MENOR           reduce using rule 28 (exp -> exp AS F64 .)
+    MAYORIGUAL      reduce using rule 28 (exp -> exp AS F64 .)
+    MENORIGUAL      reduce using rule 28 (exp -> exp AS F64 .)
+    IGUALDAD        reduce using rule 28 (exp -> exp AS F64 .)
+    OR              reduce using rule 28 (exp -> exp AS F64 .)
+    AND             reduce using rule 28 (exp -> exp AS F64 .)
+    AS              reduce using rule 28 (exp -> exp AS F64 .)
+    PUNTOCOMA       reduce using rule 28 (exp -> exp AS F64 .)
+    COMA            reduce using rule 28 (exp -> exp AS F64 .)
+
+
 state 71
 
-    (28) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO . exp COMA exp PARENTESISDERECHO
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (32) exp -> I64 DOSPUNTOS DOSPUNTOS . POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
 
-    NOT             shift and go to state 15
+    POW             shift and go to state 77
+
+
+state 72
+
+    (33) exp -> F64 DOSPUNTOS DOSPUNTOS . POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+
+    POW             shift and go to state 78
+
+
+state 73
+
+    (7) variable -> LET MUT ID DOSPUNTOS tipo . IGUAL exp PUNTOCOMA
+
+    IGUAL           shift and go to state 79
+
+
+state 74
+
+    (8) variable -> LET MUT ID IGUAL exp . PUNTOCOMA
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PUNTOCOMA       shift and go to state 80
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
+
+
+state 75
+
+    (9) variable -> LET ID DOSPUNTOS tipo IGUAL . exp PUNTOCOMA
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
-    exp                            shift and go to state 75
+    exp                            shift and go to state 81
     primitivo                      shift and go to state 18
 
-state 72
+state 76
+
+    (10) variable -> LET ID IGUAL exp PUNTOCOMA .
+
+    PRINTLN         reduce using rule 10 (variable -> LET ID IGUAL exp PUNTOCOMA .)
+    LET             reduce using rule 10 (variable -> LET ID IGUAL exp PUNTOCOMA .)
+    $end            reduce using rule 10 (variable -> LET ID IGUAL exp PUNTOCOMA .)
+
+
+state 77
+
+    (32) exp -> I64 DOSPUNTOS DOSPUNTOS POW . PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+
+    PARENTESISIZQUIERDO shift and go to state 82
+
+
+state 78
+
+    (33) exp -> F64 DOSPUNTOS DOSPUNTOS POW . PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+
+    PARENTESISIZQUIERDO shift and go to state 83
+
+
+state 79
+
+    (7) variable -> LET MUT ID DOSPUNTOS tipo IGUAL . exp PUNTOCOMA
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 84
+    primitivo                      shift and go to state 18
+
+state 80
+
+    (8) variable -> LET MUT ID IGUAL exp PUNTOCOMA .
+
+    PRINTLN         reduce using rule 8 (variable -> LET MUT ID IGUAL exp PUNTOCOMA .)
+    LET             reduce using rule 8 (variable -> LET MUT ID IGUAL exp PUNTOCOMA .)
+    $end            reduce using rule 8 (variable -> LET MUT ID IGUAL exp PUNTOCOMA .)
+
+
+state 81
+
+    (9) variable -> LET ID DOSPUNTOS tipo IGUAL exp . PUNTOCOMA
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    PUNTOCOMA       shift and go to state 85
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
+
+
+state 82
+
+    (32) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO . exp COMA exp PARENTESISDERECHO
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 86
+    primitivo                      shift and go to state 18
+
+state 83
+
+    (33) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO . exp COMA exp PARENTESISDERECHO
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
+
+    NOT             shift and go to state 17
+    MENOS           shift and go to state 14
+    PARENTESISIZQUIERDO shift and go to state 12
+    I64             shift and go to state 15
+    F64             shift and go to state 16
+    ENTERO          shift and go to state 19
+    DECIMAL         shift and go to state 20
+    TRUE            shift and go to state 21
+    FALSE           shift and go to state 22
+    CADENA          shift and go to state 23
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
+
+    exp                            shift and go to state 87
+    primitivo                      shift and go to state 18
+
+state 84
 
     (7) variable -> LET MUT ID DOSPUNTOS tipo IGUAL exp . PUNTOCOMA
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
 
-    PUNTOCOMA       shift and go to state 76
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    OR              shift and go to state 38
-    AND             shift and go to state 39
-
-
-state 73
-
-    (8) variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .
-
-    PRINTLN         reduce using rule 8 (variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .)
-    LET             reduce using rule 8 (variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .)
-    $end            reduce using rule 8 (variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .)
+    PUNTOCOMA       shift and go to state 88
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
 
 
-state 74
+state 85
 
-    (27) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp . COMA exp PARENTESISDERECHO
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
+    (9) variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .
 
-    COMA            shift and go to state 77
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    OR              shift and go to state 38
-    AND             shift and go to state 39
+    PRINTLN         reduce using rule 9 (variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .)
+    LET             reduce using rule 9 (variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .)
+    $end            reduce using rule 9 (variable -> LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .)
 
 
-state 75
+state 86
 
-    (28) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp . COMA exp PARENTESISDERECHO
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
+    (32) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp . COMA exp PARENTESISDERECHO
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
 
-    COMA            shift and go to state 78
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    OR              shift and go to state 38
-    AND             shift and go to state 39
+    COMA            shift and go to state 89
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
 
 
-state 76
+state 87
+
+    (33) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp . COMA exp PARENTESISDERECHO
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
+
+    COMA            shift and go to state 90
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
+
+
+state 88
 
     (7) variable -> LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .
 
@@ -2125,184 +2558,200 @@ state 76
     $end            reduce using rule 7 (variable -> LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA .)
 
 
-state 77
+state 89
 
-    (27) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA . exp PARENTESISDERECHO
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (32) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA . exp PARENTESISDERECHO
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
-    exp                            shift and go to state 79
+    exp                            shift and go to state 91
     primitivo                      shift and go to state 18
 
-state 78
+state 90
 
-    (28) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA . exp PARENTESISDERECHO
-    (13) exp -> . exp MAS exp
-    (14) exp -> . exp MENOS exp
-    (15) exp -> . exp MULTIPLICAR exp
-    (16) exp -> . exp DIV exp
-    (17) exp -> . exp MAYOR exp
-    (18) exp -> . exp MENOR exp
-    (19) exp -> . exp MAYORIGUAL exp
-    (20) exp -> . exp MENORIGUAL exp
-    (21) exp -> . exp IGUALDAD exp
-    (22) exp -> . exp OR exp
-    (23) exp -> . exp AND exp
-    (24) exp -> . NOT exp
-    (25) exp -> . MENOS exp
-    (26) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
-    (27) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (28) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
-    (29) exp -> . primitivo
-    (30) primitivo -> . ENTERO
-    (31) primitivo -> . DECIMAL
-    (32) primitivo -> . TRUE
-    (33) primitivo -> . FALSE
-    (34) primitivo -> . CADENA
-    (35) primitivo -> . ID
+    (33) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA . exp PARENTESISDERECHO
+    (16) exp -> . exp MAS exp
+    (17) exp -> . exp MENOS exp
+    (18) exp -> . exp MULTIPLICAR exp
+    (19) exp -> . exp DIV exp
+    (20) exp -> . exp MAYOR exp
+    (21) exp -> . exp MENOR exp
+    (22) exp -> . exp MAYORIGUAL exp
+    (23) exp -> . exp MENORIGUAL exp
+    (24) exp -> . exp IGUALDAD exp
+    (25) exp -> . exp OR exp
+    (26) exp -> . exp AND exp
+    (27) exp -> . exp AS I64
+    (28) exp -> . exp AS F64
+    (29) exp -> . NOT exp
+    (30) exp -> . MENOS exp
+    (31) exp -> . PARENTESISIZQUIERDO exp PARENTESISDERECHO
+    (32) exp -> . I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (33) exp -> . F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO
+    (34) exp -> . primitivo
+    (35) primitivo -> . ENTERO
+    (36) primitivo -> . DECIMAL
+    (37) primitivo -> . TRUE
+    (38) primitivo -> . FALSE
+    (39) primitivo -> . CADENA
+    (40) primitivo -> . CARACTER
+    (41) primitivo -> . ID
 
-    NOT             shift and go to state 15
+    NOT             shift and go to state 17
     MENOS           shift and go to state 14
     PARENTESISIZQUIERDO shift and go to state 12
-    I64             shift and go to state 16
-    F64             shift and go to state 17
+    I64             shift and go to state 15
+    F64             shift and go to state 16
     ENTERO          shift and go to state 19
     DECIMAL         shift and go to state 20
     TRUE            shift and go to state 21
     FALSE           shift and go to state 22
     CADENA          shift and go to state 23
-    ID              shift and go to state 24
+    CARACTER        shift and go to state 24
+    ID              shift and go to state 25
 
-    exp                            shift and go to state 80
+    exp                            shift and go to state 92
     primitivo                      shift and go to state 18
 
-state 79
+state 91
 
-    (27) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp . PARENTESISDERECHO
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
+    (32) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp . PARENTESISDERECHO
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
 
-    PARENTESISDERECHO shift and go to state 81
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    OR              shift and go to state 38
-    AND             shift and go to state 39
-
-
-state 80
-
-    (28) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp . PARENTESISDERECHO
-    (13) exp -> exp . MAS exp
-    (14) exp -> exp . MENOS exp
-    (15) exp -> exp . MULTIPLICAR exp
-    (16) exp -> exp . DIV exp
-    (17) exp -> exp . MAYOR exp
-    (18) exp -> exp . MENOR exp
-    (19) exp -> exp . MAYORIGUAL exp
-    (20) exp -> exp . MENORIGUAL exp
-    (21) exp -> exp . IGUALDAD exp
-    (22) exp -> exp . OR exp
-    (23) exp -> exp . AND exp
-
-    PARENTESISDERECHO shift and go to state 82
-    MAS             shift and go to state 29
-    MENOS           shift and go to state 30
-    MULTIPLICAR     shift and go to state 31
-    DIV             shift and go to state 32
-    MAYOR           shift and go to state 33
-    MENOR           shift and go to state 34
-    MAYORIGUAL      shift and go to state 35
-    MENORIGUAL      shift and go to state 36
-    IGUALDAD        shift and go to state 37
-    OR              shift and go to state 38
-    AND             shift and go to state 39
+    PARENTESISDERECHO shift and go to state 93
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
 
 
-state 81
+state 92
 
-    (27) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .
+    (33) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp . PARENTESISDERECHO
+    (16) exp -> exp . MAS exp
+    (17) exp -> exp . MENOS exp
+    (18) exp -> exp . MULTIPLICAR exp
+    (19) exp -> exp . DIV exp
+    (20) exp -> exp . MAYOR exp
+    (21) exp -> exp . MENOR exp
+    (22) exp -> exp . MAYORIGUAL exp
+    (23) exp -> exp . MENORIGUAL exp
+    (24) exp -> exp . IGUALDAD exp
+    (25) exp -> exp . OR exp
+    (26) exp -> exp . AND exp
+    (27) exp -> exp . AS I64
+    (28) exp -> exp . AS F64
 
-    PARENTESISDERECHO reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MAS             reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MENOS           reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MULTIPLICAR     reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    DIV             reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MAYOR           reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MENOR           reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MAYORIGUAL      reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MENORIGUAL      reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    IGUALDAD        reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    OR              reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    AND             reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    PUNTOCOMA       reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    COMA            reduce using rule 27 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    PARENTESISDERECHO shift and go to state 94
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    MULTIPLICAR     shift and go to state 33
+    DIV             shift and go to state 34
+    MAYOR           shift and go to state 35
+    MENOR           shift and go to state 36
+    MAYORIGUAL      shift and go to state 37
+    MENORIGUAL      shift and go to state 38
+    IGUALDAD        shift and go to state 39
+    OR              shift and go to state 40
+    AND             shift and go to state 41
+    AS              shift and go to state 42
 
 
-state 82
+state 93
 
-    (28) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .
+    (32) exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .
 
-    PARENTESISDERECHO reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MAS             reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MENOS           reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MULTIPLICAR     reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    DIV             reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MAYOR           reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MENOR           reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MAYORIGUAL      reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    MENORIGUAL      reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    IGUALDAD        reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    OR              reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    AND             reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    PUNTOCOMA       reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
-    COMA            reduce using rule 28 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    PARENTESISDERECHO reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MAS             reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MENOS           reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MULTIPLICAR     reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    DIV             reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MAYOR           reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MENOR           reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MAYORIGUAL      reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MENORIGUAL      reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    IGUALDAD        reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    OR              reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    AND             reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    AS              reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    PUNTOCOMA       reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    COMA            reduce using rule 32 (exp -> I64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+
+
+state 94
+
+    (33) exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .
+
+    PARENTESISDERECHO reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MAS             reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MENOS           reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MULTIPLICAR     reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    DIV             reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MAYOR           reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MENOR           reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MAYORIGUAL      reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    MENORIGUAL      reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    IGUALDAD        reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    OR              reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    AND             reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    AS              reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    PUNTOCOMA       reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
+    COMA            reduce using rule 33 (exp -> F64 DOSPUNTOS DOSPUNTOS POW PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO .)
 
