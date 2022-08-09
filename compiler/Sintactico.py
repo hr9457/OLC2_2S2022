@@ -24,6 +24,7 @@ from src.Expresiones.Pow import Pow
 # importacion de instrucciones
 from src.Instrucciones.Imprimir import Imprimir
 from src.Instrucciones.Variables.Declaracion import Declaracion
+from src.Instrucciones.Variables.Asignacion import Asignacion
 from src.Instrucciones.Casteo.Casteo import Casteo
 
 
@@ -107,7 +108,8 @@ def p_intrucciones(p):
 
 def p_instruccion(p):
     ''' instruccion : imprimir  
-                    | variable '''
+                    | variable 
+                    | asignacion '''
     p[0] = p[1]
 
 
@@ -176,6 +178,52 @@ def p_variables(p):
     #     0              1  2  3      4     5       
     '''  variable   :   LET ID IGUAL exp PUNTOCOMA  '''
     p[0] = Declaracion(0, 0, p[2], None, p[4], TipoMutable.NOMUTABLE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ****************************************
+#  ASIGNACION DE VALORES A UNA VARIABLE
+# ****************************************
+def p_asignacion_variables(p):
+    #    0         1   2     3    4
+    ' asignacion : ID IGUAL exp PUNTOCOMA '
+    p[0] = Asignacion(0,0, p[1], p[3])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
