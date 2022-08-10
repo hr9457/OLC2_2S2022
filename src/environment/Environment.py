@@ -1,16 +1,18 @@
 from src.Expresiones.Primitivo import Primitivo
 from src.environment.Simbolo import Simbolo
+from src.Error.Error import Error
 
 # clase para menejar los entornos
 class Environment:
     
     # consturctor del entorno
-    def __init__(self, nombre, numero):
+    def __init__(self, nombre, numero, prev):
         self.nombre = nombre
         self.numero = numero
         self.variables = {}
+        self.prev = prev
         self.next = None
-        self.prev = None
+        
 
 
 
@@ -20,8 +22,26 @@ class Environment:
 
         self.variables.update({id: nuevaVariable})
         print('ENTORNO: variable agregada')
-
         # print(self.variables)
+
+
+
+
+
+    # funcion para actualizar variables en los entornos
+    def updateVariabe(self,id, actualizacion):
+
+        # recorrro el listado de variables del entorno
+        for key in self.variables.keys():
+            if key == id:
+                print('UPDATE: variable encontrada en el entorno')
+                self.variables.update({id: actualizacion})
+                return
+
+        
+        print('UPDATE: buscando en el entorno anterior')
+        self.prev.updateVariabe(id,actualizacion)
+
 
 
 
@@ -47,9 +67,15 @@ class Environment:
                     self.variables[key].valor,
                     self.variables[key].mutabilidad)
 
-            # else:
-            #     print('Variable no econtrada')
-                
+        # buscar en el etorno anterior
+        if self.prev != None:
+            print('buscando en el entorno anterior')
+            return self.prev.getVariable(id)
+
+
+        # print(key)
+        print('variable no encontrada')
+        return Error('variable no encontrada')
 
 
 

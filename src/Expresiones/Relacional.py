@@ -235,7 +235,7 @@ class Relacional(Expresion):
 
 
         else:
-            return Error('RELACIONAL: Error operador relacional').ejecutar()
+            return Error('RELACIONAL: Error operador relacional')
 
 
 

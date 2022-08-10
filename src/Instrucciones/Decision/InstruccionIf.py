@@ -3,6 +3,8 @@ from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Expresiones.Primitivo import Primitivo
 from src.Instrucciones.Imprimir import Imprimir
 from src.Instrucciones.Decision import instruccionElse
+from src.environment.Environment import Environment
+from src.Error.Error import Error
 
 
 class InstruccionIf(Instruccion):
@@ -26,8 +28,10 @@ class InstruccionIf(Instruccion):
 
         # retorna un primitivo
         exp = self.expresion.ejecutar(entorno)
-        print(f'IF --> {self.instruccionesIF}')
-        print(f'IF --> {self.nodo}')
+        
+        
+        # print(f'IF --> {self.instruccionesIF}')
+        # print(f'IF --> {self.nodo}')
 
 
         
@@ -39,34 +43,44 @@ class InstruccionIf(Instruccion):
 
             # verificacion del valor de la expresion true o false
             if exp.valor == 'true':
-                # print(type(self.instrucciones))
 
-                for instruccion in self.instruccionesIF:
+                if self.instruccionesIF != None:
+                    # creacion de un nuevo entrono para el manejo del if
+                    numeroEntorno = entorno.numero + 1 
+                    envIf = Environment('IF', numeroEntorno, entorno)
 
-                    # print(f'IF --> {type(instruccion)}')
-                    # print(f'IF --> {type(instruccion.ejecutar(entorno))}')
-                    result = instruccion.ejecutar(entorno)  
-                    if result != None:
-                        resultadoIf += result           
+                    for instruccion in self.instruccionesIF:
 
+                        # print(f'IF --> {type(instruccion)}')
+                        # print(f'IF --> {type(instruccion.ejecutar(entorno))}')
+                        result = instruccion.ejecutar(envIf)  
+                        if result != None:
+                            resultadoIf += result + '\n'           
+
+                    return resultadoIf
+                
                 return resultadoIf
 
 
 
             else:
                 
-                print('IF ==> lo que viene es un if ')
-                print(type(self.nodo))
-                return self.nodo.ejecutar(entorno)
-                # listadoInstrucciones = self.nodo
-                # for instruccion in listadoInstrucciones:
-                #     result = instruccion.ejecutar(entorno)
-                #     if result != None:
-                #         resultadoElse += result
+                # print('IF ==> lo que viene es un if ')
+                # print(type(self.nodo))
 
-                # return resultadoElse
+
+                if self.nodo != None:
+                    # creacion de un nuevo entrono para el manejo del if
+                    numeroEntorno = entorno.numero + 1 
+                    envElse = Environment('ELSE/ELSE IF', numeroEntorno, entorno)
+                    return self.nodo.ejecutar(envElse)
+                    
+                
+                else:
+                    return resultadoElse
 
 
 
         else:
             print('Condicion no es de tipo bool')
+            return Error('IF: Condicion no es de tipo bool')

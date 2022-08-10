@@ -28,24 +28,25 @@ class Asignacion(Instruccion):
 
         # retorna un Simbolo o None
         result = entorno.getVariable(self.identificador)
+        exp = self.expresion.ejecutar(entorno)
 
 
-        print(f'ASIGNACION --> {result}') 
+        print(f'ASIGNACION ==> {exp.valor}') 
 
         if result is not None:
 
             if result.mutabilidad == TipoMutable.MUTABLE:
-                # print(result.mutabilidad)
+                print(result.mutabilidad)
                 # print('variable mutable')
-                # print(self.expresion.valor)
-                if result.tipo == TipoExpresion.INTEGER:
-                    entorno.addVariable(self.identificador, 
+                print(result.valor)
+                if result.tipo == exp.tipo:
+                    entorno.updateVariabe(self.identificador, 
                     Simbolo(
                         result.fila,
                         result.columna,
                         result.identificador,
                         result.tipo,
-                        self.expresion.valor,
+                        exp.valor,
                         result.mutabilidad
                     ))
 

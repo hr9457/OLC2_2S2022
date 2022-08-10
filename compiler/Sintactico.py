@@ -28,6 +28,7 @@ from src.Instrucciones.Variables.Asignacion import Asignacion
 from src.Instrucciones.Casteo.Casteo import Casteo
 from src.Instrucciones.Decision.InstruccionIf import InstruccionIf
 from src.Instrucciones.Decision.instruccionElse import InstruccionElse
+from src.Instrucciones.Bucle.While import While
 
 
 
@@ -112,7 +113,8 @@ def p_instruccion(p):
     ''' instruccion : imprimir  
                     | variable 
                     | asignacion
-                    | instruccionif  '''
+                    | instruccionif
+                    | instruccionWhile  '''
     p[0] = p[1]
 
 
@@ -255,6 +257,21 @@ def p_instruccion_else_if(p):
 
 
 
+
+
+
+
+
+
+
+
+# ****************************************
+#  INSTRUCCIONE PARA MANEJO DEL WHILE
+# ****************************************
+def p_instruccion_while(p):
+    #    0                1     2        3             4          5
+    ' instruccionWhile : WHILE exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    p[0] = While(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4])
 
 
 
@@ -530,7 +547,7 @@ def analizar(entrada):
     # print(lista)
 
     # entorno principal declarado
-    env = Environment('main', 0)
+    env = Environment('main', 0, None)
 
 
     salida = ""

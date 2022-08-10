@@ -47,8 +47,8 @@ class Aritmetica(Expresion):
 
 
 
-        # print(f'Aritmetica {type(nodoIzquierda)}')
-        # print(f'Aritmetica {type(nodoDerecha)}')
+        print(f'Aritmetica --> {type(nodoIzquierda)}')
+        print(f'Aritmetica --> {type(nodoDerecha)}')
         
         # ****************************************************************
         #  OPERACIONES ARITMECAS SOBRE LOS VALORES DE LOS NODOS     

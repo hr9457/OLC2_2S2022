@@ -6,3 +6,5 @@ class TipoExpresion(Enum):
     CHAR    = 4
     BOOL    = 5
     ID      = 6
+    BREAK   = 7
+    CONTINUE = 8

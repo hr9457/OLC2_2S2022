@@ -21,7 +21,7 @@ class InstruccionElse(Expresion):
         for instruccion in self.instrucciones:
             result = instruccion.ejecutar(entorno)
             if result != None:
-                resultadoElse += result
+                resultadoElse += result + '\n'
 
 
         return resultadoElse

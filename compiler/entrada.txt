@@ -142,6 +142,7 @@ if((valorVerdadero == (50 + 50 + (val1 - val1))) && ! ! ! ! ! ! ! ! ! ! true) {
     println(">>>>>> En este lugar deberia de entrar :)");
     valorVerdadero = 50;
 }
+println(valorVerdadero);
 
 
 
@@ -159,6 +160,17 @@ if  val1 < resp {
 } else {
     println("else");
 }
+
+
+
+let mut var1 = 0;
+while var1 < 10 {
+    println(var1);
+    var1 = var1 + 1;
+}
+println("");
+
+
 
 
 
