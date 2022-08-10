@@ -43,9 +43,9 @@ class Logico(Expresion):
             nodoIzquierda = self.leftExp.ejecutar(entorno)
             nodoDerecha = self.rightExp.ejecutar(entorno)
 
-            # print(type(nodoIzquierda))
-            # print(self.operador)
-            # print(nodoDerecha)
+            print(f'LOGICO --> {type(nodoIzquierda)}')
+            print(f'LOGICO --> {self.operador}')
+            print(f'LOGICO --> {nodoDerecha}')
 
             # evalucaion del tipo de operacion
             if self.operador == TipoLogico.OR:

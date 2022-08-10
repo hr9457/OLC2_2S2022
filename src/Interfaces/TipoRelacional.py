@@ -7,4 +7,4 @@ class TipoRelacional(Enum):
     MENORIGUALQUE = 4
     IGUAL = 5
     IGUALDAD = 6
-    DISTINTO = 7
+    DIFERENTE = 7

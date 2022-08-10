@@ -30,16 +30,22 @@ class Declaracion(Instruccion):
             # print(primitivo.valor)
             entorno.addVariable(self.identificador, Simbolo(primitivo.fila, primitivo.columna, self.identificador, 
             primitivo.tipo, primitivo.valor, self.mutabilidad) )
-            print('variable agregada sin tipo')
+            # print('variable agregada sin tipo')
+            return None
 
         
         elif self.tipo != None:
             # print(self.tipo)
             # print(primitivo.tipo)
             if self.tipo == primitivo.tipo:
+                # print(f'DECLARCION: --> {self.identificador}')
                 entorno.addVariable(self.identificador, Simbolo(primitivo.fila, primitivo.columna, self.identificador, 
                 primitivo.tipo, primitivo.valor, self.mutabilidad) )
-                print('variable agregada con tipo')
+                # print('variable agregada con tipo')
+                return None
+
+            else: 
+                return Error('DECLARACION: tipos para declaracion de variables')
 
 
         else:

@@ -5,6 +5,8 @@ from src.Interfaces.TipoRelacional import TipoRelacional
 from src.Expresiones.Primitivo import Primitivo
 from src.Interfaces.TipoExpresion import TipoExpresion
 
+from src.Error.Error import Error
+
 
 class Relacional(Expresion):
 
@@ -25,6 +27,12 @@ class Relacional(Expresion):
         nodoDerecha = self.rightExp.ejecutar(entorno)
 
 
+        print(f'RELACIONAL --> {nodoIzquierda}')
+        print(f'RELACIONAL --> {self.operador}')
+        print(f'RELACIONAL --> {type(nodoDerecha)}')
+        
+
+
         # verificacion si algun nodod que sube es una variable para buscar su valoe en el entorno
         if nodoIzquierda.tipo == TipoExpresion.ID and nodoDerecha.tipo == TipoExpresion.ID:
 
@@ -41,9 +49,7 @@ class Relacional(Expresion):
 
 
 
-        # print(f'RELACIONAL {type(nodoIzquierda)}')
-        # print(f'RELACIONAL {type(nodoDerecha)}')
-        
+       
 
         # evalucacion de tipos de los primitivos
         if nodoIzquierda.tipo == nodoDerecha.tipo:
@@ -99,6 +105,15 @@ class Relacional(Expresion):
                         return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
 
+                # evalucacion de la diferentes
+                if self.operador == TipoRelacional.DIFERENTE:
+
+                    if nodoIzquierda.valor != nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                    else:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
+
             
             # evalucaion de tipo valor --> FLOAT
             if nodoIzquierda.tipo == TipoExpresion.FLOAT:
@@ -149,6 +164,15 @@ class Relacional(Expresion):
 
 
 
+                # evalucacion de la diferentes 
+                if self.operador == TipoRelacional.DIFERENTE:
+
+                    if nodoIzquierda.valor != nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                    else:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
+
 
 
 
@@ -197,11 +221,21 @@ class Relacional(Expresion):
                     else:
                         return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
 
+
+
+                # evalucacion de la diferentes
+                if self.operador == TipoRelacional.DIFERENTE:
+
+                    if nodoIzquierda.valor != nodoDerecha.valor:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'true')
+                    else:
+                        return Primitivo(0, 0, TipoExpresion.BOOL, 'false')
+
                 
 
 
         else:
-            return None
+            return Error('RELACIONAL: Error operador relacional').ejecutar()
 
 
 

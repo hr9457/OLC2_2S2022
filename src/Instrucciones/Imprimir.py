@@ -20,17 +20,17 @@ class Imprimir(Instruccion):
         result = self.contenido.ejecutar(entorno)
         # print(f' IMPRIMIR <type> ->> {type(result)}')
         # print(f'IMPRIMIR: {result}')
+        # print(f'IMPRIMIR --> {result.tipo}')
         
         if isinstance(result, Error):
-            print('es una clase error')
+            # print('es una clase error')
             return result.ejecutar()
 
         else:
             if result.tipo == TipoExpresion.ID:
-                print(f'IMPRIMIR --> {result.valor}')
                 result_env = entorno.getVariable(result.valor)
-                print(f'IMPRIMIR: {result_env}')
-                return result_env.valor
+                return str(result_env.valor)
             else:
-                print(result.tipo)
-                return result.valor
+                print(f'IMPRIMIR --> {result.tipo}')
+                print(f'IMPRIMIR --> {result.valor}')
+                return str(result.valor)

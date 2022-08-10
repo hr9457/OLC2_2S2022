@@ -26,6 +26,8 @@ from src.Instrucciones.Imprimir import Imprimir
 from src.Instrucciones.Variables.Declaracion import Declaracion
 from src.Instrucciones.Variables.Asignacion import Asignacion
 from src.Instrucciones.Casteo.Casteo import Casteo
+from src.Instrucciones.Decision.InstruccionIf import InstruccionIf
+from src.Instrucciones.Decision.instruccionElse import InstruccionElse
 
 
 
@@ -48,7 +50,7 @@ precedence = (
     ('left', 'OR'),
     ('left', 'AND'),
     ('right', 'UNOT'),
-    ('left', 'IGUALDAD'),
+    ('left', 'IGUALDAD' ,'DIFERENTE'),
     ('left', 'MENOR', 'MAYOR', 'MAYORIGUAL', 'MENORIGUAL'),
     ('left', 'MAS', 'MENOS'),
     ('left', 'MULTIPLICAR', 'DIV'),
@@ -109,7 +111,8 @@ def p_intrucciones(p):
 def p_instruccion(p):
     ''' instruccion : imprimir  
                     | variable 
-                    | asignacion '''
+                    | asignacion
+                    | instruccionif  '''
     p[0] = p[1]
 
 
@@ -126,6 +129,7 @@ def p_instruccion(p):
 # ***************************
 def p_imprimir(p):
     #  imprimir = println ( exp ) 
+    #    0         1        2                 3          4           5
     ' imprimir : PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA '
     p[0] = Imprimir(p[3])
 
@@ -216,6 +220,38 @@ def p_asignacion_variables(p):
 
 
 
+# ****************************************
+#  INSTRUCCIONE PARA MANEJO DEL IF
+# ****************************************
+def p_instruccion_if(p):
+    #   0              1   2        3             4                5             6
+    ' instruccionif : IF exp LLAVEIZQUIERDO   instrucciones   LLAVEDERECHO  instruccionElse'
+    p[0] = InstruccionIf(0, 0, p[2], p[4], p[6])
+
+
+
+
+
+
+def p_instruccion_else(p):
+    #    0                 1        2           3              4        
+    ''' instruccionElse : ELSE LLAVEIZQUIERDO instrucciones LLAVEDERECHO '''    
+    p[0] = InstruccionElse(0, 0, p[3])
+
+
+
+
+
+
+def p_instruccion_else_if(p):
+    #    0                 1         2                  
+    ''' instruccionElse : ELSE instruccionif
+                        | '''
+    # print(len(p))
+    if len(p) > 2:
+        p[0] = p[2]
+    else:
+        p[0] = None
 
 
 
@@ -284,6 +320,7 @@ def p_aritmetica(p):
             | exp MAYORIGUAL exp 
             | exp MENORIGUAL exp 
             | exp IGUALDAD exp
+            | exp DIFERENTE exp
             | exp OR exp
             | exp AND exp '''
 
@@ -325,6 +362,11 @@ def p_aritmetica(p):
     elif p[2] == '==':
         # p[0] = p[1] == p[3]
         p[0] = Relacional(0, 0, p[1], TipoRelacional.IGUALDAD, p[3])
+
+
+    elif p[2] == '!=':
+        # p[0] = p[1] == p[3]
+        p[0] = Relacional(0, 0, p[1], TipoRelacional.DIFERENTE, p[3])
 
 
     elif p[2] == '||':
@@ -488,7 +530,7 @@ def analizar(entrada):
     # print(lista)
 
     # entorno principal declarado
-    env = Environment('main', None)
+    env = Environment('main', 0)
 
 
     salida = ""

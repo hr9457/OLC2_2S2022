@@ -21,6 +21,8 @@ class Environment:
         self.variables.update({id: nuevaVariable})
         print('ENTORNO: variable agregada')
 
+        # print(self.variables)
+
 
 
 
@@ -32,11 +34,11 @@ class Environment:
         # ciclo de busquede dentro del entorno
         # print(self.variables)
         for key in self.variables.keys():
-            print(key)
+            # print(key)
             if key == id:
                 # print(f'retornando variable  {self.variables[key].identificador}')
                 # print(f'retornando variable  {self.variables[key].valor}')
-                print(f'ENTORNO: {self.variables[key]}')
+                # print(f'ENTORNO: {self.variables[key]}')
                 return Simbolo(
                     self.variables[key].fila,
                     self.variables[key].columna,
@@ -45,9 +47,8 @@ class Environment:
                     self.variables[key].valor,
                     self.variables[key].mutabilidad)
 
-            else:
-                print('Variable no econtrada')
-                return None
+            # else:
+            #     print('Variable no econtrada')
                 
 
 

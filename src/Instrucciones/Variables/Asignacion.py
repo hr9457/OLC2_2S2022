@@ -22,11 +22,15 @@ class Asignacion(Instruccion):
     
     def ejecutar(self,entorno): 
         print('ASIGNACION -->')    
-        print(self.identificador)  
+        print(f'ASIGNACION --> {self.identificador}')
+        print(f'ASIGNACION --> {self.expresion}')  
 
 
         # retorna un Simbolo o None
         result = entorno.getVariable(self.identificador)
+
+
+        print(f'ASIGNACION --> {result}') 
 
         if result is not None:
 
@@ -44,6 +48,8 @@ class Asignacion(Instruccion):
                         self.expresion.valor,
                         result.mutabilidad
                     ))
+
+                return None
 
 
             else:
