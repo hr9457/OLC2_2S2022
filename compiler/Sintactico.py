@@ -126,14 +126,56 @@ def p_instruccion(p):
 
 
 
+
+
+
+
 # ***************************
 #   IMPRESION PERMITIDAS
 # ***************************
 def p_imprimir(p):
     #  imprimir = println ( exp ) 
-    #    0         1        2                 3          4           5
-    ' imprimir : PRINTLN PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA '
-    p[0] = Imprimir(p[3])
+    #    0         1      2            3          4           5          6
+    ' imprimir : PRINTLN NOT PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA '
+    p[0] = Imprimir(p[4], None)
+
+
+
+
+
+
+
+def p_imprimir_elementos(p):
+    #  imprimir = println ( exp ) 
+    #    0         1      2            3          4    5        6          7                8
+    ' imprimir : PRINTLN NOT PARENTESISIZQUIERDO exp COMA listadoprint PARENTESISDERECHO PUNTOCOMA '
+    p[0] = Imprimir(p[4], p[6])
+
+
+
+
+
+
+def p_lista_imprimir(p):
+    ' listadoprint : listadoprint COMA exp '
+    p[1].append(p[3])
+    p[0] = p[1]
+
+
+
+
+
+
+def p_print(p):
+    ' listadoprint : exp '
+    p[0] = [p[1]]
+
+
+
+
+
+
+
 
 
 
