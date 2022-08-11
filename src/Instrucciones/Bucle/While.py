@@ -24,6 +24,10 @@ class While(Instruccion):
         # ejecucion y evalucacion de la expresion
         exp = self.expresion.ejecutar(entorno)
 
+        # la exp de ejeccutada es una variable
+        if exp.tipo == TipoExpresion.ID:
+            exp = entorno.getVariable(exp.valor)
+
 
         # revision de la expresion sea una expresion tipo bool
         if exp.tipo == TipoExpresion.BOOL:
@@ -45,7 +49,12 @@ class While(Instruccion):
                         retornoWhile += result + '\n'
                 
                 # ejecutar una vez mas la expresion
+                print(exp)
                 exp = self.expresion.ejecutar(entorno)
+                if exp.tipo == TipoExpresion.ID:
+                    exp = entorno.getVariable(exp.valor)
+                # print(f'WHILE -->{exp.valor}')
+                
 
             
             # caso contrario
@@ -55,4 +64,4 @@ class While(Instruccion):
         # la expresion no sea de tipo bool
         else:
             print('Condicion no es tipo bool')
-            return Error('WHILE: Condicion no es tipo bool')
+            return Error('WHILE: Condicion no es tipo bool').ejecutar()

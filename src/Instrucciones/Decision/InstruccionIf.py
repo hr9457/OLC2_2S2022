@@ -33,7 +33,9 @@ class InstruccionIf(Instruccion):
         # print(f'IF --> {self.instruccionesIF}')
         # print(f'IF --> {self.nodo}')
 
-
+        # la exp de ejeccutada es una variable
+        if exp.tipo == TipoExpresion.ID:
+            exp = entorno.getVariable(exp.valor)
         
 
 

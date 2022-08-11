@@ -227,3 +227,85 @@ if var2>var1 {
         }
     }
 }
+
+
+
+let mut varx = 10;
+let vary = 1;
+let varz = 2;
+
+
+if varz < vary{
+    println!("Primer if");   
+}else if varx > vary{
+    println!("Primer else if");
+    if true{
+        let mut varm = 31;
+        let mut suma = vary+varz;
+        if true{
+            if true{
+                    println!("If anidado 3er nivel");
+                    println!("{}",suma+varm); //34
+                    let mut var1 = true;
+                    varx = 0;
+                    while var1 {
+                        println!("{}",varx);
+                        if varx == 20{
+                        var1 = false;
+                    }
+                    varx = varx + 1;
+                }
+            }
+        }
+    }
+    println!("Prueba finalizada correctamente"); 
+}
+
+
+
+
+
+
+
+let mut var1 = true;
+let mut varx = 0;
+while var1 {
+    println!("{}",varx);
+    if varx == 20{
+        var1 = false;
+    }
+    varx = varx + 1;
+}
+
+
+
+let mut varx = 10;
+let vary = 1;
+let varz = 2;
+
+
+if varz < vary{
+    println!("Primer if");   
+}else if varx > vary{
+    println!("Primer else if");
+    if true{
+        let mut varm = 31;
+        let mut suma = vary+varz;
+        if true{
+            if true{
+                println!("If anidado 3er nivel");
+                println!("{}",suma+varm); //34
+                let mut var1 = true;
+                varx = 0;
+                while var1 {
+                    println!("{}",varx);
+                    if varx == 20{
+                        var1 = false;
+                    }
+                    varx = varx + 1;
+                }
+            }
+        }
+    }
+    println!("Prueba finalizada correctamente"); 
+}
