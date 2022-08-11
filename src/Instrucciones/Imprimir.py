@@ -35,25 +35,30 @@ class Imprimir(Instruccion):
 
         else:
 
+
             # contar cuantos elementos trae el nodo derecho
             if countNodoDerecho >= 1 and countNodoDerecho == result.valor.count(variables):
 
                
-                # if nodoDerecho.tipo == TipoExpresion.ID:
-                # result_env = entorno.getVariable(nodoDerecho.valor)
-                # return str(result.valor.replace(variables, str(result_env.valor)))
-                retornoPrint = ''
-
+                tempLista = []
                 for instruccion in self.lista:
-                    resultLista = instruccion.ejecutar(entorno)
-                    result_env = entorno.getVariable(resultLista.valor)
-                    posicion = result.valor.find(variables)
-                    result.valor = result.valor.replace(variables,str(result_env.valor),1)
-                
+                    resultadoInstruccion = instruccion.ejecutar(entorno)
+                    if resultadoInstruccion.tipo == TipoExpresion.ID:
+                        result_evn = entorno.getVariable(resultadoInstruccion.valor)
+                        tempLista.append(result_evn.valor)
+                    else:
+                        tempLista.append(resultadoInstruccion.valor)
+
+                print(tempLista)
+                result.valor =  result.valor.format(*tempLista)
                 return str(result.valor)
             
 
             else:
-                print(f'IMPRIMIR --> {result.tipo}')
-                print(f'IMPRIMIR --> {result.valor}')
-                return str(result.valor)
+                if result.tipo == TipoExpresion.ID:
+                    result_env = entorno.getVariable(result.valor)
+                    return str(result_env.valor)
+                else:
+                    print(f'IMPRIMIR --> {result.tipo}')
+                    print(f'IMPRIMIR --> {result.valor}')
+                    return str(result.valor)

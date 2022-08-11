@@ -54,6 +54,9 @@ class InstruccionIf(Instruccion):
                         # print(f'IF --> {type(instruccion)}')
                         # print(f'IF --> {type(instruccion.ejecutar(entorno))}')
                         result = instruccion.ejecutar(envIf)  
+
+                        # print(result.tipo)
+
                         if result != None:
                             resultadoIf += result + '\n'           
 

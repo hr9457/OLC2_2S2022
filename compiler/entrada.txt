@@ -196,3 +196,34 @@ let val31 = val11 + ((2 + val21 * 3) + 1 - ((2 * 2 * 2) - 2) * 2) - 2;
 println!("El valor de val11 es:              {}",val11);
 println!("El valor de val21 es:              {}",val21);
 println!("El valor de val31 es:              {}",val31);
+
+
+
+
+
+
+let mut var1 = 10;
+let mut var2 = 2;
+let mut var3 = 5;
+
+
+
+
+if var2>var1 {
+    println!("Primer if");
+}else if var3>var1{
+    println!("Segundo if");
+}else if var1>var2{
+    
+    println!("Tercer if");
+    let mut suma = var1+var2;
+    println!(suma);
+    println!(var1 + var2);
+    if suma == 12{
+        let mut varx = 20;
+        while var2 < var1{
+            println!("{}",varx+var2);
+            var2 = var2 + 1;
+        }
+    }
+}

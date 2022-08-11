@@ -114,8 +114,52 @@ def p_instruccion(p):
                     | variable 
                     | asignacion
                     | instruccionif
-                    | instruccionWhile  '''
+                    | instruccionWhile 
+                    | instruccionBreak
+                    | instruccionContinue '''
     p[0] = p[1]
+
+
+
+
+
+
+
+
+
+
+
+
+# *************************************
+#  RETORNOS PERMITIDOS EN EL LENGUAJE
+# *************************************
+def p_instruccion_break(p):
+    ' instruccionBreak : BREAK '
+    p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.BREAK, None)
+
+
+
+
+
+
+
+def p_instruccion_continue(p):
+    ' instruccionContinue : CONTINUE '
+    p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.CONTINUE, None)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
