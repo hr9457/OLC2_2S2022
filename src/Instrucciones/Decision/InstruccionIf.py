@@ -29,14 +29,7 @@ class InstruccionIf(Instruccion):
         # retorna un primitivo
         exp = self.expresion.ejecutar(entorno)
         
-        
-        # print(f'IF --> {self.instruccionesIF}')
-        # print(f'IF --> {self.nodo}')
-
-        # la exp de ejeccutada es una variable
-        if exp.tipo == TipoExpresion.ID:
-            exp = entorno.getVariable(exp.valor)
-        
+               
 
 
         # verifica que la expresion se de tipo boolean
@@ -53,14 +46,21 @@ class InstruccionIf(Instruccion):
 
                     for instruccion in self.instruccionesIF:
 
-                        # print(f'IF --> {type(instruccion)}')
-                        # print(f'IF --> {type(instruccion.ejecutar(entorno))}')
-                        result = instruccion.ejecutar(envIf)  
+                        
+                        result = instruccion.ejecutar(envIf)
+                        print(f'IF --> {result}')
 
-                        # print(result.tipo)
+                        if isinstance(result, Primitivo) and result.tipo == TipoExpresion.BREAK:
+                            retorno = Primitivo(None, None, TipoExpresion.BREAK, resultadoIf + str(result.valor))
+                            return retorno
+
+                        elif isinstance(result, Primitivo) and result.tipo == TipoExpresion.CONTINUE:
+                            break 
 
                         if result != None:
-                            resultadoIf += result + '\n'           
+                            resultadoIf += result + '\n' 
+
+                                  
 
                     return resultadoIf
                 
@@ -69,9 +69,6 @@ class InstruccionIf(Instruccion):
 
 
             else:
-                
-                # print('IF ==> lo que viene es un if ')
-                # print(type(self.nodo))
 
 
                 if self.nodo != None:
@@ -88,4 +85,4 @@ class InstruccionIf(Instruccion):
 
         else:
             print('Condicion no es de tipo bool')
-            return Error('IF: Condicion no es de tipo bool')
+            return 'IF: Condicion no es de tipo bool'

@@ -274,6 +274,7 @@ while var1 {
     if varx == 20{
         var1 = false;
     }
+    break;
     varx = varx + 1;
 }
 
@@ -309,3 +310,80 @@ if varz < vary{
     }
     println!("Prueba finalizada correctamente"); 
 }
+
+
+
+
+
+let mut var1 = true;
+let mut varx = 0;
+while var1 {
+    println!("{}",varx);
+    if varx == 20{
+        var1 = false;
+    }
+    println!("Antes del break");
+    break;
+    println!("Despues del break");
+    varx = varx + 1;
+}
+
+
+
+
+let varx = 20;
+let mut vary = 2;
+while vary <= varx {
+        println!("{}",vary);
+        if vary == 12{
+        if true{
+            if true{
+                if true{
+                    if true{
+                        println!("Rompo el while");
+                        break; 
+                    }
+                }
+            }
+        }
+    }
+    vary = vary + 1;
+}
+
+
+let varx = 20;
+let mut vary = 2;
+while vary <= varx {
+        println!("{}",vary);
+        if vary == 12{
+        if true{
+            if true{
+                if true{
+                    if true{
+                        println!("Rompo el while");
+                        break; 
+                    }
+                }
+            }
+        }
+    }
+    vary = vary + 1;
+}
+
+
+
+let varx = 20;
+let mut vary = 2;
+while vary <= varx {
+    println!("{}",vary);
+    
+    if true{
+        if true{
+            println!("Rompo el while");
+            break;
+        } 
+    }                
+    vary = vary + 1;
+}
+
+println!("hola mundo!!!!");

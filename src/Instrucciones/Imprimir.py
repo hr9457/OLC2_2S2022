@@ -2,6 +2,7 @@ from src.Interfaces.Instruccion import Instruccion
 from src.environment.Environment import Environment
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Error.Error import Error
+from src.Expresiones.Primitivo import Primitivo
 
 
 # clase para manejar la instruccion println 

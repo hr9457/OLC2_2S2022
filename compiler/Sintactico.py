@@ -29,6 +29,7 @@ from src.Instrucciones.Casteo.Casteo import Casteo
 from src.Instrucciones.Decision.InstruccionIf import InstruccionIf
 from src.Instrucciones.Decision.instruccionElse import InstruccionElse
 from src.Instrucciones.Bucle.While import While
+from src.Instrucciones.Bucle.Loop import Loop
 
 
 
@@ -116,7 +117,8 @@ def p_instruccion(p):
                     | instruccionif
                     | instruccionWhile 
                     | instruccionBreak
-                    | instruccionContinue '''
+                    | instruccionContinue
+                    | instruccionLoop  '''
     p[0] = p[1]
 
 
@@ -134,7 +136,7 @@ def p_instruccion(p):
 #  RETORNOS PERMITIDOS EN EL LENGUAJE
 # *************************************
 def p_instruccion_break(p):
-    ' instruccionBreak : BREAK '
+    ' instruccionBreak : BREAK PUNTOCOMA '
     p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.BREAK, None)
 
 
@@ -144,7 +146,7 @@ def p_instruccion_break(p):
 
 
 def p_instruccion_continue(p):
-    ' instruccionContinue : CONTINUE '
+    ' instruccionContinue : CONTINUE PUNTOCOMA '
     p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.CONTINUE, None)
 
 
@@ -361,6 +363,18 @@ def p_instruccion_while(p):
 
 
 
+
+
+
+
+
+# ****************************************
+#  INSTRUCCIONE PARA MANEJO DEL LOOP
+# ****************************************
+def p_instruccion_loop(p):
+    #    0                1          2              3          4
+    ' instruccionLoop : LOOP LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    p[0] = Loop(p.lineno(1), columnToken(input, p.slice[1]), p[3])
 
 
 

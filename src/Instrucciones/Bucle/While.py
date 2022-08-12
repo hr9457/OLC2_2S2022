@@ -3,6 +3,7 @@ from src.Interfaces.Instruccion import Instruccion
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.environment.Environment import Environment
 from src.Error.Error import Error
+from src.Expresiones.Primitivo import Primitivo
 
 
 
@@ -45,15 +46,22 @@ class While(Instruccion):
                 # ciclo para repetir las instrucciones
                 for instruccion in self.nodo:
                     result = instruccion.ejecutar(envWhile)
+
+                    if isinstance(result, Primitivo) and result.tipo == TipoExpresion.BREAK:
+                        # print(f'WHILE --> {result.valor}')
+                        if result.valor is not None: 
+                            retornoWhile += result.valor
+                        return retornoWhile
+                    elif isinstance(result, Primitivo) and result.tipo == TipoExpresion.CONTINUE:
+                        break 
+
                     if result != None:
                         retornoWhile += result + '\n'
                 
                 # ejecutar una vez mas la expresion
-                print(exp)
                 exp = self.expresion.ejecutar(entorno)
                 if exp.tipo == TipoExpresion.ID:
                     exp = entorno.getVariable(exp.valor)
-                # print(f'WHILE -->{exp.valor}')
                 
 
             
