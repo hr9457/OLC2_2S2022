@@ -113,7 +113,7 @@ class Aplicacion:
         frameEntrada.rowconfigure(0, minsize=self.alto, weight=1)
         frameEntrada.columnconfigure(0, weight=1)
 
-        self.textAreaEntrada = Text(frameEntrada, wrap=WORD , font=('Times New Roman',17))
+        self.textAreaEntrada = Text(frameEntrada, wrap=WORD , font=('Consolas',12))
         self.textAreaEntrada.grid(row=0, column=0, sticky='nswe')
 
         scrollbar = Scrollbar(frameEntrada, orient='vertical', command=self.textAreaEntrada.yview)
@@ -125,6 +125,6 @@ class Aplicacion:
         separador = Frame(relief=RAISED, bd=1)
         separador.grid(row=0, column=2, sticky='ns')
 
-        self.textAreaSalida = Text(wrap=WORD, font=('Times New Roman',18))
+        self.textAreaSalida = Text(wrap=WORD, font=('Consolas',12))
         self.textAreaSalida.grid(row=0, column=3, sticky='nswe')
 

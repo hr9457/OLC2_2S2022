@@ -52,11 +52,14 @@ class While(Instruccion):
                         if result.valor is not None: 
                             retornoWhile += result.valor
                         return retornoWhile
+
                     elif isinstance(result, Primitivo) and result.tipo == TipoExpresion.CONTINUE:
-                        break 
+                        if result.valor is not None: 
+                            retornoWhile += result.valor
+                        break
 
                     if result != None:
-                        retornoWhile += result + '\n'
+                        retornoWhile += result
                 
                 # ejecutar una vez mas la expresion
                 exp = self.expresion.ejecutar(entorno)

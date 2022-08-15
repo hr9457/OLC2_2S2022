@@ -15,71 +15,70 @@ class InstruccionIf(Instruccion):
         self.expresion = expresion
         self.instruccionesIF = instruccionesIF
         self.nodo = nodo
-        
+        self.resultadoIf = ''
+        self.resultadoElse = ''
 
+    def ejecutar(self, entorno):
 
-
-    def ejecutar(self,entorno):
-        
         print('DENTRO DE LA INSTRUCCION IF')
-        resultadoIf = ''
-        resultadoElse = ''
-
+        
 
         # retorna un primitivo
         exp = self.expresion.ejecutar(entorno)
-        
-               
-
 
         # verifica que la expresion se de tipo boolean
         if exp.tipo == TipoExpresion.BOOL:
-            
 
             # verificacion del valor de la expresion true o false
             if exp.valor == 'true':
 
                 if self.instruccionesIF != None:
+
                     # creacion de un nuevo entrono para el manejo del if
-                    numeroEntorno = entorno.numero + 1 
+                    numeroEntorno = entorno.numero + 1
                     envIf = Environment('IF', numeroEntorno, entorno)
 
                     for instruccion in self.instruccionesIF:
 
-                        
                         result = instruccion.ejecutar(envIf)
                         print(f'IF --> {result}')
 
+
+                        # manejo para break y continue
                         if isinstance(result, Primitivo) and result.tipo == TipoExpresion.BREAK:
-                            retorno = Primitivo(None, None, TipoExpresion.BREAK, resultadoIf + str(result.valor))
+                            if result is not None and result.valor is not None:
+                                self.resultadoIf += result.valor
+                            retorno = Primitivo(None, None, TipoExpresion.BREAK, self.resultadoIf)
                             return retorno
 
                         elif isinstance(result, Primitivo) and result.tipo == TipoExpresion.CONTINUE:
-                            break 
+                            if result is not None and result.valor is not None:
+                                self.resultadoIf += result.valor
+                            retorno = Primitivo(None, None, TipoExpresion.CONTINUE, self.resultadoIf)
+                            return retorno
 
+                        
                         if result != None:
-                            resultadoIf += result + '\n' 
+                            self.resultadoIf += result
 
-                                  
 
-                    return resultadoIf
-                
-                return resultadoIf
+                    return self.resultadoIf
+
+                return self.resultadoIf
 
 
 
             else:
 
-
                 if self.nodo != None:
-                    # creacion de un nuevo entrono para el manejo del if
-                    numeroEntorno = entorno.numero + 1 
+                    # creacion de un nuevo entrono para el manejo de else y else if
+                    numeroEntorno = entorno.numero + 1
                     envElse = Environment('ELSE/ELSE IF', numeroEntorno, entorno)
                     return self.nodo.ejecutar(envElse)
-                    
-                
+
+
                 else:
-                    return resultadoElse
+                    return self.resultadoElse
 
 
 

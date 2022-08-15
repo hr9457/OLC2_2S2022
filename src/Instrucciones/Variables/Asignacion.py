@@ -55,11 +55,11 @@ class Asignacion(Instruccion):
 
             else:
                 print('variable no mutable')
-                return Error('ASIGNACION: Error asignar valor').ejecutar()
+                return 'ASIGNACION: Error asignar valor'
 
 
         else:
             print('ASIGNACION: Error asignar valor')
-            return Error('ASIGNACION: Error asignar valor').ejecutar()
+            return 'ASIGNACION: Error asignar valor'
 
 

@@ -52,7 +52,7 @@ class Imprimir(Instruccion):
 
                 print(tempLista)
                 result.valor =  result.valor.format(*tempLista)
-                return str(result.valor)
+                return str(result.valor+'\n')
             
 
             else:
@@ -62,4 +62,4 @@ class Imprimir(Instruccion):
                 else:
                     print(f'IMPRIMIR --> {result.tipo}')
                     print(f'IMPRIMIR --> {result.valor}')
-                    return str(result.valor)
+                    return str(result.valor+'\n')

@@ -10,35 +10,32 @@ class InstruccionElse(Expresion):
         self.fila = fila
         self.columna = columna
         self.instrucciones = instrucciones
+        self.resultadoElse = ''
         
 
 
     # ejecucion del else 
     def ejecutar(self, entorno):
 
-
-        resultadoElse = ''
-
         for instruccion in self.instrucciones:
             result = instruccion.ejecutar(entorno)
             print(f'ELSE --> {result}')
 
             if isinstance(result, Primitivo) and result.tipo == TipoExpresion.BREAK:
-                retorno = Primitivo(None, None, TipoExpresion.BREAK, resultadoElse + str(result.valor))
-                # print(f'RETORNO IF --> {retorno.valor}')
+                if result is not None and result.valor is not None:
+                    self.resultadoElse += result.valor
+                retorno = Primitivo(None, None, TipoExpresion.BREAK, self.resultadoElse )
                 return retorno
+
             elif isinstance(result, Primitivo) and result.tipo == TipoExpresion.CONTINUE:
-                break 
+                if result is not None and result.valor is not None:
+                    self.resultadoElse += result.valor
+                retorno = Primitivo(None, None, TipoExpresion.CONTINUE, self.resultadoElse)
+                return retorno
             
             if result != None:
-                resultadoElse += result + '\n'
+                self.resultadoElse += result
 
 
-        return resultadoElse
-
-
-
-
-
-
+        return self.resultadoElse
 

@@ -45,11 +45,11 @@ class Declaracion(Instruccion):
                 return None
 
             else: 
-                return Error('DECLARACION: tipos para declaracion de variables')
+                return 'DECLARACION: tipos para declaracion de variables'
 
 
         else:
-            return Error('DECLARACION: tipos para declaracion de variables')
+            return 'DECLARACION: tipos para declaracion de variables'
 
 
 
