@@ -76,7 +76,9 @@ reservadas = {
     'loop'          : 'LOOP',
     'break'         : 'BREAK',
     'continue'      : 'CONTINUE',
-    'pow'           : 'POW'
+    'pow'           : 'POW',
+    'for'           : 'FOR',
+    'in'            : 'IN'
 }
 
 tokens = tokens + list(reservadas.values())

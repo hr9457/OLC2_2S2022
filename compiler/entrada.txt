@@ -419,3 +419,33 @@ let mut c: i64 = -3;
 let mut e: f64 = 20.2.sqrt();
 let x = e.clone();
 println!("suma es : {}",x);
+
+
+
+for n in 1..4{
+    println!("{}",n);
+}
+println!("fin del ciclo for");
+
+
+let varx = 3;
+let mut vary = 0;
+let mut varz = 1;
+while vary <= varx {
+    println!("{}",vary);
+    if true{
+        if true{
+            if true{
+                while true{
+                    println!("^:)");
+                    if varz == 3{
+                        break;
+                    }
+                    varz = varz + 1;
+                }
+            }
+        }
+    }
+    varz = 1;
+    vary = vary + 1;
+}

@@ -32,6 +32,7 @@ from src.Instrucciones.Decision.InstruccionIf import InstruccionIf
 from src.Instrucciones.Decision.instruccionElse import InstruccionElse
 from src.Instrucciones.Bucle.While import While
 from src.Instrucciones.Bucle.Loop import Loop
+from src.Instrucciones.Bucle.Forin import Forin
 
 
 
@@ -120,7 +121,8 @@ def p_instruccion(p):
                     | instruccionWhile 
                     | instruccionBreak
                     | instruccionContinue
-                    | instruccionLoop  '''
+                    | instruccionLoop
+                    | instruccionFor '''
     p[0] = p[1]
 
 
@@ -370,6 +372,8 @@ def p_instruccion_while(p):
 
 
 
+
+
 # ****************************************
 #  INSTRUCCIONE PARA MANEJO DEL LOOP
 # ****************************************
@@ -378,6 +382,22 @@ def p_instruccion_loop(p):
     ' instruccionLoop : LOOP LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
     p[0] = Loop(p.lineno(1), columnToken(input, p.slice[1]), p[3])
 
+
+
+
+
+
+
+
+
+
+# ****************************************
+#  INSTRUCCIONE PARA MANEJO DEL FOR IN
+# ****************************************
+def p_instruccion_forin(p):
+    #    0              1   2  3   4   5     6     7       8             9             10 
+    ' instruccionFor : FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    p[0] = Forin(0, 0, p[2], p[4], p[7], p[9])
 
 
 

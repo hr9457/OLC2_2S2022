@@ -37,6 +37,7 @@ class InstruccionIf(Instruccion):
                     # creacion de un nuevo entrono para el manejo del if
                     numeroEntorno = entorno.numero + 1
                     envIf = Environment('IF', numeroEntorno, entorno)
+                    self.resultadoIf = ''
 
                     for instruccion in self.instruccionesIF:
 
@@ -64,7 +65,9 @@ class InstruccionIf(Instruccion):
 
                     return self.resultadoIf
 
-                return self.resultadoIf
+
+                else:
+                    return self.resultadoIf
 
 
 

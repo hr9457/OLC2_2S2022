@@ -50,15 +50,10 @@ class Environment:
     # metodo para obtener valor de una variable
     def getVariable(self, id):
 
-        # print(f'ENTORNO: {id}')
-        # ciclo de busquede dentro del entorno
-        # print(self.variables)
+        print(self.variables)
         for key in self.variables.keys():
             # print(key)
             if key == id:
-                # print(f'retornando variable  {self.variables[key].identificador}')
-                # print(f'retornando variable  {self.variables[key].valor}')
-                # print(f'ENTORNO: {self.variables[key]}')
                 return Simbolo(
                     self.variables[key].fila,
                     self.variables[key].columna,

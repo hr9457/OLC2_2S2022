@@ -47,6 +47,7 @@ class While(Instruccion):
                 for instruccion in self.nodo:
                     result = instruccion.ejecutar(envWhile)
 
+                    # menejo de instrucciones break y continue
                     if isinstance(result, Primitivo) and result.tipo == TipoExpresion.BREAK:
                         # print(f'WHILE --> {result.valor}')
                         if result.valor is not None: 

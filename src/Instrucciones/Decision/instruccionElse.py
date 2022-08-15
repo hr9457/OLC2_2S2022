@@ -18,6 +18,7 @@ class InstruccionElse(Expresion):
     def ejecutar(self, entorno):
 
         for instruccion in self.instrucciones:
+            
             result = instruccion.ejecutar(entorno)
             print(f'ELSE --> {result}')
 
