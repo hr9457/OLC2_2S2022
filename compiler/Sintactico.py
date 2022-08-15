@@ -10,6 +10,7 @@ from src.Interfaces.TipoOperador import TipoOperador
 from src.Interfaces.TipoRelacional import TipoRelacional
 from src.Interfaces.TipoLogico import TipoLogico
 from src.Interfaces.TipoMutable import TipoMutable
+from src.Interfaces.TipoNativas import TipoNativas
 
 
 # importaciones para manejo de Expresiones
@@ -19,6 +20,7 @@ from src.Expresiones.Negativo import Negativo
 from src.Expresiones.Relacional import Relacional
 from src.Expresiones.Logico import Logico
 from src.Expresiones.Pow import Pow
+from src.Expresiones.Nativas.Nativas import Nativas
 
 
 # importacion de instrucciones
@@ -510,6 +512,34 @@ def p_casteos(p):
     
     if p.slice[3].type == 'F64':
         p[0] = Casteo(0,0, p[1], TipoExpresion.FLOAT)
+
+
+
+
+# manejo para funciones nativas
+def p_funcion_nativa_tostring(p):
+    ' exp : exp PUNTO TO_STRING PARENTESISIZQUIERDO PARENTESISDERECHO'
+    p[0] = Nativas(0, 0, p[1], TipoNativas.TOSTRING)
+
+
+
+
+def p_funcion_nativa_abs(p):
+    ' exp : exp PUNTO ABS PARENTESISIZQUIERDO PARENTESISDERECHO '
+    p[0] = Nativas(0, 0, p[1], TipoNativas.ABS)
+
+
+
+
+def p_funcion_nativa_sqrt(p):
+    ' exp : exp PUNTO SQRT PARENTESISIZQUIERDO PARENTESISDERECHO '
+    p[0] = Nativas(0, 0, p[1], TipoNativas.SQRT)
+
+
+
+def p_funcion_nativa_clone(p):
+    ' exp : exp PUNTO CLONE PARENTESISIZQUIERDO PARENTESISDERECHO '
+    p[0] = Nativas(0, 0, p[1], TipoNativas.CLONE)
 
 
 

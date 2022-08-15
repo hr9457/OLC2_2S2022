@@ -60,7 +60,7 @@ reservadas = {
     'return'        : 'RETURN',
     'abs'           : 'ABS',
     'sqrt'          : 'SQRT',
-    # 'to_string'     : 'TO_STRING',
+    'to_string'     : 'TO_STRING',
     'clone'         : 'CLONE',
     'new'           : 'NEW',
     'len'           : 'LEN',

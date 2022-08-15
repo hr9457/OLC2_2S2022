@@ -120,6 +120,6 @@ class Aritmetica(Expresion):
 
         # caso para tipos diferentes   
         else:
-            return Error('--> Aritmetica, Error operacion Aritmetica <-')
+            # return Error('--> Aritmetica, Error operacion Aritmetica <-')
             # print('--> Aritmetica, Error operacion Aritmetica <-')
-            # return None
+            return '--> Aritmetica, Error operacion Aritmetica <-'

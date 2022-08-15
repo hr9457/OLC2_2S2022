@@ -406,3 +406,16 @@ while (a < 5) {
 }
 
 println!("Se debió imprimir");
+
+
+let mut a: i64 = 3;
+let mut b: i64 = 3;
+println!("la suma es : {}",a+b);
+
+
+let mut a: i64 = 3;
+let mut b: String = 3.to_string();
+let mut c: i64 = -3;
+let mut e: f64 = 20.2.sqrt();
+let x = e.clone();
+println!("suma es : {}",x);
