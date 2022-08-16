@@ -25,16 +25,29 @@ class Forin(Instruccion):
         numeroEntorno = entorno.numero + 1
         envFor = Environment('FOR',numeroEntorno,entorno)
 
-        # print(f'FOR IN --> variable: {self.variable.tipo}')
 
 
-        if self.inicio.tipo == TipoExpresion.INTEGER and self.final.tipo == TipoExpresion.INTEGER and self.variable.tipo == TipoExpresion.ID:
 
-            # tipo de ejecucion del ciclo for
-            inicioFor = self.inicio.ejecutar(entorno)
-            finalFor = self.final.ejecutar(entorno)
+                
+        # tipo de ejecucion del ciclo for
+        inicioFor = self.inicio.ejecutar(entorno)
+        finalFor = self.final.ejecutar(entorno)
 
-            # creacion variables para iteraciones
+        # si son variables
+        if inicioFor.tipo == TipoExpresion.ID and finalFor.tipo == TipoExpresion.ID:
+            inicioFor = entorno.getVariable(inicioFor.valor)
+            finalFor = entorno.getVariable(finalFor.valor)
+        
+        elif finalFor.tipo == TipoExpresion.ID:
+            finalFor = entorno.getVariable(finalFor.valor)
+
+        elif inicioFor.tipo == TipoExpresion.ID:
+            inicioFor = entorno.getVariable(inicioFor.valor)
+
+
+
+        # creacion variables para iteraciones
+        if self.variable.tipo == TipoExpresion.ID:
             entorno.addVariable(self.variable.valor,
                         Simbolo(
                             self.fila,
@@ -44,8 +57,15 @@ class Forin(Instruccion):
                             inicioFor.valor,
                             TipoMutable.MUTABLE
                             ))
+        else:
+            return 'FORIN -> erorr parametros'
 
 
+
+
+        if inicioFor.tipo == TipoExpresion.INTEGER and finalFor.tipo == TipoExpresion.INTEGER:           
+
+            
             # ejecucion del ciclo for
             for i in range(inicioFor.valor, finalFor.valor):
 
@@ -88,6 +108,7 @@ class Forin(Instruccion):
             return self.retornoForin
 
         else:
+            print('FORIN : error paramentros')
             return 'FORIN : error paramentros'
 
 

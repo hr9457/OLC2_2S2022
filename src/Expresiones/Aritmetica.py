@@ -29,6 +29,10 @@ class Aritmetica(Expresion):
         nodoIzquierda = self.leftExp.ejecutar(entorno)
         nodoDerecha = self.rigthExp.ejecutar(entorno)
 
+
+        print(f'Aritmetica --> {nodoIzquierda.tipo}')
+        print(f'Aritmetica --> {nodoDerecha.tipo}')
+
         
 
         # verificacion si algun nodod que sube es una variable para buscar su valoe en el entorno
@@ -47,8 +51,8 @@ class Aritmetica(Expresion):
 
 
 
-        print(f'Aritmetica --> {type(nodoIzquierda)}')
-        print(f'Aritmetica --> {type(nodoDerecha)}')
+        print(f'Aritmetica --> {nodoIzquierda.tipo}')
+        print(f'Aritmetica --> {nodoDerecha.tipo}')        
         
         # ****************************************************************
         #  OPERACIONES ARITMECAS SOBRE LOS VALORES DE LOS NODOS     
@@ -114,6 +118,17 @@ class Aritmetica(Expresion):
                     result = nodoIzquierda.valor / nodoDerecha.valor
                     self.tipo = TipoExpresion.FLOAT
                     return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
+
+
+            # evaluacion de tipo de valor --> FLOAT
+            if nodoIzquierda.tipo == TipoExpresion.STRING:
+
+                # suma
+                if self.operador == TipoOperador.MAS:
+                    result = nodoIzquierda.valor + nodoDerecha.valor
+                    self.tipo = TipoExpresion.FLOAT
+                    return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
+
 
 
 

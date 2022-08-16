@@ -35,6 +35,9 @@ from src.Instrucciones.Bucle.Loop import Loop
 from src.Instrucciones.Bucle.Forin import Forin
 
 
+# importaciones para funciones
+from src.Instrucciones.Funciones.Funciones import Funciones
+from src.Instrucciones.Funciones.GetFuncion import GetFuncion
 
 
 
@@ -122,7 +125,9 @@ def p_instruccion(p):
                     | instruccionBreak
                     | instruccionContinue
                     | instruccionLoop
-                    | instruccionFor '''
+                    | instruccionFor
+                    | funciones
+                    | llamadofuncion '''
     p[0] = p[1]
 
 
@@ -169,7 +174,25 @@ def p_instruccion_continue(p):
 
 
 
+# ***************************
+#   MANEJO DE FUNCIONES
+# ***************************
+def p_funciones(p):
+    #    0         1  2         3              4                   5             6            7
+    ' funciones : FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[6])
 
+
+
+
+
+
+
+
+
+def p_llamado_funcion(p):
+    ' llamadofuncion : ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
+    p[0] = GetFuncion(0, 0, p[1])
 
 
 

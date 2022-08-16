@@ -10,12 +10,16 @@ class Environment:
         self.nombre = nombre
         self.numero = numero
         self.variables = {}
+        self.funciones = {}
         self.prev = prev
         self.next = None
         
 
 
 
+    # ---------------------------------------------
+    #            MANEJO DE VARIABLES
+    # ---------------------------------------------
 
     #  metodo para agregar variables
     def addVariable(self, id ,nuevaVariable):
@@ -25,9 +29,7 @@ class Environment:
         # print(self.variables)
 
 
-
-
-
+    
     # funcion para actualizar variables en los entornos
     def updateVariabe(self,id, actualizacion):
 
@@ -75,16 +77,21 @@ class Environment:
 
 
 
+    # ---------------------------------------------
+    #            MANEJO DE FUNCIONES
+    # ---------------------------------------------
 
-# if __name__ == '__main__':
-#     print('entorno')
-#     p = Primitivo(0, 0, 'integer', 3)
-#     env = Environment('main', 1)
+    def addFuncion(self, id, contenido):
+        self.funciones.update({id:contenido})
 
-#     v = {}
-#     v.update({'var1':p})
-#     print(v['var1'].fila)
-#     print(v['var1'].columna)
-#     print(v['var1'].tipo)
-#     print(v['var1'].valor)
-#     print(len(v))
+
+    def getFuncion(self, id):
+        for key in self.funciones.keys():
+            if key == id:
+                return self.funciones[key]
+
+
+        if self.prev != None:
+            return self.prev.getFuncion(id)
+
+        return 'Funcion no encontrada'
