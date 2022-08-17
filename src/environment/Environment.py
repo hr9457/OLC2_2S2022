@@ -83,6 +83,7 @@ class Environment:
 
     def addFuncion(self, id, contenido):
         self.funciones.update({id:contenido})
+        # print(self.funciones)
 
 
     def getFuncion(self, id):

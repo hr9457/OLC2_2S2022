@@ -43,6 +43,7 @@ from src.Instrucciones.Funciones.GetFuncion import GetFuncion
 
 # menjo de entorno
 from src.environment.Environment import Environment
+from src.environment.Simbolo import Simbolo
 
 
 
@@ -127,7 +128,8 @@ def p_instruccion(p):
                     | instruccionLoop
                     | instruccionFor
                     | funciones
-                    | llamadofuncion '''
+                    | llamadofuncion
+                    | funcionesParametros '''
     p[0] = p[1]
 
 
@@ -177,10 +179,12 @@ def p_instruccion_continue(p):
 # ***************************
 #   MANEJO DE FUNCIONES
 # ***************************
+
+# funciones void sin parametros
 def p_funciones(p):
     #    0         1  2         3              4                   5             6            7
     ' funciones : FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[6])
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[6])
 
 
 
@@ -190,9 +194,100 @@ def p_funciones(p):
 
 
 
+
+# llamado a funciones sin parametros
 def p_llamado_funcion(p):
+    #       0          1            2                3            4
     ' llamadofuncion : ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
-    p[0] = GetFuncion(0, 0, p[1])
+    p[0] = GetFuncion(0, 0, None, p[1])
+
+
+
+
+
+
+
+
+
+
+
+# funciones void con parametros
+def p_funciones_parametros(p):
+    #          0             1  2         3              4                   5             6            7           8
+    ' funcionesParametros : FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[7])
+
+
+
+
+
+
+# listado de parametros
+def p_lista_parametros(p):
+    #        0           1        2           3 
+    ''' parametros : parametros COMA instruccionParametro '''
+    p[1].append(p[3])
+    p[0] = p[1]
+
+
+def p_parametros(p):
+    ''' parametros : instruccionParametro '''
+    p[0] = [p[1]]
+
+
+
+def p_instruccion_parametro(p):
+    #       0                 1    2       3
+    ' instruccionParametro : ID DOSPUNTOS tipo '
+    p[0] = Simbolo(0, 0, p[1], p[3], None, TipoMutable.MUTABLE) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# llamado a funciones con parametros
+def p_llamado_funcion_parametros(p):
+    #       0          1            2                3            4                   5
+    ' llamadofuncion : ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA '
+    p[0] = GetFuncion(0, 0, p[3], p[1])
+
+
+
+
+
+# listado de parametros llamado a funcion(parametos)
+def p_lista_parametros_llamado_funcion(p):
+    #        0                 1               2           3 
+    ''' parametrosllamado : parametrosllamado COMA instruccionLlamado '''
+    p[1].append(p[3])
+    p[0] = p[1]
+
+
+def p_parametros_llamado_funcion(p):
+    ''' parametrosllamado : instruccionLlamado '''
+    p[0] = [p[1]]
+
+
+
+def p_instruccion_parametro_llamado_funcion(p):
+    #       0                 1 
+    ' instruccionLlamado : primitivo '
+    p[0] = p[1] 
+
+
+
+
+
+
 
 
 

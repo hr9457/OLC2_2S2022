@@ -51,7 +51,7 @@ class Aritmetica(Expresion):
 
 
 
-        print(f'Aritmetica --> {nodoIzquierda.tipo}')
+        print(f'Aritmetica --> {nodoIzquierda.valor}')
         print(f'Aritmetica --> {nodoDerecha.tipo}')        
         
         # ****************************************************************
