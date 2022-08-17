@@ -15,7 +15,6 @@ class GetFuncion(Instruccion):
 
 
     def ejecutar(self, entorno):
-        # print(f'LLAMADO --> {self.listadoParametros[0].tipo}')
 
 
         # crear un nuevo entorno para la funcion
@@ -27,35 +26,43 @@ class GetFuncion(Instruccion):
         # llamado a la funcion con toda su estructura y atributos
         funcion = entorno.getFuncion(self.identificador)
         parametrosFuncion = funcion.listaParametros
+        listaInstrucciones = funcion.listaInstrucciones
         # --------------------------------------------------------
 
 
 
+
         # agregacion de variables que estan en los parametros con sus valores
-        contadorParametros = 0
-        for parametro in parametrosFuncion:          
+        if parametrosFuncion is not None and len(parametrosFuncion) == len(self.listadoParametros):
 
-            print(f'TIPO DEL PARAMETRO ES --> {parametro.tipo}')
-            envFn.addVariable(parametro.identificador,Simbolo(
-                parametro.fila, 
-                parametro.columna, 
-                parametro.identificador, 
-                parametro.tipo, 
-                self.listadoParametros[contadorParametros].valor, 
-                parametro.mutabilidad))
-            contadorParametros += 1
+            contadorParametros = 0
+            for parametro in parametrosFuncion:
 
+                # revision de los tipo para los parametros
+                if parametro.tipo == self.listadoParametros[contadorParametros].tipo:
+                    envFn.addVariable(parametro.identificador,Simbolo(
+                        parametro.fila, 
+                        parametro.columna, 
+                        parametro.identificador, 
+                        parametro.tipo, 
+                        self.listadoParametros[contadorParametros].valor, 
+                        parametro.mutabilidad))
+                    contadorParametros += 1
+
+                else:
+                   return f'FN {self.identificador} error tipo parametros ' 
+
+        else:
+            return f'FN {self.identificador} error parametros '
 
       
 
 
-        # cantidad de parametros sean los mismo de la funcion
-        if len(parametrosFuncion) == len(self.listadoParametros):
+        # ejecucion de las instrucciones de la funcion
+        if listaInstrucciones is not None:
 
-            for instruccion in funcion.listaInstrucciones:
+            for instruccion in listaInstrucciones:
 
-                print('INST')
-                print(instruccion)
                 result = instruccion.ejecutar(envFn)
 
                 if result is not None:
@@ -65,9 +72,14 @@ class GetFuncion(Instruccion):
             # print(self.retornoFuncion)
             return self.retornoFuncion
 
-        
+
+
+        elif listaInstrucciones is None:
+            return ''
+
+
         else:
-            return f'FN {self.identificador} cantidad de parametros '
+            return f'FN {self.identificador} error instrucciones '
 
 
 

@@ -52,7 +52,7 @@ class Environment:
     # metodo para obtener valor de una variable
     def getVariable(self, id):
 
-        print(self.variables)
+        # print(self.variables)
         for key in self.variables.keys():
             # print(key)
             if key == id:
