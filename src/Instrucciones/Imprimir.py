@@ -3,6 +3,7 @@ from src.environment.Environment import Environment
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Error.Error import Error
 from src.Expresiones.Primitivo import Primitivo
+from src.Instrucciones.Funciones import GetFuncion
 
 
 # clase para manejar la instruccion println 
@@ -15,13 +16,19 @@ class Imprimir(Instruccion):
     # metodo para ejecutar el imprimir
     def ejecutar(self, entorno):
 
-        # result = self.contenido.ejecutar().ejecutar()
+
         # primitivo
         variables = '{}'
         countNodoDerecho = 0 
 
+        
+
+
         # ejecucion de los nodos que trae
         result = self.contenido.ejecutar(entorno)
+
+        
+
 
         # nodo derecho
         if self.lista is not None:
@@ -40,7 +47,7 @@ class Imprimir(Instruccion):
             # contar cuantos elementos trae el nodo derecho
             if countNodoDerecho >= 1 and countNodoDerecho == result.valor.count(variables):
 
-               
+            
                 tempLista = []
                 for instruccion in self.lista:
                     resultadoInstruccion = instruccion.ejecutar(entorno)
@@ -59,6 +66,7 @@ class Imprimir(Instruccion):
                 if result.tipo == TipoExpresion.ID:
                     result_env = entorno.getVariable(result.valor)
                     return str(result_env.valor)
+
                 else:
                     print(f'IMPRIMIR --> {result.tipo}')
                     print(f'IMPRIMIR --> {result.valor}')

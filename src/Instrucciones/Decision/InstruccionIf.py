@@ -58,6 +58,17 @@ class InstruccionIf(Instruccion):
                             retorno = Primitivo(None, None, TipoExpresion.CONTINUE, self.resultadoIf)
                             return retorno
 
+
+                        elif isinstance(result, Primitivo) and result.tipo == TipoExpresion.RETURN:
+                            result = result.ejecutar(envIf)
+                            retorno = Primitivo(
+                                None, 
+                                None, 
+                                TipoExpresion.RETURN, 
+                                result.valor
+                                )
+                            return retorno
+
                         
                         if result != None:
                             self.resultadoIf += result

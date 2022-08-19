@@ -129,7 +129,8 @@ def p_instruccion(p):
                     | instruccionFor
                     | funciones
                     | llamadofuncion
-                    | funcionesParametros '''
+                    | funcionesParametros
+                    | instruccionReturn '''
     p[0] = p[1]
 
 
@@ -164,6 +165,11 @@ def p_instruccion_continue(p):
 
 
 
+def p_instruccion_return(p):
+    #       0              1     2     3
+    ' instruccionReturn : RETURN exp PUNTOCOMA '
+    p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.RETURN, p[2])
+
 
 
 
@@ -180,11 +186,28 @@ def p_instruccion_continue(p):
 #   MANEJO DE FUNCIONES
 # ***************************
 
+
+
+
 # funciones void sin parametros
 def p_funciones(p):
     #    0         1  2         3              4                   5             6            7
     ' funciones : FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[6])
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[6], None)
+
+
+
+
+
+
+
+
+
+# funciones con tipo sin parametros
+def p_funciones_tipo(p):
+    #    0         1  2         3              4                   5      6          7           8            9
+    ' funciones : FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[8], p[6])
 
 
 
@@ -211,11 +234,24 @@ def p_llamado_funcion(p):
 
 
 
-# funciones void con parametros
+# funciones con parametros
 def p_funciones_parametros(p):
     #          0             1  2         3              4                   5             6            7           8
     ' funcionesParametros : FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[7])
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[7], None)
+
+
+
+
+
+
+
+
+# funciones con tipo y con parametros
+def p_funciones_parametros_tipo(p):
+    #          0             1  2         3              4                5             6       7           8            9           10
+    ' funcionesParametros : FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO  TIPORETURN tipo  LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[9], p[7])
 
 
 
@@ -280,7 +316,7 @@ def p_parametros_llamado_funcion(p):
 
 def p_instruccion_parametro_llamado_funcion(p):
     #       0                 1 
-    ' instruccionLlamado : primitivo '
+    ' instruccionLlamado : exp '
     p[0] = p[1] 
 
 
@@ -728,6 +764,23 @@ def p_expresion(p):
 
 
 
+# exp tipo espcial
+# exp para funciones
+def p_expresion_llamada_funcion(p):
+    ' exp : ID PARENTESISIZQUIERDO PARENTESISDERECHO '
+    p[0] = GetFuncion(0, 0, None, p[1])
+
+
+
+def p_expresion_llamada_funcion_parametros(p):
+    ' exp : ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO '
+    p[0] = GetFuncion(0, 0, p[3], p[1])
+
+
+
+
+
+
 
 
 
@@ -822,7 +875,7 @@ def analizar(entrada):
     for l in lista:
         # print(f'lista {l}')
         result = l.ejecutar(env)
-        if result != None:
+        if result != None and isinstance(result, str):
             salida += str(result) + "\n"
 
     return salida

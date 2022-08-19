@@ -506,8 +506,135 @@ arbol();
 
 
 fn suma(n1: i64, n2: i64){
-    println!("la suma es: {}", n1);
+    println!("la suma es: {}", n1+n2);
+    println!("La resta es: {}", n1-n2);
 }
 
 suma(2,3);
 println!("despues de la funcion suma");
+
+
+
+
+
+
+fn suma(n1: i64, n2: i64) -> i64{
+    println!("la suma es: {}", n1+n2);
+    println!("La resta es: {}", n1-n2);
+}
+
+let mut var1 = 6;
+suma(var1 - 2,3);
+println!("despues de la funcion suma");
+
+
+
+fn suma(n1: i64, n2: i64) -> i64{
+    return n1+n2;
+}
+
+let mut var1 = 6;
+suma(var1 - 2,3);
+println!("despues de la funcion suma");
+
+
+
+
+fn prueba() -> i64{
+    println!("funciones con tipo de retorno");
+}
+
+prueba();
+println!("despues de la funcion suma");
+
+
+
+fn prueba() -> i64{
+    println!("funciones con tipo de retorno");
+    if 1 < 2 {
+        return 1;
+    }
+}
+
+println!("{}", prueba());
+println!("despues de la funcion suma");
+
+
+
+fn prueba() -> i64{
+    println!("funciones con tipo de retorno");
+    if 1 < 2 {
+        return 1 * 2;
+    } 
+}
+
+println!("{}", prueba());
+println!("despues de la funcion suma");
+
+
+
+
+fn f() -> i64 {
+    if 1 < 2 {
+        return 1;
+    } else {
+        return n * f(n - 1);
+    }
+}
+
+f();
+
+
+
+fn f(n: i64) -> i64 {
+    if n < 2 {
+        return 1;
+    }  else {
+	n = n -1;
+        return n * f(1);
+    }
+}
+
+println!("{}",f(2));
+
+
+
+fn f(n: i64) -> i64 {
+    if n < 2 {
+        return 1;
+    } else {
+        return n * f(n - 1);
+    }
+}
+
+println!("--------------------------");
+println!("----ARCHIVO RECURSIVOS----");
+println!("--------------------------");
+
+
+println!("Factorial de 6 {}",f(6));
+println!("Factorial de 4 {}",f(4));
+println!("Factorial de 3 {}",f(3));
+
+
+
+
+
+fn ack(m: i64, n: i64) -> i64 {
+    if m == 0 {
+        return n + 1;
+    } else if n == 0 {
+        return ack(m - 1, 1);
+    } else {
+        return ack(m - 1, ack(m, n - 1));
+    }
+}
+
+
+println!("");
+println!("Ackerman de 2,0 {}",ack(2,0));
+
+
+
+
+

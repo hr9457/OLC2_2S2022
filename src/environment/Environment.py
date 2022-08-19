@@ -95,4 +95,18 @@ class Environment:
         if self.prev != None:
             return self.prev.getFuncion(id)
 
-        return 'Funcion no encontrada'
+        return None
+
+
+
+
+    def updateValueFuncion(self, id, value):
+        for key in self.funciones.keys():
+            if key == id:
+                self.funciones[key] = value
+                return None
+
+        if self.prev != None:
+            return self.prev.updateValueFuncion(id, value)
+
+        return None

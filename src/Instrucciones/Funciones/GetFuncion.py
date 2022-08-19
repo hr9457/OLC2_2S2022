@@ -1,6 +1,8 @@
 from src.Interfaces.Instruccion import Instruccion
 from src.environment.Environment import Environment
 from src.environment.Simbolo import Simbolo
+from src.Expresiones.Primitivo import Primitivo
+from src.Interfaces.TipoExpresion import TipoExpresion
 
 
 
@@ -12,6 +14,7 @@ class GetFuncion(Instruccion):
         self.listadoParametros = listadoParametros
         self.identificador = identificador
         self.retornoFuncion = ''
+        
 
 
     def ejecutar(self, entorno):
@@ -25,8 +28,11 @@ class GetFuncion(Instruccion):
         # --------------------------------------------------------
         # llamado a la funcion con toda su estructura y atributos
         funcion = entorno.getFuncion(self.identificador)
-        parametrosFuncion = funcion.listaParametros
-        listaInstrucciones = funcion.listaInstrucciones
+        if funcion is not None:
+            parametrosFuncion = funcion.listaParametros
+            listaInstrucciones = funcion.listaInstrucciones
+        else:
+            return f'Fn --> {self.identificador} no encontrada'
         # --------------------------------------------------------
 
 
@@ -38,24 +44,40 @@ class GetFuncion(Instruccion):
             contadorParametros = 0
             for parametro in parametrosFuncion:
 
+                # ejecutar el parametro antes de comparar
+                parametroFuncion = self.listadoParametros[contadorParametros].ejecutar(entorno);
+                print(f'PARAMETRO ------------> {parametroFuncion}')
+                print(f'PARAMETRO ------------> {parametroFuncion.valor}')
+                print(f'PARAMETRO ------------> {type(parametroFuncion)}')
+
+                # revision si es una variable para ser buscada
+                if parametroFuncion.tipo == TipoExpresion.ID:
+                    parametroFuncion = envFn.getVariable(parametroFuncion.valor)
+                    print(f'PARAMETRO =================> {parametroFuncion.tipo}')
+                    print(f'PARAMETRO =================> {parametroFuncion.valor}')
+
                 # revision de los tipo para los parametros
-                if parametro.tipo == self.listadoParametros[contadorParametros].tipo:
+                if parametro.tipo == parametroFuncion.tipo:
                     envFn.addVariable(parametro.identificador,Simbolo(
                         parametro.fila, 
                         parametro.columna, 
                         parametro.identificador, 
                         parametro.tipo, 
-                        self.listadoParametros[contadorParametros].valor, 
+                        parametroFuncion.valor,
                         parametro.mutabilidad))
                     contadorParametros += 1
 
                 else:
-                   return f'FN {self.identificador} error tipo parametros ' 
+                   return f'FN -> {self.identificador}() error tipo parametros ' 
 
-        else:
-            return f'FN {self.identificador} error parametros '
+        elif parametrosFuncion is not None and len(parametrosFuncion) != len(self.listadoParametros):
+            return f'FN -> {self.identificador}() error parametros '
 
       
+
+
+
+
 
 
         # ejecucion de las instrucciones de la funcion
@@ -65,12 +87,34 @@ class GetFuncion(Instruccion):
 
                 result = instruccion.ejecutar(envFn)
 
+
+                # manejo para return en las funciones
+                if isinstance(result, Primitivo) and result.tipo == TipoExpresion.RETURN:
+
+                    
+                    result = result.valor.ejecutar(envFn)
+                    print('RETURN DENTTRO DE LA FUNCION')
+                    print(result.valor)
+                    retorno = Primitivo(
+                        self.fila,
+                        self.columna,
+                        result.tipo,
+                        result.valor
+                    )
+                    return retorno
+
+
+                # concatenacion si las instrucciones no retorna un null
                 if result is not None:
                     self.retornoFuncion += result
 
 
-            # print(self.retornoFuncion)
-            return self.retornoFuncion
+
+            # verificacion si la funcion tiene un tipo
+            if funcion.tipoFuncion is None:
+                return self.retornoFuncion
+            else:
+                return f'FN -> {self.identificador}() error tipo de retorno'
 
 
 
@@ -78,8 +122,10 @@ class GetFuncion(Instruccion):
             return ''
 
 
+
+
         else:
-            return f'FN {self.identificador} error instrucciones '
+            return f'FN -> {self.identificador}() error instrucciones '
 
 
 
