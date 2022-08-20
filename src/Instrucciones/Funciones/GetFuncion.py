@@ -45,16 +45,11 @@ class GetFuncion(Instruccion):
             for parametro in parametrosFuncion:
 
                 # ejecutar el parametro antes de comparar
-                parametroFuncion = self.listadoParametros[contadorParametros].ejecutar(entorno);
-                print(f'PARAMETRO ------------> {parametroFuncion}')
-                print(f'PARAMETRO ------------> {parametroFuncion.valor}')
-                print(f'PARAMETRO ------------> {type(parametroFuncion)}')
+                parametroFuncion = self.listadoParametros[contadorParametros].ejecutar(entorno)
 
                 # revision si es una variable para ser buscada
                 if parametroFuncion.tipo == TipoExpresion.ID:
                     parametroFuncion = envFn.getVariable(parametroFuncion.valor)
-                    print(f'PARAMETRO =================> {parametroFuncion.tipo}')
-                    print(f'PARAMETRO =================> {parametroFuncion.valor}')
 
                 # revision de los tipo para los parametros
                 if parametro.tipo == parametroFuncion.tipo:

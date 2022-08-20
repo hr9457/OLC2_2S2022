@@ -47,15 +47,29 @@ class Imprimir(Instruccion):
             # contar cuantos elementos trae el nodo derecho
             if countNodoDerecho >= 1 and countNodoDerecho == result.valor.count(variables):
 
+                print('cantidad de {} == cantidad de elementos en lista')
+
             
                 tempLista = []
                 for instruccion in self.lista:
+
                     resultadoInstruccion = instruccion.ejecutar(entorno)
+
+                    print(resultadoInstruccion.tipo)
+                    print(resultadoInstruccion.valor)
+
+                    # tipo para impresiones
                     if resultadoInstruccion.tipo == TipoExpresion.ID:
                         result_evn = entorno.getVariable(resultadoInstruccion.valor)
                         tempLista.append(result_evn.valor)
+
+                    elif resultadoInstruccion.tipo == TipoExpresion.STRUCT:
+                        print('se va imprimir un valor de un struct')
+                        return None
+
                     else:
                         tempLista.append(resultadoInstruccion.valor)
+
 
                 print(tempLista)
                 result.valor =  result.valor.format(*tempLista)

@@ -10,3 +10,4 @@ class TipoExpresion(Enum):
     CONTINUE = 8
     RETURN = 9
     FUNCION = 10
+    STRUCT = 11

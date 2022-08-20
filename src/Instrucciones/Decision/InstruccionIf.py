@@ -88,6 +88,7 @@ class InstruccionIf(Instruccion):
                     # creacion de un nuevo entrono para el manejo de else y else if
                     numeroEntorno = entorno.numero + 1
                     envElse = Environment('ELSE/ELSE IF', numeroEntorno, entorno)
+                    # self.resultadoElse = ''
                     return self.nodo.ejecutar(envElse)
 
 

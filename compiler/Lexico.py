@@ -52,7 +52,7 @@ reservadas = {
     'usize'         : 'USIZE',
     'let'           : 'LET',
     'mut'           : 'MUT',
-    # 'struct'        : 'STRUCT',
+    'struct'        : 'STRUCT',
     'as'            : 'AS',
     'true'          : 'TRUE',
     'false'         : 'FALSE',

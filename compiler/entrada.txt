@@ -107,6 +107,22 @@ println(a);
 
 
 
+
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-------------------------------------- PRUEBAS CON LENGUAJE RUST ------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+
+
 let a:i64 = 100;
 let b:i64 = 100;
 let c:i64 = 7;
@@ -117,17 +133,17 @@ let k:f64 = 10.0;
 println("");
 println("");
 if a > b || b < c {
-    println(">>>>>> Esto no debería de imprimirse");
+    println!(">>>>>> Esto no debería de imprimirse");
 }else{
-    println(">>>>>> Esto debería de imprimirse");
+    println!(">>>>>> Esto debería de imprimirse");
 }
 
 
 
 if a == b && j == k || 14 != c {
-    println(">>>>>> Esto debería de imprimirse");
+    println!(">>>>>> Esto debería de imprimirse");
 }else{
-    println(">>>>>> Esto no debería de imprimirse");
+    println!(">>>>>> Esto no debería de imprimirse");
 }
 
 
@@ -139,7 +155,7 @@ let mut valorVerdadero : i64 = 100;
 
 
 if((valorVerdadero == (50 + 50 + (val1 - val1))) && ! ! ! ! ! ! ! ! ! ! true) {
-    println(">>>>>> En este lugar deberia de entrar :)");
+    println!(">>>>>> En este lugar deberia de entrar :)");
     valorVerdadero = 50;
 }
 println(valorVerdadero);
@@ -540,36 +556,7 @@ println!("despues de la funcion suma");
 
 
 
-fn prueba() -> i64{
-    println!("funciones con tipo de retorno");
-}
 
-prueba();
-println!("despues de la funcion suma");
-
-
-
-fn prueba() -> i64{
-    println!("funciones con tipo de retorno");
-    if 1 < 2 {
-        return 1;
-    }
-}
-
-println!("{}", prueba());
-println!("despues de la funcion suma");
-
-
-
-fn prueba() -> i64{
-    println!("funciones con tipo de retorno");
-    if 1 < 2 {
-        return 1 * 2;
-    } 
-}
-
-println!("{}", prueba());
-println!("despues de la funcion suma");
 
 
 
@@ -638,3 +625,159 @@ println!("Ackerman de 2,0 {}",ack(2,0));
 
 
 
+struct Carro {
+    placa : String,
+    color : String
+}
+
+
+let mut c1 = Carro {placa:"090pl0", color:"gris"};
+
+println!("{}", c1.placa);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let mut a: i64 = 909;
+
+    println!("=======================================================================");
+    println!("==================================IF===================================");
+    println!("=======================================================================");
+
+    if (a > 50) {
+        println!("IF CORRECTO");
+    }else if (a == 56) {
+        println!("IF INCORRECTO");
+    } else {
+        println!("IF INCORRECTO");
+    }
+
+    println!("");
+    println!("=======================================================================");
+    println!("=============================IFs ANIDADOS==============================");
+    println!("=======================================================================");
+    let aux: i64 = 10;
+    if aux > 0 {
+        println!("PRIMER IF CORRECTO");
+        if true && (aux == 1) {
+            println!("SEGUNDO IF INCORRECTO");
+        } else if aux > 10 {
+            println!("SEGUNDO IF INCORRECTO");
+        } else {
+            println!("SEGUNDO IF CORRECTO");
+        }
+    }else if aux <= 3 {
+        println!("PRIMER IF INCORRECTO");
+        if true && (aux == 1) {
+            println!("SEGUNDO IF INCORRECTO");
+        } else if aux > 10 {
+            println!("SEGUNDO IF INCORRECTO");
+        } else {
+            println!("SEGUNDO IF CORRECTO");
+        }
+    } else if aux == a {
+        println!("PRIMER IF INCORRECTO");
+        if true && (aux == 1) {
+            println!("SEGUNDO IF INCORRECTO");
+        } else if aux > 10 {
+            println!("SEGUNDO IF INCORRECTO");
+        } else {
+            println!("SEGUNDO IF CORRECTO");
+        }
+    }
+
+    println!("");
+    println!("=======================================================================");
+    println!("=================================WHILE=================================");
+    println!("=======================================================================");
+
+    let mut index: i64 = 0;
+
+    while (index >= 0) {
+
+        if (index == 0) {
+            index = index + 100;
+        } else if (index > 50) {
+            index = index / 2 - 25;
+        } else {
+            index = (index / 2) - 1;
+        }
+
+        println!("{}",index);
+    }
+
+    println!("");
+    println!("=======================================================================");
+    println!("================================WHILE-2================================");
+    println!("=======================================================================");
+
+    index = -2;
+    index = index + 1;
+
+    while (index != 12) {
+        index = index + 1;
+        if (index == 0 || index == 1 || index == 11 || index == 12) {
+            println!("*********************************************************************************************************");
+        } else if (index == 2) {
+            println!("**********  ***************  ******                 ******                 ******              **********");
+        } else if (index >= 3 && index <= 5) {
+            println!("**********  ***************  ******  *********************  *************  ******  **********************");
+        } else if (index == 6) {
+            println!("**********  ***************  ******                 ******                 ******  **********************");
+        } else if (index >= 7 && index <= 9) {
+            println!("**********  ***************  ********************   ******  *************  ******  **********************");
+        } else if (index == 10) {
+            println!("**********                   ******                 ******  *************  ******              **********");
+        }
+    }
+
+    println!("");
+    println!("=======================================================================");
+    println!("=============================TRANSFERENCIA=============================");
+    println!("=======================================================================");
+
+    a = -1;
+    while (a < 5) {
+        a = a + 1;
+        if a == 3 {
+            println!("a");
+            continue;
+        } else if a == 4 {
+            println!("b");
+            break;
+        }
+
+        println!("El valor de a es: {}, ", a);
+    }
+
+    println!("Se debió imprimir");

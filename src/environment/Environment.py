@@ -1,4 +1,5 @@
 from src.Expresiones.Primitivo import Primitivo
+from src.Interfaces.TipoExpresion import TipoExpresion
 from src.environment.Simbolo import Simbolo
 from src.Error.Error import Error
 
@@ -11,6 +12,7 @@ class Environment:
         self.numero = numero
         self.variables = {}
         self.funciones = {}
+        self.structs = {}
         self.prev = prev
         self.next = None
         
@@ -56,13 +58,17 @@ class Environment:
         for key in self.variables.keys():
             # print(key)
             if key == id:
-                return Simbolo(
-                    self.variables[key].fila,
-                    self.variables[key].columna,
-                    self.variables[key].identificador,
-                    self.variables[key].tipo,
-                    self.variables[key].valor,
-                    self.variables[key].mutabilidad)
+                if self.variables[key].tipo == TipoExpresion.STRUCT:
+                    return self.variables[key]
+
+                else:
+                    return Simbolo(
+                        self.variables[key].fila,
+                        self.variables[key].columna,
+                        self.variables[key].identificador,
+                        self.variables[key].tipo,
+                        self.variables[key].valor,
+                        self.variables[key].mutabilidad)
 
         # buscar en el etorno anterior
         if self.prev != None:
@@ -72,7 +78,8 @@ class Environment:
 
         # print(key)
         print('variable no encontrada')
-        return Error('variable no encontrada')
+        return None
+        # return Error('variable no encontrada')
 
 
 
@@ -108,5 +115,27 @@ class Environment:
 
         if self.prev != None:
             return self.prev.updateValueFuncion(id, value)
+
+        return None
+
+
+
+
+    # ---------------------------------------------
+    #            MANEJO DE STRUCTS
+    # ---------------------------------------------
+    def addStruct(self, id, contenido):
+        self.structs.update({id:contenido})
+        print('Struct agregado')
+
+
+    
+    def getStruct(self, id):
+        for key in self.structs.keys():
+            if key == id:
+                return self.structs[key]
+
+        if self.prev != None:
+            return self.prev.getStruct(id)
 
         return None

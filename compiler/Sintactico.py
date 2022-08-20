@@ -1,5 +1,6 @@
 # importacion de ply
 from Compiler.Lexico import tokens, columnToken
+from src.Instrucciones.Struct.BuildStruct import BuildStruct
 input = ""
 
 # importaciones de clases manejo de semantica
@@ -38,6 +39,12 @@ from src.Instrucciones.Bucle.Forin import Forin
 # importaciones para funciones
 from src.Instrucciones.Funciones.Funciones import Funciones
 from src.Instrucciones.Funciones.GetFuncion import GetFuncion
+
+
+
+# importaciones para structs
+from src.Instrucciones.Struct.Struct import Struct
+from src.Instrucciones.Struct.SimboloStruct import SimboloStruct
 
 
 
@@ -130,7 +137,9 @@ def p_instruccion(p):
                     | funciones
                     | llamadofuncion
                     | funcionesParametros
-                    | instruccionReturn '''
+                    | instruccionReturn
+                    | instruccionStruct
+                    | buildStruct '''
     p[0] = p[1]
 
 
@@ -169,6 +178,8 @@ def p_instruccion_return(p):
     #       0              1     2     3
     ' instruccionReturn : RETURN exp PUNTOCOMA '
     p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.RETURN, p[2])
+
+
 
 
 
@@ -334,6 +345,130 @@ def p_instruccion_parametro_llamado_funcion(p):
 
 
 
+
+
+
+
+# ***************************
+#   MANEJO DE STRUCTS
+# ***************************
+
+# menejo de struct simple
+def p_struct(p):
+    #         0              1   2         3              4         5
+    ' instruccionStruct : STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO '
+    p[0] = Struct(p.lineno(2), columnToken(input, p.slice[2]), p[2], p[4])
+
+
+
+
+
+
+
+
+def p_struct_listado(p):
+    ' listadoStruct : listadoStruct COMA elementoStruct '
+    p[1].append(p[3])
+    p[0] = p[1]
+
+
+
+
+
+
+def p_parametros_struct(p):
+    ' listadoStruct : elementoStruct  '
+    p[0] = [p[1]]
+
+
+
+
+
+
+def p_elemento_struct(p):
+    #        0          1   2         3  
+    ' elementoStruct : ID DOSPUNTOS tipo '
+    p[0] = Simbolo(
+        p.lineno(1), 
+        columnToken(input, p.slice[1]),
+        p[1],
+        p[3],
+        None,
+        TipoMutable.MUTABLE
+        )
+
+
+
+
+
+
+
+
+
+
+# build de structs
+def p_build_struct(p):
+    #    0           1         2            3          4            5
+    ' buildStruct : ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '
+    p[0] = BuildStruct(
+        p.lineno(1),
+        columnToken(input, p.slice[1]),
+        p[1],
+        p[3]
+    )
+
+
+
+
+
+def p_build_struct_listado(p):
+    ' listadoBuild : listadoBuild COMA elementoBuild '
+    p[1].append(p[3])
+    p[0] = p[1]
+
+
+
+
+
+
+def p_build_parametros_struct(p):
+    ' listadoBuild : elementoBuild  '
+    p[0] = [p[1]]
+    # p[0] = [None]
+
+
+
+
+
+
+def p_elemento_struct_build(p):
+    #        0           1     2        3 
+    ' elementoBuild :   ID  DOSPUNTOS   exp '    
+    p[0] = SimboloStruct(p[1],p[3])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ***************************
 #   IMPRESION PERMITIDAS
 # ***************************
@@ -373,6 +508,10 @@ def p_lista_imprimir(p):
 def p_print(p):
     ' listadoprint : exp '
     p[0] = [p[1]]
+
+
+
+
 
 
 
@@ -445,6 +584,10 @@ def p_variables(p):
 
 
 
+
+
+
+
 # ****************************************
 #  ASIGNACION DE VALORES A UNA VARIABLE
 # ****************************************
@@ -452,6 +595,9 @@ def p_asignacion_variables(p):
     #    0         1   2     3    4
     ' asignacion : ID IGUAL exp PUNTOCOMA '
     p[0] = Asignacion(0,0, p[1], p[3])
+
+
+
 
 
 
@@ -511,6 +657,10 @@ def p_instruccion_else_if(p):
 
 
 
+
+
+
+
 # ****************************************
 #  INSTRUCCIONE PARA MANEJO DEL WHILE
 # ****************************************
@@ -518,6 +668,11 @@ def p_instruccion_while(p):
     #    0                1     2        3             4          5
     ' instruccionWhile : WHILE exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
     p[0] = While(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4])
+
+
+
+
+
 
 
 
@@ -545,6 +700,9 @@ def p_instruccion_loop(p):
 
 
 
+
+
+
 # ****************************************
 #  INSTRUCCIONE PARA MANEJO DEL FOR IN
 # ****************************************
@@ -552,6 +710,10 @@ def p_instruccion_forin(p):
     #    0              1   2  3   4   5     6     7       8             9             10 
     ' instruccionFor : FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
     p[0] = Forin(0, 0, p[2], p[4], p[7], p[9])
+
+
+
+
 
 
 
@@ -569,7 +731,8 @@ def p_tipos(p):
                 |   F64 
                 |   BOOL 
                 |   STRING
-                |   CARACTER  '''
+                |   CARACTER
+                |   ID  '''
 
     # print(p.slice[1].type)
 
@@ -591,6 +754,16 @@ def p_tipos(p):
 
     elif p.slice[1].type == 'CARACTER':
         p[0] = TipoExpresion.CHAR
+
+
+
+    elif p.slice[1].type == 'ID':
+        p[0] = TipoExpresion.STRUCT
+
+
+
+
+
 
 
 
@@ -779,6 +952,33 @@ def p_expresion_llamada_funcion_parametros(p):
 
 
 
+# ESTA DA  COMFLICTO
+
+
+# expo para manejo de struct
+# def p_expresion_tipo_struct(p):
+#     ' exp : ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO '
+#     p[0] = BuildStruct(
+#         p.lineno(1),
+#         columnToken(input, p.slice[1]),
+#         p[1],
+#         p[3]
+#     )
+
+
+
+def p_expresion_tipo_struct_elemento(p):
+    ' exp : ID PUNTO ID '
+    p[0] = Simbolo(
+            p.lineno(1), 
+            columnToken(input, p.slice[1]), 
+            p[1],
+            TipoExpresion.STRUCT, 
+            p[2],
+            TipoMutable.MUTABLE
+            )
+
+
 
 
 
@@ -834,12 +1034,21 @@ def p_valor(p):
 
 
 
+
+
+
+
 # ***************************
 #   ERRORES CAPTURADOS
 # ***************************
 
 def p_error(p):
     print(f'Error sintactico en -> {p.value}')
+
+
+
+
+
 
 
 

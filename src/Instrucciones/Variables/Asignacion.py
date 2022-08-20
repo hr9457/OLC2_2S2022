@@ -33,6 +33,9 @@ class Asignacion(Instruccion):
 
         print(f'ASIGNACION ==> {exp.valor}') 
 
+        if isinstance(result, Error):
+            print(f'ERROR ==> {result.mensaje}') 
+
         if result is not None:
 
             if result.mutabilidad == TipoMutable.MUTABLE:
