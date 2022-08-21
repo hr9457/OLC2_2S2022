@@ -42,6 +42,8 @@ class Asignacion(Instruccion):
                 print(result.mutabilidad)
                 # print('variable mutable')
                 print(result.valor)
+                print(result.tipo)
+
                 if result.tipo == exp.tipo:
                     entorno.updateVariabe(self.identificador, 
                     Simbolo(

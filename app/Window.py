@@ -120,10 +120,22 @@ class Aplicacion:
         scrollbar.grid(row=0, column=1, sticky='ns')
         self.textAreaEntrada['yscrollcommand'] = scrollbar.set
 
+
+        scrollbar2 = Scrollbar(frameEntrada, orient='horizontal', command=self.textAreaEntrada.xview)
+        scrollbar2.grid(row=1, column=0, sticky='we')
+        self.textAreaEntrada['xscrollcommand'] = scrollbar2.set
+
         frameEntrada.grid(row=0, column=1, sticky='nswe')
+
+
+
 
         separador = Frame(relief=RAISED, bd=1)
         separador.grid(row=0, column=2, sticky='ns')
+
+
+
+
 
         self.textAreaSalida = Text(wrap=WORD, font=('Consolas',12))
         self.textAreaSalida.grid(row=0, column=3, sticky='nswe')

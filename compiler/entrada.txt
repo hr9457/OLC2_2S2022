@@ -485,6 +485,29 @@ for i in 0..9 {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 fn saludo(){
     println!("Hola mundo!!!");
     let mut a: i64 = 3;
@@ -624,16 +647,6 @@ println!("Ackerman de 2,0 {}",ack(2,0));
 
 
 
-
-struct Carro {
-    placa : String,
-    color : String
-}
-
-
-let mut c1 = Carro {placa:"090pl0", color:"gris"};
-
-println!("{}", c1.placa);
 
 
 
@@ -781,3 +794,48 @@ let mut a: i64 = 909;
     }
 
     println!("Se debió imprimir");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// paso 1    
+struct Carro {
+    placa : String,
+    color : String
+}
+
+// paso 2 construir un struct
+// paso 3 guardar en una variable
+
+let mut c1 = Carro {placa:"090pl0", color:"gris"};
+let mut c2 = Carro {placa:"123456", color:"rojo"};
+
+println!("{}", c1.placa);
+println!("{}", c2.placa);
+
+
+
+
+// paso 1    
+struct Carro {
+    placa : String,
+    color : String
+}
+
+// paso 2 construir un struct
+// paso 3 guardar en una variable
+
+let mut c1 = Carro {placa:"090pl0", color:"gris"};

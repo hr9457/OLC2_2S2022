@@ -2,6 +2,7 @@ from src.Interfaces.Instruccion import Instruccion
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.environment.Simbolo import Simbolo
 from src.Error.Error import Error
+from src.Instrucciones.Struct.Struct import Struct
 
 
 class Declaracion(Instruccion):
@@ -21,9 +22,10 @@ class Declaracion(Instruccion):
 
 
         # verificacion de tipos
-        # con tipo y el tipo del primitivo        
+        # con tipo y el tipo del primitivo
+        # esta linea altera el struct
         primitivo = self.valor.ejecutar(entorno)
-
+        print(primitivo)
 
 
         # variabel
@@ -32,9 +34,11 @@ class Declaracion(Instruccion):
 
             # print(f'DECLARACION: {primitivo.tipo}')
 
+
             if primitivo.tipo == TipoExpresion.STRUCT:
-                print('Se declarara una variable tipo struct')
-                entorno.addVariable(primitivo.identificador,primitivo)
+
+                value_struct = self.valor.ejecutar(entorno)
+                entorno.addVariable(self.identificador,value_struct)
                 return None
 
 

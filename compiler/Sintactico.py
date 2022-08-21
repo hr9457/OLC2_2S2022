@@ -138,8 +138,7 @@ def p_instruccion(p):
                     | llamadofuncion
                     | funcionesParametros
                     | instruccionReturn
-                    | instruccionStruct
-                    | buildStruct '''
+                    | instruccionStruct  '''
     p[0] = p[1]
 
 
@@ -407,15 +406,15 @@ def p_elemento_struct(p):
 
 
 # build de structs
-def p_build_struct(p):
-    #    0           1         2            3          4            5
-    ' buildStruct : ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '
-    p[0] = BuildStruct(
-        p.lineno(1),
-        columnToken(input, p.slice[1]),
-        p[1],
-        p[3]
-    )
+# def p_build_struct(p):
+#     #    0           1         2            3          4            5
+#     ' buildStruct : ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '
+#     p[0] = BuildStruct(
+#         p.lineno(1),
+#         columnToken(input, p.slice[1]),
+#         p[1],
+#         p[3]
+#     )
 
 
 
@@ -514,8 +513,25 @@ def p_print(p):
 
 
 
+# # imprimir structs
+# def p_print_struct(p):
+#     #      0            1      2        3              4   5        6                7            8
+#     ' imprimrStruct : PRINTLN NOT PARENTESISIZQUIERDO exp COMA listadoStructs PARENTESISDERECHO PUNTOCOMA'
+#     p[0] = Imprimir(p[4], p[6])
 
 
+
+# def p_listado_structs(p):
+#     #     0             1   2   3 
+#     ' listadoStructs : ID PUNTO ID  '
+#     p[0] = Simbolo(
+#             p.lineno(1), 
+#             columnToken(input, p.slice[1]), 
+#             p[1],
+#             TipoExpresion.STRUCT, 
+#             p[3],
+#             TipoMutable.MUTABLE
+#             )
 
 
 
@@ -533,7 +549,7 @@ def p_print(p):
 #  DECLARACION DE VARIABLES
 # ***************************
 
-#  no mutable constates
+#  mutable 
 def p_variables_mut_tipo(p):
     #     0              1   2   3   4        5    6      7    8
     '''  variable   :   LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
@@ -553,8 +569,28 @@ def p_variables_mut(p):
 
 
 
+def p_variables_mut_struct(p):
+    #     0              1   2   3   4    5      6            7           8            9  
+    '''  variable   :   LET MUT ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
+    p[0] = Declaracion(
+        0, 
+        0, 
+        p[3], 
+        None, 
+        BuildStruct(
+            p.lineno(5),
+            columnToken(input, p.slice[5]),
+            p[5],
+            p[7])
+        , 
+        TipoMutable.MUTABLE)
+
+
+
+
+
 # ---------------------- ** -------------------------
-# mutables
+# no mutables
 def p_variables_tipo(p):
     #     0              1   2   3        4     5    6    7 
     '''  variable   :   LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
@@ -570,6 +606,24 @@ def p_variables(p):
     '''  variable   :   LET ID IGUAL exp PUNTOCOMA  '''
     p[0] = Declaracion(0, 0, p[2], None, p[4], TipoMutable.NOMUTABLE)
 
+
+
+
+def p_variables_tipo_struct(p):
+    #     0              1  2  3      4        5             6           7          8       
+    '''  variable   :   LET ID IGUAL  ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '''
+    p[0] = Declaracion(
+        0, 
+        0, 
+        p[2], 
+        None, 
+        BuildStruct(
+            p.lineno(4),
+            columnToken(input, p.slice[4]),
+            p[4],
+            p[6])
+        , 
+        TipoMutable.NOMUTABLE)
 
 
 
@@ -952,29 +1006,17 @@ def p_expresion_llamada_funcion_parametros(p):
 
 
 
-# ESTA DA  COMFLICTO
 
-
-# expo para manejo de struct
-# def p_expresion_tipo_struct(p):
-#     ' exp : ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO '
-#     p[0] = BuildStruct(
-#         p.lineno(1),
-#         columnToken(input, p.slice[1]),
-#         p[1],
-#         p[3]
-#     )
-
-
-
+# ESTO CAUSA COMFLICTOS 
 def p_expresion_tipo_struct_elemento(p):
+    #  0    1    2    3
     ' exp : ID PUNTO ID '
     p[0] = Simbolo(
             p.lineno(1), 
             columnToken(input, p.slice[1]), 
             p[1],
             TipoExpresion.STRUCT, 
-            p[2],
+            p[3],
             TipoMutable.MUTABLE
             )
 
@@ -1043,7 +1085,7 @@ def p_valor(p):
 # ***************************
 
 def p_error(p):
-    print(f'Error sintactico en -> {p.value}')
+    print(f'Error sintactico en -> {p.value} linea: {p}')
 
 
 

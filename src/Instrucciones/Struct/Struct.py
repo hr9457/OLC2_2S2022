@@ -16,5 +16,6 @@ class Struct(Instruccion):
 
 
     def ejecutar(self, entorno):
+        # agregar modelos de estructuras al entorno actual
         entorno.addStruct(self.identificador, self)
         return None

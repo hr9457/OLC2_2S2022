@@ -15,7 +15,7 @@ class Simbolo:
 
 
 
-    def ejecutar(self):
+    def ejecutar(self,entorno):
         return Simbolo(
             self.fila,
             self.columna,

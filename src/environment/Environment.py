@@ -2,6 +2,7 @@ from src.Expresiones.Primitivo import Primitivo
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.environment.Simbolo import Simbolo
 from src.Error.Error import Error
+from src.Instrucciones.Struct.PrimateStruct import PrimateStruct
 
 # clase para menejar los entornos
 class Environment:
@@ -55,9 +56,10 @@ class Environment:
     def getVariable(self, id):
 
         # print(self.variables)
-        for key in self.variables.keys():
-            # print(key)
+        for key in self.variables.keys():        
+
             if key == id:
+    
                 if self.variables[key].tipo == TipoExpresion.STRUCT:
                     return self.variables[key]
 

@@ -33,7 +33,6 @@ class Imprimir(Instruccion):
         # nodo derecho
         if self.lista is not None:
             countNodoDerecho = len(self.lista)
-            print(f'elementos en lista {countNodoDerecho}')
 
 
         if isinstance(result, Error):
@@ -47,25 +46,41 @@ class Imprimir(Instruccion):
             # contar cuantos elementos trae el nodo derecho
             if countNodoDerecho >= 1 and countNodoDerecho == result.valor.count(variables):
 
-                print('cantidad de {} == cantidad de elementos en lista')
+                # print('cantidad de {} == cantidad de elementos en lista')
 
             
                 tempLista = []
                 for instruccion in self.lista:
 
-                    resultadoInstruccion = instruccion.ejecutar(entorno)
 
-                    print(resultadoInstruccion.tipo)
-                    print(resultadoInstruccion.valor)
+                    # print(type(instruccion))
+                    resultadoInstruccion = instruccion.ejecutar(entorno)
+                    
 
                     # tipo para impresiones
                     if resultadoInstruccion.tipo == TipoExpresion.ID:
                         result_evn = entorno.getVariable(resultadoInstruccion.valor)
                         tempLista.append(result_evn.valor)
 
+
                     elif resultadoInstruccion.tipo == TipoExpresion.STRUCT:
-                        print('se va imprimir un valor de un struct')
-                        return None
+
+                        var_struct = entorno.getVariable(resultadoInstruccion.identificador)
+
+                        # buscar elemento el que se quiere imprimir
+                        banderaStruct = False
+
+                        for elemento in var_struct.elementos:
+                            
+                            respuesta = elemento.ejecutar(entorno) 
+                            if respuesta.identificador == resultadoInstruccion.valor:
+                                 
+                                tempLista.append(respuesta.valor)
+                                banderaStruct= True
+
+                        if banderaStruct == False:
+                            return 'elemento en Struct no existe'
+
 
                     else:
                         tempLista.append(resultadoInstruccion.valor)
@@ -85,3 +100,6 @@ class Imprimir(Instruccion):
                     print(f'IMPRIMIR --> {result.tipo}')
                     print(f'IMPRIMIR --> {result.valor}')
                     return str(result.valor+'\n')
+
+
+                    

@@ -1,14 +1,20 @@
 from src.Interfaces.Instruccion import Instruccion
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Instrucciones.Struct.Struct import Struct
+from src.Instrucciones.Struct.PrimateStruct import PrimateStruct
+from src.environment.Simbolo import Simbolo
+from src.Interfaces.TipoMutable import TipoMutable
 
+
+# clase para para hacerun build partiendo de un struct
 
 class BuildStruct(Instruccion):
 
-    def __init__(self, fila, columna, identificador, listadoParametros=None):
+
+    def __init__(self, fila, columna, modeloStruct, listadoParametros=None):
         self.fila = fila 
         self.columna = columna
-        self.identificador = identificador
+        self.modeloStruc = modeloStruct
         self.listadoParametros = listadoParametros
 
 
@@ -17,13 +23,14 @@ class BuildStruct(Instruccion):
 
         
         # ========================================
-        # busqueda y traer elementos del struct
+        # busqueda y traer el modelo del struct
         # ========================================
-        struct = entorno.getStruct(self.identificador)
+        struct = entorno.getStruct(self.modeloStruc)
         if struct is not None:
-            listaElementos = struct.elementos
+            listaElementosModelo = struct.elementos
+
         elif struct is None:
-            return f' Struct --> {self.identificador} no encontrado '
+            return f' Struct --> {self.modeloStruc} no encontrado '
 
 
 
@@ -34,54 +41,73 @@ class BuildStruct(Instruccion):
         # ==============================================
         # limintacion de cantidad de elementos del struct
         # =============================================== 
-        if listaElementos is not None and len(listaElementos) == len(self.listadoParametros):
+        listaBuild = []
+        if listaElementosModelo is not None and len(listaElementosModelo) == len(self.listadoParametros):
             
 
-            contadorElemento = 0
+
+
+            contadorParametro = 0
+
+
             # listadoElementos la estructura base
-            for elemento in listaElementos:
+            for elementoModelo in listaElementosModelo:
 
 
-                # ejecucion elemento a elmento del listado recibido
+                # ejecucion elementoModelo a elmento del listado recibido
                 # elementos o parametros recibidos cuando se quiere contruir un struct
-                elementoStruct = self.listadoParametros[contadorElemento].ejecutar(entorno)
+                # recibe una exp tine que retornar un primitivo
+                parametro = self.listadoParametros[contadorParametro].ejecutar(entorno)
 
 
                 # comparacion de tipo de los elementos a asignar
-                if elemento.identificador == elementoStruct.identificador:
+                if elementoModelo.identificador == parametro.identificador:
+
                     
                     # se econtro el mismo identificador
                     # ejecuto para sacar el valor que se tiene que agregar al struct
-                    primate = elementoStruct.primate.ejecutar(entorno)
+                    # primate tiene un identificador y un primate
+                    primate = parametro.primate.ejecutar(entorno)
+
 
                     # comparacion de tipos para poder ser asignado
-                    if elemento.tipo == primate.tipo:
-                        # primate = elementoStruct.primate.ejecutar(entorno)
-                        # este es el que trae el valor a asignar
-                        elemento.valor = primate.valor                        
+                    if elementoModelo.tipo == primate.tipo:
+                        symbol = Simbolo(
+                                    0,
+                                    0,
+                                    elementoModelo.identificador,
+                                    elementoModelo.tipo,
+                                    primate.valor,
+                                    TipoMutable.MUTABLE
+                                    )
+                        listaBuild.append(symbol)
+
 
 
                 else:
-                    return f'Struct {self.identificador} parametro {elementoStruct.identificador} no econtrado'
+                    return f'Struct {self.modeloStruc} parametro {parametro.identificador} no econtrado'
 
-                contadorElemento += 1
+                contadorParametro += 1
 
 
-            # print('DESPUES DEL EJECUTAR EL STRUCT')
-            # print(listaElementos[0].identificador)
-            # print(listaElementos[0].tipo)
-            # print(listaElementos[0].valor)
+            # depues del for
+            # print('********* BUILD STRUCT *************')
+            # print(type(listaElementosModelo))
+            # for e in listaElementosModelo:
+            #     print(e.valor)
+            # print('************************************')
 
-            return Struct(
-                self.fila, 
-                self.columna, 
-                self.identificador,
-                listaElementos
-                )
+            # solo lista de elementos
+            p = PrimateStruct(listaBuild)
+
+            return p
+
+
+
 
 
         #  eeror cantidad de tipos no coinciden
-        elif listaElementos is not None and len(listaElementos) != len(self.listadoParametros):
-            return f'Struct --> {self.identificador} error de parametros '
+        elif listaElementosModelo is not None and len(listaElementosModelo) != len(self.listadoParametros):
+            return f'Struct --> {self.modeloStruc} error de parametros '
 
 
