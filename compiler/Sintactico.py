@@ -45,6 +45,7 @@ from src.Instrucciones.Funciones.GetFuncion import GetFuncion
 # importaciones para structs
 from src.Instrucciones.Struct.Struct import Struct
 from src.Instrucciones.Struct.SimboloStruct import SimboloStruct
+from src.Instrucciones.Struct.AsignacionStruct import AsignacionStruct
 
 
 
@@ -138,7 +139,8 @@ def p_instruccion(p):
                     | llamadofuncion
                     | funcionesParametros
                     | instruccionReturn
-                    | instruccionStruct  '''
+                    | instruccionStruct
+                    | alterValueStruct  '''
     p[0] = p[1]
 
 
@@ -457,6 +459,25 @@ def p_elemento_struct_build(p):
 
 
 
+# alteracion de valores dentro de un struct
+def p_alter_value_struct(p):
+    #      0              1   2    3   4    5
+    ' alterValueStruct : ID PUNTO ID IGUAL exp PUNTOCOMA '
+    p[0] = AsignacionStruct(
+        p.lineno(1),
+        columnToken(input, p.slice[1]),
+        p[1],
+        p[3],
+        p[5]
+    )
+
+
+
+
+
+
+
+
 
 
 
@@ -510,28 +531,6 @@ def p_print(p):
 
 
 
-
-
-
-# # imprimir structs
-# def p_print_struct(p):
-#     #      0            1      2        3              4   5        6                7            8
-#     ' imprimrStruct : PRINTLN NOT PARENTESISIZQUIERDO exp COMA listadoStructs PARENTESISDERECHO PUNTOCOMA'
-#     p[0] = Imprimir(p[4], p[6])
-
-
-
-# def p_listado_structs(p):
-#     #     0             1   2   3 
-#     ' listadoStructs : ID PUNTO ID  '
-#     p[0] = Simbolo(
-#             p.lineno(1), 
-#             columnToken(input, p.slice[1]), 
-#             p[1],
-#             TipoExpresion.STRUCT, 
-#             p[3],
-#             TipoMutable.MUTABLE
-#             )
 
 
 

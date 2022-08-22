@@ -25,7 +25,7 @@ class Declaracion(Instruccion):
         # con tipo y el tipo del primitivo
         # esta linea altera el struct
         primitivo = self.valor.ejecutar(entorno)
-        print(primitivo)
+        # print(primitivo)
 
 
         # variabel
@@ -38,6 +38,7 @@ class Declaracion(Instruccion):
             if primitivo.tipo == TipoExpresion.STRUCT:
 
                 value_struct = self.valor.ejecutar(entorno)
+                value_struct.mutabilidad = self.mutabilidad
                 entorno.addVariable(self.identificador,value_struct)
                 return None
 

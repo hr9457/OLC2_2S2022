@@ -839,3 +839,7 @@ struct Carro {
 // paso 3 guardar en una variable
 
 let mut c1 = Carro {placa:"090pl0", color:"gris"};
+println!("{}", c1.placa);
+
+c1.placa = "NUEVA PLACA";
+println!("{}", c1.placa);
