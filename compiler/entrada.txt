@@ -544,16 +544,6 @@ arbol();
 
 
 
-fn suma(n1: i64, n2: i64){
-    println!("la suma es: {}", n1+n2);
-    println!("La resta es: {}", n1-n2);
-}
-
-suma(2,3);
-println!("despues de la funcion suma");
-
-
-
 
 
 
@@ -584,28 +574,35 @@ println!("despues de la funcion suma");
 
 
 
-fn f() -> i64 {
-    if 1 < 2 {
-        return 1;
-    } else {
-        return n * f(n - 1);
+
+
+
+
+
+
+
+
+
+
+fn arbol(n: i64){
+    for i in 0..n {
+
+        let mut output: String = "".to_string();
+        for j in 0..(n - i) {
+            output = output + " ".to_string();
+        }
+
+        for k in 0..i {
+            output = output + "* ".to_string();
+        }
+        println!("{}",output);
+
     }
 }
 
-f();
+arbol(9);
 
 
-
-fn f(n: i64) -> i64 {
-    if n < 2 {
-        return 1;
-    }  else {
-	n = n -1;
-        return n * f(1);
-    }
-}
-
-println!("{}",f(2));
 
 
 
@@ -869,14 +866,27 @@ let mut persona = Persona{
 };
 
 
+let mut c1 : Carro = Carro{motor: "Grande".to_string(),cilindraje: 1500};
+
+
 println!("{}", persona.nombre);
 println!("{}", persona.anios);
 println!("{}", persona.carro_.motor);
-
-persona.carro_.cilindraje = 2000;
 println!("{}", persona.carro_.cilindraje);
 
 
 
 
 
+
+
+
+
+
+struct Carro{
+    motor: String,
+    cilindraje: i64
+}
+
+
+let mut c1 : Carro = Carro{motor: "Grande".to_string(), cilindraje: 1500};

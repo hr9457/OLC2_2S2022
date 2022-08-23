@@ -58,23 +58,44 @@ class Declaracion(Instruccion):
 
 
         elif self.tipo != None:
-            # print(self.tipo)
-            # print(primitivo.tipo)
+            
             if self.tipo == primitivo.tipo:
-                # print(f'DECLARCION: --> {self.identificador}')
-                entorno.addVariable(self.identificador, Simbolo(primitivo.fila, primitivo.columna, self.identificador, 
-                primitivo.tipo, primitivo.valor, self.mutabilidad) )
-                # print('variable agregada con tipo')
+
+                
+                entorno.addVariable(self.identificador, 
+                                    Simbolo(primitivo.fila, 
+                                    primitivo.columna, 
+                                    self.identificador, 
+                                    primitivo.tipo, 
+                                    primitivo.valor, 
+                                    self.mutabilidad) )
                 return None
 
+
+            elif primitivo.tipo == TipoExpresion.STRUCT:
+
+                searchStruct = entorno.getStruct(self.tipo)
+
+                if searchStruct is not None:
+
+                    value_struct = self.valor.ejecutar(entorno)
+                    value_struct.mutabilidad = self.mutabilidad
+                    entorno.addVariable(self.identificador,value_struct)
+                    return None
+
+                else:
+
+                    return f'DECLARACION: Struct {self.tipo} no existe'
+
+
             else: 
-                return 'DECLARACION: tipos para declaracion de variables'
+                return 'DECLARACION: error tipos no coinciden para declaracion de variables'
 
 
 
 
         else:
-            return 'DECLARACION: tipos para declaracion de variables'
+            return 'DECLARACION: error tipos para declaracion de variables'
 
 
 

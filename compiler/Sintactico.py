@@ -653,7 +653,7 @@ def p_variables_mut(p):
 
 
 
-# comfilcto lalr
+# declaracion de struct sin tipo en variable
 def p_variables_mut_struct(p):
     #     0              1   2   3   4    5      6            7           8            9  
     '''  variable   :   LET MUT ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
@@ -669,6 +669,30 @@ def p_variables_mut_struct(p):
             p[7])
         , 
         TipoMutable.MUTABLE)
+
+
+
+# delcaracion de struct en varibles con tipo
+def p_variables_mut_tipo_struct(p):
+    #     0              1   2   3   4       5    6    7     8             9            10           11 
+    '''  variable   :   LET MUT ID DOSPUNTOS ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
+    print(f' --> {p.slice[5]}')
+    p[0] = Declaracion(
+        0, 
+        0, 
+        p[3], 
+        p[5], 
+        BuildStruct(
+            p.lineno(7),
+            columnToken(input, p.slice[7]),
+            p[7],
+            p[9])
+        ,  
+        TipoMutable.MUTABLE
+        )
+
+
+
 
 
 
@@ -694,7 +718,7 @@ def p_variables(p):
 
 
 
-# comfilcto lalr
+# declaracion de struct en varialbes sin tipo sin mut
 def p_variables_tipo_struct(p):
     #     0              1  2  3      4        5             6           7          8       
     '''  variable   :   LET ID IGUAL  ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '''
@@ -711,6 +735,27 @@ def p_variables_tipo_struct(p):
         , 
         TipoMutable.NOMUTABLE)
 
+
+
+
+# delcaracion de struct en varibles sin tipo y sin mut
+def p_variables_mut_tipo_struct(p):
+    #     0              1   2   3       4   5    6        7            8             9          10  
+    '''  variable   :   LET ID DOSPUNTOS ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
+    print(f' --> {p.slice[5]}')
+    p[0] = Declaracion(
+        p.lineno(1), 
+        columnToken(input, p.slice[1]), 
+        p[2], 
+        p[4], 
+        BuildStruct(
+            p.lineno(7),
+            columnToken(input, p.slice[7]),
+            p[6],
+            p[8])
+        ,  
+        TipoMutable.MUTABLE
+        )
 
 
 
