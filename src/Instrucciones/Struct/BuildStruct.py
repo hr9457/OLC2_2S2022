@@ -50,6 +50,9 @@ class BuildStruct(Instruccion):
             contadorParametro = 0
 
 
+            print('*************** BUILD A PARTIR DE UN STRUCT *************************')
+
+
             # listadoElementos la estructura base
             for elementoModelo in listaElementosModelo:
 
@@ -67,20 +70,40 @@ class BuildStruct(Instruccion):
                     # se econtro el mismo identificador
                     # ejecuto para sacar el valor que se tiene que agregar al struct
                     # primate tiene un identificador y un primate
+
                     primate = parametro.primate.ejecutar(entorno)
 
+                    print('paro obligatorio')
+                    
 
                     # comparacion de tipos para poder ser asignado
                     if elementoModelo.tipo == primate.tipo:
-                        symbol = Simbolo(
-                                    0,
-                                    0,
-                                    elementoModelo.identificador,
-                                    elementoModelo.tipo,
-                                    primate.valor,
-                                    TipoMutable.MUTABLE
-                                    )
-                        listaBuild.append(symbol)
+
+
+                        if primate.tipo == TipoExpresion.STRUCT:
+                            
+                            symbol = Simbolo(
+                                0,
+                                0,
+                                elementoModelo.identificador,
+                                elementoModelo.tipo,
+                                primate,
+                                TipoMutable.MUTABLE
+                            )
+                            listaBuild.append(symbol)
+
+
+                        else:
+                            
+                            symbol = Simbolo(
+                                        0,
+                                        0,
+                                        elementoModelo.identificador,
+                                        elementoModelo.tipo,
+                                        primate.valor,
+                                        TipoMutable.MUTABLE
+                                        )
+                            listaBuild.append(symbol)
 
 
 
@@ -90,12 +113,7 @@ class BuildStruct(Instruccion):
                 contadorParametro += 1
 
 
-            # depues del for
-            # print('********* BUILD STRUCT *************')
-            # print(type(listaElementosModelo))
-            # for e in listaElementosModelo:
-            #     print(e.valor)
-            # print('************************************')
+            
 
             # solo lista de elementos
             p = PrimateStruct(listaBuild)

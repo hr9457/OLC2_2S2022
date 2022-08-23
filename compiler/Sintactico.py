@@ -46,6 +46,7 @@ from src.Instrucciones.Funciones.GetFuncion import GetFuncion
 from src.Instrucciones.Struct.Struct import Struct
 from src.Instrucciones.Struct.SimboloStruct import SimboloStruct
 from src.Instrucciones.Struct.AsignacionStruct import AsignacionStruct
+from src.Instrucciones.Struct.AccesStruct import AccesStruct
 
 
 
@@ -55,7 +56,7 @@ from src.environment.Simbolo import Simbolo
 
 
 
-
+from src.Error.Error import Error
 
 
 
@@ -366,7 +367,7 @@ def p_struct(p):
 
 
 
-
+# para manejar el listado que se puede componer un struct
 def p_struct_listado(p):
     ' listadoStruct : listadoStruct COMA elementoStruct '
     p[1].append(p[3])
@@ -421,7 +422,7 @@ def p_elemento_struct(p):
 
 
 
-
+# para manejar el listado de los elementos de un struct
 def p_build_struct_listado(p):
     ' listadoBuild : listadoBuild COMA elementoBuild '
     p[1].append(p[3])
@@ -441,16 +442,42 @@ def p_build_parametros_struct(p):
 
 
 
-
 def p_elemento_struct_build(p):
     #        0           1     2        3 
-    ' elementoBuild :   ID  DOSPUNTOS   exp '    
+    ' elementoBuild :   ID  DOSPUNTOS   elementoStructBuild '    
     p[0] = SimboloStruct(p[1],p[3])
 
 
+# def p_elemento_struct_build(p):
+#     #        0           1     2        3 
+#     ' elementoBuild :   ID  DOSPUNTOS   exp '    
+#     p[0] = SimboloStruct(p[1],p[3])
 
 
 
+
+# def p_elemento_struct_bulid_struct(p):
+#     ' elementoBuild : ID DOSPUNTOS ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO '
+#     p[0] = p[5]
+
+
+
+
+def p_expresion_struct(p):
+    ' elementoStructBuild : exp '
+    p[0] = p[1]
+
+
+
+# porbar acar retornar algo diferentes
+def p_struct_struct(p):
+    ' elementoStructBuild : ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO '
+    p[0] = BuildStruct(
+        p.lineno(1),
+        columnToken(input, p.slice[1]),
+        p[1],
+        p[3]
+    )
 
 
 
@@ -533,6 +560,65 @@ def p_print(p):
 
 
 
+def p_imprimir_structs(p):
+    #  imprimir = println ( exp ) 
+    #    0         1      2            3          4    5    6    7       8 
+    ' imprimir : PRINTLN NOT PARENTESISIZQUIERDO exp COMA  ID PUNTO listaAcces  PARENTESISDERECHO PUNTOCOMA '
+    p[0] = Imprimir(
+        p[4], 
+        [Simbolo(
+            p.lineno(1), 
+            columnToken(input, p.slice[1]), 
+            p[6],
+            TipoExpresion.STRUCT, 
+            p[8],
+            TipoMutable.MUTABLE
+            )]
+        )
+
+
+
+
+def p_q(p):
+    'listaAcces : listaAcces PUNTO elementoAcces'
+    p[1].append(p[3])
+    p[0] = p[1]
+
+
+
+def p_u(p):
+    'listaAcces : elementoAcces'
+    p[0] = [p[1]]
+
+
+
+def p_print_accesStruct(p):
+    #           0    1    2   3
+    ' elementoAcces : ID '
+    p[0] = p[1]
+
+
+
+
+# # terminal
+# def p_print_accesStruct(p):
+#     #           0    1    2   3
+#     ' elementoAcces : ID PUNTO ID '
+#     p[0] = Simbolo(
+#             p.lineno(1), 
+#             columnToken(input, p.slice[1]), 
+#             p[1],
+#             TipoExpresion.STRUCT, 
+#             p[3],
+#             TipoMutable.MUTABLE
+#             )
+
+
+
+
+
+
+
 
 
 
@@ -567,7 +653,7 @@ def p_variables_mut(p):
 
 
 
-
+# comfilcto lalr
 def p_variables_mut_struct(p):
     #     0              1   2   3   4    5      6            7           8            9  
     '''  variable   :   LET MUT ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
@@ -608,6 +694,7 @@ def p_variables(p):
 
 
 
+# comfilcto lalr
 def p_variables_tipo_struct(p):
     #     0              1  2  3      4        5             6           7          8       
     '''  variable   :   LET ID IGUAL  ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '''
@@ -1007,17 +1094,17 @@ def p_expresion_llamada_funcion_parametros(p):
 
 
 # ESTO CAUSA COMFLICTOS 
-def p_expresion_tipo_struct_elemento(p):
-    #  0    1    2    3
-    ' exp : ID PUNTO ID '
-    p[0] = Simbolo(
-            p.lineno(1), 
-            columnToken(input, p.slice[1]), 
-            p[1],
-            TipoExpresion.STRUCT, 
-            p[3],
-            TipoMutable.MUTABLE
-            )
+# def p_expresion_tipo_struct_elemento(p):
+#     #  0    1    2    3
+#     ' exp : ID PUNTO ID '
+#     p[0] = Simbolo(
+#             p.lineno(1), 
+#             columnToken(input, p.slice[1]), 
+#             p[1],
+#             TipoExpresion.STRUCT, 
+#             p[3],
+#             TipoMutable.MUTABLE
+#             )
 
 
 
@@ -1085,7 +1172,6 @@ def p_valor(p):
 
 def p_error(p):
     print(f'Error sintactico en -> {p.value} linea: {p}')
-
 
 
 

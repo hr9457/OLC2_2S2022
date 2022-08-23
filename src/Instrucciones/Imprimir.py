@@ -4,6 +4,7 @@ from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Error.Error import Error
 from src.Expresiones.Primitivo import Primitivo
 from src.Instrucciones.Funciones import GetFuncion
+from src.Instrucciones.Struct.PrimateStruct import PrimateStruct
 
 
 # clase para manejar la instruccion println 
@@ -57,12 +58,14 @@ class Imprimir(Instruccion):
                     resultadoInstruccion = instruccion.ejecutar(entorno)
                     
 
-                    # tipo para impresiones
+                    # tipo para impresiones sea variables
                     if resultadoInstruccion.tipo == TipoExpresion.ID:
                         result_evn = entorno.getVariable(resultadoInstruccion.valor)
                         tempLista.append(result_evn.valor)
 
 
+
+                    # para cuando la imporesion sea una estructura
                     elif resultadoInstruccion.tipo == TipoExpresion.STRUCT:
 
                         var_struct = entorno.getVariable(resultadoInstruccion.identificador)
@@ -70,20 +73,66 @@ class Imprimir(Instruccion):
                         # buscar elemento el que se quiere imprimir
                         banderaStruct = False
 
+
                         for elemento in var_struct.elementos:
                             
                             respuesta = elemento.ejecutar(entorno) 
-                            if respuesta.identificador == resultadoInstruccion.valor:
-                                 
+
+                            if respuesta.identificador == resultadoInstruccion.valor[0]:
+
+
+                                # print(respuesta.valor)
+                                # struct is struct
+                                # -----------------------------------------------------
+                                if isinstance(respuesta.valor,PrimateStruct):
+                                    
+                                    print('struct is struct')
+                                    
+                                    for elementSturct in respuesta.valor.elementos:
+                                        elementSturct = elementSturct.ejecutar(entorno)
+                                        print(elementSturct)
+                                        
+                                        if len(resultadoInstruccion.valor) >1:
+
+                                            if elementSturct.identificador == resultadoInstruccion.valor[1]:
+                                                print(elementSturct.valor)
+                                                tempLista.append(elementSturct.valor)
+                                            else:
+                                                tempLista.append(respuesta.valor)
+
+                                        else:
+                                            tempLista.append(respuesta.valor)
+                                # ---------------------------------------------------------
+
+
+                                # tiene que haber un proceso de struct is struct
                                 tempLista.append(respuesta.valor)
                                 banderaStruct= True
+
 
                         if banderaStruct == False:
                             return 'elemento en Struct no existe'
 
 
+                        # for elemento in var_struct.elementos:
+                            
+                        #     respuesta = elemento.ejecutar(entorno) 
+                        #     if respuesta.identificador == resultadoInstruccion.valor:
+                                 
+                        #         tempLista.append(respuesta.valor)
+                        #         banderaStruct= True
+
+                        # if banderaStruct == False:
+                        #     return 'elemento en Struct no existe'
+
+
+
+
+                    # impresionsea valores primitivos
                     else:
                         tempLista.append(resultadoInstruccion.valor)
+
+
 
 
                 print(tempLista)
