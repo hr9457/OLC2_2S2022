@@ -56,81 +56,85 @@ class Imprimir(Instruccion):
 
                     # print(type(instruccion))
                     resultadoInstruccion = instruccion.ejecutar(entorno)
-                    
 
-                    # tipo para impresiones sea variables
-                    if resultadoInstruccion.tipo == TipoExpresion.ID:
-                        result_evn = entorno.getVariable(resultadoInstruccion.valor)
-                        tempLista.append(result_evn.valor)
+                    # viene errores
+                    if isinstance(resultadoInstruccion, str):
+                        tempLista.append(resultadoInstruccion)
 
 
 
-                    # para cuando la imporesion sea una estructura
-                    elif resultadoInstruccion.tipo == TipoExpresion.STRUCT:
 
-                        var_struct = entorno.getVariable(resultadoInstruccion.identificador)
+                    else:
 
-                        # buscar elemento el que se quiere imprimir
-                        banderaStruct = False
-
-
-                        for elemento in var_struct.elementos:
-                            
-                            respuesta = elemento.ejecutar(entorno) 
-
-                            if respuesta.identificador == resultadoInstruccion.valor[0]:
+                        # tipo para impresiones sea variables
+                        if resultadoInstruccion.tipo == TipoExpresion.ID:
+                            result_evn = entorno.getVariable(resultadoInstruccion.valor)
+                            print(result_evn)
+                            if result_evn.tipo == TipoExpresion.ARREGLO:
+                                return f'variable {resultadoInstruccion.valor} es tipo struct'
+                            tempLista.append(result_evn.valor)
 
 
-                                # print(respuesta.valor)
-                                # struct is struct
-                                # -----------------------------------------------------
-                                if isinstance(respuesta.valor,PrimateStruct):
-                                    
-                                    print('struct is struct')
-                                    
-                                    for elementSturct in respuesta.valor.elementos:
-                                        elementSturct = elementSturct.ejecutar(entorno)
-                                        print(elementSturct)
-                                        
-                                        if len(resultadoInstruccion.valor) >1:
 
-                                            if elementSturct.identificador == resultadoInstruccion.valor[1]:
-                                                print(elementSturct.valor)
-                                                tempLista.append(elementSturct.valor)
+                        # para cuando la imporesion sea una estructura
+                        elif resultadoInstruccion.tipo == TipoExpresion.STRUCT:
+
+                            var_struct = entorno.getVariable(resultadoInstruccion.identificador)
+
+                            # buscar elemento el que se quiere imprimir
+                            banderaStruct = False
+
+
+                            for elemento in var_struct.elementos:
+
+                                respuesta = elemento.ejecutar(entorno)
+
+                                if respuesta.identificador == resultadoInstruccion.valor[0]:
+
+
+                                    # print(respuesta.valor)
+                                    # struct is struct
+                                    # -----------------------------------------------------
+                                    if isinstance(respuesta.valor,PrimateStruct):
+
+                                        print('struct is struct')
+
+                                        for elementSturct in respuesta.valor.elementos:
+                                            elementSturct = elementSturct.ejecutar(entorno)
+                                            print(elementSturct)
+
+                                            if len(resultadoInstruccion.valor) >1:
+
+                                                if elementSturct.identificador == resultadoInstruccion.valor[1]:
+                                                    print(elementSturct.valor)
+                                                    tempLista.append(elementSturct.valor)
+                                                else:
+                                                    tempLista.append(respuesta.valor)
+
                                             else:
                                                 tempLista.append(respuesta.valor)
-
-                                        else:
-                                            tempLista.append(respuesta.valor)
-                                # ---------------------------------------------------------
+                                    # ---------------------------------------------------------
 
 
-                                # tiene que haber un proceso de struct is struct
-                                tempLista.append(respuesta.valor)
-                                banderaStruct= True
+                                    # tiene que haber un proceso de struct is struct
+                                    tempLista.append(respuesta.valor)
+                                    banderaStruct= True
 
 
-                        if banderaStruct == False:
-                            return 'elemento en Struct no existe'
-
-
-                        # for elemento in var_struct.elementos:
-                            
-                        #     respuesta = elemento.ejecutar(entorno) 
-                        #     if respuesta.identificador == resultadoInstruccion.valor:
-                                 
-                        #         tempLista.append(respuesta.valor)
-                        #         banderaStruct= True
-
-                        # if banderaStruct == False:
-                        #     return 'elemento en Struct no existe'
+                            if banderaStruct == False:
+                                return 'elemento en Struct no existe'
 
 
 
 
-                    # impresionsea valores primitivos
-                    else:
-                        tempLista.append(resultadoInstruccion.valor)
+                        # impresiones de arreglos
+                        elif resultadoInstruccion.tipo == TipoExpresion.ARREGLO:
+                            print('paro obligatorio')
+                            pass
+
+                        # impresionsea valores primitivos
+                        else:
+                            tempLista.append(resultadoInstruccion.valor)
 
 
 

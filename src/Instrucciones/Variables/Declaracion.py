@@ -21,18 +21,20 @@ class Declaracion(Instruccion):
     def ejecutar(self, entorno):
 
 
+        
+
         # verificacion de tipos
         # con tipo y el tipo del primitivo
         # esta linea altera el struct
         primitivo = self.valor.ejecutar(entorno)
-        # print(primitivo)
 
 
         # variabel
         # TIPO == None  es una variable sin tipo
         if self.tipo == None:
 
-            # print(f'DECLARACION: {primitivo.tipo}')
+            print(f'DECLARACION: {primitivo.tipo}')
+            print(f'DECLARACION: {self.valor}')
 
 
             if primitivo.tipo == TipoExpresion.STRUCT:
@@ -40,6 +42,14 @@ class Declaracion(Instruccion):
                 value_struct = self.valor.ejecutar(entorno)
                 value_struct.mutabilidad = self.mutabilidad
                 entorno.addVariable(self.identificador,value_struct)
+                return None
+
+            elif primitivo.tipo == TipoExpresion.ARREGLO:
+
+                # aca estantodo el listado de los elementos del arreglo
+                print(primitivo.listadoExpresiones)
+                entorno.addVariable(self.identificador,primitivo)
+
                 return None
 
 

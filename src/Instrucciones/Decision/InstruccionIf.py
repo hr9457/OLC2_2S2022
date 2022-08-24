@@ -26,6 +26,10 @@ class InstruccionIf(Instruccion):
         # retorna un primitivo
         exp = self.expresion.ejecutar(entorno)
 
+        # la exp de ejeccutada es una variable
+        if exp.tipo == TipoExpresion.ID:
+            exp = entorno.getVariable(exp.valor)
+
         # verifica que la expresion se de tipo boolean
         if exp.tipo == TipoExpresion.BOOL:
 

@@ -890,3 +890,83 @@ struct Carro{
 
 
 let mut c1 : Carro = Carro{motor: "Grande".to_string(), cilindraje: 1500};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Agregar lo que consideren:
+    
+    // Operaciones aritmeticas, booleanas, declaraciones y asignaciones
+    let cadena1: String = "imprimir".to_string();
+    let aritmetica  = 7 - (5 + 10 * (2 + 4 * (5 + 2 * 3)) - 8 * 3 * 3) + 50 * (6 * 2);
+    let booleana = true || false && true && (false || true) && false || (true || true);
+    println!("{}", cadena1); // Imprime "imprimir"
+    println!("{}", aritmetica); // Imprime 214
+
+    // If's
+    let a:i64 = 25;
+    let b:i64 = 50;
+    let c:i64 = 75;
+
+    if booleana {
+        println!("La suma de a + b es {}", a+b); // 75
+    }
+
+
+    if a > c || b < c {
+        println!("Imprime");
+    }else{
+        println!("No imprime");
+    }
+
+    let cadena1: String = "Cadena uno".to_string();
+    let cadena2: String = "Cadena dos";
+    println!("{}",cadena1);
+    println!("{}",cadena2);
+    println!("----------------");
+    println!("Nativas");
+
+    let bflotante : f64 = 8 as f64;
+    let cadenacopia: String = cadena1.clone();
+    println!("Absoluto 1: {}", (-1.5 as i64).abs());
+    println!("Absoluto 2: {}", (a).abs());
+    println!("Raiz 1: {}",(4 as f64).sqrt());
+    println!("Cadena Copia: {}",cadenacopia);
+
+
+
+
+
+
+
+
+
+
+// manejo de arreglos
+[1,[2,3],4,6,[1,2,43]]
+
+[1,2,3]
+[1,2,3,3+3,id."hola".to_string()]
+
+
+
+let  a = [1,2,3] ;
+println!("{}", a[2]);
+
+
+
+

@@ -14,6 +14,7 @@ from src.Interfaces.TipoMutable import TipoMutable
 from src.Interfaces.TipoNativas import TipoNativas
 
 
+
 # importaciones para manejo de Expresiones
 from src.Expresiones.Primitivo import Primitivo
 from src.Expresiones.Aritmetica import Aritmetica
@@ -22,6 +23,7 @@ from src.Expresiones.Relacional import Relacional
 from src.Expresiones.Logico import Logico
 from src.Expresiones.Pow import Pow
 from src.Expresiones.Nativas.Nativas import Nativas
+
 
 
 # importacion de instrucciones
@@ -36,9 +38,11 @@ from src.Instrucciones.Bucle.Loop import Loop
 from src.Instrucciones.Bucle.Forin import Forin
 
 
+
 # importaciones para funciones
 from src.Instrucciones.Funciones.Funciones import Funciones
 from src.Instrucciones.Funciones.GetFuncion import GetFuncion
+
 
 
 
@@ -47,6 +51,15 @@ from src.Instrucciones.Struct.Struct import Struct
 from src.Instrucciones.Struct.SimboloStruct import SimboloStruct
 from src.Instrucciones.Struct.AsignacionStruct import AsignacionStruct
 from src.Instrucciones.Struct.AccesStruct import AccesStruct
+
+
+
+
+# manejo de arreglos
+from src.Instrucciones.Arreglos.ExpArreglo import ExpArreglo
+from src.Instrucciones.Arreglos.AcessArreglo import AcessArreglo
+
+
 
 
 
@@ -908,6 +921,68 @@ def p_instruccion_forin(p):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+# ******************************************
+#  INSTRUCCIONE PARA MANEJO DE LOS ARREGLOS
+# ******************************************
+
+def p_expresion_arreglo(p):
+    #     0                  1               2                3
+    ' expresionArreglo : CORCHETEDERECHO listadoArreglo CORCHETEIZQUIERDO '
+    p[0] = ExpArreglo(
+        p.lineno(1),
+        columnToken(input, p.slice[1]),
+        p[2]
+    )
+
+
+
+
+
+def p_listado_arreglo(p):
+    ' listadoArreglo : listadoArreglo COMA exp '
+    p[1].append(p[3])
+    p[0] = p[1]
+
+
+
+
+
+def p_elemento_arreglo(p):
+    ' listadoArreglo : exp '
+    p[0] = [p[1]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ***************************
 #   ACEPTACION DE TIPOS
 # ***************************
@@ -944,6 +1019,11 @@ def p_tipos(p):
 
     elif p.slice[1].type == 'ID':
         p[0] = TipoExpresion.STRUCT
+
+
+
+
+
 
 
 
@@ -1138,18 +1218,42 @@ def p_expresion_llamada_funcion_parametros(p):
 
 
 
-# ESTO CAUSA COMFLICTOS 
-# def p_expresion_tipo_struct_elemento(p):
-#     #  0    1    2    3
-#     ' exp : ID PUNTO ID '
-#     p[0] = Simbolo(
-#             p.lineno(1), 
-#             columnToken(input, p.slice[1]), 
-#             p[1],
-#             TipoExpresion.STRUCT, 
-#             p[3],
-#             TipoMutable.MUTABLE
-#             )
+
+
+
+# arreglos como expresiones
+def p_expresion_arreglo(p): 
+    ' exp : CORCHETEDERECHO listadoArreglo CORCHETEIZQUIERDO  '
+    p[0] = ExpArreglo(
+        p.lineno(1),
+        columnToken(input, p.slice[1]),
+        p[2]
+    )
+
+
+
+
+# expresion para impresion de arreglos
+# exp [ exp ]
+def p_expresion_acceso_arreglo(p):
+    # 0      1         2         3        4
+    ' exp : exp CORCHETEDERECHO exp CORCHETEIZQUIERDO  '
+    p[0] = AcessArreglo(
+        p.lineno(2),
+        columnToken(input, p.slice[2]),
+        p[1],
+        p[3]
+    )
+
+
+
+
+
+
+
+
+
+
 
 
 
