@@ -58,8 +58,14 @@ from src.Instrucciones.Struct.AccesStruct import AccesStruct
 # manejo de arreglos
 from src.Instrucciones.Arreglos.ExpArreglo import ExpArreglo
 from src.Instrucciones.Arreglos.AcessArreglo import AcessArreglo
+from src.Instrucciones.Arreglos.ExpArreglo import ExpArreglo
+from src.Instrucciones.Arreglos.TipoArreglo import TipoArreglo
 
 
+
+
+# manejo de la funcion main
+from src.Instrucciones.Main.Main import FuncionMain
 
 
 
@@ -100,16 +106,87 @@ precedence = (
 # ----------------------------------------------------------------
 
 
-# ***************************
-# 
-# ***************************
+def p_arranque_gramatica(p):
+    ' arranque : instruccionGeneral '
+    p[0] = p[1]
+
+
+
+def p_lista_instrucciones_general(p):
+    '   instruccionGeneral  :   instruccionGeneral  inicio   '
+    p[1].append(p[2])
+    p[0] = p[1]
+
+
+
+def p_instruccion_general(p):
+    '   instruccionGeneral  :   inicio  '
+    p[0] = [p[1]] 
+
+
+
+
+
+
+# ***********************************
+#  INSTRUCCIONS DEL BLOQUE GENERAL
+# ***********************************
+def p_listado_gramatica_general(p):
+    ''' inicio  :   fnMain
+                |   funciones '''
+    p[0] = p[1]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ********************************
+#  CREACION DE LA FUNCION MAIN
+# ********************************
+def p_fn_main(p):
+    #     0    1   2         3                    4                5              6              7
+    ' fnMain : FN MAIN PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    print('se va ejecutar el main')
+    p[0] = FuncionMain(
+        p.lineno(1),
+        columnToken(input, p.slice[1]),
+        p[6]
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # ***************************
 #   INICIO DE LA GRAMATICA
 # ***************************
-def p_inicio(p):
-    ''' inicio : instrucciones '''
-    p[0] = p[1]
+# def p_inicio(p):
+#     ''' inicio : instrucciones '''
+#     p[0] = p[1]
 
 
 
@@ -652,7 +729,7 @@ def p_variables_mut_tipo(p):
     #     0              1   2   3   4        5    6      7    8
     '''  variable   :   LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
 
-    # print(p[7])
+    # print(p[5])
     p[0] = Declaracion(0, 0, p[3], p[5], p[7], TipoMutable.MUTABLE)
 
 
@@ -949,7 +1026,7 @@ def p_expresion_arreglo(p):
 
 
 
-
+# genera el listado de exp
 def p_listado_arreglo(p):
     ' listadoArreglo : listadoArreglo COMA exp '
     p[1].append(p[3])
@@ -966,6 +1043,12 @@ def p_elemento_arreglo(p):
 
 
 
+
+
+
+
+
+# def modificar datos de un arreglo
 
 
 
@@ -991,7 +1074,7 @@ def p_tipos(p):
                 |   F64 
                 |   BOOL 
                 |   STRING
-                |   CARACTER
+                |   CHAR
                 |   ID  '''
 
     # print(p.slice[1].type)
@@ -1012,7 +1095,7 @@ def p_tipos(p):
         p[0] = TipoExpresion.STRING
 
 
-    elif p.slice[1].type == 'CARACTER':
+    elif p.slice[1].type == 'CHAR':
         p[0] = TipoExpresion.CHAR
 
 
@@ -1022,6 +1105,20 @@ def p_tipos(p):
 
 
 
+
+
+
+# TIPO ARREGLO
+# [tipo;exp]
+def p_tipo_arreglo(p):
+    #  0           1            2      3      4        5
+    ' tipo : CORCHETEDERECHO  tipo PUNTOCOMA exp CORCHETEIZQUIERDO '
+    p[0] = TipoArreglo(
+        p.lineno(1), 
+        columnToken(input, p.slice[1]),
+        p[2],
+        p[4]
+    )
 
 
 
@@ -1251,6 +1348,7 @@ def p_expresion_acceso_arreglo(p):
 
 
 
+# exp para asignacion de arreglos
 
 
 

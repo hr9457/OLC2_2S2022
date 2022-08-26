@@ -1,6 +1,7 @@
 
 from src.Interfaces.Expresion import Expresion
 from src.Interfaces.TipoExpresion import TipoExpresion
+from src.Expresiones.Primitivo import Primitivo
 
 
 # clase expresion para menejar los acceso a los arreglos
@@ -16,14 +17,14 @@ class AcessArreglo(Expresion):
 
     def ejecutar(self, entorno):
 
-        print('******* ACCESO A ARREGLO EJECUTADO ******')
+        # print('******* ACCESO A ARREGLO EJECUTADO ******')
 
         variable = self.var.ejecutar(entorno)
         indice  = self.index.ejecutar(entorno)
 
 
         if variable.tipo == TipoExpresion.ID and variable is not None:
-            print('variable donde puede estar guardado el arreglo')
+            # print('variable donde puede estar guardado el arreglo')
 
             # busqueda de la variable
             arreglo = entorno.getVariable(variable.valor)
@@ -32,8 +33,26 @@ class AcessArreglo(Expresion):
 
                 # comprobacion del indice se un i64 para poder acceder el arreglo
                 if indice.tipo == TipoExpresion.INTEGER:
-                    valor = arreglo.listadoExpresiones[indice.valor]
-                    return valor
+
+
+                    tamanioArreglo = len(arreglo.listadoExpresiones) - 1
+
+                    if indice.valor <= tamanioArreglo:
+
+                        valor = arreglo.listadoExpresiones[indice.valor]
+
+
+                        if valor.tipo == TipoExpresion.ARREGLO:
+                            return Primitivo(None,None,None,valor.listadoExpresiones)
+                            # return valor.listadoExpresiones
+
+                        return valor
+
+                    else:
+
+                        return f'index excede el tamanio del arreglo'
+
+
 
                 else:
                     return f'indice {indice.valor} no es tipo i64'

@@ -70,9 +70,21 @@ class Imprimir(Instruccion):
                         if resultadoInstruccion.tipo == TipoExpresion.ID:
                             result_evn = entorno.getVariable(resultadoInstruccion.valor)
                             print(result_evn)
+
                             if result_evn.tipo == TipoExpresion.ARREGLO:
-                                return f'variable {resultadoInstruccion.valor} es tipo struct'
-                            tempLista.append(result_evn.valor)
+
+                                cadenaArray = '['
+                                for v in result_evn.listadoExpresiones:
+
+                                    cadenaArray += str(v.ejecutar(entorno).valor) + ', '
+
+                                cadenaArray += ' ]'
+                                tempLista.append(cadenaArray)
+
+
+                            else:
+
+                                tempLista.append(result_evn.valor)
 
 
 
@@ -141,18 +153,18 @@ class Imprimir(Instruccion):
 
                 print(tempLista)
                 result.valor =  result.valor.format(*tempLista)
-                return str(result.valor+'\n')
+                return str(result.valor)+'\n'
             
 
             else:
                 if result.tipo == TipoExpresion.ID:
                     result_env = entorno.getVariable(result.valor)
-                    return str(result_env.valor)
+                    return str(result_env.valor) +'\n'
 
                 else:
                     print(f'IMPRIMIR --> {result.tipo}')
                     print(f'IMPRIMIR --> {result.valor}')
-                    return str(result.valor+'\n')
+                    return str(result.valor)+'\n'
 
 
                     

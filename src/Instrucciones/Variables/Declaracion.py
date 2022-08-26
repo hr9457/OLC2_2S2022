@@ -3,6 +3,8 @@ from src.Interfaces.TipoExpresion import TipoExpresion
 from src.environment.Simbolo import Simbolo
 from src.Error.Error import Error
 from src.Instrucciones.Struct.Struct import Struct
+from src.Instrucciones.Arreglos.ExpArreglo import ExpArreglo
+from src.Instrucciones.Arreglos.TipoArreglo import TipoArreglo
 
 
 class Declaracion(Instruccion):
@@ -47,7 +49,7 @@ class Declaracion(Instruccion):
             elif primitivo.tipo == TipoExpresion.ARREGLO:
 
                 # aca estantodo el listado de los elementos del arreglo
-                print(primitivo.listadoExpresiones)
+                # print(primitivo.listadoExpresiones)
                 entorno.addVariable(self.identificador,primitivo)
 
                 return None
@@ -68,10 +70,24 @@ class Declaracion(Instruccion):
 
 
         elif self.tipo != None:
-            
+
+
+            # REVISION DE LOS TIPOS DE DATOS PAR ARREGLOS
+            if isinstance(self.tipo,TipoArreglo):
+                print('TIPO DE DECLARACION ES DE TIPO ARREGLO')
+                type = self.tipo.ejecutar(entorno)
+
+                if type.tipo == primitivo.tipo:
+                    print('ARREGLO SON DEL MISMO TIPO')
+
+                    entorno.addVariable(self.identificador,primitivo)
+                    return None
+                    
+
+
+
             if self.tipo == primitivo.tipo:
 
-                
                 entorno.addVariable(self.identificador, 
                                     Simbolo(primitivo.fila, 
                                     primitivo.columna, 

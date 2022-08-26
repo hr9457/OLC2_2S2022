@@ -51,11 +51,15 @@ class Aplicacion:
         
 
 
+
     # funcionalidad para salir
     def salir(self):
         self.ventana.quit()
         self.ventana.destroy()
         sys.exit()
+
+
+
 
     # ------------------------------
     # funcionalidad para reportes
@@ -72,6 +76,8 @@ class Aplicacion:
         print('Reporte de taba de BD')
 
     # ---------------------------------
+
+
 
 
     # menu principal
@@ -95,6 +101,8 @@ class Aplicacion:
         menuPrincipal.add_cascade(menu=subMenuArchivo, label='Archivo')
         menuPrincipal.add_cascade(menu=subMenuReportes, label='Reportes')
         self.ventana.config(menu=menuPrincipal)
+
+
 
 
     #  creacion de componentes
