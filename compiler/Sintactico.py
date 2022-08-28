@@ -293,6 +293,12 @@ def p_instruccion_return(p):
 
 
 
+
+
+
+
+
+
 # ***************************
 #   MANEJO DE FUNCIONES
 # ***************************
@@ -304,7 +310,7 @@ def p_instruccion_return(p):
 def p_funciones(p):
     #    0         1  2         3              4                   5             6            7
     ' funciones : FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[6], None)
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[6], None ,tablaSimbolos)
 
 
 
@@ -318,22 +324,7 @@ def p_funciones(p):
 def p_funciones_tipo(p):
     #    0         1  2         3              4                   5      6          7           8            9
     ' funciones : FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[8], p[6])
-
-
-
-
-
-
-
-
-
-
-# llamado a funciones sin parametros
-def p_llamado_funcion(p):
-    #       0          1            2                3            4
-    ' llamadofuncion : ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
-    p[0] = GetFuncion(0, 0, None, p[1])
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[8], p[6] ,tablaSimbolos)
 
 
 
@@ -349,7 +340,7 @@ def p_llamado_funcion(p):
 def p_funciones_parametros(p):
     #          0             1  2         3              4                   5             6            7           8
     ' funcionesParametros : FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[7], None)
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[7], None ,tablaSimbolos)
 
 
 
@@ -362,7 +353,7 @@ def p_funciones_parametros(p):
 def p_funciones_parametros_tipo(p):
     #          0             1  2         3              4                5             6       7           8            9           10
     ' funcionesParametros : FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO  TIPORETURN tipo  LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[9], p[7])
+    p[0] = Funciones(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[9], p[7] ,tablaSimbolos)
 
 
 
@@ -396,6 +387,13 @@ def p_instruccion_parametro(p):
 
 
 
+
+#  ---------------------------------
+# llamado a funciones sin parametros
+def p_llamado_funcion(p):
+    #       0          1            2                3            4
+    ' llamadofuncion : ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
+    p[0] = GetFuncion(0, 0, None, p[1])
 
 
 
@@ -449,6 +447,14 @@ def p_instruccion_parametro_llamado_funcion(p):
 
 
 
+
+
+
+
+
+
+
+
 # ***************************
 #   MANEJO DE STRUCTS
 # ***************************
@@ -457,7 +463,7 @@ def p_instruccion_parametro_llamado_funcion(p):
 def p_struct(p):
     #         0              1   2         3              4         5
     ' instruccionStruct : STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO '
-    p[0] = Struct(p.lineno(2), columnToken(input, p.slice[2]), p[2], p[4])
+    p[0] = Struct(p.lineno(2), columnToken(input, p.slice[2]), p[2], p[4], tablaSimbolos)
 
 
 
@@ -595,6 +601,11 @@ def p_alter_value_struct(p):
         p[3],
         p[5]
     )
+
+
+
+
+
 
 
 

@@ -50,12 +50,12 @@ Rule 27    instruccionContinue -> CONTINUE PUNTOCOMA
 Rule 28    instruccionReturn -> RETURN exp PUNTOCOMA
 Rule 29    funciones -> FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
 Rule 30    funciones -> FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-Rule 31    llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
-Rule 32    funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-Rule 33    funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-Rule 34    parametros -> parametros COMA instruccionParametro
-Rule 35    parametros -> instruccionParametro
-Rule 36    instruccionParametro -> ID DOSPUNTOS tipo
+Rule 31    funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+Rule 32    funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+Rule 33    parametros -> parametros COMA instruccionParametro
+Rule 34    parametros -> instruccionParametro
+Rule 35    instruccionParametro -> ID DOSPUNTOS tipo
+Rule 36    llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
 Rule 37    llamadofuncion -> ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
 Rule 38    parametrosllamado -> parametrosllamado COMA instruccionLlamado
 Rule 39    parametrosllamado -> instruccionLlamado
@@ -152,7 +152,7 @@ CAPACITY             :
 CARACTER             : 116
 CHAR                 : 80
 CLONE                : 100
-COMA                 : 34 38 42 45 52 53 55 74 104 105
+COMA                 : 33 38 42 45 52 53 55 74 104 105
 COMENTARIO           : 
 CONTAINS             : 
 CONTINUE             : 27
@@ -161,15 +161,15 @@ CORCHETEIZQUIERDO    : 82 109 110
 DECIMAL              : 112
 DIFERENTE            : 92
 DIV                  : 86
-DOSPUNTOS            : 36 44 47 59 62 65 104 104 105 105
+DOSPUNTOS            : 35 44 47 59 62 65 104 104 105 105
 ELSE                 : 68 69
 ENTERO               : 111
 F64                  : 77 96 105
 FALSE                : 114
-FN                   : 8 29 30 32 33
+FN                   : 8 29 30 31 32
 FOR                  : 73
 I64                  : 76 95 104
-ID                   : 29 30 31 32 33 36 37 41 44 47 49 50 50 55 58 59 60 61 61 62 63 64 64 65 65 65 66 81 107 108 117
+ID                   : 29 30 31 32 35 36 37 41 44 47 49 50 50 55 58 59 60 61 61 62 63 64 64 65 65 65 66 81 107 108 117
 IF                   : 67
 IGUAL                : 50 59 60 61 62 63 64 65 66
 IGUALDAD             : 91
@@ -177,8 +177,8 @@ IN                   : 73
 INSERT               : 
 LEN                  : 
 LET                  : 59 60 61 62 63 64 65
-LLAVEDERECHO         : 8 29 30 32 33 41 49 61 64 65 67 68 71 72 73
-LLAVEIZQUIERDO       : 8 29 30 32 33 41 49 61 64 65 67 68 71 72 73
+LLAVEDERECHO         : 8 29 30 31 32 41 49 61 64 65 67 68 71 72 73
+LLAVEIZQUIERDO       : 8 29 30 31 32 41 49 61 64 65 67 68 71 72 73
 LOOP                 : 72
 MAIN                 : 8
 MAS                  : 83
@@ -192,20 +192,20 @@ MUT                  : 59 60 61
 NEW                  : 
 NOT                  : 51 52 55 101
 OR                   : 93
-PARENTESISDERECHO    : 8 29 30 31 32 33 37 51 52 55 97 98 99 100 103 104 105 107 108
-PARENTESISIZQUIERDO  : 8 29 30 31 32 33 37 51 52 55 97 98 99 100 103 104 105 107 108
+PARENTESISDERECHO    : 8 29 30 31 32 36 37 51 52 55 97 98 99 100 103 104 105 107 108
+PARENTESISIZQUIERDO  : 8 29 30 31 32 36 37 51 52 55 97 98 99 100 103 104 105 107 108
 PORCENTAJE           : 
 POW                  : 104 105
 PRINTLN              : 51 52 55
 PUNTO                : 50 55 56 73 73 97 98 99 100
-PUNTOCOMA            : 26 27 28 31 37 50 51 52 55 59 60 61 62 63 64 65 66 82
+PUNTOCOMA            : 26 27 28 36 37 50 51 52 55 59 60 61 62 63 64 65 66 82
 PUSH                 : 
 REMOVE               : 
 RETURN               : 28
 SQRT                 : 99
 STRING               : 79
 STRUCT               : 41
-TIPORETURN           : 30 33
+TIPORETURN           : 30 32
 TO_STRING            : 97
 TRUE                 : 113
 USIZE                : 
@@ -237,11 +237,11 @@ instruccionFor       : 19
 instruccionGeneral   : 1 2
 instruccionLlamado   : 38 39
 instruccionLoop      : 18
-instruccionParametro : 34 35
+instruccionParametro : 33 34
 instruccionReturn    : 23
 instruccionStruct    : 7 24
 instruccionWhile     : 15
-instrucciones        : 8 9 29 30 32 33 67 68 71 72 73
+instrucciones        : 8 9 29 30 31 32 67 68 71 72 73
 instruccionif        : 14 69
 listaAcces           : 55 56
 listadoArreglo       : 74 109
@@ -249,10 +249,10 @@ listadoBuild         : 45 49 61 64 65
 listadoStruct        : 41 42
 listadoprint         : 52 53
 llamadofuncion       : 21
-parametros           : 32 33 34
+parametros           : 31 32 33
 parametrosllamado    : 37 38 108
 primitivo            : 106
-tipo                 : 30 33 36 44 59 62 82
+tipo                 : 30 32 35 44 59 62 82
 variable             : 12
 
 Parsing method: LALR
@@ -270,8 +270,8 @@ state 0
     (8) fnMain -> . FN MAIN PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
 
     FN              shift and go to state 8
@@ -302,8 +302,8 @@ state 2
     (8) fnMain -> . FN MAIN PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
 
     $end            reduce using rule 1 (arranque -> instruccionGeneral .)
@@ -366,8 +366,8 @@ state 8
     (8) fnMain -> FN . MAIN PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> FN . ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> FN . ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (32) funcionesParametros -> FN . ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> FN . ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> FN . ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN . ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
 
     MAIN            shift and go to state 11
     ID              shift and go to state 12
@@ -400,8 +400,8 @@ state 12
 
     (29) funciones -> FN ID . PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> FN ID . PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (32) funcionesParametros -> FN ID . PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> FN ID . PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> FN ID . PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN ID . PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
 
     PARENTESISIZQUIERDO shift and go to state 15
 
@@ -424,11 +424,11 @@ state 15
 
     (29) funciones -> FN ID PARENTESISIZQUIERDO . PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> FN ID PARENTESISIZQUIERDO . PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO . parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> FN ID PARENTESISIZQUIERDO . parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (34) parametros -> . parametros COMA instruccionParametro
-    (35) parametros -> . instruccionParametro
-    (36) instruccionParametro -> . ID DOSPUNTOS tipo
+    (31) funcionesParametros -> FN ID PARENTESISIZQUIERDO . parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO . parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (33) parametros -> . parametros COMA instruccionParametro
+    (34) parametros -> . instruccionParametro
+    (35) instruccionParametro -> . ID DOSPUNTOS tipo
 
     PARENTESISDERECHO shift and go to state 19
     ID              shift and go to state 18
@@ -457,7 +457,7 @@ state 17
 
 state 18
 
-    (36) instruccionParametro -> ID . DOSPUNTOS tipo
+    (35) instruccionParametro -> ID . DOSPUNTOS tipo
 
     DOSPUNTOS       shift and go to state 26
 
@@ -473,9 +473,9 @@ state 19
 
 state 20
 
-    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros . PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros . PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (34) parametros -> parametros . COMA instruccionParametro
+    (31) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros . PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros . PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (33) parametros -> parametros . COMA instruccionParametro
 
     PARENTESISDERECHO shift and go to state 29
     COMA            shift and go to state 30
@@ -483,10 +483,10 @@ state 20
 
 state 21
 
-    (35) parametros -> instruccionParametro .
+    (34) parametros -> instruccionParametro .
 
-    PARENTESISDERECHO reduce using rule 35 (parametros -> instruccionParametro .)
-    COMA            reduce using rule 35 (parametros -> instruccionParametro .)
+    PARENTESISDERECHO reduce using rule 34 (parametros -> instruccionParametro .)
+    COMA            reduce using rule 34 (parametros -> instruccionParametro .)
 
 
 state 22
@@ -552,10 +552,10 @@ state 25
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -593,7 +593,7 @@ state 25
 
 state 26
 
-    (36) instruccionParametro -> ID DOSPUNTOS . tipo
+    (35) instruccionParametro -> ID DOSPUNTOS . tipo
     (76) tipo -> . I64
     (77) tipo -> . F64
     (78) tipo -> . BOOL
@@ -651,10 +651,10 @@ state 27
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -713,8 +713,8 @@ state 28
 
 state 29
 
-    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO . LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO . TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO . LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO . TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
 
     LLAVEIZQUIERDO  shift and go to state 72
     TIPORETURN      shift and go to state 73
@@ -722,8 +722,8 @@ state 29
 
 state 30
 
-    (34) parametros -> parametros COMA . instruccionParametro
-    (36) instruccionParametro -> . ID DOSPUNTOS tipo
+    (33) parametros -> parametros COMA . instruccionParametro
+    (35) instruccionParametro -> . ID DOSPUNTOS tipo
 
     ID              shift and go to state 18
 
@@ -783,8 +783,8 @@ state 34
 
     (29) funciones -> FN . ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> FN . ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (32) funcionesParametros -> FN . ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> FN . ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> FN . ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN . ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
 
     ID              shift and go to state 12
 
@@ -827,10 +827,10 @@ state 35
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -1182,7 +1182,7 @@ state 52
 state 53
 
     (66) asignacion -> ID . IGUAL exp PUNTOCOMA
-    (31) llamadofuncion -> ID . PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> ID . PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> ID . PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
     (50) alterValueStruct -> ID . PUNTO ID IGUAL exp PUNTOCOMA
 
@@ -1464,10 +1464,10 @@ state 62
 
 state 63
 
-    (36) instruccionParametro -> ID DOSPUNTOS tipo .
+    (35) instruccionParametro -> ID DOSPUNTOS tipo .
 
-    PARENTESISDERECHO reduce using rule 36 (instruccionParametro -> ID DOSPUNTOS tipo .)
-    COMA            reduce using rule 36 (instruccionParametro -> ID DOSPUNTOS tipo .)
+    PARENTESISDERECHO reduce using rule 35 (instruccionParametro -> ID DOSPUNTOS tipo .)
+    COMA            reduce using rule 35 (instruccionParametro -> ID DOSPUNTOS tipo .)
 
 
 state 64
@@ -1589,10 +1589,10 @@ state 70
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -1637,7 +1637,7 @@ state 71
 
 state 72
 
-    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO . instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO . instrucciones LLAVEDERECHO
     (9) instrucciones -> . instrucciones instruccion
     (10) instrucciones -> . instruccion
     (11) instruccion -> . imprimir
@@ -1674,10 +1674,10 @@ state 72
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -1715,7 +1715,7 @@ state 72
 
 state 73
 
-    (33) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN . tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN . tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (76) tipo -> . I64
     (77) tipo -> . F64
     (78) tipo -> . BOOL
@@ -1736,10 +1736,10 @@ state 73
 
 state 74
 
-    (34) parametros -> parametros COMA instruccionParametro .
+    (33) parametros -> parametros COMA instruccionParametro .
 
-    PARENTESISDERECHO reduce using rule 34 (parametros -> parametros COMA instruccionParametro .)
-    COMA            reduce using rule 34 (parametros -> parametros COMA instruccionParametro .)
+    PARENTESISDERECHO reduce using rule 33 (parametros -> parametros COMA instruccionParametro .)
+    COMA            reduce using rule 33 (parametros -> parametros COMA instruccionParametro .)
 
 
 state 75
@@ -1853,7 +1853,7 @@ state 80
 
 state 81
 
-    (31) llamadofuncion -> ID PARENTESISIZQUIERDO . PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> ID PARENTESISIZQUIERDO . PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> ID PARENTESISIZQUIERDO . parametrosllamado PARENTESISDERECHO PUNTOCOMA
     (38) parametrosllamado -> . parametrosllamado COMA instruccionLlamado
     (39) parametrosllamado -> . instruccionLlamado
@@ -2568,10 +2568,10 @@ state 103
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -2755,10 +2755,10 @@ state 108
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -2796,7 +2796,7 @@ state 108
 
 state 109
 
-    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones . LLAVEDERECHO
+    (31) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones . LLAVEDERECHO
     (9) instrucciones -> instrucciones . instruccion
     (11) instruccion -> . imprimir
     (12) instruccion -> . variable
@@ -2832,10 +2832,10 @@ state 109
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -2873,7 +2873,7 @@ state 109
 
 state 110
 
-    (33) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo . LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo . LLAVEIZQUIERDO instrucciones LLAVEDERECHO
 
     LLAVEIZQUIERDO  shift and go to state 152
 
@@ -2979,7 +2979,7 @@ state 112
 
 state 113
 
-    (31) llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO . PUNTOCOMA
+    (36) llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO . PUNTOCOMA
 
     PUNTOCOMA       shift and go to state 155
 
@@ -3178,10 +3178,10 @@ state 121
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -4301,10 +4301,10 @@ state 145
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -4378,10 +4378,10 @@ state 146
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -4586,10 +4586,10 @@ state 150
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -4627,27 +4627,27 @@ state 150
 
 state 151
 
-    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .
+    (31) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .
 
-    FN              reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    STRUCT          reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    $end            reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    LLAVEDERECHO    reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    PRINTLN         reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    LET             reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    ID              reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    IF              reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    WHILE           reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    BREAK           reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    CONTINUE        reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    LOOP            reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    FOR             reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    RETURN          reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    FN              reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    STRUCT          reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    $end            reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    LLAVEDERECHO    reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    PRINTLN         reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    LET             reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    ID              reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    IF              reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    WHILE           reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    BREAK           reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    CONTINUE        reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    LOOP            reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    FOR             reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    RETURN          reduce using rule 31 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
 
 
 state 152
 
-    (33) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO . instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO . instrucciones LLAVEDERECHO
     (9) instrucciones -> . instrucciones instruccion
     (10) instrucciones -> . instruccion
     (11) instruccion -> . imprimir
@@ -4684,10 +4684,10 @@ state 152
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -4788,21 +4788,21 @@ state 154
 
 state 155
 
-    (31) llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .
+    (36) llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .
 
-    LLAVEDERECHO    reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    PRINTLN         reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    LET             reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    ID              reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    IF              reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    WHILE           reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    BREAK           reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    CONTINUE        reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    LOOP            reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    FOR             reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    FN              reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    RETURN          reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
-    STRUCT          reduce using rule 31 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    LLAVEDERECHO    reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    PRINTLN         reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    LET             reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    ID              reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    IF              reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    WHILE           reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    BREAK           reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    CONTINUE        reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    LOOP            reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    FOR             reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    FN              reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    RETURN          reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
+    STRUCT          reduce using rule 36 (llamadofuncion -> ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA .)
 
 
 state 156
@@ -5128,10 +5128,10 @@ state 165
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -6249,10 +6249,10 @@ state 192
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -6410,7 +6410,7 @@ state 196
 
 state 197
 
-    (33) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones . LLAVEDERECHO
+    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones . LLAVEDERECHO
     (9) instrucciones -> instrucciones . instruccion
     (11) instruccion -> . imprimir
     (12) instruccion -> . variable
@@ -6446,10 +6446,10 @@ state 197
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -7001,22 +7001,22 @@ state 222
 
 state 223
 
-    (33) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .
+    (32) funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .
 
-    FN              reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    STRUCT          reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    $end            reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    LLAVEDERECHO    reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    PRINTLN         reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    LET             reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    ID              reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    IF              reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    WHILE           reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    BREAK           reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    CONTINUE        reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    LOOP            reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    FOR             reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
-    RETURN          reduce using rule 33 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    FN              reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    STRUCT          reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    $end            reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    LLAVEDERECHO    reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    PRINTLN         reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    LET             reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    ID              reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    IF              reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    WHILE           reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    BREAK           reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    CONTINUE        reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    LOOP            reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    FOR             reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
+    RETURN          reduce using rule 32 (funcionesParametros -> FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO .)
 
 
 state 224
@@ -7877,10 +7877,10 @@ state 256
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -8322,10 +8322,10 @@ state 274
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -8512,10 +8512,10 @@ state 277
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
@@ -8744,10 +8744,10 @@ state 286
     (73) instruccionFor -> . FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (29) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (30) funciones -> . FN ID PARENTESISIZQUIERDO PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (31) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
+    (36) llamadofuncion -> . ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA
     (37) llamadofuncion -> . ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA
-    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
-    (33) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (31) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO
+    (32) funcionesParametros -> . FN ID PARENTESISIZQUIERDO parametros PARENTESISDERECHO TIPORETURN tipo LLAVEIZQUIERDO instrucciones LLAVEDERECHO
     (28) instruccionReturn -> . RETURN exp PUNTOCOMA
     (41) instruccionStruct -> . STRUCT ID LLAVEIZQUIERDO listadoStruct LLAVEDERECHO
     (50) alterValueStruct -> . ID PUNTO ID IGUAL exp PUNTOCOMA
