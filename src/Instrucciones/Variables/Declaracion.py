@@ -10,13 +10,14 @@ from src.Instrucciones.Arreglos.TipoArreglo import TipoArreglo
 class Declaracion(Instruccion):
 
     # constructor
-    def __init__(self, fila, columna, identificador, tipo, valor, mutabilidad):
+    def __init__(self, fila, columna, identificador, tipo, valor, mutabilidad, tablaSimbolos):
         self.fila = fila
         self.columna = columna
         self.identificador = identificador
         self.tipo = tipo
         self.valor = valor
         self.mutabilidad = mutabilidad
+        self.tablaSimbolos = tablaSimbolos
 
 
     # metodo ejecutar
@@ -44,13 +45,25 @@ class Declaracion(Instruccion):
                 value_struct = self.valor.ejecutar(entorno)
                 value_struct.mutabilidad = self.mutabilidad
                 entorno.addVariable(self.identificador,value_struct)
+
+                # para reportes
+                self.tablaSimbolos.append([self.identificador,'Variable',primitivo.tipo,entorno.nombre,self.fila,self.columna])
+                # -------------
+
+
                 return None
+
+
 
             elif primitivo.tipo == TipoExpresion.ARREGLO:
 
                 # aca estantodo el listado de los elementos del arreglo
                 # print(primitivo.listadoExpresiones)
                 entorno.addVariable(self.identificador,primitivo)
+
+                # para reportes
+                self.tablaSimbolos.append([self.identificador,'Variable',primitivo.tipo,entorno.nombre,self.fila,self.columna])
+                # -------------
 
                 return None
 
@@ -64,6 +77,11 @@ class Declaracion(Instruccion):
                                         primitivo.tipo, 
                                         primitivo.valor, 
                                         self.mutabilidad) )
+
+                # para reportes
+                self.tablaSimbolos.append([self.identificador,'Variable',primitivo.tipo,entorno.nombre,self.fila,self.columna])
+                # -------------
+                
                 return None
 
         
@@ -81,6 +99,11 @@ class Declaracion(Instruccion):
                     print('ARREGLO SON DEL MISMO TIPO')
 
                     entorno.addVariable(self.identificador,primitivo)
+
+                    # para reportes
+                    self.tablaSimbolos.append([self.identificador,'Variable',primitivo.tipo,entorno.nombre,self.fila,self.columna])
+                    # -------------
+
                     return None
                     
 
@@ -95,6 +118,12 @@ class Declaracion(Instruccion):
                                     primitivo.tipo, 
                                     primitivo.valor, 
                                     self.mutabilidad) )
+
+
+                # para reportes
+                self.tablaSimbolos.append([self.identificador,'Variable',primitivo.tipo,entorno.nombre,self.fila,self.columna])
+                # -------------
+
                 return None
 
 
@@ -107,6 +136,11 @@ class Declaracion(Instruccion):
                     value_struct = self.valor.ejecutar(entorno)
                     value_struct.mutabilidad = self.mutabilidad
                     entorno.addVariable(self.identificador,value_struct)
+
+                    # para reportes
+                    self.tablaSimbolos.append([self.identificador,'Variable',primitivo.tipo,entorno.nombre,self.fila,self.columna])
+                    # -------------
+
                     return None
 
                 else:

@@ -79,6 +79,12 @@ from src.Error.Error import Error
 
 
 
+
+# manejo de reporteria
+tablaSimbolos = []
+
+
+
 # ----------------------------------------------------------------
 #                      Precedencia de Operadores
 # ----------------------------------------------------------------
@@ -133,7 +139,9 @@ def p_instruccion_general(p):
 # ***********************************
 def p_listado_gramatica_general(p):
     ''' inicio  :   fnMain
-                |   funciones '''
+                |   funciones
+                |   funcionesParametros
+                |   instruccionStruct    '''
     p[0] = p[1]
 
 
@@ -155,7 +163,7 @@ def p_listado_gramatica_general(p):
 def p_fn_main(p):
     #     0    1   2         3                    4                5              6              7
     ' fnMain : FN MAIN PARENTESISIZQUIERDO PARENTESISDERECHO LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    print('se va ejecutar el main')
+    # print('se va ejecutar el main')
     p[0] = FuncionMain(
         p.lineno(1),
         columnToken(input, p.slice[1]),
@@ -720,6 +728,10 @@ def p_print_accesStruct(p):
 
 
 
+
+
+
+
 # ***************************
 #  DECLARACION DE VARIABLES
 # ***************************
@@ -730,7 +742,7 @@ def p_variables_mut_tipo(p):
     '''  variable   :   LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
 
     # print(p[5])
-    p[0] = Declaracion(0, 0, p[3], p[5], p[7], TipoMutable.MUTABLE)
+    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[5], p[7], TipoMutable.MUTABLE ,tablaSimbolos)
 
 
 
@@ -738,7 +750,7 @@ def p_variables_mut_tipo(p):
 def p_variables_mut(p):
     #     0              1   2   3   4    5      6    
     '''  variable   :   LET MUT ID IGUAL exp PUNTOCOMA  '''
-    p[0] = Declaracion(0, 0, p[3], None, p[5], TipoMutable.MUTABLE)
+    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[3], None, p[5], TipoMutable.MUTABLE ,tablaSimbolos)
 
 
 
@@ -748,8 +760,7 @@ def p_variables_mut_struct(p):
     #     0              1   2   3   4    5      6            7           8            9  
     '''  variable   :   LET MUT ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
     p[0] = Declaracion(
-        0, 
-        0, 
+        p.lineno(1), columnToken(input, p.slice[1]), 
         p[3], 
         None, 
         BuildStruct(
@@ -758,7 +769,8 @@ def p_variables_mut_struct(p):
             p[5],
             p[7])
         , 
-        TipoMutable.MUTABLE)
+        TipoMutable.MUTABLE,
+        tablaSimbolos)
 
 
 
@@ -768,8 +780,7 @@ def p_variables_mut_tipo_struct(p):
     '''  variable   :   LET MUT ID DOSPUNTOS ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
     print(f' --> {p.slice[5]}')
     p[0] = Declaracion(
-        0, 
-        0, 
+        p.lineno(1), columnToken(input, p.slice[1]),
         p[3], 
         p[5], 
         BuildStruct(
@@ -778,7 +789,8 @@ def p_variables_mut_tipo_struct(p):
             p[7],
             p[9])
         ,  
-        TipoMutable.MUTABLE
+        TipoMutable.MUTABLE,
+        tablaSimbolos
         )
 
 
@@ -793,7 +805,7 @@ def p_variables_mut_tipo_struct(p):
 def p_variables_tipo(p):
     #     0              1   2   3        4     5    6    7 
     '''  variable   :   LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
-    p[0] = Declaracion(0, 0, p[2], p[4], p[6], TipoMutable.NOMUTABLE)
+    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[6], TipoMutable.NOMUTABLE, tablaSimbolos)
 
 
 
@@ -803,7 +815,7 @@ def p_variables_tipo(p):
 def p_variables(p):
     #     0              1  2  3      4     5       
     '''  variable   :   LET ID IGUAL exp PUNTOCOMA  '''
-    p[0] = Declaracion(0, 0, p[2], None, p[4], TipoMutable.NOMUTABLE)
+    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[4], TipoMutable.NOMUTABLE, tablaSimbolos)
 
 
 
@@ -813,8 +825,7 @@ def p_variables_tipo_struct(p):
     #     0              1  2  3      4        5             6           7          8       
     '''  variable   :   LET ID IGUAL  ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '''
     p[0] = Declaracion(
-        0, 
-        0, 
+        p.lineno(1), columnToken(input, p.slice[1]), 
         p[2], 
         None, 
         BuildStruct(
@@ -823,7 +834,8 @@ def p_variables_tipo_struct(p):
             p[4],
             p[6])
         , 
-        TipoMutable.NOMUTABLE)
+        TipoMutable.NOMUTABLE,
+        tablaSimbolos)
 
 
 
@@ -844,8 +856,18 @@ def p_variables_mut_tipo_struct(p):
             p[6],
             p[8])
         ,  
-        TipoMutable.MUTABLE
+        TipoMutable.MUTABLE,
+        tablaSimbolos
         )
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1451,8 +1473,9 @@ def analizar(entrada):
     # print(lista)
 
     # entorno principal declarado
-    env = Environment('main', 0, None)
+    env = Environment('general', 0, None)
 
+    tablaSimbolos.append(['Ambito','env','env','general',0,0])
 
     salida = ""
     for l in lista:
@@ -1461,7 +1484,7 @@ def analizar(entrada):
         if result != None and isinstance(result, str):
             salida += str(result) + "\n"
 
-    return salida
+    return salida, tablaSimbolos
 
 
 

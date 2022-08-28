@@ -106,42 +106,44 @@ fn main() {
 -----------------------------------------------------------------------------------------------------------------------
 
 
-let a:i64 = 100;
-let b:i64 = 100;
-let c:i64 = 7;
-let f:bool = true;
-let j:f64 = 10.0;
-let k:f64 = 10.0;
+fn main() {
+    let a:i64 = 100;
+    let b:i64 = 100;
+    let c:i64 = 7;
+    let f:bool = true;
+    let j:f64 = 10.0;
+    let k:f64 = 10.0;
 
-println("");
-println("");
-if a > b || b < c {
-    println!(">>>>>> Esto no debería de imprimirse");
-}else{
-    println!(">>>>>> Esto debería de imprimirse");
+    println!("");
+    println!("");
+    if a > b || b < c {
+        println!(">>>>>> Esto no debería de imprimirse");
+    }else{
+        println!(">>>>>> Esto debería de imprimirse");
+    }
+
+
+
+    if a == b && j == k || 14 != c {
+        println!(">>>>>> Esto debería de imprimirse");
+    }else{
+        println!(">>>>>> Esto no debería de imprimirse");
+    }
+
+
+    let val1:i64 = 5;
+    let resp:i64 = 5;
+    let mut valorVerdadero : i64 = 100;
+
+
+
+
+    if((valorVerdadero == (50 + 50 + (val1 - val1))) && ! ! ! ! ! ! ! ! ! ! true) {
+        println!(">>>>>> En este lugar deberia de entrar :)");
+        valorVerdadero = 50;
+    }
+    println!(valorVerdadero);
 }
-
-
-
-if a == b && j == k || 14 != c {
-    println!(">>>>>> Esto debería de imprimirse");
-}else{
-    println!(">>>>>> Esto no debería de imprimirse");
-}
-
-
-let val1:i64 = 5;
-let resp:i64 = 5;
-let mut valorVerdadero : i64 = 100;
-
-
-
-
-if((valorVerdadero == (50 + 50 + (val1 - val1))) && ! ! ! ! ! ! ! ! ! ! true) {
-    println!(">>>>>> En este lugar deberia de entrar :)");
-    valorVerdadero = 50;
-}
-println(valorVerdadero);
 
 
 
@@ -181,301 +183,6 @@ fn main() {
 
 
 
-let val1:i64 = 10;
-let resp:i64 = 5;
-let mut valorVerdadero : i64 = 100;
-
-println!("el valor es: {}",val1);
-
-
-let val11 = 7 - (5 + 10 * (2 + 4 * (5 + 2 * 3)) - 8 * 3 * 3) + 50 * (6 * 2);
-let val21 = (2 * 2 * 2 * 2) - 9 - (8 - 6 + (3 * 3 - 6 * 5 - 7 - (9 + 7 * 7 * 7) + 10) - 5) + 8 - (6 - 5 * (2 * 3));
-let val31 = val11 + ((2 + val21 * 3) + 1 - ((2 * 2 * 2) - 2) * 2) - 2;
-
-println!("El valor de val11 es:              {}",val11);
-println!("El valor de val21 es:              {}",val21);
-println!("El valor de val31 es:              {}",val31);
-
-
-
-
-
-
-let mut var1 = 10;
-let mut var2 = 2;
-let mut var3 = 5;
-
-
-
-
-if var2>var1 {
-    println!("Primer if");
-}else if var3>var1{
-    println!("Segundo if");
-}else if var1>var2{
-    
-    println!("Tercer if");
-    let mut suma = var1+var2;
-    println!(suma);
-    println!(var1 + var2);
-    if suma == 12{
-        let mut varx = 20;
-        while var2 < var1{
-            println!("{}",varx+var2);
-            var2 = var2 + 1;
-        }
-    }
-}
-
-
-
-let mut varx = 10;
-let vary = 1;
-let varz = 2;
-
-
-if varz < vary{
-    println!("Primer if");   
-}else if varx > vary{
-    println!("Primer else if");
-    if true{
-        let mut varm = 31;
-        let mut suma = vary+varz;
-        if true{
-            if true{
-                    println!("If anidado 3er nivel");
-                    println!("{}",suma+varm); //34
-                    let mut var1 = true;
-                    varx = 0;
-                    while var1 {
-                        println!("{}",varx);
-                        if varx == 20{
-                        var1 = false;
-                    }
-                    varx = varx + 1;
-                }
-            }
-        }
-    }
-    println!("Prueba finalizada correctamente"); 
-}
-
-
-
-
-
-
-
-let mut var1 = true;
-let mut varx = 0;
-while var1 {
-    println!("{}",varx);
-    if varx == 20{
-        var1 = false;
-    }
-    break;
-    varx = varx + 1;
-}
-
-
-
-let mut varx = 10;
-let vary = 1;
-let varz = 2;
-
-
-if varz < vary{
-    println!("Primer if");   
-}else if varx > vary{
-    println!("Primer else if");
-    if true{
-        let mut varm = 31;
-        let mut suma = vary+varz;
-        if true{
-            if true{
-                println!("If anidado 3er nivel");
-                println!("{}",suma+varm); //34
-                let mut var1 = true;
-                varx = 0;
-                while var1 {
-                    println!("{}",varx);
-                    if varx == 20{
-                        var1 = false;
-                    }
-                    varx = varx + 1;
-                }
-            }
-        }
-    }
-    println!("Prueba finalizada correctamente"); 
-}
-
-
-
-
-
-let mut var1 = true;
-let mut varx = 0;
-while var1 {
-    println!("{}",varx);
-    if varx == 20{
-        var1 = false;
-    }
-    println!("Antes del break");
-    break;
-    println!("Despues del break");
-    varx = varx + 1;
-}
-
-
-
-
-let varx = 20;
-let mut vary = 2;
-while vary <= varx {
-        println!("{}",vary);
-        if vary == 12{
-        if true{
-            if true{
-                if true{
-                    if true{
-                        println!("Rompo el while");
-                        break; 
-                    }
-                }
-            }
-        }
-    }
-    vary = vary + 1;
-}
-
-
-let varx = 20;
-let mut vary = 2;
-while vary <= varx {
-        println!("{}",vary);
-        if vary == 12{
-        if true{
-            if true{
-                if true{
-                    if true{
-                        println!("Rompo el while");
-                        break; 
-                    }
-                }
-            }
-        }
-    }
-    vary = vary + 1;
-}
-
-
-
-let varx = 20;
-let mut vary = 2;
-while vary <= varx {
-    println!("{}",vary);
-    
-    if true{
-        if true{
-            println!("Rompo el while");
-            break;
-        } 
-    }                
-    vary = vary + 1;
-}
-
-println!("hola mundo!!!!");
-
-
-
-let mut a: i64 = 0;
-a = 2;
-while (a < 5) {
-    a = a + 1;
-    if a == 3 {
-        println!("a");
-        continue;
-    } else if a == 4 {
-        println!("b");
-        break;
-    }
-
-    println!("El valor de a es: {}, ", a);
-}
-
-println!("Se debió imprimir");
-
-
-let mut a: i64 = 3;
-let mut b: i64 = 3;
-println!("la suma es : {}",a+b);
-
-
-let mut a: i64 = 3;
-let mut b: String = 3.to_string();
-let mut c: i64 = -3;
-let mut e: f64 = 20.2.sqrt();
-let x = e.clone();
-println!("suma es : {}",x);
-
-
-
-for n in 1..4{
-    println!("{}",n);
-}
-println!("fin del ciclo for");
-
-
-let varx = 3;
-let mut vary = 0;
-let mut varz = 1;
-while vary <= varx {
-    println!("{}",vary);
-    if true{
-        if true{
-            if true{
-                while true{
-                    println!("^:)");
-                    if varz == 3{
-                        break;
-                    }
-                    varz = varz + 1;
-                }
-            }
-        }
-    }
-    varz = 1;
-    vary = vary + 1;
-}
-
-
-
-
-for i in 0..9 {
-
-    let mut output: String = "".to_string();
-    for j in 0..(10 - i) {
-        output = output + " ".to_string();
-    }
-
-    for k in 0..i {
-        output = output + "* ".to_string();
-    }
-    println!("{}",output);
-
-}
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -498,56 +205,33 @@ fn saludo(){
     println!("la suma es : {}",a+b);
 }
 
-saludo();
-
-fn saludo(){
-    println!("Hola mundo {}");
-}
-
-saludo();
-
-
-fn arbol(){
-    for i in 0..9 {
-
-        let mut output: String = "".to_string();
-        for j in 0..(10 - i) {
-            output = output + " ".to_string();
-        }
-
-        for k in 0..i {
-            output = output + "* ".to_string();
-        }
-        println!("{}",output);
-
-    }
-}
-
-arbol();
-
-
-
 
 
 
 fn suma(n1: i64, n2: i64) -> i64{
     println!("la suma es: {}", n1+n2);
     println!("La resta es: {}", n1-n2);
+    return 0;
 }
 
-let mut var1 = 6;
-suma(var1 - 2,3);
-println!("despues de la funcion suma");
 
-
-
-fn suma(n1: i64, n2: i64) -> i64{
+fn sumaRetorno(n1: i64, n2: i64) -> i64{
     return n1+n2;
 }
 
-let mut var1 = 6;
-suma(var1 - 2,3);
-println!("despues de la funcion suma");
+
+
+fn main() {
+    saludo();
+
+    let mut var1 = 6;
+    suma(var1 - 2,3);
+    println!("despues de la funcion suma");
+
+    let mut var1 = 6;
+    println!("{}",sumaRetorno(var1 - 2,3));
+    println!("despues de la funcion suma");
+}
 
 
 
@@ -583,10 +267,6 @@ fn arbol(n: i64){
     }
 }
 
-arbol(9);
-
-
-
 
 
 fn f(n: i64) -> i64 {
@@ -596,16 +276,6 @@ fn f(n: i64) -> i64 {
         return n * f(n - 1);
     }
 }
-
-println!("--------------------------");
-println!("----ARCHIVO RECURSIVOS----");
-println!("--------------------------");
-
-
-println!("Factorial de 6 {}",f(6));
-println!("Factorial de 4 {}",f(4));
-println!("Factorial de 3 {}",f(3));
-
 
 
 
@@ -621,258 +291,315 @@ fn ack(m: i64, n: i64) -> i64 {
 }
 
 
-println!("");
-println!("Ackerman de 2,0 {}",ack(2,0));
+
+fn main() {
 
 
+    println!("PINTANDO UN ARBOLITO");
+    arbol(9);
 
 
+    println!("--------------------------");
+    println!("----ARCHIVO RECURSIVOS----");
+    println!("--------------------------");
+
+    
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let mut a: i64 = 909;
-
-    println!("=======================================================================");
-    println!("==================================IF===================================");
-    println!("=======================================================================");
-
-    if (a > 50) {
-        println!("IF CORRECTO");
-    }else if (a == 56) {
-        println!("IF INCORRECTO");
-    } else {
-        println!("IF INCORRECTO");
-    }
+    println!("Factorial de 6 {}",f(6));
+    println!("Factorial de 4 {}",f(4));
+    println!("Factorial de 3 {}",f(3));
+    println!("");
 
     println!("");
-    println!("=======================================================================");
-    println!("=============================IFs ANIDADOS==============================");
-    println!("=======================================================================");
-    let aux: i64 = 10;
-    if aux > 0 {
-        println!("PRIMER IF CORRECTO");
-        if true && (aux == 1) {
-            println!("SEGUNDO IF INCORRECTO");
-        } else if aux > 10 {
-            println!("SEGUNDO IF INCORRECTO");
-        } else {
-            println!("SEGUNDO IF CORRECTO");
-        }
-    }else if aux <= 3 {
-        println!("PRIMER IF INCORRECTO");
-        if true && (aux == 1) {
-            println!("SEGUNDO IF INCORRECTO");
-        } else if aux > 10 {
-            println!("SEGUNDO IF INCORRECTO");
-        } else {
-            println!("SEGUNDO IF CORRECTO");
-        }
-    } else if aux == a {
-        println!("PRIMER IF INCORRECTO");
-        if true && (aux == 1) {
-            println!("SEGUNDO IF INCORRECTO");
-        } else if aux > 10 {
-            println!("SEGUNDO IF INCORRECTO");
-        } else {
-            println!("SEGUNDO IF CORRECTO");
-        }
-    }
+    println!("Ackerman de 3,0 {}",ack(3,0));
+    println!("Ackerman de 2,8 {}",ack(2,8));
+    println!("Ackerman de 2,1 {}",ack(2,1));
+}
 
-    println!("");
-    println!("=======================================================================");
-    println!("=================================WHILE=================================");
-    println!("=======================================================================");
 
-    let mut index: i64 = 0;
 
-    while (index >= 0) {
 
-        if (index == 0) {
-            index = index + 100;
-        } else if (index > 50) {
-            index = index / 2 - 25;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fn main() {
+
+    let mut a: i64 = 909;
+
+        println!("=======================================================================");
+        println!("==================================IF===================================");
+        println!("=======================================================================");
+
+        if (a > 50) {
+            println!("IF CORRECTO");
+        }else if (a == 56) {
+            println!("IF INCORRECTO");
         } else {
-            index = (index / 2) - 1;
+            println!("IF INCORRECTO");
         }
 
-        println!("{}",index);
-    }
+        println!("");
+        println!("=======================================================================");
+        println!("=============================IFs ANIDADOS==============================");
+        println!("=======================================================================");
+        let aux: i64 = 10;
+        if aux > 0 {
+            println!("PRIMER IF CORRECTO");
+            if true && (aux == 1) {
+                println!("SEGUNDO IF INCORRECTO");
+            } else if aux > 10 {
+                println!("SEGUNDO IF INCORRECTO");
+            } else {
+                println!("SEGUNDO IF CORRECTO");
+            }
+        }else if aux <= 3 {
+            println!("PRIMER IF INCORRECTO");
+            if true && (aux == 1) {
+                println!("SEGUNDO IF INCORRECTO");
+            } else if aux > 10 {
+                println!("SEGUNDO IF INCORRECTO");
+            } else {
+                println!("SEGUNDO IF CORRECTO");
+            }
+        } else if aux == a {
+            println!("PRIMER IF INCORRECTO");
+            if true && (aux == 1) {
+                println!("SEGUNDO IF INCORRECTO");
+            } else if aux > 10 {
+                println!("SEGUNDO IF INCORRECTO");
+            } else {
+                println!("SEGUNDO IF CORRECTO");
+            }
+        }
 
-    println!("");
-    println!("=======================================================================");
-    println!("================================WHILE-2================================");
-    println!("=======================================================================");
+        println!("");
+        println!("=======================================================================");
+        println!("=================================WHILE=================================");
+        println!("=======================================================================");
 
-    index = -2;
-    index = index + 1;
+        let mut index: i64 = 0;
 
-    while (index != 12) {
+        while (index >= 0) {
+
+            if (index == 0) {
+                index = index + 100;
+            } else if (index > 50) {
+                index = index / 2 - 25;
+            } else {
+                index = (index / 2) - 1;
+            }
+
+            println!("{}",index);
+        }
+
+        println!("");
+        println!("=======================================================================");
+        println!("================================WHILE-2================================");
+        println!("=======================================================================");
+
+        index = -2;
         index = index + 1;
-        if (index == 0 || index == 1 || index == 11 || index == 12) {
-            println!("*********************************************************************************************************");
-        } else if (index == 2) {
-            println!("**********  ***************  ******                 ******                 ******              **********");
-        } else if (index >= 3 && index <= 5) {
-            println!("**********  ***************  ******  *********************  *************  ******  **********************");
-        } else if (index == 6) {
-            println!("**********  ***************  ******                 ******                 ******  **********************");
-        } else if (index >= 7 && index <= 9) {
-            println!("**********  ***************  ********************   ******  *************  ******  **********************");
-        } else if (index == 10) {
-            println!("**********                   ******                 ******  *************  ******              **********");
-        }
-    }
 
-    println!("");
-    println!("=======================================================================");
-    println!("=============================TRANSFERENCIA=============================");
-    println!("=======================================================================");
-
-    a = -1;
-    while (a < 5) {
-        a = a + 1;
-        if a == 3 {
-            println!("a");
-            continue;
-        } else if a == 4 {
-            println!("b");
-            break;
+        while (index != 12) {
+            index = index + 1;
+            if (index == 0 || index == 1 || index == 11 || index == 12) {
+                println!("*********************************************************************************************************");
+            } else if (index == 2) {
+                println!("**********  ***************  ******                 ******                 ******              **********");
+            } else if (index >= 3 && index <= 5) {
+                println!("**********  ***************  ******  *********************  *************  ******  **********************");
+            } else if (index == 6) {
+                println!("**********  ***************  ******                 ******                 ******  **********************");
+            } else if (index >= 7 && index <= 9) {
+                println!("**********  ***************  ********************   ******  *************  ******  **********************");
+            } else if (index == 10) {
+                println!("**********                   ******                 ******  *************  ******              **********");
+            }
         }
 
-        println!("El valor de a es: {}, ", a);
+        println!("");
+        println!("=======================================================================");
+        println!("=============================TRANSFERENCIA=============================");
+        println!("=======================================================================");
+
+        a = -1;
+        while (a < 5) {
+            a = a + 1;
+            if a == 3 {
+                println!("a");
+                continue;
+            } else if a == 4 {
+                println!("b");
+                break;
+            }
+
+            println!("El valor de a es: {}, ", a);
+        }
+
+        println!("Se debió imprimir");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fn main(){
+    // paso 1    
+    struct Carro {
+        placa : String,
+        color : String
     }
 
-    println!("Se debió imprimir");
+    // paso 2 construir un struct
+    // paso 3 guardar en una variable
 
+    let mut c1 = Carro {placa:"090pl0", color:"gris"};
+    println!("{}", c1.placa);
+    println!("{}", c1.color);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// paso 1    
-struct Carro {
-    placa : String,
-    color : String
-}
-
-// paso 2 construir un struct
-// paso 3 guardar en una variable
-
-let mut c1 = Carro {placa:"090pl0", color:"gris"};
-println!("{}", c1.placa);
-println!("{}", c1.color);
-
-c1.placa = "NUEVA PLACA";
-c1.color = "cafe".to_string(); 
-println!("{}", c1.placa);
-println!("{}", c1.color);
-
-
-
-
-
-
-
-
-// si lo crea 
-// creacion de los modelos de los struct
-
-struct Carro{
-    motor: String,
-    cilindraje: i64
-}
-
-struct Persona{
-    nombre: String,
-    anios: i64,
-    carro_: Carro
+    c1.placa = "NUEVA PLACA";
+    c1.color = "cafe".to_string(); 
+    println!("{}", c1.placa);
+    println!("{}", c1.color);
 }
 
 
-//asignacion 
-// = bildStruct 
 
 
-let mut persona = Persona{
-    nombre: "Mike".to_string(),
-    anios: 15,
-    carro_: Carro {
-        motor: "Grande".to_string(),
-         cilindraje: 1500
+
+
+
+fn main(){
+    // si lo crea 
+    // creacion de los modelos de los struct
+
+    struct Carro{
+        motor: String,
+        cilindraje: i64
     }
-};
+
+    struct Persona{
+        nombre: String,
+        anios: i64,
+        carro_: Carro
+    }
 
 
-let mut c1 : Carro = Carro{motor: "Grande".to_string(),cilindraje: 1500};
+    //asignacion 
+    // = bildStruct 
 
 
-println!("{}", persona.nombre);
-println!("{}", persona.anios);
-println!("{}", persona.carro_.motor);
-println!("{}", persona.carro_.cilindraje);
+    let mut persona = Persona{
+        nombre: "Mike".to_string(),
+        anios: 15,
+        carro_: Carro {
+            motor: "Grande".to_string(),
+            cilindraje: 1500
+        }
+    };
 
 
+    let mut c1 : Carro = Carro{motor: "Grande".to_string(),cilindraje: 1500};
 
 
+    println!("{}", persona.nombre);
+    println!("{}", persona.anios);
+    println!("{}", persona.carro_.motor);
+    println!("{}", persona.carro_.cilindraje);
 
-
-
-
-
-
-struct Carro{
-    motor: String,
-    cilindraje: i64
 }
 
 
-let mut c1 : Carro = Carro{motor: "Grande".to_string(), cilindraje: 1500};
+
+
+
+fn main(){
+	struct Chasis{
+	    material: String
+	}
+	
+	struct Carro{
+	    marca: String,
+	    modelo: String,
+	    chasis: Chasis
+	}
+	
+	struct Persona{
+	    nombre: String,
+	    anios: i64,
+	    carro: Carro
+	}
+	
+	let varx = 3;
+	let mut vary = 0;
+	let mut varz = 1;
+	while vary <= varx {
+	    println!("{}",vary);
+	    if true{
+	        if true{
+	            if true{
+	                while true{
+	                    println!("^:)");
+	                    if varz == 3{
+	                        break;
+	                    }
+	                    varz = varz + 1;
+	                }
+	            }
+	        }
+	    }
+	    varz = 1;
+	    vary = vary + 1;
+	}
+	
+	let mut persona = Persona{
+	    nombre: "Mike".to_string(),
+	    anios: 30,
+	    carro: Carro{
+	                marca: "Toyota".to_string(), modelo: "Tercel".to_string(), chasis: Chasis{material: "Aluminio".to_string()}
+	         }
+	};
+
+	println!("{}",persona.carro.marca);
+	println!("{}",persona.carro.marca);
+	println!("{}",persona.carro.chasis.material);
+	println!("{}",persona.carro.chasis.material);
+}
 
 
 
@@ -883,13 +610,7 @@ let mut c1 : Carro = Carro{motor: "Grande".to_string(), cilindraje: 1500};
 
 
 
-
-
-
-
-
-
-
+fn main() {
 
     //Agregar lo que consideren:
     
@@ -930,6 +651,7 @@ let mut c1 : Carro = Carro{motor: "Grande".to_string(), cilindraje: 1500};
     println!("Raiz 1: {}",(4 as f64).sqrt());
     println!("Cadena Copia: {}",cadenacopia);
 
+}
 
 
 
@@ -942,21 +664,17 @@ let mut c1 : Carro = Carro{motor: "Grande".to_string(), cilindraje: 1500};
 
 
 
-// manejo de arreglos
-[1,[2,3],4,6,[1,2,43]]
-
-[1,2,3]
-[1,2,3,3+3,id."hola".to_string()]
 
 
+fn main() {
+    let  a = [1,2,3] ;
+    let  b = [1,2,3,[3,3]] ;
+    let mut c :[i64;2] = [1,2,3];
 
-let  a = [1,2,3] ;
-let  b = [1,2,3,[3,3]] ;
-let mut c :[i64;2] = [1,2,3];
 
-
-println!("{}", b[2]);
-println!("{}", a[2]);
+    println!("{}", b[2]);
+    println!("{}", a[2]);
+}
 
 
 

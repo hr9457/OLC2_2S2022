@@ -1,6 +1,7 @@
 import sys
 import tkinter as tk
 from tkinter import *
+from app.TablaSimbolos import *
 
 # Importacion del Analizador
 from Compiler import Sintactico
@@ -19,6 +20,10 @@ class Aplicacion:
         self.ventana.geometry(f'{self.ancho}x{self.alto}')
         self.ventana.title('OLC2-PROYECTO1')
         self.ventana['bg'] = '#49A'
+
+
+        # utilidades para generar reportes
+        self.tablaSimbolos = []
 
         # llamado al menu principal
         self.crearMenu()
@@ -46,8 +51,11 @@ class Aplicacion:
         # print(entrada)
         result = Sintactico.analizar(entrada)
         # print(result)
+
+        self.tablaSimbolos = result[1]
+
         self.textAreaSalida.delete(1.0, END)
-        self.textAreaSalida.insert(1.0, result)
+        self.textAreaSalida.insert(1.0, result[0])
         
 
 
@@ -66,11 +74,21 @@ class Aplicacion:
     def reporteErrores(self):
         print('Reporte de error')
 
+
+
+
+
     def reporteSemantico(self):
         print('Reporte de erores Semanticos')
 
+
+
+
+
     def tablaSimbolo(self):
-        print('Reporte de tabla de simbolos')
+        generarTablaSimbolos(self.tablaSimbolos)
+
+
 
     def tablaBD(self):
         print('Reporte de taba de BD')

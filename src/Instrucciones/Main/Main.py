@@ -18,7 +18,7 @@ class FuncionMain(Instruccion):
         for instruccion in self.instrucciones:
             retorno = instruccion.ejecutar(entorno)
 
-            if retorno != None:
+            if retorno != None and isinstance(retorno, str):
                 resultInstrucciones += retorno
 
 
