@@ -11,13 +11,14 @@ from src.Error.Error import Error
 class Relacional(Expresion):
 
 
-    def __init__(self, fila, columna, leftExp, operador, rightExp):
+    def __init__(self, fila, columna,leftExp, operador, rightExp):
         self.fila = fila
         self.columna = columna
         self.leftExp = leftExp
         self.operador = operador
         self.rightExp = rightExp
         self.tipo = None
+        # self.tablaErorres = tablaErorres
 
 
     def ejecutar(self, entorno):
@@ -235,6 +236,9 @@ class Relacional(Expresion):
 
 
         else:
+            # # para reportes
+            # self.tablaErrores.append(['RELACIONAL: Error operador relacional',entorno.nombre,self.fila,self.columna])
+            # # --------------------------------
             return Error('RELACIONAL: Error operador relacional')
 
 

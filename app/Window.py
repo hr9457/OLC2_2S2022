@@ -2,6 +2,8 @@ import sys
 import tkinter as tk
 from tkinter import *
 from app.TablaSimbolos import *
+from app.Errores import *
+
 
 # Importacion del Analizador
 from Compiler import Sintactico
@@ -24,6 +26,8 @@ class Aplicacion:
 
         # utilidades para generar reportes
         self.tablaSimbolos = []
+        self.tablaErrores = []
+
 
         # llamado al menu principal
         self.crearMenu()
@@ -53,6 +57,7 @@ class Aplicacion:
         # print(result)
 
         self.tablaSimbolos = result[1]
+        self.tablaErrores = result[2]
 
         self.textAreaSalida.delete(1.0, END)
         self.textAreaSalida.insert(1.0, result[0])
@@ -79,7 +84,7 @@ class Aplicacion:
 
 
     def reporteSemantico(self):
-        print('Reporte de erores Semanticos')
+        generarTablaErrores(self.tablaErrores)
 
 
 
@@ -87,6 +92,8 @@ class Aplicacion:
 
     def tablaSimbolo(self):
         generarTablaSimbolos(self.tablaSimbolos)
+
+
 
 
 
@@ -112,9 +119,8 @@ class Aplicacion:
         # subMenu para menjo de reportes
         subMenuReportes = Menu(menuPrincipal, tearoff=False)
         subMenuReportes.add_command(label='Tabla Simbolos', command=self.tablaSimbolo)
-        subMenuReportes.add_command(label='Tabla de Errores', command=self.reporteErrores)
+        subMenuReportes.add_command(label='Tabla de Errores', command=self.reporteSemantico)
         subMenuReportes.add_command(label='Tabla BD', command=self.tablaBD)
-        subMenuReportes.add_command(label='Errores Semanticos', command=self.reporteSemantico)
 
         menuPrincipal.add_cascade(menu=subMenuArchivo, label='Archivo')
         menuPrincipal.add_cascade(menu=subMenuReportes, label='Reportes')

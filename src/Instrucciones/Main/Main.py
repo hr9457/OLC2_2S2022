@@ -17,6 +17,7 @@ class FuncionMain(Instruccion):
         # ejecucion de todas las intrucciones del metodo main
         for instruccion in self.instrucciones:
             retorno = instruccion.ejecutar(entorno)
+            print('paro')
 
             if retorno != None and isinstance(retorno, str):
                 resultInstrucciones += retorno

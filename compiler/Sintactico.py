@@ -82,6 +82,8 @@ from src.Error.Error import Error
 
 # manejo de reporteria
 tablaSimbolos = []
+tablaErrores = []
+
 
 
 
@@ -393,7 +395,7 @@ def p_instruccion_parametro(p):
 def p_llamado_funcion(p):
     #       0          1            2                3            4
     ' llamadofuncion : ID PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
-    p[0] = GetFuncion(0, 0, None, p[1])
+    p[0] = GetFuncion(p.lineno(2), columnToken(input, p.slice[2]), None, p[1], tablaErrores)
 
 
 
@@ -403,7 +405,7 @@ def p_llamado_funcion(p):
 def p_llamado_funcion_parametros(p):
     #       0          1            2                3            4                   5
     ' llamadofuncion : ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO PUNTOCOMA '
-    p[0] = GetFuncion(0, 0, p[3], p[1])
+    p[0] = GetFuncion(p.lineno(2), columnToken(input, p.slice[2]), p[3], p[1], tablaErrores)
 
 
 
@@ -625,6 +627,10 @@ def p_alter_value_struct(p):
 
 
 
+
+
+
+
 # ***************************
 #   IMPRESION PERMITIDAS
 # ***************************
@@ -743,6 +749,11 @@ def p_print_accesStruct(p):
 
 
 
+
+
+
+
+
 # ***************************
 #  DECLARACION DE VARIABLES
 # ***************************
@@ -753,7 +764,7 @@ def p_variables_mut_tipo(p):
     '''  variable   :   LET MUT ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
 
     # print(p[5])
-    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[5], p[7], TipoMutable.MUTABLE ,tablaSimbolos)
+    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[5], p[7], TipoMutable.MUTABLE ,tablaSimbolos, tablaErrores)
 
 
 
@@ -761,7 +772,7 @@ def p_variables_mut_tipo(p):
 def p_variables_mut(p):
     #     0              1   2   3   4    5      6    
     '''  variable   :   LET MUT ID IGUAL exp PUNTOCOMA  '''
-    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[3], None, p[5], TipoMutable.MUTABLE ,tablaSimbolos)
+    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[3], None, p[5], TipoMutable.MUTABLE ,tablaSimbolos, tablaErrores)
 
 
 
@@ -781,7 +792,9 @@ def p_variables_mut_struct(p):
             p[7])
         , 
         TipoMutable.MUTABLE,
-        tablaSimbolos)
+        tablaSimbolos,
+        tablaErrores
+        )
 
 
 
@@ -801,7 +814,8 @@ def p_variables_mut_tipo_struct(p):
             p[9])
         ,  
         TipoMutable.MUTABLE,
-        tablaSimbolos
+        tablaSimbolos,
+        tablaErrores
         )
 
 
@@ -816,7 +830,7 @@ def p_variables_mut_tipo_struct(p):
 def p_variables_tipo(p):
     #     0              1   2   3        4     5    6    7 
     '''  variable   :   LET ID DOSPUNTOS tipo IGUAL exp PUNTOCOMA  '''
-    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[6], TipoMutable.NOMUTABLE, tablaSimbolos)
+    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[6], TipoMutable.NOMUTABLE, tablaSimbolos, tablaErrores)
 
 
 
@@ -826,7 +840,7 @@ def p_variables_tipo(p):
 def p_variables(p):
     #     0              1  2  3      4     5       
     '''  variable   :   LET ID IGUAL exp PUNTOCOMA  '''
-    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[4], TipoMutable.NOMUTABLE, tablaSimbolos)
+    p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[4], TipoMutable.NOMUTABLE, tablaSimbolos, tablaErrores)
 
 
 
@@ -846,7 +860,9 @@ def p_variables_tipo_struct(p):
             p[6])
         , 
         TipoMutable.NOMUTABLE,
-        tablaSimbolos)
+        tablaSimbolos,
+        tablaErrores
+        )
 
 
 
@@ -868,7 +884,8 @@ def p_variables_mut_tipo_struct(p):
             p[8])
         ,  
         TipoMutable.MUTABLE,
-        tablaSimbolos
+        tablaSimbolos,
+        tablaErrores
         )
 
 
@@ -902,7 +919,9 @@ def p_variables_mut_tipo_struct(p):
 def p_asignacion_variables(p):
     #    0         1   2     3    4
     ' asignacion : ID IGUAL exp PUNTOCOMA '
-    p[0] = Asignacion(0,0, p[1], p[3])
+    p[0] = Asignacion(p.lineno(2), columnToken(input, p.slice[2]), p[1], p[3], tablaErrores)
+
+
 
 
 
@@ -928,7 +947,7 @@ def p_asignacion_variables(p):
 def p_instruccion_if(p):
     #   0              1   2        3             4                5             6
     ' instruccionif : IF exp LLAVEIZQUIERDO   instrucciones   LLAVEDERECHO  instruccionElse'
-    p[0] = InstruccionIf(0, 0, p[2], p[4], p[6])
+    p[0] = InstruccionIf(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4], p[6])
 
 
 
@@ -938,7 +957,7 @@ def p_instruccion_if(p):
 def p_instruccion_else(p):
     #    0                 1        2           3              4        
     ''' instruccionElse : ELSE LLAVEIZQUIERDO instrucciones LLAVEDERECHO '''    
-    p[0] = InstruccionElse(0, 0, p[3])
+    p[0] = InstruccionElse(p.lineno(1), columnToken(input, p.slice[1]),  p[3])
 
 
 
@@ -969,13 +988,17 @@ def p_instruccion_else_if(p):
 
 
 
+
+
 # ****************************************
 #  INSTRUCCIONE PARA MANEJO DEL WHILE
 # ****************************************
 def p_instruccion_while(p):
     #    0                1     2        3             4          5
     ' instruccionWhile : WHILE exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = While(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[4])
+    p[0] = While(p.lineno(1), columnToken(input, p.slice[1]), tablaErrores, p[2], p[4])
+
+
 
 
 
@@ -1017,7 +1040,7 @@ def p_instruccion_loop(p):
 def p_instruccion_forin(p):
     #    0              1   2  3   4   5     6     7       8             9             10 
     ' instruccionFor : FOR exp IN exp PUNTO PUNTO exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
-    p[0] = Forin(0, 0, p[2], p[4], p[7], p[9])
+    p[0] = Forin(0, 0, tablaErrores, p[2], p[4], p[7], p[9])
 
 
 
@@ -1079,9 +1102,12 @@ def p_elemento_arreglo(p):
 
 
 
-
-
 # def modificar datos de un arreglo
+
+
+
+
+
 
 
 
@@ -1187,47 +1213,48 @@ def p_aritmetica(p):
 
     if p[2] == '+':
         # p[0] = p[1] + p[3]
-        p[0] = Aritmetica(0, 0, p[1], TipoOperador.MAS ,p[3])
+        p[0] = Aritmetica(0, 0,  p[1], TipoOperador.MAS ,p[3])
 
     elif p[2] == '-':
         # p[0] = p[1] - p[3]
-        p[0] = Aritmetica(0, 0, p[1], TipoOperador.MENOS ,p[3])
+        p[0] = Aritmetica(0, 0,  p[1], TipoOperador.MENOS ,p[3])
 
     elif p[2] == '*':
         # p[0] = p[1] * p[3]
-        p[0] = Aritmetica(0, 0, p[1], TipoOperador.POR, p[3])
+        p[0] = Aritmetica(0, 0,  p[1], TipoOperador.POR, p[3])
         
     elif p[2] == '/':
         # p[0] = p[1] / p[3]
-        p[0] = Aritmetica(0, 0, p[1], TipoOperador.DIV, p[3])
+        p[0] = Aritmetica(0, 0,  p[1], TipoOperador.DIV, p[3])
+
 
     elif p[2] == '>':
         # p[0] = p[1] > p[3]
-        p[0] = Relacional(0, 0, p[1], TipoRelacional.MAYORQUE, p[3])
+        p[0] = Relacional(0, 0,  p[1], TipoRelacional.MAYORQUE, p[3])
 
     elif p[2] == '<':
         # p[0] = p[1] < p[3]
-        p[0] = Relacional(0, 0, p[1], TipoRelacional.MENORQUE, p[3])
+        p[0] = Relacional(0, 0,  p[1], TipoRelacional.MENORQUE, p[3])
 
 
     elif p[2] == '>=':
         # p[0] = p[1] >= p[3]
-        p[0] = Relacional(0, 0, p[1], TipoRelacional.MAYORIGUALQUE, p[3])
+        p[0] = Relacional(0, 0,  p[1], TipoRelacional.MAYORIGUALQUE, p[3])
 
 
     elif p[2] == '<=':
         # p[0] = p[1] <= p[3]
-        p[0] = Relacional(0, 0, p[1], TipoRelacional.MENORIGUALQUE, p[3])
+        p[0] = Relacional(0, 0,  p[1], TipoRelacional.MENORIGUALQUE, p[3])
 
 
     elif p[2] == '==':
         # p[0] = p[1] == p[3]
-        p[0] = Relacional(0, 0, p[1], TipoRelacional.IGUALDAD, p[3])
+        p[0] = Relacional(0, 0,  p[1], TipoRelacional.IGUALDAD, p[3])
 
 
     elif p[2] == '!=':
         # p[0] = p[1] == p[3]
-        p[0] = Relacional(0, 0, p[1], TipoRelacional.DIFERENTE, p[3])
+        p[0] = Relacional(0, 0,  p[1], TipoRelacional.DIFERENTE, p[3])
 
 
     elif p[2] == '||':
@@ -1336,13 +1363,15 @@ def p_expresion(p):
 # exp para funciones
 def p_expresion_llamada_funcion(p):
     ' exp : ID PARENTESISIZQUIERDO PARENTESISDERECHO '
-    p[0] = GetFuncion(0, 0, None, p[1])
+    p[0] = GetFuncion(p.lineno(2), columnToken(input, p.slice[2]), None, p[1], tablaErrores)
 
 
 
 def p_expresion_llamada_funcion_parametros(p):
     ' exp : ID PARENTESISIZQUIERDO parametrosllamado PARENTESISDERECHO '
-    p[0] = GetFuncion(0, 0, p[3], p[1])
+    p[0] = GetFuncion(p.lineno(2), columnToken(input, p.slice[2]), p[3], p[1], tablaErrores)
+
+
 
 
 
@@ -1363,17 +1392,23 @@ def p_expresion_arreglo(p):
 
 
 
+
+# exp para acceso hacia los arreglos
 # expresion para impresion de arreglos
 # exp [ exp ]
+# exp [exp][exp]
+
 def p_expresion_acceso_arreglo(p):
     # 0      1         2         3        4
-    ' exp : exp CORCHETEDERECHO exp CORCHETEIZQUIERDO  '
+    ' exp : exp CORCHETEDERECHO exp CORCHETEIZQUIERDO '
     p[0] = AcessArreglo(
         p.lineno(2),
         columnToken(input, p.slice[2]),
+        tablaErrores,
         p[1],
         p[3]
     )
+
 
 
 
@@ -1495,7 +1530,7 @@ def analizar(entrada):
         if result != None and isinstance(result, str):
             salida += str(result) + "\n"
 
-    return salida, tablaSimbolos
+    return salida, tablaSimbolos, tablaErrores
 
 
 

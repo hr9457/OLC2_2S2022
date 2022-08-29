@@ -25,6 +25,9 @@ class Logico(Expresion):
             # ejecutamos solo el nodo izquierdo
             nodoIzquierda = self.leftExp.ejecutar(entorno)
 
+            if nodoIzquierda.tipo == TipoExpresion.ID:
+                nodoIzquierda = entorno.getVariable(nodoIzquierda.valor)
+
             #  evaluacion del tipo de operacion not
             if self.operador == TipoLogico.NOT:
 

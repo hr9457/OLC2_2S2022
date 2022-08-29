@@ -8,7 +8,7 @@ from src.Interfaces.TipoExpresion import TipoExpresion
 
 class Forin(Instruccion):
 
-    def __init__(self, fila, columna, variable, inicio, final, instrucciones):
+    def __init__(self, fila, columna, tablaErrores, variable, inicio, final, instrucciones):
         self.fila = fila
         self.columna = columna
         self.variable = variable
@@ -16,6 +16,7 @@ class Forin(Instruccion):
         self.final = final
         self.instrucciones = instrucciones
         self.retornoForin = ''
+        self.tablaErrores = tablaErrores
 
 
     def ejecutar(self, entorno):
@@ -108,7 +109,9 @@ class Forin(Instruccion):
             return self.retornoForin
 
         else:
-            print('FORIN : error paramentros')
+            # para reportes
+            self.tablaErrores.append(['FORIN : error paramentros',entorno.nombre,self.fila,self.columna])
+            # --------------------------------
             return 'FORIN : error paramentros'
 
 

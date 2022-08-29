@@ -6,11 +6,12 @@ class InstruccionElse(Expresion):
 
 
     # constructor
-    def __init__(self, fila, columna, instrucciones=None):
+    def __init__(self, fila, columna,instrucciones=None):
         self.fila = fila
         self.columna = columna
         self.instrucciones = instrucciones
         self.resultadoElse = ''
+        # self.tablaErrores = tablaErrores
         
 
 

@@ -11,11 +11,12 @@ class Asignacion(Instruccion):
 
 
 
-    def __init__(self, fila, columna, identificador, expresion):
+    def __init__(self, fila, columna, identificador, expresion, tablaErrores):
         self.fila = fila
         self.columna = columna
         self.identificador = identificador
         self.expresion = expresion
+        self.tablaErrores = tablaErrores
 
 
 
@@ -59,12 +60,16 @@ class Asignacion(Instruccion):
 
 
             else:
-                print('variable no mutable')
+                # para reportes
+                self.tablaErrores.append(['ASIGNACION: Error asignar valor',entorno.nombre,self.fila,self.columna])
+                # --------------------------------
                 return 'ASIGNACION: Error asignar valor'
 
 
         else:
-            print('ASIGNACION: Error asignar valor')
+            # para reportes
+            self.tablaErrores.append(['ASIGNACION: Error asignar valor',entorno.nombre,self.fila,self.columna])
+            # --------------------------------
             return 'ASIGNACION: Error asignar valor'
 
 

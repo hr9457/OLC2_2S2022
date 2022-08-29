@@ -5,3 +5,4 @@ class TipoOperador(Enum):
     MENOS = 2
     POR = 3
     DIV = 4
+    PORCENTAJE = 5

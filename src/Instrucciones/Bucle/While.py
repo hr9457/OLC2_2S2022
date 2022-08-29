@@ -11,11 +11,12 @@ from src.Expresiones.Primitivo import Primitivo
 
 class While(Instruccion):
 
-    def __init__(self, fila, columna, expresion, nodo=None):
+    def __init__(self, fila, columna, tablaErrores,expresion, nodo=None):
         self.fila = fila
         self.columna = columna
         self.expresion = expresion
         self.nodo = nodo
+        self.tablaErrores = tablaErrores
 
 
     def ejecutar(self, entorno):
@@ -75,5 +76,7 @@ class While(Instruccion):
 
         # la expresion no sea de tipo bool
         else:
-            print('Condicion no es tipo bool')
+            # para reportes
+            self.tablaErrores.append(['WHILE: Condicion no es tipo bool',entorno.nombre,self.fila,self.columna])
+            # --------------------------------
             return Error('WHILE: Condicion no es tipo bool').ejecutar()

@@ -8,12 +8,13 @@ from src.Interfaces.TipoExpresion import TipoExpresion
 
 class GetFuncion(Instruccion):
 
-    def __init__(self, fila, columna, listadoParametros=None, identificador=None):
+    def __init__(self, fila, columna, listadoParametros, identificador, tablaErrores):
         self.fila = fila
         self.columna = columna
         self.listadoParametros = listadoParametros
         self.identificador = identificador
         self.retornoFuncion = ''
+        self.tablaErrores = tablaErrores
         
 
 
@@ -32,8 +33,12 @@ class GetFuncion(Instruccion):
             parametrosFuncion = funcion.listaParametros
             listaInstrucciones = funcion.listaInstrucciones
         else:
+
+            # para reportes
+            self.tablaErrores.append([f'{self.identificador} no encontrada',entorno.nombre,self.fila,self.columna])
+            # --------------------------------
             return f'Fn --> {self.identificador} no encontrada'
-        # --------------------------------------------------------
+            # --------------------------------------------------------
 
 
 
@@ -63,9 +68,15 @@ class GetFuncion(Instruccion):
                     contadorParametros += 1
 
                 else:
-                   return f'FN -> {self.identificador}() error tipo parametros ' 
+                    # para reportes
+                    self.tablaErrores.append([f'FN -> {self.identificador}() error tipo parametros',entorno.nombre,self.fila,self.columna])
+                    # --------------------------------
+                    return f'FN -> {self.identificador}() error tipo parametros ' 
 
         elif parametrosFuncion is not None and len(parametrosFuncion) != len(self.listadoParametros):
+            # para reportes
+            self.tablaErrores.append(['FN -> {self.identificador}() error parametros ',entorno.nombre,self.fila,self.columna])
+            # --------------------------------
             return f'FN -> {self.identificador}() error parametros '
 
       
@@ -109,6 +120,9 @@ class GetFuncion(Instruccion):
             if funcion.tipoFuncion is None:
                 return self.retornoFuncion
             else:
+                # para reportes
+                self.tablaErrores.append(['FN -> {self.identificador}() error tipo de retorno',entorno.nombre,self.fila,self.columna])
+                # --------------------------------
                 return f'FN -> {self.identificador}() error tipo de retorno'
 
 
@@ -120,7 +134,10 @@ class GetFuncion(Instruccion):
 
 
         else:
-            return f'FN -> {self.identificador}() error instrucciones '
+            # para reportes
+            self.tablaErrores.append([f'FN -> {self.identificador}() error instrucciones',entorno.nombre,self.fila,self.columna])
+            # --------------------------------
+            return f'FN -> {self.identificador}() error instrucciones'
 
 
 

@@ -14,13 +14,14 @@ from src.Error.Error import Error
 class Aritmetica(Expresion):
 
     # constructor usando el constructor de la clase Nodo
-    def __init__(self, fila, columna, lefExp, operador ,rigthExp):
+    def __init__(self, fila, columna,lefExp, operador ,rigthExp):
         self.fila = fila 
         self.columna = columna
         self.leftExp = lefExp
         self.operador = operador
         self.rigthExp = rigthExp
         self.tipo = None
+        # self.tablaErrores = tablaErrores
 
     def ejecutar(self, entorno):
 
@@ -90,6 +91,12 @@ class Aritmetica(Expresion):
                     self.tipo = TipoExpresion.INTEGER
                     return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, int(result))
 
+                # mod
+                elif self.operador == TipoOperador.DIV:
+                    result = nodoIzquierda.valor % nodoDerecha.valor
+                    self.tipo = TipoExpresion.INTEGER
+                    return Primitivo(self.fila, self.columna, TipoExpresion.INTEGER, int(result))
+
 
             # evaluacion de tipo de valor --> FLOAT
             if nodoIzquierda.tipo == TipoExpresion.FLOAT:
@@ -119,6 +126,12 @@ class Aritmetica(Expresion):
                     self.tipo = TipoExpresion.FLOAT
                     return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
 
+                # mod
+                elif self.operador == TipoOperador.DIV:
+                    result = nodoIzquierda.valor % nodoDerecha.valor
+                    self.tipo = TipoExpresion.FLOAT
+                    return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
+
 
             # evaluacion de tipo de valor --> FLOAT
             if nodoIzquierda.tipo == TipoExpresion.STRING:
@@ -135,6 +148,7 @@ class Aritmetica(Expresion):
 
         # caso para tipos diferentes   
         else:
-            # return Error('--> Aritmetica, Error operacion Aritmetica <-')
-            # print('--> Aritmetica, Error operacion Aritmetica <-')
+            # # para reportes
+            # self.tablaErrores.append(['Aritmetica, Error operacion Aritmetica <-',entorno.nombre,self.fila,self.columna])
+            # # --------------------------------
             return '--> Aritmetica, Error operacion Aritmetica <-'

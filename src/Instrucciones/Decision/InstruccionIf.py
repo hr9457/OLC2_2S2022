@@ -17,6 +17,7 @@ class InstruccionIf(Instruccion):
         self.nodo = nodo
         self.resultadoIf = ''
         self.resultadoElse = ''
+        # self.tablaErrores = tablaErrores
 
     def ejecutar(self, entorno):
 
@@ -102,5 +103,7 @@ class InstruccionIf(Instruccion):
 
 
         else:
-            print('Condicion no es de tipo bool')
+            # para reportes
+            # self.tablaErrores.append(['IF: Condicion no es de tipo bool',entorno.nombre,self.fila,self.columna])
+            # --------------------------------
             return 'IF: Condicion no es de tipo bool'

@@ -10,7 +10,7 @@ from src.Instrucciones.Arreglos.TipoArreglo import TipoArreglo
 class Declaracion(Instruccion):
 
     # constructor
-    def __init__(self, fila, columna, identificador, tipo, valor, mutabilidad, tablaSimbolos):
+    def __init__(self, fila, columna, identificador, tipo, valor, mutabilidad, tablaSimbolos, tablaErrores):
         self.fila = fila
         self.columna = columna
         self.identificador = identificador
@@ -18,6 +18,7 @@ class Declaracion(Instruccion):
         self.valor = valor
         self.mutabilidad = mutabilidad
         self.tablaSimbolos = tablaSimbolos
+        self.tablaErrores = tablaErrores
 
 
     # metodo ejecutar
@@ -144,17 +145,25 @@ class Declaracion(Instruccion):
                     return None
 
                 else:
-
+                    # para reportes
+                    self.tablaErrores.append([f'DECLARACION: Struct {self.tipo} no existe',entorno.nombre,self.fila,self.columna])
+                    # --------------------------------
                     return f'DECLARACION: Struct {self.tipo} no existe'
 
 
             else: 
+                # para reportes
+                self.tablaErrores.append(['DECLARACION: error tipos no coinciden para declaracion de variables',entorno.nombre,self.fila,self.columna])
+                # --------------------------------
                 return 'DECLARACION: error tipos no coinciden para declaracion de variables'
 
 
 
 
         else:
+            # para reportes
+            self.tablaErrores.append(['DECLARACION: error tipos para declaracion de variables',entorno.nombre,self.fila,self.columna])
+            # --------------------------------
             return 'DECLARACION: error tipos para declaracion de variables'
 
 

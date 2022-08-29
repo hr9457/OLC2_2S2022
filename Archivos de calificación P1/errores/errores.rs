@@ -1,4 +1,9 @@
 
+fn parametros_invalidos(x: i64) {
+    println!("{}",x)
+}
+
+
 fn main(){
     println!("{}",1+"cadena");
     println!("{}",x);
@@ -16,7 +21,7 @@ fn main(){
     let mut variable1: i64 = 23;
     let mut variable1: f64 = 23.98;
 
-    let mut prueba_tipo: &str = "Cadena";
+    let mut prueba_tipo: String = "Cadena";
     prueba_tipo = 87;
 
     println!(12/0);
@@ -25,6 +30,3 @@ fn main(){
     no_mutable = 8;
 }
 
-fn parametros_invalidos(x: i64) {
-    println!("{}",x)
-}

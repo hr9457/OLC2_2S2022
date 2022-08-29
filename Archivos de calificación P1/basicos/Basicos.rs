@@ -46,12 +46,12 @@ fn main() {
     if a > b || b < c {
         println!(">>>>>> Esto no debería de imprimirse");
     }else{
-        println!(">>>>>> Esto debería de imprimirse")
+        println!(">>>>>> Esto debería de imprimirse");
     }
     
     
     if a == b && j == k || 14 != c {
-        println!(">>>>>> Esto debería de imprimirse")
+        println!(">>>>>> Esto debería de imprimirse");
     }else{
         println!(">>>>>> Esto no debería de imprimirse");
     }
@@ -74,12 +74,12 @@ fn main() {
 
     let x1: i64 = 15;
 
-    if x1 % 2 == 0 {
-        println!(">>>>> numeroPar ingreso a if verdadero, {} es par",x1);
-    }
-    else {
-        println!(">>>>> numeroPar ingreso a if falso, {} no es par",x1);
-    }
+    // if x1 % 2 == 0 {
+    //     println!(">>>>> numeroPar ingreso a if verdadero, {} es par",x1);
+    // }
+    // else {
+    //     println!(">>>>> numeroPar ingreso a if falso, {} no es par",x1);
+    // }
 
 
 
@@ -91,12 +91,11 @@ fn main() {
     
     println!("");
     println!("*************PRUEBA DE NATIVAS");
-    println!(" valor de b: {:?}",b);
+    println!(" valor de b: {}",b);
     
-    println!(" valor absoluto1: {}",abs1.abs());
-    println!(" valor absoluto2: {}",abs2.abs());
+    //println!(" valor absoluto1: {}",abs1.abs());
+    //println!(" valor absoluto2: {}",abs2.abs());
     println!(" valor raiz1: {}",(raiz1 as f64).sqrt());
-    println!(" valor raiz2: {}",raiz2.sqrt());
     
 }
 
