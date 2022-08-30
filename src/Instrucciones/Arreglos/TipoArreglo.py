@@ -10,6 +10,7 @@ class TipoArreglo(Expresion):
         self.tipo = TipoExpresion.ARREGLO
         self.tipoArreglo = tipo
         self.exp = exp
+        self.mutabilidad = None
         self.tamanioMaxArreglo = None
         self.tipoExpArreglo = None
 

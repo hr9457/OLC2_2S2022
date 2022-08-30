@@ -60,6 +60,7 @@ from src.Instrucciones.Arreglos.ExpArreglo import ExpArreglo
 from src.Instrucciones.Arreglos.AcessArreglo import AcessArreglo
 from src.Instrucciones.Arreglos.ExpArreglo import ExpArreglo
 from src.Instrucciones.Arreglos.TipoArreglo import TipoArreglo
+from src.Instrucciones.Arreglos.ModificarValor import ModificarValorArreglo
 
 
 
@@ -241,8 +242,13 @@ def p_instruccion(p):
                     | funcionesParametros
                     | instruccionReturn
                     | instruccionStruct
-                    | alterValueStruct  '''
+                    | alterValueStruct
+                    | alterValueArray  '''
     p[0] = p[1]
+
+
+
+
 
 
 
@@ -280,6 +286,10 @@ def p_instruccion_return(p):
     #       0              1     2     3
     ' instruccionReturn : RETURN exp PUNTOCOMA '
     p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.RETURN, p[2])
+
+
+
+
 
 
 
@@ -1102,7 +1112,38 @@ def p_elemento_arreglo(p):
 
 
 
+
+
 # def modificar datos de un arreglo
+# alterar valores de un arreglo 
+def p_alter_value_arregle(p):
+    #     0             1   2      3    4              
+    ' alterValueArray : ID list IGUAL exp PUNTOCOMA '
+    p[0] = ModificarValorArreglo(
+        p.lineno(3),
+        columnToken(input, p.slice[3]),
+        tablaErrores,
+        p[1], #id
+        p[2], #lista
+        p[4]  #exp
+    )
+
+
+
+
+def p_list(p):
+    ' list : list CORCHETEDERECHO exp CORCHETEIZQUIERDO'
+    p[1].append(p[3])
+    p[0] = p[1]
+
+
+
+
+
+def p_list2(p):
+    ' list : CORCHETEDERECHO exp CORCHETEIZQUIERDO '
+    p[0] = [p[2]]
+
 
 
 

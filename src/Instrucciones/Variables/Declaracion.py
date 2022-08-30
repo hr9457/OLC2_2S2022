@@ -60,6 +60,7 @@ class Declaracion(Instruccion):
 
                 # aca estantodo el listado de los elementos del arreglo
                 # print(primitivo.listadoExpresiones)
+                primitivo.mutabilidad = self.mutabilidad
                 entorno.addVariable(self.identificador,primitivo)
 
                 # para reportes
@@ -99,6 +100,7 @@ class Declaracion(Instruccion):
                 if type.tipo == primitivo.tipo:
                     print('ARREGLO SON DEL MISMO TIPO')
 
+                    primitivo.mutabilidad = self.mutabilidad
                     entorno.addVariable(self.identificador,primitivo)
 
                     # para reportes

@@ -76,7 +76,10 @@ class Imprimir(Instruccion):
                                 cadenaArray = '['
                                 for v in result_evn.listadoExpresiones:
 
-                                    cadenaArray += str(v.ejecutar(entorno).valor) + ', '
+                                    if v.tipo != TipoExpresion.ARREGLO:
+                                        cadenaArray += str(v.ejecutar(entorno).valor) + ', '
+                                    else:
+                                        return 'IMPRIMIR --> no se puede imprimir arreglos mltidimensionales'
 
                                 cadenaArray += ' ]'
                                 tempLista.append(cadenaArray)
@@ -142,7 +145,7 @@ class Imprimir(Instruccion):
                         # impresiones de arreglos
                         elif resultadoInstruccion.tipo == TipoExpresion.ARREGLO:
                             print('paro obligatorio')
-                            pass
+                            return 'IMPRIMIR --> error impirmir un arreglo multidimensional'
 
                         # impresionsea valores primitivos
                         else:
