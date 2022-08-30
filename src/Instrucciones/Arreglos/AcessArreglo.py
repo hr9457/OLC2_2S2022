@@ -22,7 +22,11 @@ class AcessArreglo(Expresion):
         # print('******* ACCESO A ARREGLO EJECUTADO ******')
 
         variable = self.var.ejecutar(entorno)
-        indice  = self.index.ejecutar(entorno)
+        indice = self.index.ejecutar(entorno)
+
+        if indice.tipo == TipoExpresion.ID:
+            varIndice = entorno.getVariable(indice.valor)
+            indice = varIndice
 
 
         if variable.tipo == TipoExpresion.ID and variable is not None:

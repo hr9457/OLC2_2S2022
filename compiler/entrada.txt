@@ -235,3 +235,45 @@ fn main() {
 
 
 
+
+
+
+fn main() {
+    let arr = [1,2,3,4,5,6];
+        
+    for e in [0,1,2,3,4,5] {
+        if (arr.len() > e) {
+            println!("{},{},{},{},{},{}", arr[e]*e, arr[e]*e, arr[e]*e, arr[e]*e, arr[e]*e, arr[e]*e);
+        }
+    }
+}
+
+
+
+
+fn main() {
+    let arr = [1,2,3,4,5,6];
+
+    let i = 1;
+    println!("{}", arr.len());
+}
+
+
+
+fn main() {
+    let arr = [1,2,3,4,5,6];
+
+    let i = arr.len();
+}
+
+
+
+fn main() {
+    let arr = [1,2,3,4,5,6];
+        
+    for e in [0,1,2,3,4,5] {
+        if (arr.len() > e) {
+            println!("{}", arr[e]*e);
+        }
+    }
+}

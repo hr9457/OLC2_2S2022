@@ -55,6 +55,22 @@ class Aritmetica(Expresion):
         print(f'Aritmetica --> {nodoIzquierda.valor}')
         print(f'Aritmetica --> {nodoDerecha.tipo}')        
         
+        
+        
+        
+        
+        # *************
+        #  TIPOS DE ARREGLOS
+        # ***********
+        if nodoDerecha.tipo == TipoExpresion.ARREGLO:
+            print('tipo de expresion arreglo')
+            n = nodoDerecha.ejecutar(entorno)
+
+
+        
+        
+        
+        
         # ****************************************************************
         #  OPERACIONES ARITMECAS SOBRE LOS VALORES DE LOS NODOS     
         #  ****************************************************************

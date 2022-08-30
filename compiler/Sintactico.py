@@ -36,6 +36,7 @@ from src.Instrucciones.Decision.instruccionElse import InstruccionElse
 from src.Instrucciones.Bucle.While import While
 from src.Instrucciones.Bucle.Loop import Loop
 from src.Instrucciones.Bucle.Forin import Forin
+from src.Instrucciones.Bucle.ForinArreglos import ForinArreglos
 
 
 
@@ -61,6 +62,7 @@ from src.Instrucciones.Arreglos.AcessArreglo import AcessArreglo
 from src.Instrucciones.Arreglos.ExpArreglo import ExpArreglo
 from src.Instrucciones.Arreglos.TipoArreglo import TipoArreglo
 from src.Instrucciones.Arreglos.ModificarValor import ModificarValorArreglo
+from src.Instrucciones.Arreglos.Len import Len
 
 
 
@@ -243,7 +245,8 @@ def p_instruccion(p):
                     | instruccionReturn
                     | instruccionStruct
                     | alterValueStruct
-                    | alterValueArray  '''
+                    | alterValueArray
+                    | instruccionFor2  '''
     p[0] = p[1]
 
 
@@ -1024,6 +1027,9 @@ def p_instruccion_while(p):
 
 
 
+
+
+
 # ****************************************
 #  INSTRUCCIONE PARA MANEJO DEL LOOP
 # ****************************************
@@ -1031,6 +1037,10 @@ def p_instruccion_loop(p):
     #    0                1          2              3          4
     ' instruccionLoop : LOOP LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
     p[0] = Loop(p.lineno(1), columnToken(input, p.slice[1]), p[3])
+
+
+
+
 
 
 
@@ -1058,6 +1068,21 @@ def p_instruccion_forin(p):
 
 
 
+
+
+
+
+
+def p_instruccion_forin_arreglos(p):
+    #       0           1   2  3   4        5             6             7
+    ' instruccionFor2 : FOR exp IN exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
+    p[0] = ForinArreglos(
+        p.lineno(1),
+        columnToken(input, p.slice[1]),
+        p[2], # pivote
+        p[4], # variable a recorrer
+        p[6]  # instrucciones
+    )
 
 
 
@@ -1457,7 +1482,15 @@ def p_expresion_acceso_arreglo(p):
 
 
 
-# exp para asignacion de arreglos
+# exp para len de arreglos
+def p_expresion_len_arreglo(p):
+    ' exp : exp PUNTO LEN PARENTESISIZQUIERDO PARENTESISDERECHO '
+    p[0] = Len(p[1])
+
+
+
+
+
 
 
 
