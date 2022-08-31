@@ -35,13 +35,28 @@ class ModificarValorArreglo(Instruccion):
 
                 tamanioArreglo = len(var.listadoExpresiones) - 1
 
-                index = self.exp[0].ejecutar(entorno).valor
+
+                # revision si el index si es una variable
+                if self.exp[0].tipo == TipoExpresion.ID:
+                    varIndex = entorno.getVariable(self.exp[0].ejecutar(entorno).valor)
+                    index = varIndex.valor
+                else:
+                    index = self.exp[0].ejecutar(entorno).valor
+
+
+
 
 
                 valorPosicion = var.listadoExpresiones[index].ejecutar(entorno)
                 # valorPosicion.valor
 
                 nuevoValor = self.newValue.ejecutar(entorno)
+
+
+                # si el nuevo valores es una variable hay que buscarla
+                if nuevoValor.tipo == TipoExpresion.ID:
+                    nuevoValor = entorno.getVariable(nuevoValor.valor)
+
 
                 var.listadoExpresiones[index].valor = nuevoValor.valor
 

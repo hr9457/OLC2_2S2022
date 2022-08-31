@@ -236,6 +236,24 @@ fn main() {
 
 
 
+fn main() {
+    let  a = [1,2,3] ;
+    let mut b = [1,2,3,[6,4,[12,15]]] ;
+    let mut c :[i64;2] = [1,2,3];
+
+
+    println!("Antiguo valor es: {}", b[2]);
+
+    let z = 33;
+
+    b[2] = z;
+    println!("Nuevo valores es: {}",b[2]);
+}
+
+
+
+
+
 
 
 fn main() {

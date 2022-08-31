@@ -1200,11 +1200,13 @@ def p_tipos(p):
                 |   BOOL 
                 |   STRING
                 |   CHAR
-                |   ID  '''
+                |   ID
+                |   USIZE
+                |   CORCHETEDERECHO  tipo  CORCHETEIZQUIERDO  '''
 
     # print(p.slice[1].type)
 
-    if p.slice[1].type == 'I64':
+    if p.slice[1].type == 'I64' or p.slice[1].type == 'USIZE':
         p[0] = TipoExpresion.INTEGER
 
 
@@ -1227,6 +1229,10 @@ def p_tipos(p):
 
     elif p.slice[1].type == 'ID':
         p[0] = TipoExpresion.STRUCT
+
+
+    else:
+        p[0] = TipoExpresion.ARREGLO
 
 
 

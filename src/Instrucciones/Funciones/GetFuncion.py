@@ -56,22 +56,34 @@ class GetFuncion(Instruccion):
                 if parametroFuncion.tipo == TipoExpresion.ID:
                     parametroFuncion = envFn.getVariable(parametroFuncion.valor)
 
+
+
+
                 # revision de los tipo para los parametros
                 if parametro.tipo == parametroFuncion.tipo:
-                    envFn.addVariable(parametro.identificador,Simbolo(
-                        parametro.fila, 
-                        parametro.columna, 
-                        parametro.identificador, 
-                        parametro.tipo, 
-                        parametroFuncion.valor,
-                        parametro.mutabilidad))
+
+                    if parametro.tipo == TipoExpresion.ARREGLO:
+                        envFn.addVariable(parametro.identificador, parametroFuncion)
+
+                    else:
+                        envFn.addVariable(parametro.identificador,Simbolo(
+                            parametro.fila,
+                            parametro.columna,
+                            parametro.identificador,
+                            parametro.tipo,
+                            parametroFuncion.valor,
+                            parametro.mutabilidad))
                     contadorParametros += 1
+
+
 
                 else:
                     # para reportes
                     self.tablaErrores.append([f'FN -> {self.identificador}() error tipo parametros',entorno.nombre,self.fila,self.columna])
                     # --------------------------------
                     return f'FN -> {self.identificador}() error tipo parametros ' 
+
+
 
         elif parametrosFuncion is not None and len(parametrosFuncion) != len(self.listadoParametros):
             # para reportes
@@ -119,6 +131,8 @@ class GetFuncion(Instruccion):
             # verificacion si la funcion tiene un tipo
             if funcion.tipoFuncion is None:
                 return self.retornoFuncion
+
+                
             else:
                 # para reportes
                 self.tablaErrores.append(['FN -> {self.identificador}() error tipo de retorno',entorno.nombre,self.fila,self.columna])
