@@ -12,3 +12,4 @@ class TipoExpresion(Enum):
     FUNCION     = 10
     STRUCT      = 11
     ARREGLO     = 12
+    VECTOR      = 13

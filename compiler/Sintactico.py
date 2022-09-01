@@ -67,6 +67,17 @@ from src.Instrucciones.Arreglos.Len import Len
 
 
 
+# manejo de vectores
+from src.Instrucciones.Vectores.VariableVector import VariableVector
+from src.Instrucciones.Vectores.Push import Push
+
+
+
+
+
+
+
+
 # manejo de la funcion main
 from src.Instrucciones.Main.Main import FuncionMain
 
@@ -246,8 +257,12 @@ def p_instruccion(p):
                     | instruccionStruct
                     | alterValueStruct
                     | alterValueArray
-                    | instruccionFor2  '''
+                    | instruccionFor2
+                    | instruccionPush  '''
     p[0] = p[1]
+
+
+
 
 
 
@@ -289,6 +304,10 @@ def p_instruccion_return(p):
     #       0              1     2     3
     ' instruccionReturn : RETURN exp PUNTOCOMA '
     p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.RETURN, p[2])
+
+
+
+
 
 
 
@@ -442,6 +461,8 @@ def p_instruccion_parametro_llamado_funcion(p):
     #       0                 1 
     ' instruccionLlamado : exp '
     p[0] = p[1] 
+
+
 
 
 
@@ -637,6 +658,42 @@ def p_alter_value_struct(p):
 
 
 
+# ***************************
+#   MANEJO DE VECTORES
+# ***************************
+def p_instruccion_push_vectores_struct(p):
+    #     0              1   2     3           4           5        6            7           8              9          
+    ' instruccionPush : ID PUNTO PUSH PARENTESISIZQUIERDO ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PARENTESISDERECHO PUNTOCOMA '
+    p[0] = Push(p.lineno(3), columnToken(input, p.slice[3]), p[1], p[7])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -790,6 +847,26 @@ def p_variables_mut(p):
 
 
 
+
+
+
+
+# MANEJO PARA ASIGNAR VECTORES EN VARIABLES
+def p_variable_mut_vector(p):
+    #     0        1   2   3      4      5   6     7    8      9     10    11          12   13       14               15
+    '  variable : LET MUT ID  DOSPUNTOS VEC MENOR tipo MAYOR  IGUAL VEC DOSPUNTOS DOSPUNTOS NEW PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
+    p[0] = VariableVector(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[7], TipoMutable.MUTABLE)
+
+
+
+
+
+
+
+
+
+
+
 # declaracion de struct sin tipo en variable
 def p_variables_mut_struct(p):
     #     0              1   2   3   4    5      6            7           8            9  
@@ -838,6 +915,13 @@ def p_variables_mut_tipo_struct(p):
 
 
 
+
+
+
+
+
+
+
 # ---------------------- ** -------------------------
 # no mutables
 def p_variables_tipo(p):
@@ -854,6 +938,24 @@ def p_variables(p):
     #     0              1  2  3      4     5       
     '''  variable   :   LET ID IGUAL exp PUNTOCOMA  '''
     p[0] = Declaracion(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, p[4], TipoMutable.NOMUTABLE, tablaSimbolos, tablaErrores)
+
+
+
+
+
+
+# MANEJO PARA ASIGNAR VECTORES EN VARIABLES
+def p_variable_vector(p):
+    #     0        1   2      3      4    5    6     7      8    9     10        11     12          13                 14            15
+    '  variable : LET ID  DOSPUNTOS VEC MENOR tipo MAYOR  IGUAL VEC DOSPUNTOS DOSPUNTOS NEW PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
+    p[0] = VariableVector(p.lineno(1), columnToken(input, p.slice[1]), p[2], p[6], TipoMutable.NOMUTABLE)
+
+
+
+
+
+
+
 
 
 
@@ -926,6 +1028,9 @@ def p_variables_mut_tipo_struct(p):
 
 
 
+
+
+
 # ****************************************
 #  ASIGNACION DE VALORES A UNA VARIABLE
 # ****************************************
@@ -933,6 +1038,10 @@ def p_asignacion_variables(p):
     #    0         1   2     3    4
     ' asignacion : ID IGUAL exp PUNTOCOMA '
     p[0] = Asignacion(p.lineno(2), columnToken(input, p.slice[2]), p[1], p[3], tablaErrores)
+
+
+
+
 
 
 
@@ -1003,6 +1112,9 @@ def p_instruccion_else_if(p):
 
 
 
+
+
+
 # ****************************************
 #  INSTRUCCIONE PARA MANEJO DEL WHILE
 # ****************************************
@@ -1030,6 +1142,8 @@ def p_instruccion_while(p):
 
 
 
+
+
 # ****************************************
 #  INSTRUCCIONE PARA MANEJO DEL LOOP
 # ****************************************
@@ -1037,6 +1151,10 @@ def p_instruccion_loop(p):
     #    0                1          2              3          4
     ' instruccionLoop : LOOP LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
     p[0] = Loop(p.lineno(1), columnToken(input, p.slice[1]), p[3])
+
+
+
+
 
 
 
@@ -1083,6 +1201,9 @@ def p_instruccion_forin_arreglos(p):
         p[4], # variable a recorrer
         p[6]  # instrucciones
     )
+
+
+
 
 
 
@@ -1191,6 +1312,10 @@ def p_list2(p):
 
 
 
+
+
+
+
 # ***************************
 #   ACEPTACION DE TIPOS
 # ***************************
@@ -1239,6 +1364,11 @@ def p_tipos(p):
 
 
 
+
+
+
+
+
 # TIPO ARREGLO
 # [tipo;exp]
 def p_tipo_arreglo(p):
@@ -1250,6 +1380,18 @@ def p_tipo_arreglo(p):
         p[2],
         p[4]
     )
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

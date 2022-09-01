@@ -23,6 +23,74 @@ struct Personaje {
 
 
 
+
+fn CreandoPersonaje (anio: i64, color: i64, mecanico: bool) -> Personaje{
+
+    let mut datos = StructArr {
+        datos: [10; 10]
+    };
+
+    let mut car = CreandoStruct(anio,color,mecanico);
+    
+    let mut p1 = Personaje { 
+        nombre:"Fer".to_string(),
+        edad:18,
+        descripcion:"No hace nada".to_string(),
+        carro_: car,
+        numeros:datos
+    };
+    
+    return p1;
+}
+
+
+
+
+fn CreandoStruct ( anio: i64, color: i64, mecanico: bool) ->  Carro{
+
+    let mut placa_: String = "".to_string();
+
+    // Ejemplo 1: Match como instrucción 
+    // Después del match sigue una expresión
+    match anio {
+        // 1 | 2 | 3 estas son coincidencias
+        2000 | 2001 | 2002 => {
+            placa_ = "20012PLO0".to_string();
+        } //esto se conoce como brazo
+        
+        2003 | 2004 | 2005 => placa_ = "200345LO0".to_string(),//esto se conoce como brazo
+        2006 =>  placa_ = "20090PLO0".to_string(), // esto es un error!
+        _ => println!("Resto de casos"), //brazo por defecto
+    }
+    
+    /*  Match como expresión */
+    let colorAuto = match color {
+        1 => "amarillo",
+        2 => "verde",
+        3 => "rojo",
+        4 => "azul",
+        5 => "negro",
+        _ => "N/A",
+    };
+
+    let mut tipo : String = "".to_string();
+    if mecanico {
+        tipo = "mecanico".to_string(); 
+    }
+    else{
+        tipo = "Automatico".to_string();
+    }
+
+    return Carro { placa: placa_,
+                    color:colorAuto.to_string(), 
+                    tipo:tipo
+        
+    };
+}
+
+
+
+
 fn main(){
 
     println!("*******************VECTOR CON STRUCTS");
@@ -80,67 +148,6 @@ fn main(){
 
 }
 
-fn CreandoPersonaje (anio: i64, color: i64, mecanico: bool) -> Personaje{
-
-    let mut datos = StructArr {
-        datos: [10; 10]
-    };
-
-    let mut car = CreandoStruct(anio,color,mecanico);
-    
-    let mut p1 = Personaje { 
-        nombre:"Fer".to_string(),
-        edad:18,
-        descripcion:"No hace nada".to_string(),
-        carro_: car,
-        numeros:datos
-    };
-    
-    return p1;
-}
-
-
-fn CreandoStruct ( anio: i64, color: i64, mecanico: bool) ->  Carro{
-
-    let mut placa_: String = "".to_string();
-
-    /* Ejemplo 1: Match como instrucción */
-    // Después del match sigue una expresión
-    match anio {
-        // 1 | 2 | 3 estas son coincidencias
-        2000 | 2001 | 2002 => {
-            placa_ = "20012PLO0".to_string();
-        } //esto se conoce como brazo
-        
-        2003 | 2004 | 2005 => placa_ = "200345LO0".to_string(),//esto se conoce como brazo
-        2006 =>  placa_ = "20090PLO0".to_string(), // esto es un error!
-        _ => println!("Resto de casos"), //brazo por defecto
-    }
-    
-    /*  Match como expresión */
-    let colorAuto = match color {
-        1 => "amarillo",
-        2 => "verde",
-        3 => "rojo",
-        4 => "azul",
-        5 => "negro",
-        _ => "N/A",
-    };
-
-    let mut tipo : String = "".to_string();
-    if mecanico {
-        tipo = "mecanico".to_string(); 
-    }
-    else{
-        tipo = "Automatico".to_string();
-    }
-
-    return Carro { placa: placa_,
-                    color:colorAuto.to_string(), 
-                    tipo:tipo
-        
-    };
-}
 
 
 

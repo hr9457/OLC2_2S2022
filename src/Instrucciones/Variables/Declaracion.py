@@ -35,6 +35,7 @@ class Declaracion(Instruccion):
 
         # variabel
         # TIPO == None  es una variable sin tipo
+        # VARIABLES DONDE NO SE LE ESPECIFICA EL TIPO DE LA VARIABLE
         if self.tipo == None:
 
             print(f'DECLARACION: {primitivo.tipo}')

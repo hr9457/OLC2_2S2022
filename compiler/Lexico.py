@@ -43,6 +43,7 @@ tokens = [
 
 reservadas = {
     'String'        : 'STRING',
+    'Vec'           : 'VEC',
     'println'       : 'PRINTLN',
     'i64'           : 'I64',
     'f64'           : 'F64',

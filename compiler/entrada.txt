@@ -295,3 +295,40 @@ fn main() {
         }
     }
 }
+
+
+
+
+
+
+
+struct CentroTuristico {
+    nombre:String
+}
+
+struct Carro {
+    placa: String,
+    color: String,
+    tipo: String
+}
+
+struct Personaje {
+    nombre: String,
+    edad: i64,
+    descripcion: String,
+    carro_: Carro,
+    numeros : StructArr
+}
+
+
+fn main() {
+
+    println!("*******************VECTOR CON STRUCTS");
+    
+    let mut v: Vec<CentroTuristico> = Vec::new();
+
+    v.push(CentroTuristico{nombre:"Volcan de pacaya".to_string()} );
+    v.push(CentroTuristico{nombre:"Rio dulce".to_string()} );
+    v.push(CentroTuristico{nombre:"Laguna Luchoa".to_string()} );
+
+}

@@ -60,8 +60,10 @@ class Environment:
 
             if key == id:
     
-                if self.variables[key].tipo == TipoExpresion.STRUCT or self.variables[key].tipo == TipoExpresion.ARREGLO:
+                if self.variables[key].tipo == TipoExpresion.STRUCT or self.variables[key].tipo == TipoExpresion.ARREGLO or self.variables[key].tipo == TipoExpresion.VECTOR:
                     return self.variables[key]
+
+
 
                 else:
                     return Simbolo(
