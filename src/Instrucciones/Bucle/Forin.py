@@ -15,13 +15,14 @@ class Forin(Instruccion):
         self.inicio = inicio
         self.final = final
         self.instrucciones = instrucciones
-        self.retornoForin = ''
+        # self.retornoForin = ''
         self.tablaErrores = tablaErrores
 
 
     def ejecutar(self, entorno):
 
 
+        retornoForin = ''
         # crear un nuevo entorno para el for
         numeroEntorno = entorno.numero + 1
         envFor = Environment('FOR',numeroEntorno,entorno)
@@ -78,18 +79,18 @@ class Forin(Instruccion):
                     # menejo de instrucciones break y continue
                     if isinstance(result, Primitivo) and result.tipo == TipoExpresion.BREAK:
                         if result.valor is not None:
-                            self.retornoForin += result.valor
-                        return self.retornoForin
+                            retornoForin += result.valor
+                        return retornoForin
 
                     elif isinstance(result, Primitivo) and result.tipo == TipoExpresion.CONTINUE:
                         if result.valor is not None:
-                            self.retornoForin += result.valor
+                            retornoForin += result.valor
                         break
 
 
                     # concatenacion del resultado del for
                     if result is not None:
-                        self.retornoForin += result
+                        retornoForin += result
 
 
                 # actualizcion de la variable
@@ -106,7 +107,7 @@ class Forin(Instruccion):
 
 
 
-            return self.retornoForin
+            return retornoForin
 
         else:
             # para reportes

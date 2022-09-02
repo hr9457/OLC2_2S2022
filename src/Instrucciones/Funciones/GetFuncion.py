@@ -111,7 +111,7 @@ class GetFuncion(Instruccion):
 
                     
                     result = result.valor.ejecutar(envFn)
-                    print('RETURN DENTTRO DE LA FUNCION')
+                    print('******************************************************RETURN DENTTRO DE LA FUNCION')
                     print(result.valor)
                     retorno = Primitivo(
                         self.fila,

@@ -5,6 +5,7 @@ from src.Error.Error import Error
 from src.Expresiones.Primitivo import Primitivo
 from src.Instrucciones.Funciones import GetFuncion
 from src.Instrucciones.Struct.PrimateStruct import PrimateStruct
+from src.environment.Simbolo import Simbolo
 
 
 # clase para manejar la instruccion println 
@@ -43,14 +44,14 @@ class Imprimir(Instruccion):
 
         else:
 
-
+            tempLista = []
             # contar cuantos elementos trae el nodo derecho
             if countNodoDerecho >= 1 and countNodoDerecho == result.valor.count(variables):
 
                 # print('cantidad de {} == cantidad de elementos en lista')
 
             
-                tempLista = []
+
                 for instruccion in self.lista:
 
 
@@ -82,7 +83,8 @@ class Imprimir(Instruccion):
                                         return 'IMPRIMIR --> no se puede imprimir arreglos mltidimensionales'
 
                                 cadenaArray += ' ]'
-                                tempLista.append(cadenaArray)
+
+                                # tempLista.append(self.imprimirArreglo(result_evn, entorno))
 
 
                             else:
@@ -144,16 +146,11 @@ class Imprimir(Instruccion):
 
                         # impresiones de arreglos
                         elif resultadoInstruccion.tipo == TipoExpresion.ARREGLO:
-                            cadenaArray2 = '['
-                            for v in resultadoInstruccion.valor:
 
-                                if v.tipo != TipoExpresion.ARREGLO:
-                                    cadenaArray2 += str(v.ejecutar(entorno).valor) + ', '
-                                else:
-                                    return 'IMPRIMIR --> no se puede imprimir arreglos mltidimensionales'
 
-                            cadenaArray2 += ' ]'
-                            tempLista.append(cadenaArray2)
+                            concatenacionArreglo = '['
+                            tempLista.append(self.imprimirArreglo(resultadoInstruccion,entorno, concatenacionArreglo))
+                            concatenacionArreglo = ''
 
                         # impresionsea valores primitivos
                         else:
@@ -179,3 +176,38 @@ class Imprimir(Instruccion):
 
 
                     
+
+
+
+
+    # funcion para la impresion variables tipo arreglo
+    def imprimirArreglo(self, arreglo, entorno, concatenacionArreglo):
+
+
+        # concatenacionArreglo = '['
+
+
+        if isinstance(arreglo, Simbolo):
+
+            for v in arreglo.valor:
+
+                if v.tipo != TipoExpresion.ARREGLO:
+                    concatenacionArreglo += str(v.ejecutar(entorno).valor) + ', '
+
+                else:
+                    concatenacionArreglo += self.imprimirArregl(v,entorno)
+
+        else: 
+
+            for v in arreglo.valor:
+
+                if v.tipo != TipoExpresion.ARREGLO:
+                    concatenacionArreglo += str(v.ejecutar(entorno).valor) + ', '
+                else:
+                    concatenacionArreglo += self.imprimirArreglo(v,entorno)
+
+
+        concatenacionArreglo += ' ]'
+
+        return concatenacionArreglo
+    

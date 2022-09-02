@@ -378,10 +378,6 @@ fn main() {
     println!("");
     println!("Matriz B");
     printMat(matB);
-    println!("");
-    println!("Matriz R");
-    printMat(matR);
-    println!("");
 
 }
 
