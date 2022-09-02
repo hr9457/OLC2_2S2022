@@ -102,7 +102,16 @@ class Declaracion(Instruccion):
                     print('ARREGLO SON DEL MISMO TIPO')
 
                     primitivo.mutabilidad = self.mutabilidad
-                    entorno.addVariable(self.identificador,primitivo)
+                    entorno.addVariable(self.identificador,
+                                        Simbolo(
+                                         primitivo.fila,
+                                         primitivo.columna,
+                                         self.identificador,
+                                         primitivo.tipo,
+                                         primitivo.listadoExpresiones,
+                                         self.mutabilidad
+                                        ))
+                    # antes mandaba el primitivo Arreglo directo
 
                     # para reportes
                     self.tablaSimbolos.append([self.identificador,'Variable',primitivo.tipo,entorno.nombre,self.fila,self.columna])
@@ -112,8 +121,29 @@ class Declaracion(Instruccion):
                     
 
 
+            if primitivo.tipo == TipoExpresion.ARREGLO:
+                print('ARREGLO SON DEL MISMO TIPO')
 
-            if self.tipo == primitivo.tipo:
+                primitivo.mutabilidad = self.mutabilidad
+                entorno.addVariable(self.identificador,
+                                    Simbolo(
+                                        primitivo.fila,
+                                        primitivo.columna,
+                                        self.identificador,
+                                        primitivo.tipo,
+                                        primitivo.listadoExpresiones,
+                                        self.mutabilidad
+                                    ))
+                # antes mandaba el primitivo Arreglo directo
+
+                # para reportes
+                self.tablaSimbolos.append([self.identificador,'Variable',primitivo.tipo,entorno.nombre,self.fila,self.columna])
+                # -------------
+
+                return None
+
+
+            elif self.tipo == primitivo.tipo:
 
                 entorno.addVariable(self.identificador, 
                                     Simbolo(primitivo.fila, 

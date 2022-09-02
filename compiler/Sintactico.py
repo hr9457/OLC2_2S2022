@@ -1374,12 +1374,13 @@ def p_tipos(p):
 def p_tipo_arreglo(p):
     #  0           1            2      3      4        5
     ' tipo : CORCHETEDERECHO  tipo PUNTOCOMA exp CORCHETEIZQUIERDO '
-    p[0] = TipoArreglo(
-        p.lineno(1), 
-        columnToken(input, p.slice[1]),
-        p[2],
-        p[4]
-    )
+    # p[0] = TipoArreglo(
+    #     p.lineno(1), 
+    #     columnToken(input, p.slice[1]),
+    #     p[2],
+    #     p[4]
+    # )
+    p[0] = TipoExpresion.ARREGLO
 
 
 

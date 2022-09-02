@@ -2,6 +2,7 @@
 from src.Interfaces.Expresion import Expresion
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Expresiones.Primitivo import Primitivo
+from src.environment.Simbolo import Simbolo
 
 
 # clase expresion para menejar los acceso a los arreglos
@@ -42,28 +43,48 @@ class AcessArreglo(Expresion):
                 if indice.tipo == TipoExpresion.INTEGER:
 
 
-                    tamanioArreglo = len(arreglo.listadoExpresiones) - 1
 
-                    if indice.valor <= tamanioArreglo:
+                    posicion_acceso_arreglo = 0
+                    print(f'-------------------------------------------------------->{type(arreglo)}')
 
-                        valor = arreglo.listadoExpresiones[indice.valor]
+                    # return self.obtenerValorArreglo(arreglo, indice, posicion_acceso_arreglo, entorno)
+
+                    if isinstance(arreglo,Simbolo):
+                        tamanioArreglo = len(arreglo.valor) - 1
+
+                        if indice.valor <= tamanioArreglo:
+
+                            valor = arreglo.valor[indice.valor]
+
+                            if valor.tipo == TipoExpresion.ARREGLO:
+                                pri = Primitivo(None, None, TipoExpresion.ARREGLO, valor.listadoExpresiones)
+                                return pri
+
+                            return valor
+
+                    else:
+                        tamanioArreglo = len(arreglo.listadoExpresiones) - 1
+
+                        if indice.valor <= tamanioArreglo:
+
+                            valor = arreglo.listadoExpresiones[indice.valor]
 
 
-                        if valor.tipo == TipoExpresion.ARREGLO:
-                            pri = Primitivo(None,None, TipoExpresion.ARREGLO, valor.listadoExpresiones)
-                            return pri
+                            if valor.tipo == TipoExpresion.ARREGLO:
+                                pri = Primitivo(None,None, TipoExpresion.ARREGLO, valor.listadoExpresiones)
+                                return pri
 
-                        return valor
+                            return valor
 
 
 
                     
-                    else:
-                        # para reportes
-                        self.tablaErrores.append([f'index excede el tamanio del arreglo',entorno.nombre,self.fila,self.columna])
-                        # --------------------------------
+                    # else:
+                    #     # para reportes
+                    #     self.tablaErrores.append([f'index excede el tamanio del arreglo',entorno.nombre,self.fila,self.columna])
+                    #     # --------------------------------
 
-                        return f'index excede el tamanio del arreglo'
+                    #     return f'index excede el tamanio del arreglo'
 
 
 
@@ -116,3 +137,45 @@ class AcessArreglo(Expresion):
             self.tablaErrores.append([f'var {variable.valor} no es una variable',entorno.nombre,self.fila,self.columna])
             # --------------------------------
             return f'var {variable.valor} no es una variable'
+
+
+
+
+
+
+    # funcion recursiva cambiar el varlor del arreglo
+    def obtenerValorArreglo(self, var, indice, posicion_acceso_arreglo, entorno):
+
+        # ******************************************
+        # revision si el index si es una variable
+        if self.exp[posicion_acceso_arreglo].tipo == TipoExpresion.ID:
+            varIndex = entorno.getVariable(self.exp[posicion_acceso_arreglo].ejecutar(entorno).valor)
+            index = varIndex.valor
+        else:
+            index = self.exp[posicion_acceso_arreglo].ejecutar(entorno).valor
+
+        # *********************************************
+
+
+        # print(f'------------------------------------------>{type(var)}')
+        if isinstance(var,Simbolo):
+            var.valor[index].ejecutar(entorno)
+
+            posicion_acceso_arreglo += 1
+
+            if var.valor[index].tipo == TipoExpresion.ARREGLO:
+                self.modidificarValorArreglo(var.valor[index], posicion_acceso_arreglo, entorno)
+
+            else:
+                return var.valor[index]
+
+        else:
+            var.listadoExpresiones[index].ejecutar(entorno)
+
+            posicion_acceso_arreglo += 1
+
+            if var.listadoExpresiones[index].tipo == TipoExpresion.ARREGLO:
+                self.modidificarValorArreglo(var.listadoExpresiones[index], posicion_acceso_arreglo, entorno)
+
+            else:
+                return var.listadoExpresiones[index]

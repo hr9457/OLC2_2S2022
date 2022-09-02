@@ -57,7 +57,7 @@ class GetFuncion(Instruccion):
                     parametroFuncion = envFn.getVariable(parametroFuncion.valor)
 
 
-
+                parametro = parametro.ejecutar(entorno)
 
                 # revision de los tipo para los parametros
                 if parametro.tipo == parametroFuncion.tipo:

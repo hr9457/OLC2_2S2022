@@ -229,6 +229,7 @@ fn main() {
 
 
     b[2] = 33;
+    b[3][1] = 100;
     println!("Nuevo valores es: {}",b[2]);
 }
 
@@ -331,4 +332,69 @@ fn main() {
     v.push(CentroTuristico{nombre:"Rio dulce".to_string()} );
     v.push(CentroTuristico{nombre:"Laguna Luchoa".to_string()} );
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fn llenarMat(a: [[i64; 3]; 3], b:[[i64; 3]; 3]) {
+    for i in 0..a.len() {
+        for j in 0..a.len() {
+            a[i][j] = (j as i64) * 3 + (i as i64);
+            b[i][j] = i64::pow((i as i64), 3) - i64::pow((j as i64), 2);
+        }
+    }
+}
+
+fn printMat(r:  [[i64; 3]; 3]) {
+    for i in 0..r.len() {
+        println!("{}", r[i]);
+    }
+}
+
+
+
+
+fn main() {
+    let mut matA: [[i64; 3]; 3] = [[0,0,0],[0,0,0],[0,0,0]];
+    let mut matB: [[i64; 3]; 3] = [[0,0,0],[0,0,0],[0,0,0]];
+    let mut matR: [[i64; 3]; 3] = [[0,0,0],[0,0,0],[0,0,0]];
+
+    llenarMat(matA, matB);
+
+    println!("Matriz A");
+    printMat(matA);
+    println!("");
+    println!("Matriz B");
+    printMat(matB);
+    println!("");
+    println!("Matriz R");
+    printMat(matR);
+    println!("");
+
+}
+
+
+
+
+
+
+
+
+fn main() {
+    let mut b = [1,2,3,[6,4,[12,15]]] ;
+
+
+    println!("Antiguo valor es: {}", b[3][1]);
 }

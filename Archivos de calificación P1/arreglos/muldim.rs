@@ -1,42 +1,43 @@
-/* imprime los puntos por curso de cada estudiante */
-fn imprimir_punteo(ests: &mut [String; 4], cursos: &mut [&str; 3], notas: &mut [[[i64;5];3];4]) {
-    let ponderacion: [&str; 5] = ["1er parcial", "2do parcial", "3er parcial", "Lab", "Examen final"];
-    println!("{:?}", ponderacion);
+// /* imprime los puntos por curso de cada estudiante */
+fn imprimir_punteo(ests:  [String; 4], cursos:  [String; 3], notas:  [[[i64;5];3];4]) {
+    let ponderacion: [String; 5] = ["1er parcial", "2do parcial", "3er parcial", "Lab", "Examen final"];
+    println!("{}", ponderacion);
     println!("");
-    for i in 0..ests.len() {
+    for i in 0..(ests.len()) {
         println!("Estudinte: ");
         println!("{}", ests[i]);
-        for j in 0..cursos.len() {
-            let cad: String = "Curso: ".to_string() + cursos[j];
+        for j in 0..(cursos.len()) {
+            let cad: String = "Curso: ".to_string() + (cursos[j]);
             println!("{}", cad);
-            println!("{:?}", notas[i][j]);
+            println!("{}", notas[i][j]);
         }
         println!("");
     }
 }
 
-/* imprime la nota total por curso de cada estudiante*/
-/* parciales 43, lab sobre 32 y examen final 25*/
-fn imprimir_nota_final(ests: &mut [String; 4], cursos: &mut [&str; 3], notas: &mut [[[i64;5];3];4]) {
-    for i in 0..ests.len() {
-        for j in 0..cursos.len() {
+// /* imprime la nota total por curso de cada estudiante*/
+// /* parciales 43, lab sobre 32 y examen final 25*/
+fn imprimir_nota_final(ests:  [String; 4], cursos:  [String; 3], notas:  [[[i64;5];3];4]) {
+    for i in 0..(ests.len()) {
+        for j in 0..(cursos.len()) {
             let mut nota_final: f64 = 0.0;
-            for k in 0..notas[i][j].len() {
-                let nota: f64 = 
-                    if k == notas[i][j].len() - 1 {
+            for k in 0..(notas[i][j].len()) {
+				let mut tmp: f64 = 0.0;
+                    if k == (notas[i][j].len()) - 1 {
                         let efinal: f64 = 25.0 / 100.0;
-                        (notas[i][j][k] as f64) * efinal
-                    } else if k == notas[i][j].len() - 2 {
+                        tmp = ((notas[i][j][k]) as f64) * efinal;
+                    } else if k == (notas[i][j].len()) - 2 {
                         let lab: f64 = 32.0 / 100.0;
-                        (notas[i][j][k] as f64) * lab
+                        tmp =((notas[i][j][k]) as f64) * lab;
                     } else {
                         let parcial: f64 = (43.0 / 3.0) / 100.0;
-                        (notas[i][j][k] as f64) * parcial
-                    };
+                        tmp =((notas[i][j][k]) as f64) * parcial;
+                    }
+				let nota: f64 = tmp;
                 nota_final = nota_final + nota;
             }
 
-            let cad: String = ests[i].clone().to_string() + " -> Curso: " + cursos[j];
+            let cad: String = ests[i].clone().to_string() + " -> Curso: ".to_string() + (cursos[j]);
             println!("{}", cad);
             println!("{}", nota_final);
         }
@@ -44,11 +45,11 @@ fn imprimir_nota_final(ests: &mut [String; 4], cursos: &mut [&str; 3], notas: &m
     }
 }
 
-/* correccion de notas */
-fn corregir_notas(corregir: &mut [[i64;5];3], notas: &mut [[[i64;5];3];4]) {
-    for i in 0..notas.len() {
-        for j in 0..notas[i].len() {
-            for k in 0..notas[i][j].len() {
+// /* correccion de notas */
+fn corregir_notas(corregir:  [[i64;5];3], notas:  [[[i64;5];3];4]) {
+    for i in 0..(notas.len()) {
+        for j in 0..(notas[i].len()) {
+            for k in 0..(notas[i][j].len()) {
                 notas[i][j][k] = corregir[j][k];
             }
         }
@@ -57,8 +58,8 @@ fn corregir_notas(corregir: &mut [[i64;5];3], notas: &mut [[[i64;5];3];4]) {
 
 fn main() {
     let mut estudiantes: [String; 4] = ["Lorenza".to_string(), "Rosendo".to_string(), "Fermina".to_string(), "Markel".to_string()];
-    
-    let mut cursos: [&str; 3] = ["Arqui1", "Archivos", "Compi2"];
+
+    let mut cursos: [String; 3] = ["Arqui1", "Archivos", "Compi2"];
 
     let mut notas_buenas: [[i64;5];3] = [
         [53,88,95,89,75],
@@ -74,13 +75,13 @@ fn main() {
     ];
 
     println!("\nImprimir notas por curso y estudiantes\n");
-    imprimir_punteo(&mut estudiantes, &mut cursos, &mut notas);
+    imprimir_punteo(estudiantes, cursos, notas);
     println!("\nImprimir nota final por curso y estudiantes\n");
-    imprimir_nota_final(&mut estudiantes, &mut cursos, &mut notas);
+    imprimir_nota_final( estudiantes, cursos, notas);
     println!("\nMejorar notas de todos los cursos\n");
-    corregir_notas(&mut notas_buenas, &mut notas);
+    corregir_notas(notas_buenas,  notas);
     println!("\nImprimir nota final actualizada por curso y estudiantes\n");
-    imprimir_nota_final(&mut estudiantes, &mut cursos, &mut notas);
+    imprimir_nota_final(estudiantes, cursos, notas);
 }
 
 
@@ -93,7 +94,7 @@ Imprimir notas por curso y estudiantes
 
 ["1er parcial", "2do parcial", "3er parcial", "Lab", "Examen final"]
 
-Estudinte: 
+Estudinte:
 Lorenza
 Curso: Arqui1
 [37, 49, 61, 29, 44]
@@ -102,7 +103,7 @@ Curso: Archivos
 Curso: Compi2
 [47, 15, 39, 17, 74]
 
-Estudinte: 
+Estudinte:
 Rosendo
 Curso: Arqui1
 [69, 74, 52, 34, 36]
@@ -111,7 +112,7 @@ Curso: Archivos
 Curso: Compi2
 [74, 60, 32, 63, 78]
 
-Estudinte: 
+Estudinte:
 Fermina
 Curso: Arqui1
 [78, 14, 23, 52, 33]
@@ -120,7 +121,7 @@ Curso: Archivos
 Curso: Compi2
 [23, 79, 47, 62, 44]
 
-Estudinte: 
+Estudinte:
 Markel
 Curso: Arqui1
 [73, 53, 11, 49, 52]
@@ -194,4 +195,4 @@ Markel -> Curso: Archivos
 Markel -> Curso: Compi2
 84.27333333333334
 
-*
+*/

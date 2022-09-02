@@ -2,6 +2,7 @@ from src.Interfaces.Expresion import Expresion
 from src.Interfaces.TipoExpresion import TipoExpresion
 from src.Interfaces.TipoMutable import TipoMutable
 from src.environment.Simbolo import Simbolo
+from src.Instrucciones.Arreglos.ExpArreglo import ExpArreglo
 
 class Len(Expresion):
 
@@ -24,7 +25,15 @@ class Len(Expresion):
             # que la variable sea tipo arreglo
             if varrArreglo.tipo == TipoExpresion.ARREGLO:
 
-                tamanioArreglo = len(varrArreglo.listadoExpresiones)
+                # if isinstance(var,Simbolo):
+
+
+                if isinstance(varrArreglo,ExpArreglo):
+                    tamanioArreglo = len(varrArreglo.listadoExpresiones)
+                else:
+                    tamanioArreglo = len(varrArreglo.valor)
+
+
 
                 return Simbolo(
                     0,

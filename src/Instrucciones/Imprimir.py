@@ -144,8 +144,16 @@ class Imprimir(Instruccion):
 
                         # impresiones de arreglos
                         elif resultadoInstruccion.tipo == TipoExpresion.ARREGLO:
-                            print('paro obligatorio')
-                            return 'IMPRIMIR --> error impirmir un arreglo multidimensional'
+                            cadenaArray2 = '['
+                            for v in resultadoInstruccion.valor:
+
+                                if v.tipo != TipoExpresion.ARREGLO:
+                                    cadenaArray2 += str(v.ejecutar(entorno).valor) + ', '
+                                else:
+                                    return 'IMPRIMIR --> no se puede imprimir arreglos mltidimensionales'
+
+                            cadenaArray2 += ' ]'
+                            tempLista.append(cadenaArray2)
 
                         # impresionsea valores primitivos
                         else:
