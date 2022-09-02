@@ -90,6 +90,7 @@ class Declaracion(Instruccion):
         
 
 
+        # la variable si tiene algun tipo
         elif self.tipo != None:
 
 
@@ -121,6 +122,8 @@ class Declaracion(Instruccion):
                     
 
 
+
+
             if primitivo.tipo == TipoExpresion.ARREGLO:
                 print('ARREGLO SON DEL MISMO TIPO')
 
@@ -141,6 +144,20 @@ class Declaracion(Instruccion):
                 # -------------
 
                 return None
+
+
+            elif primitivo.tipo == TipoExpresion.ID:
+                getVariable = entorno.getVariable(primitivo.valor)
+                print('------------')
+                entorno.addVariable(self.identificador,
+                                    Simbolo(
+                                        getVariable.fila,
+                                        getVariable.columna,
+                                        getVariable.identificador,
+                                        getVariable.tipo,
+                                        getVariable.valor,
+                                        getVariable.mutabilidad
+                                    ))
 
 
             elif self.tipo == primitivo.tipo:

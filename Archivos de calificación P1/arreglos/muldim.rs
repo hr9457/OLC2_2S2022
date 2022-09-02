@@ -76,10 +76,13 @@ fn main() {
 
     println!("\nImprimir notas por curso y estudiantes\n");
     imprimir_punteo(estudiantes, cursos, notas);
+
     println!("\nImprimir nota final por curso y estudiantes\n");
     imprimir_nota_final( estudiantes, cursos, notas);
+
     println!("\nMejorar notas de todos los cursos\n");
     corregir_notas(notas_buenas,  notas);
+    
     println!("\nImprimir nota final actualizada por curso y estudiantes\n");
     imprimir_nota_final(estudiantes, cursos, notas);
 }

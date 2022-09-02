@@ -72,19 +72,19 @@ class Imprimir(Instruccion):
                             result_evn = entorno.getVariable(resultadoInstruccion.valor)
                             print(result_evn)
 
-                            if result_evn.tipo == TipoExpresion.ARREGLO:
+                            if result_evn.tipo == TipoExpresion.ARREGLO and result_evn is not None:
 
                                 cadenaArray = '['
-                                for v in result_evn.listadoExpresiones:
+                                # for v in result_evn.listadoExpresiones:
 
-                                    if v.tipo != TipoExpresion.ARREGLO:
-                                        cadenaArray += str(v.ejecutar(entorno).valor) + ', '
-                                    else:
-                                        return 'IMPRIMIR --> no se puede imprimir arreglos mltidimensionales'
+                                #     if v.tipo != TipoExpresion.ARREGLO:
+                                #         cadenaArray += str(v.ejecutar(entorno).valor) + ', '
+                                #     else:
+                                #         return 'IMPRIMIR --> no se puede imprimir arreglos mltidimensionales'
 
-                                cadenaArray += ' ]'
+                                # cadenaArray += ' ]'
 
-                                # tempLista.append(self.imprimirArreglo(result_evn, entorno))
+                                tempLista.append(self.imprimirArreglo(result_evn, entorno, cadenaArray))
 
 
                             else:

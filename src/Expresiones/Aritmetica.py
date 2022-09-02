@@ -155,8 +155,8 @@ class Aritmetica(Expresion):
                 # suma
                 if self.operador == TipoOperador.MAS:
                     result = nodoIzquierda.valor + nodoDerecha.valor
-                    self.tipo = TipoExpresion.FLOAT
-                    return Primitivo(self.fila, self.columna, TipoExpresion.FLOAT, result)
+                    self.tipo = TipoExpresion.STRING
+                    return Primitivo(self.fila, self.columna, TipoExpresion.STRING, result)
 
 
 
