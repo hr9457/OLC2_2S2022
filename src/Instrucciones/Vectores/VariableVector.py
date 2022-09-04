@@ -16,9 +16,8 @@ class VariableVector:
 
 
     def ejecutar(self, entorno):
-        
-        print('GUARANDO VECTORES EN VARIABLES')
 
+        print('VECTOR CON WITH CAPACITY')
         # filtro de pregunta por si no existe el struct
         
 

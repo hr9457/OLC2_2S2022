@@ -62,7 +62,7 @@ class GetFuncion(Instruccion):
                 # revision de los tipo para los parametros
                 if parametro.tipo == parametroFuncion.tipo:
 
-                    if parametro.tipo == TipoExpresion.ARREGLO:
+                    if parametro.tipo == TipoExpresion.ARREGLO or parametro.tipo == TipoExpresion.VECTOR:
                         envFn.addVariable(parametro.identificador, parametroFuncion)
 
                     else:

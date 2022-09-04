@@ -75,16 +75,14 @@ class Imprimir(Instruccion):
                             if result_evn.tipo == TipoExpresion.ARREGLO and result_evn is not None:
 
                                 cadenaArray = '['
-                                # for v in result_evn.listadoExpresiones:
-
-                                #     if v.tipo != TipoExpresion.ARREGLO:
-                                #         cadenaArray += str(v.ejecutar(entorno).valor) + ', '
-                                #     else:
-                                #         return 'IMPRIMIR --> no se puede imprimir arreglos mltidimensionales'
-
-                                # cadenaArray += ' ]'
 
                                 tempLista.append(self.imprimirArreglo(result_evn, entorno, cadenaArray))
+
+
+                            elif result_evn.tipo == TipoExpresion.VECTOR and result_evn is not None:
+
+                                cadenaVector = '['
+                                tempLista.append(self.imprimiVector(result_evn.lista,cadenaVector,entorno))
 
 
                             else:
@@ -195,7 +193,7 @@ class Imprimir(Instruccion):
                     concatenacionArreglo += str(v.ejecutar(entorno).valor) + ', '
 
                 else:
-                    concatenacionArreglo += self.imprimirArregl(v,entorno)
+                    concatenacionArreglo += self.imprimirArreglo(v,entorno,concatenacionArreglo)
 
         else: 
 
@@ -204,10 +202,25 @@ class Imprimir(Instruccion):
                 if v.tipo != TipoExpresion.ARREGLO:
                     concatenacionArreglo += str(v.ejecutar(entorno).valor) + ', '
                 else:
-                    concatenacionArreglo += self.imprimirArreglo(v,entorno)
+                    concatenacionArreglo += self.imprimirArreglo(v,entorno,concatenacionArreglo)
 
 
         concatenacionArreglo += ' ]'
 
         return concatenacionArreglo
-    
+
+
+
+    def imprimiVector(self, lista, cadenaVector, entorno):
+
+        for elementoLista in lista:
+
+            elemento = elementoLista.ejecutar(entorno)
+
+            cadenaVector += str(elemento.valor)
+
+            cadenaVector += ','
+
+        cadenaVector += ']'
+
+        return cadenaVector

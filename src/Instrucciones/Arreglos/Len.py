@@ -44,6 +44,21 @@ class Len(Expresion):
                     TipoMutable.MUTABLE
                 )
 
+
+            elif varrArreglo is not None and varrArreglo.tipo == TipoExpresion.VECTOR:
+
+                tamanioVector = len(varrArreglo.lista)
+
+                return Simbolo(
+                    0,
+                    0,
+                    None,
+                    TipoExpresion.INTEGER,
+                    tamanioVector,
+                    TipoMutable.MUTABLE
+                )
+
+
         elif self.variable is not None and self.variable.tipo == TipoExpresion.ARREGLO:
 
             varrArreglo = self.variable.ejecutar(entorno)
@@ -59,4 +74,13 @@ class Len(Expresion):
 
             print('para obligatorio')
 
+
+
+
         return f'eror en la funcion len del arreglo'
+
+
+
+
+
+

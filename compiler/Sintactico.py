@@ -69,7 +69,12 @@ from src.Instrucciones.Arreglos.Len import Len
 
 # manejo de vectores
 from src.Instrucciones.Vectores.VariableVector import VariableVector
+from src.Instrucciones.Vectores.VariableVectorExp import VariableVectorExp
+from src.Instrucciones.Vectores.VariableVectorCapacity import VariableVectorCapacity
 from src.Instrucciones.Vectores.Push import Push
+from src.Instrucciones.Vectores.InsertVector import InsertVector
+from src.Instrucciones.Vectores.Insert import Insert
+
 
 
 
@@ -258,7 +263,8 @@ def p_instruccion(p):
                     | alterValueStruct
                     | alterValueArray
                     | instruccionFor2
-                    | instruccionPush  '''
+                    | instruccionPush
+                    | instruccionInsert '''
     p[0] = p[1]
 
 
@@ -412,6 +418,7 @@ def p_instruccion_parametro(p):
     #       0                 1    2       3
     ' instruccionParametro : ID DOSPUNTOS tipo '
     p[0] = Simbolo(0, 0, p[1], p[3], None, TipoMutable.MUTABLE) 
+
 
 
 
@@ -676,6 +683,11 @@ def p_instruccion_push_vectores_struct(p):
 
 
 
+def p_instruccion_insert_vectores(p):
+    #     0                1    2     3             4          5    6   7         8               9
+    ' instruccionInsert : ID PUNTO INSERT PARENTESISIZQUIERDO exp COMA exp PARENTESISDERECHO PUNTOCOMA '
+    p[0] = Insert(p[1], p[5], p[7])
+
 
 
 
@@ -740,6 +752,10 @@ def p_lista_imprimir(p):
 def p_print(p):
     ' listadoprint : exp '
     p[0] = [p[1]]
+
+
+
+
 
 
 
@@ -824,6 +840,14 @@ def p_print_accesStruct(p):
 
 
 
+
+
+
+
+
+
+
+
 # ***************************
 #  DECLARACION DE VARIABLES
 # ***************************
@@ -851,12 +875,45 @@ def p_variables_mut(p):
 
 
 
+
+
+
+
+
+
+# *********************** VECTORES DECLRADOS EN VARIABLES ****
 # MANEJO PARA ASIGNAR VECTORES EN VARIABLES
+# MANEJO PARA ASIGNAR VECTORES EN VARIABLES
+
+
+
 def p_variable_mut_vector(p):
     #     0        1   2   3      4      5   6     7    8      9     10    11          12   13       14               15
     '  variable : LET MUT ID  DOSPUNTOS VEC MENOR tipo MAYOR  IGUAL VEC DOSPUNTOS DOSPUNTOS NEW PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
     p[0] = VariableVector(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[7], TipoMutable.MUTABLE)
 
+
+
+
+
+
+
+
+def p_variable_mut_vector_capacity(p):
+    #     0        1   2   3      4      5      6    7      8          9        10               11           12          13           14 
+    '  variable : LET MUT ID  DOSPUNTOS tipo  IGUAL VEC DOSPUNTOS DOSPUNTOS WITH_CAPACITY PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA '
+    p[0] = VariableVectorCapacity(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[5], TipoMutable.MUTABLE, p[12])
+
+
+
+
+
+
+
+def p_variable_mut_vec(p):
+    #     0        1   2   3      4      5      6    7    8    9      10         
+    '  variable : LET MUT ID  DOSPUNTOS tipo  IGUAL VEC  NOT  exp  PUNTOCOMA '
+    p[0] = VariableVectorExp(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[5], TipoMutable.MUTABLE,p[9])
 
 
 
@@ -1192,7 +1249,7 @@ def p_instruccion_forin(p):
 
 
 def p_instruccion_forin_arreglos(p):
-    #       0           1   2  3   4        5             6             7
+    #       0            1   2   3  4        5             6             7
     ' instruccionFor2 : FOR exp IN exp LLAVEIZQUIERDO instrucciones LLAVEDERECHO '
     p[0] = ForinArreglos(
         p.lineno(1),
@@ -1260,6 +1317,7 @@ def p_elemento_arreglo(p):
 
 
 
+
 # def modificar datos de un arreglo
 # alterar valores de un arreglo 
 def p_alter_value_arregle(p):
@@ -1289,6 +1347,11 @@ def p_list(p):
 def p_list2(p):
     ' list : CORCHETEDERECHO exp CORCHETEIZQUIERDO '
     p[0] = [p[2]]
+
+
+
+
+
 
 
 
@@ -1362,7 +1425,17 @@ def p_tipos(p):
 
 
 
+def p_tipo_vector(p):
+    ' tipo : VEC MENOR tipo MAYOR'
+    p[0] = TipoExpresion.VECTOR
 
+
+
+
+
+def p_tipos_appersand_mut(p):
+    ' tipo : AMPERSAND MUT tipo'
+    p[0] = p[3]
 
 
 

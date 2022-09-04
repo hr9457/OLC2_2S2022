@@ -115,35 +115,35 @@ fn main(){
     
     println!("*******************STRUCT CON ARRAY"); 
     
-    let mut da = StructArr {
-        datos: [10; 10]
-    };
+    // let mut da = StructArr {
+    //     datos: [10; 10]
+    // };
     
-    println!(" valor {:?} ",da.datos);
+    // println!(" valor {} ",da.datos);
     
     
-    println!("*******************CREANDO STRUCTS ");
+    // println!("*******************CREANDO STRUCTS ");
     
-    let mut p1 = Personaje { 
-        nombre:"Fer".to_string(),
-        edad:18,
-        descripcion:"No hace nada".to_string(),
-        carro_: Carro { placa:"090PLO".to_string(),
-                        color:"gris".to_string(), 
-                        tipo:"mecanico".to_string() 
+    // let mut p1 = Personaje { 
+    //     nombre:"Fer".to_string(),
+    //     edad:18,
+    //     descripcion:"No hace nada".to_string(),
+    //     carro_: Carro { placa:"090PLO".to_string(),
+    //                     color:"gris".to_string(), 
+    //                     tipo:"mecanico".to_string() 
             
-        },
-        numeros: da
-    };
+    //     },
+    //     numeros: da
+    // };
     
-    let per1 = CreandoPersonaje(2000,2,true);
-    let per2 = CreandoPersonaje(2007,2,true);
-    let per3 = CreandoPersonaje(2000,3,false);
+    // let per1 = CreandoPersonaje(2000,2,true);
+    // let per2 = CreandoPersonaje(2007,2,true);
+    // let per3 = CreandoPersonaje(2000,3,false);
     
     
-    println!("Persona <<per1>> nombre: {}, edad: {}, carroTipo: {}, carroColor: {} ",per1.nombre, per1.edad, per1.carro_.tipo,per1.carro_.color);
-    println!("Persona <<per2>> nombre: {}, edad: {}, carroTipo: {}, carroColor: {} ",per2.nombre, per2.edad, per2.carro_.tipo,per2.carro_.color);
-    println!("Persona <<per3>> nombre: {}, edad: {}, carroTipo: {}, carroColor: {} ",per3.nombre, per3.edad, per3.carro_.tipo,per3.carro_.color);
+    // println!("Persona <<per1>> nombre: {}, edad: {}, carroTipo: {}, carroColor: {} ",per1.nombre, per1.edad, per1.carro_.tipo,per1.carro_.color);
+    // println!("Persona <<per2>> nombre: {}, edad: {}, carroTipo: {}, carroColor: {} ",per2.nombre, per2.edad, per2.carro_.tipo,per2.carro_.color);
+    // println!("Persona <<per3>> nombre: {}, edad: {}, carroTipo: {}, carroColor: {} ",per3.nombre, per3.edad, per3.carro_.tipo,per3.carro_.color);
 
 
 }
