@@ -74,6 +74,8 @@ from src.Instrucciones.Vectores.VariableVectorCapacity import VariableVectorCapa
 from src.Instrucciones.Vectores.Push import Push
 from src.Instrucciones.Vectores.InsertVector import InsertVector
 from src.Instrucciones.Vectores.Insert import Insert
+from src.Instrucciones.Vectores.Remove import Remove
+from src.Instrucciones.Vectores.Capacity import Capacity
 
 
 
@@ -298,9 +300,12 @@ def p_instruccion_break(p):
 
 
 
+
 def p_instruccion_continue(p):
     ' instruccionContinue : CONTINUE PUNTOCOMA '
     p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.CONTINUE, None)
+
+
 
 
 
@@ -310,6 +315,17 @@ def p_instruccion_return(p):
     #       0              1     2     3
     ' instruccionReturn : RETURN exp PUNTOCOMA '
     p[0] = Primitivo(p.lineno(1), columnToken(input, p.slice[1]), TipoExpresion.RETURN, p[2])
+
+
+
+
+
+
+# para poder manejar los remove en los returns
+def p_instruccion_return_remove(p):
+    #        0              1     2   3      4           5             6        7             8
+    ' instruccionReturn : RETURN exp PUNTO REMOVE PARENTESISIZQUIERDO exp PARENTESISDERECHO PUNTOCOMA '
+    p[0] = Remove(p[2], p[6])
 
 
 
@@ -699,6 +715,15 @@ def p_instruccion_insert_vectores(p):
 
 
 
+def p_expresion_capacity_vectores(p):
+    #  0     1    2      3
+    ' instruccionCapacity : ID PUNTO CAPACITY PARENTESISIZQUIERDO PARENTESISDERECHO '
+    p[0] = Capacity(p[1])
+
+
+
+
+
 
 
 
@@ -751,6 +776,14 @@ def p_lista_imprimir(p):
 
 def p_print(p):
     ' listadoprint : exp '
+    p[0] = [p[1]]
+
+
+
+
+# para permitir la impresion del capacity
+def p_print_capacity(p):
+    ' listadoprint : instruccionCapacity'
     p[0] = [p[1]]
 
 
@@ -1708,6 +1741,43 @@ def p_expresion_acceso_arreglo(p):
 def p_expresion_len_arreglo(p):
     ' exp : exp PUNTO LEN PARENTESISIZQUIERDO PARENTESISDERECHO '
     p[0] = Len(p[1])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -54,19 +54,25 @@ fn main() {
     }
     
     println!("{}", pila);
-    println!("{}", desapilar(&mut pila));
-    apilar(capacidad, &mut pila, 100);
-    apilar(capacidad, &mut pila, 200);
-    apilar(capacidad, &mut pila, 300);
-    println!("{}", desapilar(&mut pila));
-    println!("{}", desapilar(&mut pila));
-    println!("{}", desapilar(&mut pila));
-    println!("{}", desapilar(&mut pila));
-    println!("{}", desapilar(&mut pila));
-    println!("{}", desapilar(&mut pila));
-    println!("{}", desapilar(&mut pila));
-    println!("{}", desapilar(&mut pila));
+
+    println!("{}", desapilar(pila));
+
+    apilar(capacidad,pila, 100);
+    apilar(capacidad,pila, 200);
+    apilar(capacidad,pila, 300);
+
+    println!("{}", desapilar(pila));
+    println!("{}", desapilar(pila));
+    println!("{}", desapilar(pila));
+    println!("{}", desapilar(pila));
+    println!("{}", desapilar(pila));
+    println!("{}", desapilar(pila));
+    println!("{}", desapilar(pila));
+    println!("{}", desapilar(pila));
     println!("{}", pila);
+
+
+    
     println!("Capacidad de pila");
     println!("{}", pila.capacity());
     println!("");

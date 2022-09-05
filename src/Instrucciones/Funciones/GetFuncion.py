@@ -105,21 +105,40 @@ class GetFuncion(Instruccion):
 
                 result = instruccion.ejecutar(envFn)
 
+                print('paro get funcion')
+                # print(f'****************************************************************{type(result)}')
+                # print(f'****************************************************************{result.tipo}')
+                # print(f'****************************************************************{result.valor}')
 
                 # manejo para return en las funciones
                 if isinstance(result, Primitivo) and result.tipo == TipoExpresion.RETURN:
 
-                    
-                    result = result.valor.ejecutar(envFn)
-                    print('******************************************************RETURN DENTTRO DE LA FUNCION')
-                    print(result.valor)
-                    retorno = Primitivo(
-                        self.fila,
-                        self.columna,
-                        result.tipo,
-                        result.valor
-                    )
-                    return retorno
+
+                    if isinstance(result.valor,int) or isinstance(result.valor,str):
+
+                        print('******************************************************RETURN DENTTRO DE LA FUNCION')
+                        print(result.valor)
+                        retorno = Primitivo(
+                            self.fila,
+                            self.columna,
+                            result.tipo,
+                            result.valor
+                        )
+                        return retorno
+
+
+                    else:
+
+                        result = result.valor.ejecutar(envFn)
+                        print('******************************************************RETURN DENTTRO DE LA FUNCION')
+                        print(result.valor)
+                        retorno = Primitivo(
+                            self.fila,
+                            self.columna,
+                            result.tipo,
+                            result.valor
+                        )
+                        return retorno
 
 
                 # concatenacion si las instrucciones no retorna un null
