@@ -74,6 +74,13 @@ class Aplicacion:
 
 
 
+    # funcionalidad para traduccir a 3d
+    def traducir3d(self):
+        print('TRADUCCION A 3D')
+
+
+
+
     # ------------------------------
     # funcionalidad para reportes
     def reporteErrores(self):
@@ -135,9 +142,12 @@ class Aplicacion:
         frameBotones['bg'] = '#49A'
         botonAbrir = Button(frameBotones, text='Abrir')
         botonCompilar = Button(frameBotones, text='Compilar', command=self.compilar)
+        boton3d = Button(frameBotones, text='3d', command=self.traducir3d)
+
         # expasion de los botones de forma horizontal (stiky)
         botonAbrir.grid(row=0, column=0, sticky='WE', padx=5, pady= 5)
         botonCompilar.grid(row=1, column=0, sticky='WE', padx=5, pady=5)
+        boton3d.grid(row=2, column=0, sticky='WE', padx=5, pady=5)
         frameBotones.grid(row=0, column=0, sticky='NS')
 
 

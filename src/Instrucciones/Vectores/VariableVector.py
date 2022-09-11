@@ -12,6 +12,7 @@ class VariableVector:
         self.tipoVector = tipoVector
         self.mutabilidad = mutabilidad
         self.lista = []
+        self.capacity = 0
         self.tipo = TipoExpresion.VECTOR
 
 

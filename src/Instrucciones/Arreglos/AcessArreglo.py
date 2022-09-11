@@ -43,7 +43,7 @@ class AcessArreglo(Expresion):
                 if indice.tipo == TipoExpresion.INTEGER:
 
 
-
+                    
                     posicion_acceso_arreglo = 0
                     print(f'-------------------------------------------------------->{type(arreglo)}')
 
@@ -61,6 +61,17 @@ class AcessArreglo(Expresion):
                                 return pri
 
                             return valor
+
+
+                    elif arreglo.tipo == TipoExpresion.VECTOR:
+
+                        valor = arreglo.lista[indice.valor]
+                        if valor.tipo == TipoExpresion.VECTOR:
+                            pri = Primitivo(None, None, TipoExpresion.VECTOR, valor.lista)
+                            return pri
+                        return valor
+
+
 
                     else:
                         tamanioArreglo = len(arreglo.listadoExpresiones) - 1

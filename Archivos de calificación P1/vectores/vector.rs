@@ -1,15 +1,18 @@
+
 // PILA
 fn pila_vacia(vec: &mut Vec<i64>) -> bool {
-    return vec.len() == 0;
+    return (vec.len()) == 0;
 }
 
+
 fn apilar(capacidad: usize, vec: &mut Vec<i64>, value: i64) {
-    if vec.len() < capacidad {
+    if ((vec.len()) < capacidad) {
         vec.insert(vec.len(), value);
     } else {
         println!("La pila ha llegado a su maxima capacidad");
     }
 }
+
 
 fn desapilar(vec: &mut Vec<i64>) -> i64 {
     if !pila_vacia(vec) {
@@ -20,10 +23,13 @@ fn desapilar(vec: &mut Vec<i64>) -> i64 {
     return 0;
 }
 
+
+
 // COLA
 fn cola_vacia(vec: &mut Vec<i64>) -> bool {
-    return vec.len() == 0
+    return vec.len() == 0;
 }
+
 
 fn encolar(capacidad: usize, vec: &mut Vec<i64>, value: i64) {
     if vec.len() < capacidad {
@@ -33,14 +39,16 @@ fn encolar(capacidad: usize, vec: &mut Vec<i64>, value: i64) {
     }
 }
 
+
 fn desencolar(vec: &mut Vec<i64>) -> i64 {
     if !cola_vacia(vec) {
         return vec.remove(0);
     } else {
         println!("La cola no tiene elementos");
     }
-    return 0
+    return 0;
 }
+
 
 fn main() {
     let capacidad: usize = 10;
@@ -52,7 +60,7 @@ fn main() {
     for dato in datos {
         apilar(capacidad,pila, dato);
     }
-    
+
     println!("{}", pila);
 
     println!("{}", desapilar(pila));
@@ -61,6 +69,8 @@ fn main() {
     apilar(capacidad,pila, 200);
     apilar(capacidad,pila, 300);
 
+
+
     println!("{}", desapilar(pila));
     println!("{}", desapilar(pila));
     println!("{}", desapilar(pila));
@@ -72,52 +82,63 @@ fn main() {
     println!("{}", pila);
 
 
-    
     println!("Capacidad de pila");
     println!("{}", pila.capacity());
     println!("");
 
-    encolar(capacidad, &mut cola, 800);
+
+    encolar(capacidad,cola, 800);
     println!("{}", cola);
-    println!("{}", desencolar(&mut cola));
-    encolar(capacidad, &mut cola, 100);
-    encolar(capacidad, &mut cola, 200);
-    encolar(capacidad, &mut cola, 300);
-    println!("{}", desencolar(&mut cola));
-    println!("{}", desencolar(&mut cola));
-    println!("{}", desencolar(&mut cola));
-    println!("{}", desencolar(&mut cola));
-    println!("{}", desencolar(&mut cola));
-    println!("{}", desencolar(&mut cola));
-    println!("{}", desencolar(&mut cola));
-    println!("{}", desencolar(&mut cola));
+
+
+    println!("{}", desencolar(cola));
+
+    encolar(capacidad,cola, 100);
+    encolar(capacidad,cola, 200);
+    encolar(capacidad,cola, 300);
+
+    println!("{}", desencolar(cola));
+    println!("{}", desencolar(cola));
+    println!("{}", desencolar(cola));
+    println!("{}", desencolar(cola));
+    println!("{}", desencolar(cola));
+    println!("{}", desencolar(cola));
+    println!("{}", desencolar(cola));
+    println!("{}", desencolar(cola));
+
     println!("{}", cola);
     println!("Capacidad de cola");
     println!("{}", cola.capacity());
     println!("");
 
+
+
     // vectores entre vectores
     let mut lista: Vec<Vec<i64>> = Vec::new();
-    lista.push(vec![0; 10]);
-    lista.push(vec![1; 10]);
-    lista.push(vec![2; 10]);
-    lista.push(vec![3; 10]);
-    lista.push(vec![75,23,10,29,30,12,49,10,93]);
+    
+    lista.push(Vec![0; 10]);
+    lista.push(Vec![1; 10]);
+    lista.push(Vec![2; 10]);
+    lista.push(Vec![3; 10]);
+    //lista.push(Vec![75,23,10,29,30,12,49,10,93]);
+
+
     println!("{}", lista);
     println!("");
     println!("{}", lista[0]);
     println!("{}", lista[1]);
     println!("{}", lista[2]);
     println!("{}", lista[3]);
-    println!("{}", lista[4]);
-    println!("{}", lista[4][8]);
-    println!("");
 
-    let vec = vec!["Hola", "!", "Sale", "Este", "Semestre", "2022"];
-    println!("{}", vec.contains(&"Semestre") || vec.contains(&"2023"));
-    println!("{}", vec.contains(&"Semestre") && vec.contains(&"2023"));
-    println!("{}", vec.contains(&"Hola"));
+
+    let vec = Vec!["Hola", "!", "Sale", "Este", "Semestre", "2022"];
+    println!((vec.contains(&"Semestre")) || (vec.contains(&"2023")) );
+    println!((vec.contains(&"Semestre")) && (vec.contains(&"2023")) );
+    println!( vec.contains(&"Hola") );
+
+
 }
+
 
 
 // /*

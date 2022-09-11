@@ -63,6 +63,9 @@ class Imprimir(Instruccion):
                         tempLista.append(resultadoInstruccion)
 
 
+                    elif resultadoInstruccion.tipo == TipoExpresion.VECTOR:
+                        cadenaVector = '['
+                        tempLista.append(self.imprimiVector(resultadoInstruccion.valor, cadenaVector, entorno))
 
 
                     else:
@@ -150,6 +153,13 @@ class Imprimir(Instruccion):
                             tempLista.append(self.imprimirArreglo(resultadoInstruccion,entorno, concatenacionArreglo))
                             concatenacionArreglo = ''
 
+                        # elif result_evn.tipo == TipoExpresion.ARREGLO and result_evn is not None:
+                        #
+                        #     cadenaArray = '['
+                        #
+                        #     tempLista.append(self.imprimirArreglo(result_evn, entorno, cadenaArray))
+
+
                         # impresionsea valores primitivos
                         else:
                             tempLista.append(resultadoInstruccion.valor)
@@ -215,9 +225,14 @@ class Imprimir(Instruccion):
 
         for elementoLista in lista:
 
-            elemento = elementoLista.ejecutar(entorno)
+            if elementoLista.tipo == TipoExpresion.VECTOR:
+                cadenaVector += self.imprimiVector(elementoLista.lista, cadenaVector, entorno)
 
-            cadenaVector += str(elemento.valor)
+
+            else:
+                elemento = elementoLista.ejecutar(entorno)
+
+                cadenaVector += str(elemento.valor)
 
             cadenaVector += ','
 

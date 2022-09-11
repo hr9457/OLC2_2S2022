@@ -24,6 +24,7 @@ class Remove(Instruccion):
 
 
         # posicion en la que se quiere remover un elemento
+        # if self.exp_poisicion.tipo == TipoExpresion.ID:
         posicion = self.exp_poisicion.ejecutar(entorno)
 
 

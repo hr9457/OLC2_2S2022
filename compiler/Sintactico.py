@@ -76,6 +76,9 @@ from src.Instrucciones.Vectores.InsertVector import InsertVector
 from src.Instrucciones.Vectores.Insert import Insert
 from src.Instrucciones.Vectores.Remove import Remove
 from src.Instrucciones.Vectores.Capacity import Capacity
+from src.Instrucciones.Vectores.PushExp import PushExp
+from src.Instrucciones.Vectores.VectorDafault import VectorDefault
+from src.Instrucciones.Vectores.Contains import Contains
 
 
 
@@ -697,6 +700,27 @@ def p_instruccion_push_vectores_struct(p):
 
 
 
+def p_instruccion_push_vectores_exp(p):
+    #     0              1   2     3           4            5        6        7           8           
+    ' instruccionPush : ID PUNTO PUSH PARENTESISIZQUIERDO  exp  PARENTESISDERECHO PUNTOCOMA '
+    p[0] = PushExp(p[1], p[5])
+
+
+
+
+
+
+
+def p_instruccion_push_vectores_vectores(p):
+    #     0              1   2     3           4           5   6   7           8             9           
+    ' instruccionPush : ID PUNTO PUSH PARENTESISIZQUIERDO VEC NOT exp  PARENTESISDERECHO PUNTOCOMA '
+    p[0] = PushExp(p[1], p[5])
+
+
+
+
+
+
 
 
 def p_instruccion_insert_vectores(p):
@@ -719,6 +743,20 @@ def p_expresion_capacity_vectores(p):
     #  0     1    2      3
     ' instruccionCapacity : ID PUNTO CAPACITY PARENTESISIZQUIERDO PARENTESISDERECHO '
     p[0] = Capacity(p[1])
+
+
+
+
+
+
+
+
+
+# # vec.contais(exp);
+# def p_expresion_contains(p):
+#     #          0             1    2      3           4              5        6          7
+#     ' instruccionContains : ID PUNTO CONTAINS PARENTESISIZQUIERDO AMPERSAND exp PARENTESISDERECHO '
+#     p[0] = Contains(p[1], p[6])
 
 
 
@@ -785,6 +823,8 @@ def p_print(p):
 def p_print_capacity(p):
     ' listadoprint : instruccionCapacity'
     p[0] = [p[1]]
+
+
 
 
 
@@ -921,9 +961,9 @@ def p_variables_mut(p):
 
 
 def p_variable_mut_vector(p):
-    #     0        1   2   3      4      5   6     7    8      9     10    11          12   13       14               15
-    '  variable : LET MUT ID  DOSPUNTOS VEC MENOR tipo MAYOR  IGUAL VEC DOSPUNTOS DOSPUNTOS NEW PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
-    p[0] = VariableVector(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[7], TipoMutable.MUTABLE)
+    #     0        1   2   3      4      5     6     7    8      9     10    11          12   13       14               15
+    '  variable : LET MUT ID  DOSPUNTOS tipo  IGUAL VEC DOSPUNTOS DOSPUNTOS NEW PARENTESISIZQUIERDO PARENTESISDERECHO PUNTOCOMA '
+    p[0] = VariableVector(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[5], TipoMutable.MUTABLE)
 
 
 
@@ -942,13 +982,23 @@ def p_variable_mut_vector_capacity(p):
 
 
 
-
+# vec![ exp; exp ]
 def p_variable_mut_vec(p):
     #     0        1   2   3      4      5      6    7    8    9      10         
     '  variable : LET MUT ID  DOSPUNTOS tipo  IGUAL VEC  NOT  exp  PUNTOCOMA '
     p[0] = VariableVectorExp(p.lineno(1), columnToken(input, p.slice[1]), p[3], p[5], TipoMutable.MUTABLE,p[9])
 
 
+
+
+# vec![ exp; exp ]
+def p_variable_mut_sintipo_vec(p):
+    #     0        1   2   3     4    5    6       7       8          
+    '  variable : LET ID  IGUAL VEC  NOT  exp  PUNTOCOMA '
+    p[0] = VariableVectorExp(p.lineno(1), columnToken(input, p.slice[1]), p[2], None, TipoMutable.MUTABLE,p[6])
+
+
+# **********************************
 
 
 
@@ -1748,6 +1798,11 @@ def p_expresion_len_arreglo(p):
 
 
 
+# vec.contais(exp);
+def p_expresion_contains(p):
+    #  0     1    2      3             4                5     6          7
+    ' exp : exp PUNTO CONTAINS PARENTESISIZQUIERDO AMPERSAND exp PARENTESISDERECHO '
+    p[0] = Contains(p[1], p[6])
 
 
 
@@ -1755,7 +1810,11 @@ def p_expresion_len_arreglo(p):
 
 
 
-
+# vector por defecto vec![exp; exp]
+def p_expresion_vector_lleno(p):
+    #  0     1   2        3          4      5      6         7
+    ' exp : VEC NOT CORCHETEDERECHO exp PUNTOCOMA exp CORCHETEIZQUIERDO '
+    p[0] = VectorDefault(p[4], p[6])
 
 
 
