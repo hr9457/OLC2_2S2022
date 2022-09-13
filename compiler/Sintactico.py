@@ -111,6 +111,20 @@ tablaErrores = []
 
 
 
+
+
+# importacion para el manejo de la traduccion 3d
+from src.environment3d.Enviroment3d import Environment3d
+
+
+
+
+
+
+
+
+
+
 # ----------------------------------------------------------------
 #                      Precedencia de Operadores
 # ----------------------------------------------------------------
@@ -1008,45 +1022,45 @@ def p_variable_mut_sintipo_vec(p):
 
 
 # declaracion de struct sin tipo en variable
-def p_variables_mut_struct(p):
-    #     0              1   2   3   4    5      6            7           8            9  
-    '''  variable   :   LET MUT ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
-    p[0] = Declaracion(
-        p.lineno(1), columnToken(input, p.slice[1]), 
-        p[3], 
-        None, 
-        BuildStruct(
-            p.lineno(5),
-            columnToken(input, p.slice[5]),
-            p[5],
-            p[7])
-        , 
-        TipoMutable.MUTABLE,
-        tablaSimbolos,
-        tablaErrores
-        )
+# def p_variables_mut_struct(p):
+#     #     0              1   2   3   4    5      6            7           8            9  
+#     '''  variable   :   LET MUT ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
+#     p[0] = Declaracion(
+#         p.lineno(1), columnToken(input, p.slice[1]), 
+#         p[3], 
+#         None, 
+#         BuildStruct(
+#             p.lineno(5),
+#             columnToken(input, p.slice[5]),
+#             p[5],
+#             p[7])
+#         , 
+#         TipoMutable.MUTABLE,
+#         tablaSimbolos,
+#         tablaErrores
+#         )
 
 
 
 # delcaracion de struct en varibles con tipo
-def p_variables_mut_tipo_struct(p):
-    #     0              1   2   3   4       5    6    7     8             9            10           11 
-    '''  variable   :   LET MUT ID DOSPUNTOS ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
-    print(f' --> {p.slice[5]}')
-    p[0] = Declaracion(
-        p.lineno(1), columnToken(input, p.slice[1]),
-        p[3], 
-        p[5], 
-        BuildStruct(
-            p.lineno(7),
-            columnToken(input, p.slice[7]),
-            p[7],
-            p[9])
-        ,  
-        TipoMutable.MUTABLE,
-        tablaSimbolos,
-        tablaErrores
-        )
+# def p_variables_mut_tipo_struct(p):
+#     #     0              1   2   3   4       5    6    7     8             9            10           11 
+#     '''  variable   :   LET MUT ID DOSPUNTOS ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
+#     print(f' --> {p.slice[5]}')
+#     p[0] = Declaracion(
+#         p.lineno(1), columnToken(input, p.slice[1]),
+#         p[3], 
+#         p[5], 
+#         BuildStruct(
+#             p.lineno(7),
+#             columnToken(input, p.slice[7]),
+#             p[7],
+#             p[9])
+#         ,  
+#         TipoMutable.MUTABLE,
+#         tablaSimbolos,
+#         tablaErrores
+#         )
 
 
 
@@ -1101,47 +1115,47 @@ def p_variable_vector(p):
 
 
 # declaracion de struct en varialbes sin tipo sin mut
-def p_variables_tipo_struct(p):
-    #     0              1  2  3      4        5             6           7          8       
-    '''  variable   :   LET ID IGUAL  ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '''
-    p[0] = Declaracion(
-        p.lineno(1), columnToken(input, p.slice[1]), 
-        p[2], 
-        None, 
-        BuildStruct(
-            p.lineno(4),
-            columnToken(input, p.slice[4]),
-            p[4],
-            p[6])
-        , 
-        TipoMutable.NOMUTABLE,
-        tablaSimbolos,
-        tablaErrores
-        )
+# def p_variables_tipo_struct(p):
+#     #     0              1  2  3      4        5             6           7          8       
+#     '''  variable   :   LET ID IGUAL  ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA '''
+#     p[0] = Declaracion(
+#         p.lineno(1), columnToken(input, p.slice[1]), 
+#         p[2], 
+#         None, 
+#         BuildStruct(
+#             p.lineno(4),
+#             columnToken(input, p.slice[4]),
+#             p[4],
+#             p[6])
+#         , 
+#         TipoMutable.NOMUTABLE,
+#         tablaSimbolos,
+#         tablaErrores
+#         )
 
 
 
 
 # delcaracion de struct en varibles sin tipo y sin mut
-def p_variables_mut_tipo_struct(p):
-    #     0              1   2   3       4   5    6        7            8             9          10  
-    '''  variable   :   LET ID DOSPUNTOS ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
-    print(f' --> {p.slice[5]}')
-    p[0] = Declaracion(
-        p.lineno(1), 
-        columnToken(input, p.slice[1]), 
-        p[2], 
-        p[4], 
-        BuildStruct(
-            p.lineno(7),
-            columnToken(input, p.slice[7]),
-            p[6],
-            p[8])
-        ,  
-        TipoMutable.MUTABLE,
-        tablaSimbolos,
-        tablaErrores
-        )
+# def p_variables_mut_tipo_struct(p):
+#     #     0              1   2   3       4   5    6        7            8             9          10  
+#     '''  variable   :   LET ID DOSPUNTOS ID IGUAL ID LLAVEIZQUIERDO listadoBuild LLAVEDERECHO PUNTOCOMA  '''
+#     print(f' --> {p.slice[5]}')
+#     p[0] = Declaracion(
+#         p.lineno(1), 
+#         columnToken(input, p.slice[1]), 
+#         p[2], 
+#         p[4], 
+#         BuildStruct(
+#             p.lineno(7),
+#             columnToken(input, p.slice[7]),
+#             p[6],
+#             p[8])
+#         ,  
+#         TipoMutable.MUTABLE,
+#         tablaSimbolos,
+#         tablaErrores
+#         )
 
 
 
@@ -1956,6 +1970,32 @@ def analizar(entrada):
             salida += str(result) + "\n"
 
     return salida, tablaSimbolos, tablaErrores
+
+
+
+
+
+
+
+
+# funcion para devolver la traduccion en 3d
+def traduccir3d(entrada):
+    input = entrada
+    lista = parser.parse(entrada)
+
+    # traductor 3d
+    traductor3d = Environment3d()
+    
+
+    # entorno principal declarado
+    env = Environment('general', 0, None)
+
+    salida = ''
+    for l in lista:
+        l.traducir(env, traductor3d)
+
+    traductor3d.cabecera()
+    return traductor3d.getCadena()
 
 
 

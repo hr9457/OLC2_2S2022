@@ -168,3 +168,256 @@ class Aritmetica(Expresion):
             # self.tablaErrores.append(['Aritmetica, Error operacion Aritmetica <-',entorno.nombre,self.fila,self.columna])
             # # --------------------------------
             return '--> Aritmetica, Error operacion Aritmetica <-'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # traduccion en 3d
+    def traducir(self, entorno, traductor3d):
+
+
+
+        cadenaTraduccion3d = ''
+
+
+        # ejecucion del nodod izquierda y derecha
+        # OBTENER LOS VALORES
+        # EJECUCION DEL NODO DERECHO Y DEL NODO IZQUIERDO
+        nodoIzquierdo = self.leftExp.traducir(entorno, traductor3d)
+        nodoDerecho = self.rigthExp.traducir(entorno, traductor3d)
+        
+        
+        # verificaion de tipo del nodo derecha y nodo izquierda
+        if nodoIzquierdo.tipo == nodoDerecho.tipo:
+
+            # evaluacion de tipo valor --> INTEGER o FLOAT
+            if nodoIzquierdo.tipo == TipoExpresion.INTEGER:
+
+                # suma
+                if self.operador == TipoOperador.MAS:
+
+                    
+                    # obteniendo valores de los nodos
+                    resultadoNodoIzquierdo = nodoIzquierdo.valor
+                    resultadoNodoDerecho = nodoDerecho.valor
+
+                    # ********** traduccion **************
+                    # obtengo el valor actual de los temporales
+                    temporalActual = traductor3d.getTemporal()
+
+                    cadenaTraduccion3d += f't{temporalActual} = {resultadoNodoIzquierdo} + {resultadoNodoDerecho} ;\n'
+                    traductor3d.setContenidoMain(cadenaTraduccion3d)
+                    traductor3d.aumentarTemporal()
+
+                    return Simbolo(
+                        self.fila,
+                        self.columna,
+                        None,
+                        TipoExpresion.INTEGER,
+                        f't{temporalActual}',
+                        None
+                    )
+                    # *************************************
+
+
+                # resta
+                if self.operador == TipoOperador.MENOS:
+                    # obteniendo valores de los nodos
+                    resultadoNodoIzquierdo = nodoIzquierdo.valor
+                    resultadoNodoDerecho = nodoDerecho.valor
+
+                    # ********** traduccion **************
+                    # obtengo el valor actual de los temporales
+                    temporalActual = traductor3d.getTemporal()
+
+                    cadenaTraduccion3d += f't{temporalActual} = {resultadoNodoIzquierdo} - {resultadoNodoDerecho} ;\n'
+                    traductor3d.setContenidoMain(cadenaTraduccion3d)
+                    traductor3d.aumentarTemporal()
+
+                    return Simbolo(
+                        self.fila,
+                        self.columna,
+                        None,
+                        TipoExpresion.INTEGER,
+                        f't{temporalActual}',
+                        None
+                    )
+                    # *************************************
+
+
+
+                # multiplicacion
+                if self.operador == TipoOperador.POR:
+                    # obteniendo valores de los nodos
+                    resultadoNodoIzquierdo = nodoIzquierdo.valor
+                    resultadoNodoDerecho = nodoDerecho.valor
+
+                    # ********** traduccion **************
+                    # obtengo el valor actual de los temporales
+                    temporalActual = traductor3d.getTemporal()
+
+                    cadenaTraduccion3d += f't{temporalActual} = {resultadoNodoIzquierdo} * {resultadoNodoDerecho} ;\n'
+                    traductor3d.setContenidoMain(cadenaTraduccion3d)
+                    traductor3d.aumentarTemporal()
+
+                    return Simbolo(
+                        self.fila,
+                        self.columna,
+                        None,
+                        TipoExpresion.INTEGER,
+                        f't{temporalActual}',
+                        None
+                    )
+                    # *************************************
+
+
+
+                # division
+                if self.operador == TipoOperador.DIV:
+                    # obteniendo valores de los nodos
+                    resultadoNodoIzquierdo = nodoIzquierdo.valor
+                    resultadoNodoDerecho = nodoDerecho.valor
+
+                    # ********** traduccion **************
+                    # obtengo el valor actual de los temporales
+                    temporalActual = traductor3d.getTemporal()
+
+                    cadenaTraduccion3d += f't{temporalActual} = {resultadoNodoIzquierdo} / {resultadoNodoDerecho} ;\n'
+                    traductor3d.setContenidoMain(cadenaTraduccion3d)
+                    traductor3d.aumentarTemporal()
+
+                    return Simbolo(
+                        self.fila,
+                        self.columna,
+                        None,
+                        TipoExpresion.INTEGER,
+                        f't{temporalActual}',
+                        None
+                    )
+                    # *************************************
+
+
+
+
+
+            # evaluacion de tipo valor --> FLOAT
+            elif  nodoIzquierdo.tipo == TipoExpresion.FLOAT:
+
+                # suma
+                if self.operador == TipoOperador.MAS:
+
+                    
+                    # obteniendo valores de los nodos
+                    resultadoNodoIzquierdo = nodoIzquierdo.valor
+                    resultadoNodoDerecho = nodoDerecho.valor
+
+                    # ********** traduccion **************
+                    # obtengo el valor actual de los temporales
+                    temporalActual = traductor3d.getTemporal()
+
+                    cadenaTraduccion3d += f't{temporalActual} = {resultadoNodoIzquierdo} + {resultadoNodoDerecho} ;\n'
+                    traductor3d.setContenidoMain(cadenaTraduccion3d)
+                    traductor3d.aumentarTemporal()
+
+                    return Simbolo(
+                        self.fila,
+                        self.columna,
+                        None,
+                        TipoExpresion.FLOAT,
+                        f't{temporalActual}',
+                        None
+                    )
+                    # *************************************
+
+
+                # resta
+                if self.operador == TipoOperador.MENOS:
+                    # obteniendo valores de los nodos
+                    resultadoNodoIzquierdo = nodoIzquierdo.valor
+                    resultadoNodoDerecho = nodoDerecho.valor
+
+                    # ********** traduccion **************
+                    # obtengo el valor actual de los temporales
+                    temporalActual = traductor3d.getTemporal()
+
+                    cadenaTraduccion3d += f't{temporalActual} = {resultadoNodoIzquierdo} - {resultadoNodoDerecho} ;\n'
+                    traductor3d.setContenidoMain(cadenaTraduccion3d)
+                    traductor3d.aumentarTemporal()
+
+                    return Simbolo(
+                        self.fila,
+                        self.columna,
+                        None,
+                        TipoExpresion.FLOAT,
+                        f't{temporalActual}',
+                        None
+                    )
+                    # *************************************
+
+
+
+                # multiplicacion
+                if self.operador == TipoOperador.POR:
+                    # obteniendo valores de los nodos
+                    resultadoNodoIzquierdo = nodoIzquierdo.valor
+                    resultadoNodoDerecho = nodoDerecho.valor
+
+                    # ********** traduccion **************
+                    # obtengo el valor actual de los temporales
+                    temporalActual = traductor3d.getTemporal()
+
+                    cadenaTraduccion3d += f't{temporalActual} = {resultadoNodoIzquierdo} * {resultadoNodoDerecho} ;\n'
+                    traductor3d.setContenidoMain(cadenaTraduccion3d)
+                    traductor3d.aumentarTemporal()
+
+                    return Simbolo(
+                        self.fila,
+                        self.columna,
+                        None,
+                        TipoExpresion.FLOAT,
+                        f't{temporalActual}',
+                        None
+                    )
+                    # *************************************
+
+
+
+                # division
+                if self.operador == TipoOperador.DIV:
+                    # obteniendo valores de los nodos
+                    resultadoNodoIzquierdo = nodoIzquierdo.valor
+                    resultadoNodoDerecho = nodoDerecho.valor
+
+                    # ********** traduccion **************
+                    # obtengo el valor actual de los temporales
+                    temporalActual = traductor3d.getTemporal()
+
+                    cadenaTraduccion3d += f't{temporalActual} = {resultadoNodoIzquierdo} / {resultadoNodoDerecho} ;\n'
+                    traductor3d.setContenidoMain(cadenaTraduccion3d)
+                    traductor3d.aumentarTemporal()
+
+                    return Simbolo(
+                        self.fila,
+                        self.columna,
+                        None,
+                        TipoExpresion.FLOAT,
+                        f't{temporalActual}',
+                        None
+                    )
+                    # *************************************

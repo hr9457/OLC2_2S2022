@@ -219,3 +219,22 @@ class Declaracion(Instruccion):
 
 
 
+
+
+
+
+
+    def traduccir(self, entorno, traductor3d):
+
+
+        if self.tipo == None:
+            print('variables sin tipo')
+
+        else:
+            print('variable con tipo')
+    
+
+        return None
+
+
+

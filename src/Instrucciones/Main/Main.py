@@ -24,3 +24,12 @@ class FuncionMain(Instruccion):
 
 
         return resultInstrucciones
+
+
+
+    def traducir(self, entorno, traductor3d):
+
+        for instruccion in self.instrucciones:
+            instruccion.traducir(entorno, traductor3d)
+
+        return None

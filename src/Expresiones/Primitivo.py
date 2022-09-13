@@ -1,6 +1,9 @@
 # importacion de para Expresiones
 from src.Interfaces.Expresion import Expresion
 
+# importaciones para manejar simbolos
+from src.environment.Simbolo import Simbolo
+
 # clse para manejar numero primitivos
 class Primitivo(Expresion):
 
@@ -25,3 +28,17 @@ class Primitivo(Expresion):
     # retorno de tipo
     def getTipo(self):
         return self.tipo
+
+
+
+
+    # retorno para traduccion en 3d
+    def traducir(self, entorno, traductor3d):
+        return Simbolo(
+            self.fila,
+            self.columna,
+            None,
+            self.tipo,
+            self.valor,
+            None
+        )

@@ -293,6 +293,9 @@ fn main() {
 
 
 
+
+
+
 struct CentroTuristico {
     nombre:String
 }
@@ -560,3 +563,73 @@ fn main() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fn main() {
+    println!( 10 - (5 + 10 * (9 + 4 * (1 + 2 * 3)) - 8 * 3 * 6) + 5 * (2 * 2)  );
+}
+
+
+
+fn main() {
+    println!( 3 );
+}
+
+
+
+
+
+
+fn main() {
+    println!("primero");
+    println!("segundo");
+}
+
+
+
+fn main() {
+    println!(true);
+    println!(false);
+}

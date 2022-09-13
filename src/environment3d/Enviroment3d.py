@@ -4,9 +4,10 @@ class Environment3d:
 
 
     def __init__(self):
-        self.temporal = 0
+        self.temporal = 5
         self.etiqueta = 0
         self.traduccion = ''
+        self.contenidoMain = '' 
 
 
     
@@ -14,57 +15,80 @@ class Environment3d:
 
     # inicio concatenacion de 3d
     def cabecera(self):
-        self.traduccion += '''
-        /*------------- HEADER --------------*/ 
-        # include <stdio.h>
-        # include <math.h>
-
-        float heap[10000];
-        float stack[10000];
-        float P;
-        float H;
-
-        
-        float t0, t1, t2, t3, t4 ;
+        self.traduccion += '/*------------- HEADER --------------*/\n' 
+        self.traduccion += '# include <stdio.h>\n'
+        self.traduccion += '# include <math.h>\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
 
 
+        self.traduccion += 'float heap[10000];\n'
+        self.traduccion += 'float stack[10000];\n'
+        self.traduccion += 'float P;\n'
+        self.traduccion += 'float H;\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
 
 
-        /*------------- NATIVAS --------------*/
-        
-        void printString(){
-            /*------(tamanio del arreglo)------*/
-            t1 = t0;
-
-            /*------(inicio del arreglo)------*/
-            t3 = heap[(int)t2];
-
-            /*------(contador del for)------*/
-            t4 = 0;
-            IMPRIMIR:
-                if(t4 == t1) goto FINIMPRIMIR;
-                printf("%c",(char)t3);
-            
-                t2 = t2 + 1;
-                t3 = heap[(int)t2];
-                t4 = t4 + 1;
-                goto IMPRIMIR;
-                FINIMPRIMIR:
-                return;
-        }       
+        # -------------- TEMPORALES -----------------------
+        # ciclo for para crear todos los temporales
+        self.traduccion += 'float '
+        for i in range(self.temporal):
+            self.traduccion += f't{i} '
+            if i < self.temporal-1:
+                self.traduccion += ', '
+        self.traduccion += ';\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
 
 
 
+        self.traduccion += '/*------------- NATIVAS --------------*/\n'
+        self.traduccion += '\n'
+        self.traduccion += 'void printString(){\n'
+        self.traduccion += '    /*------(tamanio del arreglo)------*/\n'
+        self.traduccion += '    t1 = t0;\n'
+        self.traduccion += '\n'
+        self.traduccion += '    /*------(inicio del arreglo)------*/\n'
+        self.traduccion += '    t3 = heap[(int)t2];\n'
+        self.traduccion += '\n'
+        self.traduccion += '    /*------(contador del for)------*/\n'
+        self.traduccion += '    t4 = 0;\n'
+        self.traduccion += '    IMPRIMIR:\n'
+        self.traduccion += '       if(t4 > t1) goto FINIMPRIMIR;\n'
+        self.traduccion += '        printf("%c",(char)t3);\n'
+        self.traduccion += '\n'
+        self.traduccion += '        t2 = t2 + 1;\n'
+        self.traduccion += '        t3 = heap[(int)t2];\n'
+        self.traduccion += '        t4 = t4 + 1;\n'
+        self.traduccion += '        goto IMPRIMIR;\n'
+        self.traduccion += '        FINIMPRIMIR:\n'
+        self.traduccion += '        return;\n'
+        self.traduccion += '}\n'       
+        self.traduccion += '\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
 
-        /*------------- INICIO -----------------*/
 
-        void main(){
-            P = 0;
-            H = 0;
-            return;
-        }
 
-        ''' 
+
+        self.traduccion += '/*------------- INICIO -----------------*/\n'
+        self.traduccion += '\n'
+        self.traduccion += 'void main(){\n'
+        self.traduccion += '    P = 0;\n'
+        self.traduccion += '    H = 0;\n'
+        self.traduccion += f'\t {self.contenidoMain}\n'
+        self.traduccion += '\n'
+        self.traduccion += '    return 0;\n'
+        self.traduccion += '}\n'
+        self.traduccion += '\n'
+
+
+
 
 
 
@@ -76,8 +100,21 @@ class Environment3d:
 
 
     # metodo pra concatenar la traduccion
-    def concatenarTraduccion(self, cadena):
+    def setCadena(self, cadena):
         self.traduccion += self.traduccion + cadena
+
+
+
+
+    # contenido
+    def getContenidoMain(self):
+        return self.contenidoMain
+
+
+
+    def setContenidoMain(self, cadena):
+        self.contenidoMain += cadena
+
 
 
 
@@ -87,8 +124,9 @@ class Environment3d:
 
 
     # obtener el numero del temporal actual
-    def obtenerTemporal(self):
+    def getTemporal(self):
         return self.temporal
+
 
 
 

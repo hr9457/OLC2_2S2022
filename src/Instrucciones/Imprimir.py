@@ -239,3 +239,147 @@ class Imprimir(Instruccion):
         cadenaVector += ']'
 
         return cadenaVector
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # traduccion a 3d
+    def traducir(self, entorno, traductor3d):
+
+
+        # traduccion a 3d
+        cadenaTraduccion3d = ''
+
+        # primitivo
+        variables = '{}'
+        countNodoDerecho = 0
+
+        # obtener el contenido que va imprimir
+        # tien que retornar un Simbolo
+        resultado = self.contenido.traducir(entorno, traductor3d)
+
+
+
+
+        # impresion de expresiones tipo integer y tipo float
+        if resultado.tipo == TipoExpresion.INTEGER:
+            # ************ traduccion ******************
+            cadenaTraduccion3d += f'printf("%d", (int){resultado.valor}); \n'
+            cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+
+            traductor3d.setContenidoMain(cadenaTraduccion3d)
+            # ******************************************
+
+
+
+
+        # impresion de expresiones tipo  float
+        elif resultado.tipo == TipoExpresion.FLOAT:
+            # ************ traduccion ******************
+            cadenaTraduccion3d += f'printf("%f", {resultado.valor}); \n'
+            cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+
+            traductor3d.setContenidoMain(cadenaTraduccion3d)
+            # ******************************************
+
+
+
+        elif resultado.tiop == TipoExpresion.CHAR:
+            # ************ traduccion ******************
+            cadenaTraduccion3d += f'printf("%c", {resultado.valor}); \n'
+            cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+
+            traductor3d.setContenidoMain(cadenaTraduccion3d)
+            # ******************************************
+
+
+        # impresion de expresiones tipo  booleanos
+        elif resultado.tipo == TipoExpresion.BOOL:
+            
+            if resultado.valor == 'true':
+                # ************ traduccion ******************
+                cadenaTraduccion3d += '\n'
+                cadenaTraduccion3d += '/*--------- BOOLEANO ------------*/\n'
+                cadenaTraduccion3d += 'printf("%c", (int)116);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)114);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)117);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)101);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+                traductor3d.setContenidoMain(cadenaTraduccion3d)
+                # ******************************************
+
+            elif resultado.valor == 'false':
+                # ************ traduccion ******************
+                cadenaTraduccion3d += '\n'
+                cadenaTraduccion3d += '/*--------- BOOLEANO ------------*/\n'
+                cadenaTraduccion3d += 'printf("%c", (int)102);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)97);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)108);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)115);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)101);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)13);\n'
+                cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+                traductor3d.setContenidoMain(cadenaTraduccion3d)
+                # ******************************************
+
+
+
+        # impiresion de expresiones tipo string
+        elif resultado.tipo == TipoExpresion.STRING:
+
+            # ************ traduccion ******************
+
+            # guardo va iniciar el arreglo en el stack
+            cadenaTraduccion3d += '\n'
+            cadenaTraduccion3d += '/*--------- MOVIMIENTOS PARA UN STRING ------------*/\n'
+            cadenaTraduccion3d += 'stack[(int)P] = H;\n'
+            cadenaTraduccion3d += 'P = P + 1;\n'
+
+            # guardo el tambio del arreglo en la primera posicion del heap
+            cadenaTraduccion3d += f'heap[(int)H] = {len(resultado.valor)};\n'
+            cadenaTraduccion3d += 'H = H + 1;\n'
+
+            # guardo el tamanio del arreglo en t0
+            cadenaTraduccion3d += f't0 = {len(resultado.valor)};\n'
+
+            # guardo donde inicio el arreglo
+            cadenaTraduccion3d += f't1 = H;\n'
+
+            # for para recorrer caracter a caracter el string
+            for letra in resultado.valor:
+                cadenaTraduccion3d += f'heap[(int)H] = {ord(letra)};\n'
+                cadenaTraduccion3d += f'H = H + 1;\n'
+
+
+            cadenaTraduccion3d += '\n'
+            cadenaTraduccion3d += '/*--------- IMPRESION DE UN STRING -----------*/\n'
+            cadenaTraduccion3d += 'printString();\n'
+            cadenaTraduccion3d += '\n'  
+            cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+
+            traductor3d.setContenidoMain(cadenaTraduccion3d)
+                
+
+            # ******************************************
+
+
+
+        return None

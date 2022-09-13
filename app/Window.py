@@ -77,6 +77,10 @@ class Aplicacion:
     # funcionalidad para traduccir a 3d
     def traducir3d(self):
         print('TRADUCCION A 3D')
+        entrada = self.textAreaEntrada.get(1.0,END)
+        result3d = Sintactico.traduccir3d(entrada)
+        self.textAreaSalida.delete(1.0,END)
+        self.textAreaSalida.insert(1.0,result3d)
 
 
 
