@@ -3,6 +3,7 @@ from src.Interfaces.Expresion import Expresion
 
 # importaciones para manejar simbolos
 from src.environment.Simbolo import Simbolo
+from src.environment.Simbolo3d import Simbolo3d
 
 # clse para manejar numero primitivos
 class Primitivo(Expresion):
@@ -34,11 +35,13 @@ class Primitivo(Expresion):
 
     # retorno para traduccion en 3d
     def traducir(self, entorno, traductor3d):
-        return Simbolo(
+        return Simbolo3d(
             self.fila,
             self.columna,
             None,
             self.tipo,
             self.valor,
-            None
+            None,
+            0,
+            0
         )

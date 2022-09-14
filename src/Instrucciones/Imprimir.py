@@ -1,3 +1,4 @@
+from unittest import result
 from src.Interfaces.Instruccion import Instruccion
 from src.environment.Environment import Environment
 from src.Interfaces.TipoExpresion import TipoExpresion
@@ -260,30 +261,69 @@ class Imprimir(Instruccion):
 
 
 
+
+
+
+
+
+
+
+
+    # -------------------------------------------------------------------------
+    #                   TRADUCCION DE LA PIRNTLN A 3D
+    # -------------------------------------------------------------------------
     # traduccion a 3d
     def traducir(self, entorno, traductor3d):
-
-
         # traduccion a 3d
         cadenaTraduccion3d = ''
 
         # primitivo
         variables = '{}'
         countNodoDerecho = 0
+      
+
+
+        if self.contenido != None and self.lista == None:
+            self.impresionSimple(entorno, traductor3d)  
+
+
+        return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def impresionSimple(self, entorno, traductor3d):
+        # traduccion a 3d
+        cadenaTraduccion3d = ''
+        # -------------------------------------------------------------------------
+        #                 IMPRESION DE EXPRESIONES DE SIMBOLOS
+        # -------------------------------------------------------------------------
+
 
         # obtener el contenido que va imprimir
         # tien que retornar un Simbolo
         resultado = self.contenido.traducir(entorno, traductor3d)
 
 
-
-
         # impresion de expresiones tipo integer y tipo float
         if resultado.tipo == TipoExpresion.INTEGER:
             # ************ traduccion ******************
-            cadenaTraduccion3d += f'printf("%d", (int){resultado.valor}); \n'
-            cadenaTraduccion3d += 'printf("%c", (int)10);\n'
-
+            cadenaTraduccion3d += self.imprimirInteger3d(resultado.valor)
             traductor3d.setContenidoMain(cadenaTraduccion3d)
             # ******************************************
 
@@ -293,19 +333,15 @@ class Imprimir(Instruccion):
         # impresion de expresiones tipo  float
         elif resultado.tipo == TipoExpresion.FLOAT:
             # ************ traduccion ******************
-            cadenaTraduccion3d += f'printf("%f", {resultado.valor}); \n'
-            cadenaTraduccion3d += 'printf("%c", (int)10);\n'
-
+            cadenaTraduccion3d += self.imprimirFloat3d(resultado.valor)
             traductor3d.setContenidoMain(cadenaTraduccion3d)
             # ******************************************
 
 
 
-        elif resultado.tiop == TipoExpresion.CHAR:
+        elif resultado.tipo == TipoExpresion.CHAR:
             # ************ traduccion ******************
-            cadenaTraduccion3d += f'printf("%c", {resultado.valor}); \n'
-            cadenaTraduccion3d += 'printf("%c", (int)10);\n'
-
+            cadenaTraduccion3d += self.imprimirChar3d(resultado.valor)
             traductor3d.setContenidoMain(cadenaTraduccion3d)
             # ******************************************
 
@@ -315,28 +351,13 @@ class Imprimir(Instruccion):
             
             if resultado.valor == 'true':
                 # ************ traduccion ******************
-                cadenaTraduccion3d += '\n'
-                cadenaTraduccion3d += '/*--------- BOOLEANO ------------*/\n'
-                cadenaTraduccion3d += 'printf("%c", (int)116);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)114);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)117);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)101);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+                cadenaTraduccion3d += self.imprimirTrue3d()
                 traductor3d.setContenidoMain(cadenaTraduccion3d)
                 # ******************************************
 
             elif resultado.valor == 'false':
                 # ************ traduccion ******************
-                cadenaTraduccion3d += '\n'
-                cadenaTraduccion3d += '/*--------- BOOLEANO ------------*/\n'
-                cadenaTraduccion3d += 'printf("%c", (int)102);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)97);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)108);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)115);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)101);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)10);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)13);\n'
-                cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+                cadenaTraduccion3d += self.imprimirFalse3d()
                 traductor3d.setContenidoMain(cadenaTraduccion3d)
                 # ******************************************
 
@@ -346,40 +367,241 @@ class Imprimir(Instruccion):
         elif resultado.tipo == TipoExpresion.STRING:
 
             # ************ traduccion ******************
-
-            # guardo va iniciar el arreglo en el stack
-            cadenaTraduccion3d += '\n'
-            cadenaTraduccion3d += '/*--------- MOVIMIENTOS PARA UN STRING ------------*/\n'
-            cadenaTraduccion3d += 'stack[(int)P] = H;\n'
-            cadenaTraduccion3d += 'P = P + 1;\n'
-
-            # guardo el tambio del arreglo en la primera posicion del heap
-            cadenaTraduccion3d += f'heap[(int)H] = {len(resultado.valor)};\n'
-            cadenaTraduccion3d += 'H = H + 1;\n'
-
-            # guardo el tamanio del arreglo en t0
-            cadenaTraduccion3d += f't0 = {len(resultado.valor)};\n'
-
-            # guardo donde inicio el arreglo
-            cadenaTraduccion3d += f't1 = H;\n'
-
-            # for para recorrer caracter a caracter el string
-            for letra in resultado.valor:
-                cadenaTraduccion3d += f'heap[(int)H] = {ord(letra)};\n'
-                cadenaTraduccion3d += f'H = H + 1;\n'
-
-
-            cadenaTraduccion3d += '\n'
-            cadenaTraduccion3d += '/*--------- IMPRESION DE UN STRING -----------*/\n'
-            cadenaTraduccion3d += 'printString();\n'
-            cadenaTraduccion3d += '\n'  
-            cadenaTraduccion3d += 'printf("%c", (int)10);\n'
-
-            traductor3d.setContenidoMain(cadenaTraduccion3d)
-                
-
+            cadenaTraduccion3d += self.imprimirString3d(traductor3d, resultado.valor)
+            traductor3d.setContenidoMain(cadenaTraduccion3d)              
             # ******************************************
 
 
 
-        return None
+
+
+        # -----------------------------------------------
+        #           imppresion para variables
+        # -----------------------------------------------
+        elif resultado.tipo == TipoExpresion.ID:
+
+            # buscar variables en el entorno 
+            variable3d = entorno.getVariable3d(resultado.valor)
+            
+
+            # ************ traduccion ******************
+
+            # variable es de tipo INTEGER
+            if variable3d.tipo == TipoExpresion.INTEGER:
+                temporalActual = traductor3d.getTemporal()
+                # colocar posicion en una termporal
+                cadenaTraduccion3d += '\n'
+                cadenaTraduccion3d += '/*------ IMPRESION VARIABLE --------*/\n'
+                cadenaTraduccion3d += f't{temporalActual} = {variable3d.posicion};\n'
+                traductor3d.aumentarTemporal()
+
+                # buscar el valor en esa possicion
+                cadenaTraduccion3d += f't{temporalActual+1} = stack[(int) t{temporalActual}];\n'
+                traductor3d.aumentarTemporal()
+                cadenaTraduccion3d += self.imprimirInteger3d(f't{temporalActual+1}')
+
+
+            # variable es de tipo FLOAT
+            elif variable3d.tipo == TipoExpresion.FLOAT:
+                temporalActual = traductor3d.getTemporal()
+                # colocar posicion en una termporal
+                cadenaTraduccion3d += '\n'
+                cadenaTraduccion3d += '/*------ IMPRESION VARIABLE --------*/\n'
+                cadenaTraduccion3d += f't{temporalActual} = {variable3d.posicion};\n'
+                traductor3d.aumentarTemporal()
+
+                # buscar el valor en esa possicion
+                cadenaTraduccion3d += f't{temporalActual+1} = stack[(int) t{temporalActual}];\n'
+                traductor3d.aumentarTemporal()
+                cadenaTraduccion3d += self.imprimirFloat3d(f't{temporalActual+1}')
+
+
+            # variable es de tipo BOOL
+            elif variable3d.tipo == TipoExpresion.BOOL:
+                if variable3d.valor == 'true':
+                    # ************ traduccion ******************
+                    cadenaTraduccion3d += self.imprimirTrue3d()
+                    # ******************************************
+
+                elif variable3d.valor == 'false':
+                    # ************ traduccion ******************
+                    cadenaTraduccion3d += self.imprimirFalse3d()
+                    # ******************************************
+
+
+
+            # variable es de tipo STRING
+            elif variable3d.tipo == TipoExpresion.STRING:
+                temporalActual = traductor3d.getTemporal()
+                # colocar posicion de la variable en una temporal
+                cadenaTraduccion3d += '\n'
+                cadenaTraduccion3d += '/*------ IMPRESION VARIABLE --------*/\n'
+                cadenaTraduccion3d += f't{temporalActual} = {variable3d.posicion};\n'
+                traductor3d.aumentarTemporal()
+
+                # obtengo la possicion en el heap donde esta esta el string
+                temporalActual = traductor3d.getTemporal()
+                cadenaTraduccion3d += f't{temporalActual} = stack[(int) t{temporalActual-1}];\n'
+                
+
+                # posiciono en el heap segun el temporal
+                # primera posicion me dice cual es el tamanio del arreglo -> t0
+                # segunda posicion es donde inicial el arreglo -> t2
+                cadenaTraduccion3d += f't0 = heap[(int)t{temporalActual}];\n'
+                cadenaTraduccion3d += f't2 = t{temporalActual} + 1;\n'
+
+                traductor3d.aumentarTemporal()
+                cadenaTraduccion3d += '\n'
+                cadenaTraduccion3d += '/*--------- IMPRESION DE UN STRING -----------*/\n'
+                cadenaTraduccion3d += 'printString();\n'
+                cadenaTraduccion3d += '\n'  
+                cadenaTraduccion3d += 'printf("%c", (int)10);\n'  
+            
+
+
+            # *********************************************
+            traductor3d.setContenidoMain(cadenaTraduccion3d)
+            # *********************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # ----------------------------------------------------------------
+    #             MANEJO DE DIFERENTES TIPO DE  IMPRESIONES
+    # ----------------------------------------------------------------
+
+    # metodo para hacer impresiones de valores enteros
+    def imprimirInteger3d(self, resultado):
+        cadenaTraduccion3d = ''
+        # ************ traduccion ******************
+        cadenaTraduccion3d += '\n'
+        cadenaTraduccion3d += '/*--------- PRINT ------------*/\n'
+        cadenaTraduccion3d += f'printf("%d", (int){resultado}); \n'
+        cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+        return cadenaTraduccion3d
+        # ******************************************
+
+
+
+    # metodo para hacer impresion de valores float
+    def imprimirFloat3d(self, resultado):
+        cadenaTraduccion3d = ''
+        # ************ traduccion ******************
+        cadenaTraduccion3d += '\n'
+        cadenaTraduccion3d += '/*--------- PRINT ------------*/\n'
+        cadenaTraduccion3d += f'printf("%f", {resultado.valor}); \n'
+        cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+        return cadenaTraduccion3d
+        # ******************************************
+
+
+
+    # metodo para hacer impresion de un valro char
+    def imprimirChar3d(self, resultado):
+        cadenaTraduccion3d = ''
+        # ************ traduccion ******************
+        cadenaTraduccion3d += '\n'
+        cadenaTraduccion3d += '/*--------- PRINT ------------*/\n'
+        cadenaTraduccion3d += f'printf("%c", {resultado.valor}); \n'
+        cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+        return cadenaTraduccion3d
+        # ******************************************
+
+
+
+    def imprimirTrue3d(self):
+        cadenaTraduccion3d = ''
+        # ************ traduccion ******************
+        cadenaTraduccion3d += '\n'
+        cadenaTraduccion3d += '/*--------- PRINT ------------*/\n'
+        cadenaTraduccion3d += 'printf("%c", (int)116);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)114);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)117);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)101);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+        return cadenaTraduccion3d
+        # ******************************************
+
+
+    def imprimirFalse3d(self):
+        cadenaTraduccion3d = ''
+        # ************ traduccion ******************
+        cadenaTraduccion3d += '\n'
+        cadenaTraduccion3d += '/*--------- PRINT ------------*/\n'
+        cadenaTraduccion3d += 'printf("%c", (int)102);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)97);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)108);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)115);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)101);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)13);\n'
+        cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+        return cadenaTraduccion3d
+        # ******************************************
+
+
+
+    def imprimirString3d(self, traductor3d, resultado):
+        cadenaTraduccion3d = ''
+        # ************ traduccion ******************
+        # guardo va iniciar el arreglo en el stack
+        cadenaTraduccion3d += '\n'
+        cadenaTraduccion3d += '/*--------- MOVIMIENTOS PARA UN STRING ------------*/\n'
+        cadenaTraduccion3d += 'stack[(int)P] = H;\n'
+        cadenaTraduccion3d += 'P = P + 1;\n'
+        traductor3d.aumentarStack()
+
+
+        # guardo el tambio del arreglo en la primera posicion del heap
+        cadenaTraduccion3d += f'heap[(int)H] = {len(resultado)};\n'
+        cadenaTraduccion3d += 'H = H + 1;\n'
+        traductor3d.aumentarHeap()
+
+
+        # guardo el tamanio del arreglo en t0
+        cadenaTraduccion3d += f't0 = {len(resultado)};\n'
+
+        # guardo donde inicio el arreglo
+        cadenaTraduccion3d += f't2 = H;\n'
+
+        # for para recorrer caracter a caracter el string
+        for letra in resultado:
+            cadenaTraduccion3d += f'heap[(int)H] = {ord(letra)};\n'
+            cadenaTraduccion3d += f'H = H + 1;\n'
+            traductor3d.aumentarHeap()
+
+
+        cadenaTraduccion3d += '\n'
+        cadenaTraduccion3d += '/*--------- IMPRESION DE UN STRING -----------*/\n'
+        cadenaTraduccion3d += 'printString();\n'
+        cadenaTraduccion3d += '\n'  
+        cadenaTraduccion3d += 'printf("%c", (int)10);\n'
+
+        return cadenaTraduccion3d           
+        # ******************************************

@@ -181,8 +181,16 @@ class Aplicacion:
 
 
 
+        frameSalida = Frame(relief=RAISED, bd=1)
+        frameSalida.rowconfigure(0, minsize=self.alto, weight=1)
+        frameSalida.columnconfigure(0,weight=1)
 
 
-        self.textAreaSalida = Text(wrap=WORD, font=('Consolas',12))
-        self.textAreaSalida.grid(row=0, column=3, sticky='nswe')
+        self.textAreaSalida = Text(frameSalida, wrap=WORD, font=('Consolas',12))
+        self.textAreaSalida.grid(row=0, column=0, sticky='nswe')
 
+        scrollbar3 = Scrollbar(frameSalida, orient='vertical', command=self.textAreaSalida.yview)
+        scrollbar3.grid(row=0, column=1, sticky='ns')
+        self.textAreaSalida['yscrollcommand'] = scrollbar3.set	
+
+        frameSalida.grid(row=0, column=3, sticky='ns')

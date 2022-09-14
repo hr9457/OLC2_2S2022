@@ -1,6 +1,11 @@
 from src.Interfaces.TipoExpresion import TipoExpresion
 
 
+
+from src.environment.Simbolo3d import Simbolo3d
+
+
+
 class Simbolo:
 
     
@@ -23,4 +28,20 @@ class Simbolo:
             self.tipo,
             self.valor,
             self.mutabilidad
+        )
+
+
+
+
+    # para traduccion en 3d
+    def traducir(self, entorno, traductor3d):
+        return Simbolo3d(
+            self.fila,
+            self.columna,
+            self.identificador,
+            self.tipo,
+            self.valor,
+            self.mutabilidad,
+            0,
+            0
         )

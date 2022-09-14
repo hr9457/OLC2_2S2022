@@ -12,6 +12,7 @@ class Environment:
         self.nombre = nombre
         self.numero = numero
         self.variables = {}
+        self.variables3d = {}
         self.funciones = {}
         self.structs = {}
         self.prev = prev
@@ -143,3 +144,72 @@ class Environment:
             return self.prev.getStruct(id)
 
         return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # ---------------------------------------------
+    #            MANEJO DE 3D
+    # ---------------------------------------------
+    #  metodo para agregar variables
+    def addVariable3d(self, id ,nuevaVariable):
+
+        self.variables3d.update({id: nuevaVariable})
+        print('ENTORNO: variable agregada')
+        # print(self.variables)
+
+
+    
+    # funcion para actualizar variables en los entornos
+    def updateVariabe3d(self,id, actualizacion):
+
+        # recorrro el listado de variables del entorno
+        for key in self.variables3d.keys():
+            if key == id:
+                print('UPDATE: variable encontrada en el entorno')
+                self.variables3d.update({id: actualizacion})
+                return
+
+        
+        print('UPDATE: buscando en el entorno anterior')
+        self.prev.updateVariabe(id,actualizacion)
+
+
+
+
+
+
+    # metodo para obtener valor de una variable
+    def getVariable3d(self, id):
+
+        # print(self.variables)
+        for key in self.variables3d.keys():        
+
+            if key == id:
+
+                return self.variables3d[key]
+
+        # buscar en el etorno anterior
+        if self.prev != None:
+            print('buscando en el entorno anterior')
+            return self.prev.getVariable(id)
+
+
+        # print(key)
+        print('variable no encontrada')
+        return -1
+        # return Error('variable no encontrada')

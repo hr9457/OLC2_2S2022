@@ -607,11 +607,6 @@ fn main() {
 
 
 
-fn main() {
-    println!( 10 - (5 + 10 * (9 + 4 * (1 + 2 * 3)) - 8 * 3 * 6) + 5 * (2 * 2)  );
-}
-
-
 
 fn main() {
     println!( 3 );
@@ -621,15 +616,32 @@ fn main() {
 
 
 
-
 fn main() {
-    println!("primero");
-    println!("segundo");
+
+    println!("-----------------------------------");
+    println!("----ARCHIVO BASICO SALIDA EN 3D----");
+    println!("-----------------------------------");
+        
+
+    let val11 = 10 - (5 + 10 * (9 + 4 * (1 + 2 * 3)) - 8 * 3 * 6) + 5 * (2 * 2);
+    let val21 = (2 * 9 * 2 * 2) - 9 - (8 - 16 + (3 * 3 - 6 * 5 - 7 - (9 + 7 * 7 * 7) + 10) - 5) + 8 - (6 - 5 * (2 * 3));
+    let val31 = val11 + ((2 + val21 * 3) + 1 - ((2 * 2 * 2) - 2) * 2) - 2;
+
+
+    let cad1: String = "imprimir";
+
+    println!(val11);
+    println!(val21);
+    println!(val31);
+    println!(cad1);
 }
 
 
 
-fn main() {
-    println!(true);
-    println!(false);
+
+
+fn main(){
+    let var1 = "hola";
+
+    println!("El valor de val11 es: {}",val11);
 }

@@ -6,6 +6,8 @@ class Environment3d:
     def __init__(self):
         self.temporal = 5
         self.etiqueta = 0
+        self.punteroStack = 0
+        self.punteroHeap = 0
         self.traduccion = ''
         self.contenidoMain = '' 
 
@@ -79,8 +81,11 @@ class Environment3d:
         self.traduccion += '/*------------- INICIO -----------------*/\n'
         self.traduccion += '\n'
         self.traduccion += 'void main(){\n'
+        self.traduccion += '/*----  PUNTEROS ------*/\n'
         self.traduccion += '    P = 0;\n'
         self.traduccion += '    H = 0;\n'
+        self.traduccion += '\n'
+        self.traduccion += '\n'
         self.traduccion += f'\t {self.contenidoMain}\n'
         self.traduccion += '\n'
         self.traduccion += '    return 0;\n'
@@ -106,6 +111,8 @@ class Environment3d:
 
 
 
+
+
     # contenido
     def getContenidoMain(self):
         return self.contenidoMain
@@ -114,6 +121,8 @@ class Environment3d:
 
     def setContenidoMain(self, cadena):
         self.contenidoMain += cadena
+
+
 
 
 
@@ -131,6 +140,8 @@ class Environment3d:
 
 
 
+
+
     # metodo para aumetar el numero de las etiquetas
     def aumentarEtiqueta(self):
         self.etiqueta += 1
@@ -140,4 +151,36 @@ class Environment3d:
     # etiqueta para aumetar la etiqueta
     def obtenerEtiqueta(self):
         return self.etiqueta
+
+
+
+
+
+
+
+
+    # metodo para manejar el valor de los puntero
+    def aumentarStack(self):
+        self.punteroStack += 1
+
+
+
+    def getStack(self):
+        return self.punteroStack
+
+
+
+
+
+
+
+
+    def aumentarHeap(self):
+        self.punteroHeap += 1
+
+
+    def getHeap(self):
+        return self.punteroHeap
+
+
 

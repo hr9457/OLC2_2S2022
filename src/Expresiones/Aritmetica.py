@@ -9,6 +9,9 @@ from src.Error.Error import Error
 
 
 
+from src.environment.Simbolo3d import Simbolo3d
+
+
 
 # clase para manejar las sumas
 class Aritmetica(Expresion):
@@ -188,6 +191,9 @@ class Aritmetica(Expresion):
 
 
 
+
+
+
     # traduccion en 3d
     def traducir(self, entorno, traductor3d):
 
@@ -201,6 +207,32 @@ class Aritmetica(Expresion):
         # EJECUCION DEL NODO DERECHO Y DEL NODO IZQUIERDO
         nodoIzquierdo = self.leftExp.traducir(entorno, traductor3d)
         nodoDerecho = self.rigthExp.traducir(entorno, traductor3d)
+
+
+
+
+        # VERIFICACION DE LOS NODOS SI SON TIPO ID Y HAY QUE BUSCARLOS EN EL STACK
+        if nodoIzquierdo.tipo == TipoExpresion.ID and nodoDerecho.tipo == TipoExpresion.ID:
+
+            nodoIzquierdo = entorno.getVariable3d(nodoIzquierdo.valor)
+            nodoDerecho = entorno.getVariable3d(nodoDerecho.valor)
+
+
+        # SI SOLO EL NODO IZQUIERDO ES UN ID
+        elif nodoIzquierdo.tipo == TipoExpresion.ID and nodoDerecho.tipo != TipoExpresion.ID:
+
+            nodoIzquierdo = entorno.getVariable3d(nodoIzquierdo.valor)
+
+
+        # SI SOLO  EL NODO DERECHO ES UN ID
+        elif nodoIzquierdo.tipo != TipoExpresion.ID and nodoDerecho.tipo == TipoExpresion.ID:
+
+            nodoDerecho = entorno.getVariable3d(nodoDerecho.valor)
+
+
+
+
+
         
         
         # verificaion de tipo del nodo derecha y nodo izquierda
@@ -225,13 +257,15 @@ class Aritmetica(Expresion):
                     traductor3d.setContenidoMain(cadenaTraduccion3d)
                     traductor3d.aumentarTemporal()
 
-                    return Simbolo(
+                    return Simbolo3d(
                         self.fila,
                         self.columna,
                         None,
                         TipoExpresion.INTEGER,
                         f't{temporalActual}',
-                        None
+                        None,
+                        0,
+                        0
                     )
                     # *************************************
 
@@ -250,13 +284,15 @@ class Aritmetica(Expresion):
                     traductor3d.setContenidoMain(cadenaTraduccion3d)
                     traductor3d.aumentarTemporal()
 
-                    return Simbolo(
+                    return Simbolo3d(
                         self.fila,
                         self.columna,
                         None,
                         TipoExpresion.INTEGER,
                         f't{temporalActual}',
-                        None
+                        None,
+                        0,
+                        0
                     )
                     # *************************************
 
@@ -276,13 +312,15 @@ class Aritmetica(Expresion):
                     traductor3d.setContenidoMain(cadenaTraduccion3d)
                     traductor3d.aumentarTemporal()
 
-                    return Simbolo(
+                    return Simbolo3d(
                         self.fila,
                         self.columna,
                         None,
                         TipoExpresion.INTEGER,
                         f't{temporalActual}',
-                        None
+                        None,
+                        0,
+                        0
                     )
                     # *************************************
 
@@ -302,13 +340,15 @@ class Aritmetica(Expresion):
                     traductor3d.setContenidoMain(cadenaTraduccion3d)
                     traductor3d.aumentarTemporal()
 
-                    return Simbolo(
+                    return Simbolo3d(
                         self.fila,
                         self.columna,
                         None,
                         TipoExpresion.INTEGER,
                         f't{temporalActual}',
-                        None
+                        None,
+                        0,
+                        0
                     )
                     # *************************************
 
@@ -335,13 +375,15 @@ class Aritmetica(Expresion):
                     traductor3d.setContenidoMain(cadenaTraduccion3d)
                     traductor3d.aumentarTemporal()
 
-                    return Simbolo(
+                    return Simbolo3d(
                         self.fila,
                         self.columna,
                         None,
                         TipoExpresion.FLOAT,
                         f't{temporalActual}',
-                        None
+                        None,
+                        0,
+                        0
                     )
                     # *************************************
 
@@ -360,13 +402,15 @@ class Aritmetica(Expresion):
                     traductor3d.setContenidoMain(cadenaTraduccion3d)
                     traductor3d.aumentarTemporal()
 
-                    return Simbolo(
+                    return Simbolo3d(
                         self.fila,
                         self.columna,
                         None,
                         TipoExpresion.FLOAT,
                         f't{temporalActual}',
-                        None
+                        None,
+                        0,
+                        0
                     )
                     # *************************************
 
@@ -386,13 +430,15 @@ class Aritmetica(Expresion):
                     traductor3d.setContenidoMain(cadenaTraduccion3d)
                     traductor3d.aumentarTemporal()
 
-                    return Simbolo(
+                    return Simbolo3d(
                         self.fila,
                         self.columna,
                         None,
                         TipoExpresion.FLOAT,
                         f't{temporalActual}',
-                        None
+                        None,
+                        0,
+                        0
                     )
                     # *************************************
 
@@ -412,12 +458,14 @@ class Aritmetica(Expresion):
                     traductor3d.setContenidoMain(cadenaTraduccion3d)
                     traductor3d.aumentarTemporal()
 
-                    return Simbolo(
+                    return Simbolo3d(
                         self.fila,
                         self.columna,
                         None,
                         TipoExpresion.FLOAT,
                         f't{temporalActual}',
-                        None
+                        None,
+                        0,
+                        0
                     )
                     # *************************************

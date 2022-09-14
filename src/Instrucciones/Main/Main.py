@@ -27,6 +27,16 @@ class FuncionMain(Instruccion):
 
 
 
+
+
+
+
+
+
+
+
+
+    # para ejecutar todas la acciones de la traduccion en 3d
     def traducir(self, entorno, traductor3d):
 
         for instruccion in self.instrucciones:
